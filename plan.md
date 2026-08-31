@@ -5,8 +5,9 @@ Model: rank on `/materiales` category + per-material pages, capture quote reques
 lead to up to 3 suppliers per category. Marketplace mechanics invisible on-site. Stack:
 static HTML + PHP on Hostinger shared hosting, no Node, no database at launch.
 
-**Status: DRAFT — pending Anton's review.** Decisions below are made calls; anything marked ⚠️
-is an assumption he can veto. §8 lists the open business questions parked outside the build.
+**Status: APPROVED for build (Anton, 2026-08-31).** Decisions below are locked; items marked
+⚠️ were flagged assumptions Anton did not veto. §8 lists business questions parked outside
+the build.
 
 ## Phase table
 
