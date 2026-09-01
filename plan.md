@@ -338,6 +338,31 @@ timing.
 *(Each phase appends a dated 5–10 line entry before merging: phase id + PR, what now exists,
 decisions/deviations, where the next phase should look first.)*
 
+### 2026-09-01 — Phase 1 Foundation (branch `phase/1-foundation`)
+
+- **Exists now**: repo layout of §2; `public_html/` with homepage, `/materiales/` router
+  (flat shared slug namespace, categories checked before materials), `/guias/` router,
+  `cotizar`/`gracias`/`contacto`/`politica-de-privacidad`, `404.php`, `sitemap.php`
+  (served as `/sitemap.xml`), static `robots.txt`, `.htaccess` rewrites, `partials/`
+  (init, header, footer trust stack, schema builders, cookie-banner shell + consent.js),
+  minimal placeholder CSS.
+- **Data**: `data/site.php` (NAP empty and marked PENDIENTE in comments only — never on-page),
+  `categories.php` (13: the 5 recruited = `activa`, the 8 expansion = `proxima`),
+  `materials.php` (34: 28 wave-1 `activa`, 6 madera `proxima`), plus a new `guides.php`
+  (6 wave-1 guías, `proxima`) — that file is a deviation, see KNOWN-ISSUES #1. Every entry
+  ships its real title (≤60) and meta (≤155); prose/FAQ/synonyms land in phase 3.
+- **CI**: one `pull_request` job (`check`), ≤5 min — `php -l` over all PHP, `tools/smoke.php`
+  (slug uniqueness across categories+materials, cross-file references, status coherence,
+  title/meta limits) and `tools/render-check.sh` (router, sitemap, 404 via `php -S`).
+  Actions is not in the deploy path; deploy is the Hostinger Git webhook — see `DEPLOY.md`.
+- **Decisions/deviations**: `SearchAction` withheld behind a `has_search` flag (no internal
+  search exists — flagged for veto, KNOWN-ISSUES #2); `data/guides.php` added; rewrite rules
+  are mirrored in `tools/router-cli.php` for local/CI serving; `staging_noindex` ships `true`.
+- **Phase 2 starts here**: `public_html/cotizar/index.php` (page exists, form does not),
+  `config.sample.php` (VenderCRM url/api_key/timeout), `partials/cookie-banner.php` +
+  `assets/js/consent.js` (fires a `consent:changed` event for GA4/Pixel gating), and
+  `page()`/`site()` helpers in `partials/init.php`.
+
 ## §10 Backlog
 
 - Automated supplier fan-out as a VenderCRM automation (not site PHP)
