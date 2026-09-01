@@ -1,0 +1,67 @@
+/*
+ * site.css — hoja mínima de la fase 1. La capa visual completa (tokens, tipografía,
+ * layouts, motion) la construye la fase 4 con el skill web-design-system. Acá sólo hay lo
+ * necesario para que las páginas sean legibles y accesibles en mobile.
+ */
+
+:root {
+  --ink: #14181d;
+  --muted: #5a636e;
+  --line: #e2e6ea;
+  --bg: #ffffff;
+  --accent: #b3421a;
+  --max: 68rem;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 1rem/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+main { display: block; max-width: var(--max); margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+
+h1 { font-size: 1.75rem; line-height: 1.2; margin: 0 0 .75rem; }
+h2 { font-size: 1.25rem; margin: 2rem 0 .5rem; }
+
+a { color: var(--accent); }
+
+.skip-link { position: absolute; left: -9999px; }
+.skip-link:focus { left: 1rem; top: 1rem; background: #fff; padding: .5rem; z-index: 10; }
+
+.site-header {
+  display: flex; flex-wrap: wrap; gap: .75rem 1rem; align-items: center;
+  justify-content: space-between;
+  max-width: var(--max); margin: 0 auto; padding: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.site-header__brand { font-weight: 700; text-decoration: none; color: var(--ink); }
+.site-nav { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+.breadcrumbs { max-width: var(--max); margin: 0 auto; padding: .75rem 1rem 0; font-size: .875rem; color: var(--muted); }
+.breadcrumbs ol { display: flex; flex-wrap: wrap; gap: .35rem; list-style: none; margin: 0; padding: 0; }
+.breadcrumbs li + li::before { content: "/"; margin-right: .35rem; color: var(--line); }
+
+.card-list { list-style: none; margin: 1rem 0; padding: 0; display: grid; gap: .75rem; }
+@media (min-width: 40rem) { .card-list { grid-template-columns: repeat(2, 1fr); } }
+.card-list a { display: block; padding: .9rem 1rem; border: 1px solid var(--line); border-radius: .5rem; text-decoration: none; }
+.card-list a[aria-disabled="true"], .card-list .is-proxima { color: var(--muted); }
+
+.notice { border: 1px solid var(--line); border-left: 3px solid var(--accent); padding: .9rem 1rem; border-radius: .25rem; }
+
+.site-footer { border-top: 1px solid var(--line); padding: 2rem 1rem; color: var(--muted); font-size: .9rem; }
+.site-footer > * { max-width: var(--max); margin-inline: auto; }
+.site-footer__contact, .site-footer__nav { display: flex; flex-wrap: wrap; gap: 1rem; list-style: none; padding: 0; }
+
+.cookie-banner {
+  position: fixed; inset: auto 0 0 0; z-index: 20;
+  background: #fff; border-top: 1px solid var(--line);
+  padding: 1rem; font-size: .9rem;
+}
+.cookie-banner__options { display: flex; flex-wrap: wrap; gap: .75rem 1rem; align-items: center; }
+.cookie-banner__actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+.cookie-banner button { padding: .5rem .9rem; border: 1px solid var(--line); border-radius: .35rem; background: #fff; cursor: pointer; }
+.cookie-banner button[data-consent="accept-all"] { background: var(--accent); border-color: var(--accent); color: #fff; }

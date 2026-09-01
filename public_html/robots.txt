@@ -1,0 +1,8 @@
+# robots.txt — estático (plan §6). El bloqueo de indexación en staging lo hace la etiqueta
+# meta robots noindex sitewide (data/site.php → staging_noindex), no este archivo: para que
+# Google lea el noindex tiene que poder rastrear la página.
+User-agent: *
+Allow: /
+Disallow: /gracias/
+
+Sitemap: https://materiales.com.py/sitemap.xml

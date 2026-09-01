@@ -1,0 +1,42 @@
+# .htaccess — reescrituras del router (plan §2). Docroot = public_html.
+# data/, content/, config/ y storage/ viven FUERA de este directorio (ver DEPLOY.md).
+
+Options -Indexes
+DirectoryIndex index.php
+ErrorDocument 404 /404.php
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Nunca servir directamente los includes del router ni los partials.
+  RewriteRule ^materiales/_index\.php$ - [F,L]
+  RewriteRule ^partials/ - [F,L]
+
+  # sitemap.xml lo genera PHP desde los mismos archivos de datos (no puede desincronizarse).
+  RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
+  # Canonicalización: /materiales/hierro → /materiales/hierro/ (301, una sola forma de URL).
+  RewriteCond %{REQUEST_URI} ^/(materiales|guias)/[a-z0-9-]+$
+  RewriteRule ^(.*)$ /$1/ [R=301,L]
+
+  # Índices.
+  RewriteRule ^materiales/$ materiales/index.php [L,QSA]
+  RewriteRule ^guias/$ guias/index.php [L,QSA]
+
+  # Namespace plano: /materiales/{slug}/ sirve categorías Y materiales (plan §2).
+  RewriteRule ^materiales/([a-z0-9-]+)/$ materiales/index.php?slug=$1 [L,QSA]
+  RewriteRule ^guias/([a-z0-9-]+)/$ guias/index.php?slug=$1 [L,QSA]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+</IfModule>

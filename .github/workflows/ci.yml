@@ -1,0 +1,44 @@
+# CI de materiales.com.py — UN solo job, ~1 minuto (política budgeted-runner-deploy).
+#
+# GitHub Actions NUNCA está en el camino del deploy: el deploy lo hace el webhook Git de
+# Hostinger al hacer push a main (plan §1.10). Este workflow es sólo el check requerido.
+#
+# Por qué existe pese al "default: no workflow" del skill: el plan aprobado por Anton
+# (plan §1.10 y fase 1) lo pide explícitamente como check requerido de la protección de
+# rama. Cumple la forma obligatoria del skill: pull_request únicamente (nunca push),
+# concurrency con cancel-in-progress, ubuntu-latest, timeout-minutes, sin matriz.
+name: CI
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+      - 'prompts/**'
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: PHP disponible en el runner
+        run: php -v
+
+      - name: Lint de sintaxis (php -l sobre todo el PHP)
+        run: |
+          find . -path ./.git -prune -o -name '*.php' -print0 \
+            | xargs -0 -r -n1 -P4 php -l
+
+      - name: Smoke de datos (slugs únicos, referencias, límites de title/meta)
+        run: php tools/smoke.php
+
+      - name: Render check (router, sitemap, 404)
+        run: ./tools/render-check.sh

@@ -1,0 +1,8 @@
+# Config y datos de runtime viven en el servidor, fuera del repo y fuera del docroot.
+/config/
+/storage/
+
+# Ruido de sistema
+.DS_Store
+Thumbs.db
+*.log
