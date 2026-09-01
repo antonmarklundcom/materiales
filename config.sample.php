@@ -24,4 +24,9 @@ return [
 
     // Timeout de la request al CRM, en segundos (plan §3).
     'timeout' => 10,
+
+    // OPCIONAL. Endurece la trampa de tiempo del formulario: con esto, el sello que firma
+    // partials/lead.php deja de depender de la api_key. Poné cualquier cadena aleatoria
+    // larga (p. ej. `openssl rand -hex 32`). Si queda vacío el formulario funciona igual.
+    'form_secret' => '',
 ];

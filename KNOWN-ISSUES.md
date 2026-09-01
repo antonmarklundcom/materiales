@@ -34,3 +34,29 @@ la fase que la resuelve.
    cualquier PR que sólo toque markdown. El job tarda ~15 s, así que el costo de correrlo
    siempre es menor que el del bloqueo. Si algún día deja de ser check requerido, volver a
    poner `paths-ignore`.
+
+## Fase 2 — Lead pipeline (EN CURSO, PR parcial)
+
+9. **La fase 2 quedó a medias a pedido de Anton.** Lo que YA está mergeado es sólo la
+   biblioteca `public_html/partials/lead.php` (normalización de teléfono PY, clave de
+   idempotencia, sello firmado de la trampa de tiempo, merge de la cookie `vc_attr`, armado
+   del payload, POST al CRM, escritura de `storage/leads.log`) más la clave opcional
+   `form_secret` en `config.sample.php`. Nada la llama todavía: el sitio se comporta igual
+   que al final de la fase 1.
+
+   **Falta, en este orden** (plan §3 y `prompts/opus-2-lead-pipeline.md`):
+   - `public_html/partials/form.php` — material preseleccionado, cantidad, ciudad, nombre,
+     teléfono (requerido), mensaje, casilla de consentimiento DESMARCADA, honeypot `website`,
+     sello `ts` + `tsg` de `lead_form_stamp()`, `origen` para el redirect de error.
+   - Incluir el formulario en `/cotizar/` y en las páginas de categoría y material.
+   - `public_html/cotizar/enviar.php` — shell HTTP: honeypot/sello ⇒ 303 silencioso a
+     `/gracias/` sin postear; teléfono inválido o consentimiento sin marcar ⇒ 303 de vuelta
+     al formulario con `?error=`; camino feliz ⇒ `lead_send()` + `lead_log()` + 303 a
+     `/gracias/?m={slug}&k={token de un solo uso}`.
+   - `partials/analytics.php` + `assets/js/analytics.js` — GA4 detrás del consentimiento de
+     estadísticas, Meta Pixel detrás del de marketing, snippet `vc-attribution.js` sitewide;
+     `/gracias/` dispara `cotizacion_form_submitted` y `Lead` una sola vez por token `k`.
+   - Ampliar `/politica-de-privacidad/`: cookie `vc_attr`, GA4/Pixel y Ley 7593 por nombre.
+   - Ampliar `tools/smoke.php` (unitarios sobre `lead.php`) y `tools/render-check.sh` (POST
+     real al handler) con los criterios de salida de la fase.
+   - Entrada de build log en `plan.md` §9.
