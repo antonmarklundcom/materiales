@@ -23,12 +23,20 @@ page([
 
 require PUBLIC_ROOT . '/partials/header.php';
 ?>
-<h1>No encontramos esa página</h1>
-<p>Puede que el enlace esté viejo o mal escrito. Probá desde acá:</p>
-<ul class="card-list">
-  <li><a href="/materiales/">Todos los materiales</a></li>
-  <li><a href="/cotizar/">Pedir cotización</a></li>
-  <li><a href="/guias/">Guías de obra</a></li>
-  <li><a href="/contacto/">Contacto</a></li>
-</ul>
+<div class="page-hero band--dark grain bleed">
+  <div class="wrap">
+    <h1>No encontramos esa página</h1>
+    <p class="lead">Puede que el enlace esté viejo o mal escrito. Probá desde acá:</p>
+  </div>
+</div>
+<div class="field wrap">
+  <div class="field__panel">
+    <ul class="tile-grid">
+      <li><a class="tile card--hair" href="/materiales/"><span>Todos los materiales</span><span class="tile__arrow" aria-hidden="true">→</span></a></li>
+      <li><a class="tile card--hair" href="/cotizar/"><span>Pedir cotización</span><span class="tile__arrow" aria-hidden="true">→</span></a></li>
+      <li><a class="tile card--hair" href="/guias/"><span>Guías de obra</span><span class="tile__arrow" aria-hidden="true">→</span></a></li>
+      <li><a class="tile card--hair" href="/contacto/"><span>Contacto</span><span class="tile__arrow" aria-hidden="true">→</span></a></li>
+    </ul>
+  </div>
+</div>
 <?php require PUBLIC_ROOT . '/partials/footer.php'; ?>

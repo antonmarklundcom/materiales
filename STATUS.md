@@ -13,7 +13,7 @@ _Última actualización: 2026-09-01._
 | 1 Foundation | Opus | ✅ Mergeada | #2, #3 | Layout, router, plantillas, partials, datos, sitemap, .htaccess, CI, smoke |
 | 2 Lead pipeline | Opus | ✅ Mergeada | #4 | Formulario, handler → VenderCRM, consentimiento, leads.log, /gracias/, analytics con consentimiento |
 | 3 Content spec | Opus | ✅ Mergeada | #5 | Datos de contenido cerrados (13 categorías, 34 materiales, 6 guías) + `CONTENT-SPEC.md` |
-| 4 Design & pages | Sonnet | ⬜ Pendiente | — | Capa visual de todos los tipos de página (`web-design-system`) |
+| 4 Design & pages | Sonnet | ✅ Mergeada | #6 (pendiente de verificar) | Capa visual completa (track INDUSTRIAL adaptado, `web-design-system`): tokens, tipografía, tarjetas, formulario, FAQ-acordeón, pie en cinta, motion |
 | 5 Content wave 1 | Sonnet | ⬜ Pendiente | — | Prosa de las 5 categorías de lanzamiento, sus materiales y las 6 guías |
 | 6 Content wave 2 + QA | Sonnet | ⬜ Pendiente | — | Resto de categorías, imágenes OG, QA SEO, salida a producción |
 
@@ -31,15 +31,22 @@ _Última actualización: 2026-09-01._
 - Cada página de categoría y material muestra bajada, unidad de venta, FAQ visibles (las
   mismas que emiten `FAQPage`), relacionados y formulario preseleccionado.
 - Todo el sitio sale con `noindex` mientras `data/site.php` tenga `staging_noindex => true`.
+- **Capa visual completa** (fase 4): track INDUSTRIAL de `web-design-system` adaptado —
+  cáscara oscura con grano en header/hero/pie, campo claro para prosa y FAQ, un acento
+  (`#E8562A`), Bricolage Grotesque + Inter, tarjetas y tiles de catálogo, formulario y
+  FAQ-acordeón restilizados, pie en cinta de confianza, `motion.js` (reveal + header
+  sticky) y `events.js` (shim `data-ev` sin proveedor, no reemplaza la analítica de fase 2).
+  Sin imágenes todavía (fase 6).
 
 ## Lo que falta antes de salir a producción
 
 1. **Prosa real** en `content/categorias/`, `content/materiales/` y `content/guias/`
-   (fases 5 y 6). Hoy las páginas muestran metadatos, FAQ y formulario, sin cuerpo.
-2. **Capa visual** (fase 4). El CSS actual es una base funcional, no el diseño final.
-3. **Imágenes OG** por página de dinero (fase 6).
-4. **Datos reales de NAP** (abajo).
-5. **`staging_noindex => false`** cuando el dominio esté apuntando.
+   (fases 5 y 6). Hoy las páginas muestran metadatos, FAQ y formulario, con un aviso
+   "estamos publicando el contenido" en vez de cuerpo — el diseño ya está listo para recibirla
+   dentro de `.prose`.
+2. **Imágenes OG** por página de dinero (fase 6).
+3. **Datos reales de NAP** (abajo).
+4. **`staging_noindex => false`** cuando el dominio esté apuntando.
 
 ## Lo que depende de Anton (nada de esto lo puede inventar Claude)
 
@@ -72,7 +79,11 @@ php -S 127.0.0.1:8080 -t public_html tools/router-cli.php
   preguntas visibles es marcado inexacto, así que el dato y el render van juntos.
 - `tools/smoke.php` ahora exige contenido cerrado (keyword, intro, sale_unit, price_band,
   synonyms, 3–5 FAQ con respuesta, related válidos). Una regresión de contenido rompe CI.
+- Fase 4 no tocó `tools/smoke.php` ni `tools/render-check.sh`: sólo capa visual. Sí quedó fija
+  una convención nueva para las fases de contenido: `tools/render-check.sh` verifica la
+  subcadena literal `<h1>` en `/guias/` y `/cotizar/`, así que el `<h1>` de cada plantilla debe
+  seguir sin atributos (el estilo se aplica por selector CSS contextual, no por clase en el h1).
 
 ## Próximo paso
 
-Fase 4 (Sonnet): `Read prompts/sonnet-4-design-pages.md in this repo and execute it.`
+Fase 5 (Sonnet): `Read prompts/sonnet-5-content-wave1.md in this repo and execute it.`

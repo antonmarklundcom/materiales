@@ -31,7 +31,13 @@ page([
 
 require PUBLIC_ROOT . '/partials/header.php';
 ?>
-<h1>Política de privacidad</h1>
+<div class="page-hero band--dark grain bleed">
+  <div class="wrap">
+    <h1>Política de privacidad</h1>
+  </div>
+</div>
+<div class="field wrap">
+  <div class="field__panel prose">
 
 <h2>Quién trata tus datos</h2>
 <?php if (($site['legal_name'] ?? '') !== ''): ?>
@@ -117,4 +123,6 @@ require PUBLIC_ROOT . '/partials/header.php';
   Conservamos los datos de cada pedido de cotización mientras sean útiles para la gestión
   comercial que los originó, y los eliminamos cuando nos lo pedís.
 </p>
+  </div>
+</div>
 <?php require PUBLIC_ROOT . '/partials/footer.php'; ?>

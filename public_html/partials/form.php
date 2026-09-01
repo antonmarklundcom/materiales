@@ -40,7 +40,7 @@ if ($formSlug === '') {
 // Opciones del selector: categorías primero, y debajo sus materiales (namespace plano, §2).
 $formCategories = categories_ordered();
 ?>
-<section class="lead-form" id="cotizar">
+<section class="lead-form card card--accent" id="cotizar">
   <h2 class="lead-form__title"><?= e($formTitle) ?></h2>
   <p class="lead-form__lead">
     Hasta <?= $maxProv ?> proveedores verificados te escriben por WhatsApp con su precio.
@@ -114,7 +114,7 @@ $formCategories = categories_ordered();
     <input type="hidden" name="tsg" value="<?= e($stamp['sig']) ?>">
     <input type="hidden" name="origen" value="<?= e($formOrigen) ?>">
 
-    <button class="lead-form__submit" type="submit">Pedir cotización</button>
+    <button class="lead-form__submit btn btn--primary" type="submit" data-ev="form_submit" data-ev-loc="<?= e($formSlug !== '' ? $formSlug : 'cotizar') ?>">Pedir cotización</button>
     <p class="lead-form__note">Sin costo. No publicamos tu teléfono en ningún lado.</p>
   </form>
 </section>

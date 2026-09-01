@@ -28,11 +28,25 @@ page([
 
 require PUBLIC_ROOT . '/partials/header.php';
 ?>
-<h1>Materiales de construcción en Paraguay</h1>
-<p>Elegí el rubro que necesitás y pedí tu cotización en un paso.</p>
-<ul class="card-list">
-  <?php foreach ($categories as $categorySlug => $category): ?>
-  <li><a href="/materiales/<?= e($categorySlug) ?>/"<?= is_published($category) ? '' : ' class="is-proxima"' ?>><?= e($category['name']) ?></a></li>
-  <?php endforeach; ?>
-</ul>
+<div class="page-hero band--dark grain bleed">
+  <div class="wrap">
+    <h1>Materiales de construcción en Paraguay</h1>
+    <p class="lead">Elegí el rubro que necesitás y pedí tu cotización en un paso.</p>
+  </div>
+</div>
+<div class="field wrap">
+  <div class="field__panel">
+    <ul class="tile-grid tile-grid--3">
+      <?php foreach ($categories as $categorySlug => $category): ?>
+      <li>
+        <a class="tile card--hair<?= is_published($category) ? ' tile--featured' : ' is-proxima' ?>"
+           href="/materiales/<?= e($categorySlug) ?>/"<?= is_published($category) ? '' : ' aria-disabled="true"' ?>>
+          <span><?= e($category['name']) ?></span>
+          <span class="tile__arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+      <?php endforeach; ?>
+    </ul>
+  </div>
+</div>
 <?php require PUBLIC_ROOT . '/partials/footer.php'; ?>

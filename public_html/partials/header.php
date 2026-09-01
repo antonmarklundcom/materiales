@@ -36,24 +36,31 @@ header('Content-Type: text/html; charset=utf-8');
 <meta property="og:image" content="<?= e($ogImage) ?>">
 <meta name="twitter:card" content="summary_large_image">
 <?php endif; ?>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600&family=Inter:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="/assets/css/site.css">
 <script src="/assets/js/consent.js" defer></script>
 <?php require PUBLIC_ROOT . '/partials/analytics.php'; ?>
+<script src="/assets/js/events.js" defer></script>
+<script src="/assets/js/motion.js" defer></script>
 <?php schema_render($page['schema']); ?>
 </head>
 <body class="<?= e($page['body_class']) ?>">
 <a class="skip-link" href="#contenido">Ir al contenido</a>
-<header class="site-header">
-  <a class="site-header__brand" href="/"><?= e($site['brand']) ?></a>
-  <nav class="site-nav" aria-label="Principal">
-    <a href="/materiales/">Materiales</a>
-    <a href="/guias/">Guías</a>
-    <a href="/cotizar/">Cotizar</a>
-    <a href="/contacto/">Contacto</a>
-  </nav>
+<header class="site-header band--dark grain" data-sticky-header>
+  <div class="wrap site-header__row">
+    <a class="site-header__brand" href="/"><?= e($site['brand']) ?></a>
+    <nav class="site-nav" aria-label="Principal">
+      <a href="/materiales/">Materiales</a>
+      <a href="/guias/">Guías</a>
+      <a href="/cotizar/">Cotizar</a>
+      <a href="/contacto/">Contacto</a>
+    </nav>
+  </div>
 </header>
 <?php if ($page['breadcrumbs'] !== []): ?>
-<nav class="breadcrumbs" aria-label="Miga de pan">
+<nav class="breadcrumbs wrap" aria-label="Miga de pan">
   <ol>
     <?php foreach ($page['breadcrumbs'] as [$crumbName, $crumbPath]): ?>
     <li><?php if ($crumbPath !== null): ?><a href="<?= e($crumbPath) ?>"><?= e($crumbName) ?></a><?php else: ?><span aria-current="page"><?= e($crumbName) ?></span><?php endif; ?></li>

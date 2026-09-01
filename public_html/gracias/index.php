@@ -38,13 +38,33 @@ page([
 
 require PUBLIC_ROOT . '/partials/header.php';
 ?>
-<h1>Listo, recibimos tu pedido</h1>
-<p>
-  Hasta <?= (int) site('max_proveedores', 3) ?> proveedores verificados te van a escribir por
-  WhatsApp, normalmente dentro del día.
-</p>
-<?php if ($entry !== null): ?>
-<p><a href="/materiales/<?= e($slug) ?>/">Volver a <?= e($entry['name']) ?></a></p>
-<?php endif; ?>
-<p><a href="/materiales/">Ver otros materiales</a></p>
+<div class="page-hero band--dark grain bleed">
+  <div class="wrap">
+    <h1>Listo, recibimos tu pedido</h1>
+    <p class="lead">
+      Hasta <?= (int) site('max_proveedores', 3) ?> proveedores verificados te van a escribir por
+      WhatsApp, normalmente dentro del día.
+    </p>
+  </div>
+</div>
+<div class="field wrap">
+  <div class="field__panel">
+    <ul class="tile-grid">
+      <?php if ($entry !== null): ?>
+      <li>
+        <a class="tile card--hair" href="/materiales/<?= e($slug) ?>/">
+          <span>Volver a <?= e($entry['name']) ?></span>
+          <span class="tile__arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+      <?php endif; ?>
+      <li>
+        <a class="tile card--hair" href="/materiales/">
+          <span>Ver otros materiales</span>
+          <span class="tile__arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
 <?php require PUBLIC_ROOT . '/partials/footer.php'; ?>
