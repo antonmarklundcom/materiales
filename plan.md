@@ -393,6 +393,25 @@ decisions/deviations, where the next phase should look first.)*
   (§7). No round trip against a live CRM has been run — `config/vendercrm.php` does not exist
   yet, so everything above is verified in leads.log-only mode.
 
+**2026-09-01 — Fase 3 · Content spec (Opus, PR #5).**
+- Contenido cerrado en datos: 13 categorías con keyword, intro, `intro_keywords` y 3–4 FAQ
+  con respuesta; 34 materiales con keyword, `synonyms` (vocabulario real de obra paraguaya),
+  `sale_unit`, `price_band` interno, intro, 3–4 FAQ y `related`; keyword en las 6 guías.
+  Los title/meta de la fase 1 se conservaron tal cual.
+- `CONTENT-SPEC.md`: copy literal de home, índice, plantillas, formulario (incluida la frase
+  de consentimiento y los mensajes de error), `/cotizar/`, `/gracias/`, estructura de prosa
+  por tipo de página y esquemas de las 6 guías con sus anclas obligatorias.
+- Desvío deliberado: la plantilla de `/materiales/` ahora **muestra** las FAQ, la bajada, la
+  unidad de venta y los relacionados. Se emitía `FAQPage` sin preguntas visibles, que es
+  marcado inexacto (plan §6).
+- `tools/smoke.php` exige contenido cerrado y `related` válidos: una regresión de contenido
+  rompe CI. Verificado con un fallo provocado.
+- La fase 2 (PR #4) estaba verde pero sin mergear porque el repo no tiene auto-merge
+  habilitado (§7); se mergeó a mano antes de empezar esta fase.
+- Dónde mirar primero en la fase 4: `CONTENT-SPEC.md` (copy cerrado, no se reescribe),
+  `public_html/materiales/index.php`, `public_html/partials/` y `assets/css/site.css`.
+  Estado vivo del build: `STATUS.md`.
+
 ## §10 Backlog
 
 - Automated supplier fan-out as a VenderCRM automation (not site PHP)

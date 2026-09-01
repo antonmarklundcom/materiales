@@ -98,3 +98,10 @@ a { color: var(--accent); }
   background: var(--accent); color: #fff; cursor: pointer; justify-self: start;
 }
 .lead-form__note { margin: 0; color: var(--muted); font-size: .85rem; }
+
+/* Fase 3 — contenido: bajada, unidad de venta y FAQ visibles (FAQPage necesita
+   que las preguntas estén en la página, no sólo en el JSON-LD). */
+.lead { font-size: 1.05rem; color: var(--muted); }
+.sale-unit { margin: .25rem 0 1rem; }
+.faq details { border-bottom: 1px solid var(--line); padding: .75rem 0; }
+.faq summary { cursor: pointer; font-weight: 600; }
