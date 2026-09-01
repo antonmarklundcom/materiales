@@ -12,7 +12,7 @@ _Última actualización: 2026-09-01._
 |---|---|---|---|---|
 | 1 Foundation | Opus | ✅ Mergeada | #2, #3 | Layout, router, plantillas, partials, datos, sitemap, .htaccess, CI, smoke |
 | 2 Lead pipeline | Opus | ✅ Mergeada | #4 | Formulario, handler → VenderCRM, consentimiento, leads.log, /gracias/, analytics con consentimiento |
-| 3 Content spec | Opus | 🟡 En PR | #5 | Datos de contenido cerrados (13 categorías, 34 materiales, 6 guías) + `CONTENT-SPEC.md` |
+| 3 Content spec | Opus | ✅ Mergeada | #5 | Datos de contenido cerrados (13 categorías, 34 materiales, 6 guías) + `CONTENT-SPEC.md` |
 | 4 Design & pages | Sonnet | ⬜ Pendiente | — | Capa visual de todos los tipos de página (`web-design-system`) |
 | 5 Content wave 1 | Sonnet | ⬜ Pendiente | — | Prosa de las 5 categorías de lanzamiento, sus materiales y las 6 guías |
 | 6 Content wave 2 + QA | Sonnet | ⬜ Pendiente | — | Resto de categorías, imágenes OG, QA SEO, salida a producción |
