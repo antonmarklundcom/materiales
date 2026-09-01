@@ -64,3 +64,26 @@ la fase que la resuelve.
     `/gracias/` igual. CI corre siempre en ese modo, así que el camino sin CRM está probado en
     cada PR; el camino CON CRM se verifica con un envío real recién cuando exista la config en
     el servidor (criterio de salida de la fase 2).
+
+## Fase 4 — Design & pages
+
+14. **Fuentes vía Google Fonts CDN, no autohospedadas.** `web-design-system` recomienda
+    autohospedar; este stack no tiene paso de build (plan §1.2: sin Node), así que
+    `header.php` carga Bricolage Grotesque + Inter desde `fonts.googleapis.com` con
+    `display=swap` y `preconnect`. Si en producción se prefiere autohospedar, es reemplazar el
+    `<link>` por `@font-face` con los `.woff2` en `assets/fonts/` — no toca ninguna plantilla.
+15. **Track resuelto es un híbrido, no INDUSTRIAL puro.** El track INDUSTRIAL del skill es
+    dark-dominant en todo el body; acá el catálogo tiene ~50 páginas de prosa larga (300–900
+    palabras) más FAQ, así que el body vive sobre un campo claro ("paper") y sólo el header, el
+    hero de cada página y el pie quedan en la cáscara oscura (`.band--dark`) con grano. Es una
+    extensión deliberada del track para legibilidad, no una desviación de las reglas duras
+    (un acento, tipografía, motion, tarjetas siguen el sistema tal cual).
+16. **Sin imágenes todavía.** Ningún `hero-bleed`/`section-break`/`card-motif` se generó: la
+    fase 6 corre `higgsfield-web-imagery`. Hasta entonces el hero de cada página es texto sobre
+    banda oscura con grano — no hay ningún placeholder de imagen visible ni "ILLUSTRATIVE
+    PANEL". `og:image` sigue sin emitirse (KNOWN-ISSUES #5).
+17. **`events.js` es un shim inerte adicional, no reemplaza `analytics.js`.** Empuja
+    `data-ev`/`data-ev-loc` a `window.dataLayer` sin proveedor y sin red (analytics-prep del
+    skill); la analítica real con consentimiento (GA4/Meta Pixel, fase 2) sigue intacta en
+    `assets/js/analytics.js`. Los dos conviven: uno mide clicks de UI sin cuenta, el otro mide
+    conversión con consentimiento.

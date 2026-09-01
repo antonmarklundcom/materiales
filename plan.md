@@ -412,6 +412,42 @@ decisions/deviations, where the next phase should look first.)*
   `public_html/materiales/index.php`, `public_html/partials/` y `assets/css/site.css`.
   Estado vivo del build: `STATUS.md`.
 
+### 2026-09-01 — Fase 4 · Design & pages (Sonnet, branch `phase/4-design-pages`)
+
+- **Track resuelto**: INDUSTRIAL (web-design-system) adaptado — cáscara oscura con grano
+  (`.band--dark`) en header, hero de cada página y pie; campo claro ("paper") para prosa/FAQ/
+  formulario, porque el catálogo son ~50 páginas de texto largo, no una landing única (nota
+  KNOWN-ISSUES #15). Acento único `#E8562A`, Bricolage Grotesque + Inter vía Google Fonts
+  (`display=swap`, sin autohospedar — KNOWN-ISSUES #14), tokens/tarjetas/botones/motion tal
+  como especifica el skill.
+- **Reescrito**: `assets/css/site.css` completo (tokens, tipografía, tarjetas, tiles de
+  catálogo, formulario, FAQ-acordeón, banner de cookies, pie en cinta P8), más
+  `assets/js/motion.js` (copiado del skill, reveal + header sticky) y `assets/js/events.js`
+  (shim `data-ev`/`data-ev-loc` de analytics-prep, inerte, no reemplaza `analytics.js`).
+  `partials/header.php` y `partials/footer.php` reestructurados en bandas; `partials/form.php`
+  con botón primario y `data-ev="form_submit"`.
+- **Todas las plantillas de página** (home, `/materiales/`, categoría/material, `/guias/`
+  índice y detalle, `/cotizar/`, `/gracias/`, `/contacto/`, política de privacidad, 404)
+  llevan hero oscuro full-bleed + panel claro que sube sobre el borde (overlap, patrón P6);
+  el H1 de cada plantilla se mantiene sin atributos porque `tools/render-check.sh` verifica
+  la subcadena literal `<h1>` en `/guias/` y `/cotizar/`. Copy verbatim de `CONTENT-SPEC.md` y
+  de los archivos de datos — cero copy nueva (se descartaron dos borradores propios: una bajada
+  para `/guias/` y un panel de cifras en el home que no estaban en el spec).
+- **Sin cambios** en router, esquemas de datos, contrato del handler de leads, taxonomía de
+  URLs ni texto de consentimiento (verificado: `name="consentimiento"` y
+  `action="/cotizar/enviar.php"` intactos, smoke + render-check en verde).
+- **QA**: `php -l` en todos los `.php`, `php tools/smoke.php`, `bash tools/render-check.sh` en
+  verde; capturas de pantalla mobile/desktop de las 11 rutas revisadas a ojo (home, índice,
+  categoría, material, guías índice/detalle, cotizar, gracias, contacto, privacidad, 404).
+  Un bug real encontrado y corregido en el propio QA: el `clamp()` del margen negativo de
+  `.field` tenía el mínimo y el máximo invertidos (quedaba fijo en vez de escalar con el
+  viewport). Sin imágenes todavía (fase 6, KNOWN-ISSUES #16).
+- **Fase 5 empieza acá**: escribir `content/categorias/{slug}.php` y
+  `content/materiales/{slug}.php` para las 5 categorías de lanzamiento (hierro, cemento-y-cal,
+  aridos, ladrillos-y-bloques, chapas-y-techos) y sus materiales, más las 6 guías — todo
+  envuelto automáticamente en `.prose` por la plantilla, sin tocar `materiales/index.php` ni
+  `guias/index.php`. `content/README.md` documenta el contrato de esos archivos.
+
 ## §10 Backlog
 
 - Automated supplier fan-out as a VenderCRM automation (not site PHP)

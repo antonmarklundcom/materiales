@@ -32,17 +32,22 @@ if ($slug === '') {
     ]);
 
     require PUBLIC_ROOT . '/partials/header.php';
+    echo "<div class=\"page-hero band--dark grain bleed\"><div class=\"wrap\">\n";
     echo "<h1>Guías de obra y materiales</h1>\n";
-    echo "<ul class=\"card-list\">\n";
+    echo "</div></div>\n";
+    echo "<div class=\"field wrap\"><div class=\"field__panel\">\n";
+    echo "<ul class=\"tile-grid\">\n";
     foreach ($guides as $guideSlug => $guide) {
         printf(
-            "  <li><a href=\"/guias/%s/\"%s>%s</a></li>\n",
+            "  <li><a class=\"tile card--hair%s\" href=\"/guias/%s/\"%s><span>%s</span><span class=\"tile__arrow\" aria-hidden=\"true\">→</span></a></li>\n",
+            is_published($guide) ? '' : ' is-proxima',
             e($guideSlug),
-            is_published($guide) ? '' : ' class="is-proxima"',
+            is_published($guide) ? '' : ' aria-disabled="true"',
             e($guide['name'])
         );
     }
     echo "</ul>\n";
+    echo "</div></div>\n";
     require PUBLIC_ROOT . '/partials/footer.php';
     exit;
 }
@@ -68,25 +73,40 @@ page([
 
 require PUBLIC_ROOT . '/partials/header.php';
 ?>
-<h1><?= e($guide['name']) ?></h1>
-<?php if (is_file($contentFile)): ?>
-<?php require $contentFile; ?>
-<?php else: ?>
-<p class="notice">Estamos escribiendo esta guía. Mientras tanto, <a href="/cotizar/">pedí tu cotización</a>.</p>
-<?php endif; ?>
-<?php
-$related = array_filter(
-    $guide['related'] ?? [],
-    static fn(string $target): bool => isset(data('categories')[$target]) || isset(data('materials')[$target])
-);
-if ($related !== []):
-?>
-<h2>Páginas relacionadas</h2>
-<ul class="card-list">
-  <?php foreach ($related as $target): ?>
-  <?php $entry = data('categories')[$target] ?? data('materials')[$target]; ?>
-  <li><a href="/materiales/<?= e($target) ?>/"><?= e($entry['name']) ?></a></li>
-  <?php endforeach; ?>
-</ul>
-<?php endif; ?>
+<div class="page-hero band--dark grain bleed">
+  <div class="wrap">
+    <h1><?= e($guide['name']) ?></h1>
+  </div>
+</div>
+<div class="field wrap">
+  <div class="field__panel">
+  <?php if (is_file($contentFile)): ?>
+  <div class="prose">
+  <?php require $contentFile; ?>
+  </div>
+  <?php else: ?>
+  <p class="notice">Estamos escribiendo esta guía. Mientras tanto, <a href="/cotizar/">pedí tu cotización</a>.</p>
+  <?php endif; ?>
+  <?php
+  $related = array_filter(
+      $guide['related'] ?? [],
+      static fn(string $target): bool => isset(data('categories')[$target]) || isset(data('materials')[$target])
+  );
+  if ($related !== []):
+  ?>
+  <h2>Páginas relacionadas</h2>
+  <ul class="tile-grid">
+    <?php foreach ($related as $target): ?>
+    <?php $entry = data('categories')[$target] ?? data('materials')[$target]; ?>
+    <li>
+      <a class="tile card--hair" href="/materiales/<?= e($target) ?>/">
+        <span><?= e($entry['name']) ?></span>
+        <span class="tile__arrow" aria-hidden="true">→</span>
+      </a>
+    </li>
+    <?php endforeach; ?>
+  </ul>
+  <?php endif; ?>
+  </div>
+</div>
 <?php require PUBLIC_ROOT . '/partials/footer.php'; ?>

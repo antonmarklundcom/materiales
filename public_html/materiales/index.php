@@ -78,85 +78,109 @@ page([
 
 require PUBLIC_ROOT . '/partials/header.php';
 ?>
-<h1><?= e($entry['name']) ?></h1>
+<div class="page-hero band--dark grain bleed">
+  <div class="wrap">
+    <h1><?= e($entry['name']) ?></h1>
 
-<?php if (($entry['intro'] ?? '') !== ''): ?>
-<p class="lead"><?= e($entry['intro']) ?></p>
-<?php endif; ?>
+    <?php if (($entry['intro'] ?? '') !== ''): ?>
+    <p class="lead"><?= e($entry['intro']) ?></p>
+    <?php endif; ?>
 
-<?php if ($type === 'material' && ($entry['sale_unit'] ?? '') !== ''): ?>
-<p class="sale-unit">Se vende por: <strong><?= e($entry['sale_unit']) ?></strong></p>
-<?php endif; ?>
+    <?php if ($type === 'material' && ($entry['sale_unit'] ?? '') !== ''): ?>
+    <p class="sale-unit">Se vende por: <strong><?= e($entry['sale_unit']) ?></strong></p>
+    <?php endif; ?>
+  </div>
+</div>
 
-<?php if (is_file($contentFile)): ?>
-<?php require $contentFile; ?>
-<?php else: ?>
-<p class="notice">
-  <?php if ($published): ?>
-    Estamos publicando el contenido de esta página. Mientras tanto,
-    <a href="/cotizar/?m=<?= e($slug) ?>">pedí tu cotización</a> y te contactan hasta
-    <?= (int) site('max_proveedores', 3) ?> proveedores verificados.
+<div class="field wrap">
+  <div class="field__panel">
+
+  <?php if (is_file($contentFile)): ?>
+  <div class="prose">
+  <?php require $contentFile; ?>
+  </div>
   <?php else: ?>
-    Próximamente vamos a publicar esta página. Si ya necesitás este material,
-    <a href="/cotizar/?m=<?= e($slug) ?>">pedí tu cotización</a> igual.
+  <p class="notice">
+    <?php if ($published): ?>
+      Estamos publicando el contenido de esta página. Mientras tanto,
+      <a href="/cotizar/?m=<?= e($slug) ?>">pedí tu cotización</a> y te contactan hasta
+      <?= (int) site('max_proveedores', 3) ?> proveedores verificados.
+    <?php else: ?>
+      Próximamente vamos a publicar esta página. Si ya necesitás este material,
+      <a href="/cotizar/?m=<?= e($slug) ?>">pedí tu cotización</a> igual.
+    <?php endif; ?>
+  </p>
   <?php endif; ?>
-</p>
-<?php endif; ?>
 
-<?php if ($type === 'categoria'): ?>
-<?php $children = materials_in($slug); ?>
-<?php if ($children !== []): ?>
-<h2>Materiales de <?= e($entry['name']) ?></h2>
-<ul class="card-list">
-  <?php foreach ($children as $materialSlug => $material): ?>
-  <li><a href="/materiales/<?= e($materialSlug) ?>/"<?= is_published($material) ? '' : ' class="is-proxima"' ?>><?= e($material['name']) ?></a></li>
-  <?php endforeach; ?>
-</ul>
-<?php endif; ?>
-<?php else: ?>
-<p><a href="/materiales/<?= e($entry['category']) ?>/">Ver toda la categoría <?= e($categories[$entry['category']]['name']) ?></a></p>
-<?php endif; ?>
+  <?php if ($type === 'categoria'): ?>
+  <?php $children = materials_in($slug); ?>
+  <?php if ($children !== []): ?>
+  <h2>Materiales de <?= e($entry['name']) ?></h2>
+  <ul class="tile-grid">
+    <?php foreach ($children as $materialSlug => $material): ?>
+    <li>
+      <a class="tile card--hair<?= is_published($material) ? '' : ' is-proxima' ?>"
+         href="/materiales/<?= e($materialSlug) ?>/"<?= is_published($material) ? '' : ' aria-disabled="true"' ?>>
+        <span><?= e($material['name']) ?></span>
+        <span class="tile__arrow" aria-hidden="true">→</span>
+      </a>
+    </li>
+    <?php endforeach; ?>
+  </ul>
+  <?php endif; ?>
+  <?php else: ?>
+  <p class="card card--accent closing-cta">
+    <a href="/materiales/<?= e($entry['category']) ?>/">Ver toda la categoría <?= e($categories[$entry['category']]['name']) ?></a>
+  </p>
+  <?php endif; ?>
 
-<?php $faq = $entry['faq'] ?? []; ?>
-<?php if ($faq !== []): ?>
-<?php // Las FAQ se muestran SIEMPRE que se emita FAQPage (plan §6): marcado sin contenido
-      // visible es marcado inexacto. ?>
-<section class="faq">
-  <h2>Preguntas frecuentes<?= $type === 'material' ? ' sobre ' . e(mb_strtolower($entry['name'])) : '' ?></h2>
-  <?php foreach ($faq as $item): ?>
-  <details>
-    <summary><?= e($item['q']) ?></summary>
-    <p><?= e($item['a']) ?></p>
-  </details>
-  <?php endforeach; ?>
-</section>
-<?php endif; ?>
+  <?php $faq = $entry['faq'] ?? []; ?>
+  <?php if ($faq !== []): ?>
+  <?php // Las FAQ se muestran SIEMPRE que se emita FAQPage (plan §6): marcado sin contenido
+        // visible es marcado inexacto. ?>
+  <section class="faq">
+    <h2>Preguntas frecuentes<?= $type === 'material' ? ' sobre ' . e(mb_strtolower($entry['name'])) : '' ?></h2>
+    <?php foreach ($faq as $item): ?>
+    <details>
+      <summary><?= e($item['q']) ?></summary>
+      <p><?= e($item['a']) ?></p>
+    </details>
+    <?php endforeach; ?>
+  </section>
+  <?php endif; ?>
 
-<?php if ($type === 'material'):
-    $related = [];
-    foreach ($entry['related'] ?? [] as $target) {
-        $candidate = $materials[$target] ?? $categories[$target] ?? null;
-        if ($candidate !== null && is_published($candidate)) {
-            $related[$target] = $candidate;
-        }
-    }
-?>
-<?php if ($related !== []): ?>
-<h2>También te puede servir</h2>
-<ul class="card-list">
-  <?php foreach ($related as $relatedSlug => $relatedEntry): ?>
-  <li><a href="/materiales/<?= e($relatedSlug) ?>/"><?= e($relatedEntry['name']) ?></a></li>
-  <?php endforeach; ?>
-</ul>
-<?php endif; ?>
-<?php endif; ?>
+  <?php if ($type === 'material'):
+      $related = [];
+      foreach ($entry['related'] ?? [] as $target) {
+          $candidate = $materials[$target] ?? $categories[$target] ?? null;
+          if ($candidate !== null && is_published($candidate)) {
+              $related[$target] = $candidate;
+          }
+      }
+  ?>
+  <?php if ($related !== []): ?>
+  <h2>También te puede servir</h2>
+  <ul class="tile-grid">
+    <?php foreach ($related as $relatedSlug => $relatedEntry): ?>
+    <li>
+      <a class="tile card--hair" href="/materiales/<?= e($relatedSlug) ?>/">
+        <span><?= e($relatedEntry['name']) ?></span>
+        <span class="tile__arrow" aria-hidden="true">→</span>
+      </a>
+    </li>
+    <?php endforeach; ?>
+  </ul>
+  <?php endif; ?>
+  <?php endif; ?>
 
-<?php
-// El formulario va en TODA página de categoría y de material, con el slug ya preseleccionado
-// (plan §3): el visitante no tiene que volver a elegir lo que la página ya dice.
-$formSlug   = $slug;
-$formOrigen = $canonical;
-$formTitle  = 'Cotizá ' . $entry['name'];
-require PUBLIC_ROOT . '/partials/form.php';
-?>
+  <?php
+  // El formulario va en TODA página de categoría y de material, con el slug ya preseleccionado
+  // (plan §3): el visitante no tiene que volver a elegir lo que la página ya dice.
+  $formSlug   = $slug;
+  $formOrigen = $canonical;
+  $formTitle  = 'Cotizá ' . $entry['name'];
+  require PUBLIC_ROOT . '/partials/form.php';
+  ?>
+  </div>
+</div>
 <?php require PUBLIC_ROOT . '/partials/footer.php'; ?>

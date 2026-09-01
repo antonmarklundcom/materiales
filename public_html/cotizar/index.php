@@ -27,18 +27,26 @@ page([
 
 require PUBLIC_ROOT . '/partials/header.php';
 ?>
-<h1>Pedí tu cotización</h1>
-<?php if ($entry !== null): ?>
-<p>Estás pidiendo cotización de <strong><?= e($entry['name']) ?></strong>.</p>
-<?php endif; ?>
-<p>
-  Contanos qué necesitás y hasta <?= (int) site('max_proveedores', 3) ?> proveedores
-  verificados te escriben por WhatsApp con su precio. Es gratis y sin compromiso.
-</p>
-<?php
-$formSlug   = $preselected;
-$formOrigen = '/cotizar/';
-$formTitle  = 'Contanos qué necesitás';
-require PUBLIC_ROOT . '/partials/form.php';
-?>
+<div class="page-hero band--dark grain bleed">
+  <div class="wrap">
+    <h1>Pedí tu cotización</h1>
+    <?php if ($entry !== null): ?>
+    <p class="lead">Estás pidiendo cotización de <strong><?= e($entry['name']) ?></strong>.</p>
+    <?php endif; ?>
+    <p class="lead">
+      Contanos qué necesitás y hasta <?= (int) site('max_proveedores', 3) ?> proveedores
+      verificados te escriben por WhatsApp con su precio. Es gratis y sin compromiso.
+    </p>
+  </div>
+</div>
+<div class="field wrap">
+  <div class="field__panel">
+  <?php
+  $formSlug   = $preselected;
+  $formOrigen = '/cotizar/';
+  $formTitle  = 'Contanos qué necesitás';
+  require PUBLIC_ROOT . '/partials/form.php';
+  ?>
+  </div>
+</div>
 <?php require PUBLIC_ROOT . '/partials/footer.php'; ?>
