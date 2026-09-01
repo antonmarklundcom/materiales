@@ -9,11 +9,12 @@
 # concurrency con cancel-in-progress, ubuntu-latest, timeout-minutes, sin matriz.
 name: CI
 
+# Sin paths-ignore a propósito: este es el check REQUERIDO de la protección de rama
+# (plan §7). Un check que se saltea nunca reporta status, así que un PR que sólo toque
+# markdown quedaría bloqueado para siempre esperando un run que no va a existir. El job
+# entero corre en ~15 s, así que correrlo siempre cuesta menos que ese bloqueo.
 on:
   pull_request:
-    paths-ignore:
-      - '**.md'
-      - 'prompts/**'
 
 concurrency:
   group: ci-${{ github.ref }}

@@ -28,3 +28,9 @@ la fase que la resuelve.
 7. **La política de privacidad necesita revisión legal antes del go-live.** El texto refleja
    las decisiones del plan (§3, §6, §8.6) pero le falta la identificación del responsable
    (fase 3) y no pasó por abogado.
+8. **CI corre en todos los PR, sin `paths-ignore`.** La forma estándar del skill
+   `budgeted-runner-deploy` incluye `paths-ignore`, pero acá el job es el check requerido de
+   la protección de rama: un run salteado no reporta status y dejaría bloqueado para siempre
+   cualquier PR que sólo toque markdown. El job tarda ~15 s, así que el costo de correrlo
+   siempre es menor que el del bloqueo. Si algún día deja de ser check requerido, volver a
+   poner `paths-ignore`.
