@@ -38,6 +38,7 @@ header('Content-Type: text/html; charset=utf-8');
 <?php endif; ?>
 <link rel="stylesheet" href="/assets/css/site.css">
 <script src="/assets/js/consent.js" defer></script>
+<?php require PUBLIC_ROOT . '/partials/analytics.php'; ?>
 <?php schema_render($page['schema']); ?>
 </head>
 <body class="<?= e($page['body_class']) ?>">

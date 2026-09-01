@@ -363,6 +363,36 @@ decisions/deviations, where the next phase should look first.)*
   `assets/js/consent.js` (fires a `consent:changed` event for GA4/Pixel gating), and
   `page()`/`site()` helpers in `partials/init.php`.
 
+### 2026-09-01 — Phase 2 Lead pipeline (branch `phase/2-lead-pipeline`)
+
+- **Exists now**: the §3 flow end-to-end. `partials/lead.php` (merged earlier as a library)
+  is now driven by `partials/form.php` — material preselected, cantidad, ciudad, nombre,
+  teléfono, mensaje, unticked consent box, honeypot and a signed render stamp — included on
+  `/cotizar/` and on every category and material page. `cotizar/enviar.php` is the HTTP shell:
+  bots (honeypot / stamp) get a silent 303 to `/gracias/` and post nothing; bad phone or
+  unticked consent bounce back to the form with `?error=`; the happy path builds the payload,
+  posts to VenderCRM, appends to `storage/leads.log` and 303s to `/gracias/?m=&k=`.
+- **Analytics**: `partials/analytics.php` + `assets/js/analytics.js` inject GA4 only after
+  statistics consent and the Meta Pixel only after marketing consent — nothing downloads
+  before that. `cotizacion_form_submitted` and `Lead` fire once per `k` token (remembered in
+  sessionStorage), so refreshing `/gracias/` cannot inflate conversions. `vc-attribution.js`
+  loads sitewide per §3 and is now named in the privacy policy.
+- **Privacy**: `/politica-de-privacidad/` names `vc_attr`, GA4 and Meta Pixel individually,
+  and cites Ley 7593 for the data-subject rights. VenderCRM was already named as encargado.
+- **Decisions/deviations**: error redirects carry only non-personal fields — a phone number in
+  the URL would end up in `Referer` and in GA4's `page_location` (KNOWN-ISSUES #11); the
+  one-use `k` token was added on top of the plan's `?m=` so analytics can dedupe; fixed a bug
+  in the merged `lead_safe_path()` where `parse_url()` turned `https://evil.example/x` into
+  `/x` instead of the fallback.
+- **CI**: `tools/smoke.php` now unit-tests `lead.php` (phone formats, idempotency stability,
+  stamp forgery/expiry, cookie-wins attribution, payload shape including the never-sent
+  routing keys, `leads.log` write) and pins the consent text so changing it fails CI (§4.4).
+  `tools/render-check.sh` drives 10 real POSTs through the handler.
+- **Phase 3 starts here**: `data/materials.php` needs `price_band` (KNOWN-ISSUES #9), and
+  `data/site.php` still needs the real NAP plus `ga4_id` / `meta_pixel_id` / `vc_attribution`
+  (§7). No round trip against a live CRM has been run — `config/vendercrm.php` does not exist
+  yet, so everything above is verified in leads.log-only mode.
+
 ## §10 Backlog
 
 - Automated supplier fan-out as a VenderCRM automation (not site PHP)

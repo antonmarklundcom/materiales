@@ -7,6 +7,12 @@
  * namespace COMPARTIDO categorías+materiales, el formato de slug, la coherencia de status,
  * las referencias entre archivos, y los límites de title/meta.
  *
+ * Desde la fase 2 verifica además el pipeline de leads como UNIDADES sobre
+ * public_html/partials/lead.php — sin servidor, sin CRM y sin red: normalización de
+ * teléfonos paraguayos, idempotencia, trampa de tiempo, atribución de primer toque, forma
+ * del payload (incluido lo que NUNCA se manda) y escritura de leads.log. El camino HTTP
+ * completo (honeypot, rechazos, redirects) lo cubre tools/render-check.sh con POSTs reales.
+ *
  *   php tools/smoke.php     → sale 0 si todo pasa, 1 con la lista de errores
  */
 
@@ -118,6 +124,200 @@ foreach (['categorias' => $categories, 'materiales' => $materials, 'guias' => $g
             $fail("content/{$dir}/{$slug}.php no tiene entrada en el archivo de datos correspondiente");
         }
     }
+}
+
+// ====================================================================================
+// PIPELINE DE LEADS (fase 2) — unidades sobre public_html/partials/lead.php
+// ====================================================================================
+
+require $root . '/public_html/partials/init.php';
+require $root . '/public_html/partials/lead.php';
+
+$is = static function (string $what, $actual, $expected) use ($fail): void {
+    if ($actual !== $expected) {
+        $fail(sprintf(
+            'lead: %s — devolvió %s, esperaba %s',
+            $what,
+            var_export($actual, true),
+            var_export($expected, true)
+        ));
+    }
+};
+
+// ---- teléfonos: aceptar lo que la gente escribe de verdad --------------------------
+// Rechazar un lead real cuesta plata (plan §8.1): estos casos son los formatos que
+// efectivamente se tipean en Paraguay y NINGUNO puede volverse un rechazo por accidente.
+// (Lista de pares y no un mapa: PHP convertiría una clave como '595981123456' en int.)
+foreach ([
+    ['0981 123 456',    '+595981123456'],
+    ['0981123456',      '+595981123456'],
+    ['+595 981 123456', '+595981123456'],
+    ['595981123456',    '+595981123456'],
+    ['(021) 123-456',   '+59521123456'],
+    ['021 123 456',     '+59521123456'],
+] as [$typed, $expected]) {
+    $is("normalize_phone('{$typed}')", lead_normalize_phone($typed), $expected);
+}
+foreach (['', 'no es un teléfono', '12', '0981 12', '098112345678', '0181123456'] as $bad) {
+    $is("normalize_phone rechaza '{$bad}'", lead_normalize_phone($bad), null);
+}
+
+// ---- idempotencia: el doble clic NO puede crear un segundo contacto ------------------
+$t0 = gmmktime(10, 30, 0, 6, 15, 2026);
+$keyA = lead_idempotency_key('+595981123456', $t0);
+$keyB = lead_idempotency_key('+595981123456', $t0 + 900); // misma hora UTC, 15 min después
+$is('idempotency_key estable dentro de la hora', $keyA, $keyB);
+if ($keyA === lead_idempotency_key('+595981123456', $t0 + 3600)) {
+    $fail('lead: idempotency_key no cambia en la hora siguiente — nadie podría volver a consultar');
+}
+if ($keyA === lead_idempotency_key('+595971000000', $t0)) {
+    $fail('lead: idempotency_key igual para teléfonos distintos');
+}
+if (strlen($keyA) < 8 || strlen($keyA) > 100) {
+    $fail('lead: idempotency_key fuera del rango 8–100 que exige la API');
+}
+// El formato tipeado no puede generar claves distintas: por eso se hashea el normalizado.
+$is(
+    'idempotency_key indiferente al formato tipeado',
+    lead_idempotency_key((string) lead_normalize_phone('0981 123 456'), $t0),
+    lead_idempotency_key((string) lead_normalize_phone('+595981123456'), $t0)
+);
+
+// ---- trampa de tiempo: sello firmado ------------------------------------------------
+$stamp = lead_form_stamp($t0);
+$is('sello válido a los 10s', lead_form_stamp_reason($stamp['ts'], $stamp['sig'], $t0 + 10), '');
+$is('sello a 1s = bot', lead_form_stamp_reason($stamp['ts'], $stamp['sig'], $t0 + 1), 'rapido');
+$is('sello falsificado', lead_form_stamp_reason($stamp['ts'], 'firma-inventada', $t0 + 10), 'sello');
+$is('sello ausente', lead_form_stamp_reason('', '', $t0 + 10), 'sello');
+$is('sello no numérico', lead_form_stamp_reason('ayer', $stamp['sig'], $t0 + 10), 'sello');
+$is('sello vencido', lead_form_stamp_reason($stamp['ts'], $stamp['sig'], $t0 + LEAD_STAMP_TTL + 60), 'sello');
+// Un sello robado de otra página sigue chocando con el mínimo: es firma Y tiempo, no una sola cosa.
+$is('sello del futuro', lead_form_stamp_reason((string) ($t0 + 3600), lead_form_stamp($t0 + 3600)['sig'], $t0), 'sello');
+
+// ---- atribución: la cookie de primer toque MANDA sobre el POST ----------------------
+$attr = lead_attribution(
+    ['utm_source' => 'directo-de-hoy', 'utm_medium' => 'organic'],
+    ['vc_attr' => json_encode([
+        'utm_source'   => 'google-ads',
+        'gclid'        => 'Cj0KAQ',
+        'landing_page' => 'https://materiales.com.py/materiales/hierro/',
+        'referrer'     => 'https://www.google.com/',
+    ])]
+);
+$is('atribución: la cookie pisa el POST', $attr['utm_source'] ?? null, 'google-ads');
+$is('atribución: el POST completa lo que la cookie no trae', $attr['utm_medium'] ?? null, 'organic');
+$is('atribución: gclid de la cookie', $attr['gclid'] ?? null, 'Cj0KAQ');
+$is('atribución: landing_page → page_url', $attr['page_url'] ?? null, 'https://materiales.com.py/materiales/hierro/');
+$is('atribución: sin cookie ni POST no inventa nada', lead_attribution([], []), []);
+
+// ---- payload: el contrato del plan §3 (fundacional, §4.4) ---------------------------
+$payload = lead_build_payload([
+    'phone_raw'       => '0981 123 456',
+    'idempotency_key' => $keyA,
+    'nombre'          => 'Ana Benítez',
+    'mensaje'         => '',
+    'material'        => 'piedra-bruta',
+    'material_name'   => 'Piedra bruta',
+    'categoria'       => 'aridos',
+    'categoria_name'  => 'Áridos',
+    'cantidad'        => '2 camiones',
+    'ciudad'          => 'Luque',
+    'page_url'        => 'https://materiales.com.py/materiales/piedra-bruta/',
+    'attribution'     => ['utm_source' => 'google-ads'],
+    'consent_at'      => '2026-06-15T10:30:00+00:00',
+]);
+
+// Lo que NUNCA se manda: el ruteo vive en el registro del sitio dentro del CRM.
+foreach (['pipeline', 'stage', 'owner', 'tag'] as $forbidden) {
+    if (array_key_exists($forbidden, $payload) || array_key_exists($forbidden, $payload['fields'])) {
+        $fail("lead: el payload incluye '{$forbidden}' — el ruteo se configura en el CRM, nunca acá");
+    }
+}
+$is('payload.phone', $payload['phone'] ?? null, '0981 123 456');
+$is('payload.source', $payload['source'] ?? null, 'site:materiales');
+$is('payload.idempotency_key', $payload['idempotency_key'] ?? null, $keyA);
+$is('payload.utm_source', $payload['utm_source'] ?? null, 'google-ads');
+$is('payload.fields.material', $payload['fields']['material'] ?? null, 'piedra-bruta');
+$is('payload.fields.categoria', $payload['fields']['categoria'] ?? null, 'aridos');
+$is('payload.fields.cantidad', $payload['fields']['cantidad'] ?? null, '2 camiones');
+$is('payload.fields.ciudad', $payload['fields']['ciudad'] ?? null, 'Luque');
+// Constancia de consentimiento: versión del texto + momento exacto (plan §8.6).
+$is(
+    'payload.fields.consent',
+    $payload['fields']['consent'] ?? null,
+    site('consent_version') . ' @ 2026-06-15T10:30:00+00:00'
+);
+// La API rechaza '' (p. ej. en email) en vez de ignorarlo: se omite, no se manda vacío.
+foreach ($payload as $key => $value) {
+    if ($value === '' || $value === null) {
+        $fail("lead: payload['{$key}'] va vacío — la API rechaza '' en vez de ignorarlo");
+    }
+}
+if (array_key_exists('message', $payload)) {
+    $fail("lead: payload incluye 'message' vacío en vez de omitirlo");
+}
+if (!json_encode($payload)) {
+    $fail('lead: el payload no serializa a JSON');
+}
+
+// ---- resolución de slug -------------------------------------------------------------
+$firstMaterial = (string) array_key_first($materials);
+$resolved = lead_resolve_slug($firstMaterial);
+if ($resolved === null) {
+    $fail("lead: resolve_slug no resolvió el material '{$firstMaterial}'");
+} else {
+    $is('resolve_slug: categoría del material', $resolved['categoria'], (string) $materials[$firstMaterial]['category']);
+}
+$is('resolve_slug: slug inexistente', lead_resolve_slug('no-existe-este-slug'), null);
+$is('resolve_slug: slug con forma inválida', lead_resolve_slug('../../etc/passwd'), null);
+
+// ---- redirect de error: no puede volverse un open redirect --------------------------
+$is('safe_path: ruta propia', lead_safe_path('/materiales/hierro/'), '/materiales/hierro/');
+foreach (['https://evil.example/x', '//evil.example/x', 'javascript:alert(1)', ''] as $hostile) {
+    $is("safe_path rechaza '{$hostile}'", lead_safe_path($hostile), '/cotizar/');
+}
+
+// ---- leads.log: se escribe SIEMPRE, con CRM o sin CRM -------------------------------
+// Es el respaldo ante caída del CRM y la pista de auditoría del consentimiento (plan §3.5).
+$logFile = STORAGE_DIR . '/leads.log';
+$linesBefore = is_file($logFile) ? count(file($logFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES)) : 0;
+$marker = 'smoke-' . bin2hex(random_bytes(4));
+if (!lead_log(['ts' => gmdate('c'), 'outcome' => 'smoke', 'marker' => $marker])) {
+    $fail('lead: lead_log() no pudo escribir storage/leads.log');
+} else {
+    $lines = file($logFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) ?: [];
+    if (count($lines) !== $linesBefore + 1) {
+        $fail('lead: lead_log() no agregó exactamente una línea a leads.log');
+    }
+    $last = json_decode((string) end($lines), true);
+    if (!is_array($last) || ($last['marker'] ?? '') !== $marker) {
+        $fail('lead: la última línea de leads.log no es el JSON que se acaba de escribir');
+    }
+}
+
+// ---- sin config de CRM el sitio igual funciona (plan §4.5) ---------------------------
+if (!is_file(CONFIG_DIR . '/vendercrm.php') && lead_crm_configured()) {
+    $fail('lead: crm_configured() dice true sin config/vendercrm.php');
+}
+
+// ---- texto de consentimiento y contrato: cambiarlos es una parada (plan §4.4) --------
+// Este check existe para que un cambio accidental falle en CI en vez de invalidar en
+// silencio la constancia de consentimiento ya guardada en los leads del CRM.
+$formSource = (string) @file_get_contents($root . '/public_html/partials/form.php');
+$consentText = 'Acepto que mis datos sean compartidos con proveedores del rubro para recibir';
+if (!str_contains($formSource, $consentText)) {
+    $fail('lead: cambió el texto de consentimiento de partials/form.php (plan §8.6 — es una parada §4.4)');
+}
+foreach (['name="website"', 'name="ts"', 'name="tsg"', 'name="consentimiento"', 'name="telefono"'] as $needed) {
+    if (!str_contains($formSource, $needed)) {
+        $fail("lead: partials/form.php ya no trae el campo {$needed}");
+    }
+}
+if (!str_contains($formSource, 'action="/cotizar/enviar.php" method="post"')) {
+    $fail('lead: partials/form.php ya no postea a /cotizar/enviar.php por POST');
+}
+if (($site['consent_version'] ?? '') !== 'proveedores-v1') {
+    $fail("lead: consent_version cambió a '" . ($site['consent_version'] ?? '') . "' — sincronizar con la política de privacidad antes (plan §8.6)");
 }
 
 // ---- reporte -------------------------------------------------------------------------
