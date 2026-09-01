@@ -1,14 +1,15 @@
 <?php
 /**
- * cotizar/index.php — página de cotización. El FORMULARIO y su handler (enviar.php) los
- * construye la fase 2 (plan §3): campos, honeypot, trampa de tiempo, consentimiento,
- * POST a VenderCRM y redirect 303 a /gracias/. Acá queda la página con su title/meta reales.
+ * cotizar/index.php — página de cotización: el formulario completo (partials/form.php),
+ * sin material preseleccionado salvo que se llegue con ?m={slug} desde una página de
+ * material. El envío lo procesa cotizar/enviar.php (plan §3).
  */
 
 declare(strict_types=1);
 
 require dirname(__DIR__) . '/partials/init.php';
 require PUBLIC_ROOT . '/partials/schema.php';
+require PUBLIC_ROOT . '/partials/lead.php';
 
 $preselected = (string) ($_GET['m'] ?? '');
 $entry = data('categories')[$preselected] ?? data('materials')[$preselected] ?? null;
@@ -34,5 +35,10 @@ require PUBLIC_ROOT . '/partials/header.php';
   Contanos qué necesitás y hasta <?= (int) site('max_proveedores', 3) ?> proveedores
   verificados te escriben por WhatsApp con su precio. Es gratis y sin compromiso.
 </p>
-<p class="notice">El formulario se habilita en los próximos días.</p>
+<?php
+$formSlug   = $preselected;
+$formOrigen = '/cotizar/';
+$formTitle  = 'Contanos qué necesitás';
+require PUBLIC_ROOT . '/partials/form.php';
+?>
 <?php require PUBLIC_ROOT . '/partials/footer.php'; ?>

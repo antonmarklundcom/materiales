@@ -35,28 +35,32 @@ la fase que la resuelve.
    siempre es menor que el del bloqueo. Si algún día deja de ser check requerido, volver a
    poner `paths-ignore`.
 
-## Fase 2 — Lead pipeline (EN CURSO, PR parcial)
+## Fase 2 — Lead pipeline
 
-9. **La fase 2 quedó a medias a pedido de Anton.** Lo que YA está mergeado es sólo la
-   biblioteca `public_html/partials/lead.php` (normalización de teléfono PY, clave de
-   idempotencia, sello firmado de la trampa de tiempo, merge de la cookie `vc_attr`, armado
-   del payload, POST al CRM, escritura de `storage/leads.log`) más la clave opcional
-   `form_secret` en `config.sample.php`. Nada la llama todavía: el sitio se comporta igual
-   que al final de la fase 1.
-
-   **Falta, en este orden** (plan §3 y `prompts/opus-2-lead-pipeline.md`):
-   - `public_html/partials/form.php` — material preseleccionado, cantidad, ciudad, nombre,
-     teléfono (requerido), mensaje, casilla de consentimiento DESMARCADA, honeypot `website`,
-     sello `ts` + `tsg` de `lead_form_stamp()`, `origen` para el redirect de error.
-   - Incluir el formulario en `/cotizar/` y en las páginas de categoría y material.
-   - `public_html/cotizar/enviar.php` — shell HTTP: honeypot/sello ⇒ 303 silencioso a
-     `/gracias/` sin postear; teléfono inválido o consentimiento sin marcar ⇒ 303 de vuelta
-     al formulario con `?error=`; camino feliz ⇒ `lead_send()` + `lead_log()` + 303 a
-     `/gracias/?m={slug}&k={token de un solo uso}`.
-   - `partials/analytics.php` + `assets/js/analytics.js` — GA4 detrás del consentimiento de
-     estadísticas, Meta Pixel detrás del de marketing, snippet `vc-attribution.js` sitewide;
-     `/gracias/` dispara `cotizacion_form_submitted` y `Lead` una sola vez por token `k`.
-   - Ampliar `/politica-de-privacidad/`: cookie `vc_attr`, GA4/Pixel y Ley 7593 por nombre.
-   - Ampliar `tools/smoke.php` (unitarios sobre `lead.php`) y `tools/render-check.sh` (POST
-     real al handler) con los criterios de salida de la fase.
-   - Entrada de build log en `plan.md` §9.
+9. **`presupuesto_band` viaja en el payload pero todavía no tiene valores.** `lead_resolve_slug()`
+   lee `price_band` de `data/materials.php` y `lead_build_payload()` lo manda en
+   `fields.presupuesto_band`, pero ningún material declara `price_band` todavía: el campo se
+   omite del payload en vez de ir vacío. Los valores son contenido de la fase 3 (plan §8.7).
+   Nunca se renderiza como precio en el sitio — es interno, para el repaso del lead en el CRM.
+10. **`vc-attribution.js` se carga sin pedir consentimiento.** Lo fija el plan §3 ("sitewide,
+    defer") y es coherente: es una cookie de primer toque de nuestro propio dominio que sirve
+    para atribuir el lead que el propio visitante decide enviar, no para perfilarlo ni para
+    publicidad de terceros. GA4 y el Meta Pixel sí quedan detrás del banner. Queda declarada
+    por nombre en `/politica-de-privacidad/` dentro de "Necesarias". **Punto concreto para la
+    revisión legal de la fase 6** (junto con KNOWN-ISSUES #7): si el abogado la considera
+    no-necesaria, moverla detrás del consentimiento de marketing es un cambio de tres líneas
+    en `partials/analytics.php` — no toca el handler ni el payload.
+11. **El redirect de error no repuebla nombre, teléfono ni mensaje.** Vuelve al formulario con
+    `?error=`, el material, la cantidad y la ciudad, pero los tres campos personales quedan en
+    blanco a propósito: la URL termina en el historial, en el `Referer` y en el `page_location`
+    de GA4, y ahí no se ponen datos personales. El campo que hay que retipear es justamente el
+    que falló. Si algún día molesta, la solución correcta es una sesión PHP, no la query string.
+12. **`data/site.php` no tiene todavía `ga4_id`, `meta_pixel_id` ni `vc_attribution`.** Son
+    input humano de la fase 2 (plan §7) que Anton aún no pasó. Sin ellos no se emite ni una
+    línea de script de analítica y el sitio funciona igual; `partials/analytics.php` los toma
+    apenas se completen, sin más cambios de código.
+13. **Sin `config/vendercrm.php` el handler corre en modo sólo-log.** Es el degradado del plan
+    §4.5, no un fallo: escribe el lead completo en `storage/leads.log` y el visitante llega a
+    `/gracias/` igual. CI corre siempre en ese modo, así que el camino sin CRM está probado en
+    cada PR; el camino CON CRM se verifica con un envío real recién cuando exista la config en
+    el servidor (criterio de salida de la fase 2).

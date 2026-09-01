@@ -1,8 +1,11 @@
 <?php
 /**
  * gracias/index.php — página de confirmación tras el envío (destino del redirect 303 del
- * handler, plan §3). Los eventos GA4 `cotizacion_form_submitted` y Meta Pixel `Lead` se
- * cablean en la fase 2, condicionados al consentimiento de marketing/estadísticas.
+ * handler, plan §3).
+ *
+ * Los eventos GA4 `cotizacion_form_submitted` y Meta Pixel `Lead` los dispara
+ * assets/js/analytics.js, cada uno detrás de su consentimiento (estadísticas / marketing) y
+ * UNA sola vez por token `k` del redirect: refrescar esta página no infla las conversiones.
  * noindex siempre: es una página de conversión, no de búsqueda.
  */
 
@@ -13,6 +16,17 @@ require PUBLIC_ROOT . '/partials/schema.php';
 
 $slug  = (string) ($_GET['m'] ?? '');
 $entry = data('categories')[$slug] ?? data('materials')[$slug] ?? null;
+
+// Sólo se declara el evento si el token viene del handler y tiene la forma que emite
+// (16 hex). Sin token no hay conversión que contar: alguien llegó a /gracias/ por su cuenta.
+$token = (string) ($_GET['k'] ?? '');
+if (preg_match('/^[0-9a-f]{16}$/', $token)) {
+    $leadEvent = [
+        'token'     => $token,
+        'material'  => $entry !== null ? $slug : '',
+        'categoria' => (string) ($entry['category'] ?? ($entry !== null ? $slug : '')),
+    ];
+}
 
 page([
     'title'      => 'Recibimos tu pedido de cotización',

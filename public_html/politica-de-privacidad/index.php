@@ -4,7 +4,8 @@
  *
  * El texto de abajo refleja las decisiones YA tomadas en el plan (§3, §6, §8.6): qué datos se
  * piden, para qué, con quién se comparten (hasta N proveedores del rubro), VenderCRM como
- * encargado de tratamiento, y los derechos del titular (Ley 6534 / 7593).
+ * encargado de tratamiento, las cookies por nombre (vc_attr, GA4, Meta Pixel) y los derechos
+ * del titular bajo la Ley 7593 de protección de datos personales y la Ley 6534.
  * Falta ÚNICAMENTE la identificación del responsable (razón social, RUC, domicilio, contacto):
  * es input humano de la fase 3 y se renderiza desde data/site.php cuando exista. Revisión
  * legal antes del go-live (fase 6).
@@ -68,17 +69,42 @@ require PUBLIC_ROOT . '/partials/header.php';
   Podés retirar tu consentimiento cuando quieras.
 </p>
 
-<h2>Cookies</h2>
+<h2>Cookies y tecnologías de medición</h2>
 <p>
-  Usamos cookies necesarias para que el sitio funcione. Las cookies de estadísticas y de
-  marketing sólo se activan si las aceptás en el banner; podés cambiar tu elección en
-  cualquier momento borrando los datos del sitio en tu navegador.
+  Usamos cookies necesarias para que el sitio funcione. Las de estadísticas y las de marketing
+  sólo se activan si las aceptás en el banner: hasta que las aceptes no descargamos ni
+  ejecutamos ninguno de esos scripts. Podés cambiar tu elección en cualquier momento borrando
+  los datos del sitio en tu navegador.
+</p>
+<ul>
+  <li>
+    <strong>Necesarias.</strong> La cookie <code>vc_attr</code>, de nuestro propio dominio,
+    guarda hasta 90 días por qué canal llegaste la primera vez (campaña, buscador o enlace).
+    La adjuntamos al pedido de cotización que vos enviás, para saber qué canales traen
+    pedidos reales. No contiene tu nombre ni tu teléfono y no se comparte con los proveedores.
+    Tu elección de cookies se guarda en el almacenamiento local de tu navegador, no en un
+    servidor nuestro.
+  </li>
+  <li>
+    <strong>Estadísticas.</strong> Google Analytics 4 (Google LLC), para medir cuántas
+    personas visitan cada página y cuántas piden cotización. Se carga sólo si aceptás
+    “Estadísticas”, y con la IP anonimizada.
+  </li>
+  <li>
+    <strong>Marketing.</strong> Meta Pixel (Meta Platforms, Inc.), para medir el resultado de
+    la publicidad. Se carga sólo si aceptás “Marketing”.
+  </li>
+</ul>
+<p>
+  Google y Meta procesan esos datos en sus propios servidores, fuera del Paraguay, como
+  responsables independientes de su tratamiento.
 </p>
 
-<h2>Tus derechos</h2>
+<h2>Tus derechos (Ley 7593)</h2>
 <p>
-  Podés pedir acceso, corrección, actualización o supresión de tus datos, y oponerte a que los
-  sigamos compartiendo con proveedores.
+  La Ley N.º 7593 de Protección de Datos Personales del Paraguay te reconoce el derecho a acceder a
+  tus datos, a corregirlos o actualizarlos, a pedir su supresión, a oponerte a que los
+  sigamos compartiendo con proveedores y a retirar tu consentimiento en cualquier momento.
   <?php if (($site['email'] ?? '') !== ''): ?>
   Escribinos a <a href="mailto:<?= e($site['email']) ?>"><?= e($site['email']) ?></a>.
   <?php else: ?>

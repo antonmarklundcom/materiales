@@ -348,8 +348,17 @@ function lead_resolve_slug(string $slug): ?array
  */
 function lead_safe_path(string $candidate, string $fallback = '/cotizar/'): string
 {
-    $path = parse_url(trim($candidate), PHP_URL_PATH);
-    if (!is_string($path) || $path === '' || $path[0] !== '/' || str_starts_with($path, '//')) {
+    $candidate = trim($candidate);
+
+    // Se descarta ANTES de parsear: parse_url() de 'https://evil.example/x' devuelve '/x',
+    // así que confiar en su PHP_URL_PATH convertiría una URL ajena en una ruta interna
+    // plausible en vez de mandarla al fallback.
+    if ($candidate === '' || $candidate[0] !== '/' || str_starts_with($candidate, '//')) {
+        return $fallback;
+    }
+
+    $path = parse_url($candidate, PHP_URL_PATH);
+    if (!is_string($path) || $path === '' || $path[0] !== '/') {
         return $fallback;
     }
     if (!preg_match('#^/[a-z0-9\-/]*$#', $path) || strlen($path) > 200) {

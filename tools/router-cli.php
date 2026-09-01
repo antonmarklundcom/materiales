@@ -36,6 +36,12 @@ if ($path === '/sitemap.xml') {
     return $serve('sitemap.php');
 }
 
+// Scripts propios que se sirven por su ruta real (el handler del formulario). En producción
+// no hay regla de reescritura para ellos: Apache los sirve directamente.
+if (str_ends_with($path, '.php') && is_file($publicRoot . $path)) {
+    return $serve(ltrim($path, '/'));
+}
+
 // Canonicalización a barra final, igual que el 301 del .htaccess.
 if (preg_match('#^/(materiales|guias)/([a-z0-9-]+)$#', $path, $matches)) {
     header('Location: ' . $path . '/', true, 301);

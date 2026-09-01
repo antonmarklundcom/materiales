@@ -65,3 +65,36 @@ a { color: var(--accent); }
 .cookie-banner__actions { display: flex; flex-wrap: wrap; gap: .5rem; }
 .cookie-banner button { padding: .5rem .9rem; border: 1px solid var(--line); border-radius: .35rem; background: #fff; cursor: pointer; }
 .cookie-banner button[data-consent="accept-all"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* --- formulario de cotización (fase 2) -----------------------------------------------
+   Mínimo funcional y accesible, igual que el resto de esta hoja: la capa visual real la
+   construye la fase 4. Lo que sí es deliberado acá es el tamaño de los controles (44px de
+   alto, 16px de fuente) — este formulario se llena casi siempre desde un celular, y menos
+   de 16px hace que iOS haga zoom al enfocar el campo. */
+
+.lead-form { margin: 2.5rem 0 0; padding: 1.25rem; border: 1px solid var(--line); border-radius: .75rem; }
+.lead-form__title { margin-top: 0; }
+.lead-form__lead { color: var(--muted); }
+.lead-form__error { border: 1px solid var(--accent); border-left-width: 3px; border-radius: .35rem; padding: .75rem 1rem; margin: 0 0 1rem; }
+
+.lead-form__form { display: grid; gap: 1rem; }
+.lead-form__field { display: grid; gap: .3rem; }
+.lead-form__field > span { font-weight: 600; }
+.lead-form__field em { font-weight: 400; color: var(--muted); font-style: normal; }
+.lead-form__field input, .lead-form__field select, .lead-form__field textarea {
+  font: inherit; font-size: 1rem; min-height: 2.75rem;
+  padding: .55rem .7rem; border: 1px solid var(--line); border-radius: .4rem;
+  background: #fff; color: var(--ink); width: 100%;
+}
+.lead-form__field textarea { min-height: 5rem; }
+.lead-form__field input[aria-invalid="true"] { border-color: var(--accent); }
+
+.lead-form__consent { display: flex; gap: .6rem; align-items: flex-start; font-size: .95rem; }
+.lead-form__consent input { margin-top: .25rem; width: 1.15rem; height: 1.15rem; flex: none; }
+
+.lead-form__submit {
+  font: inherit; font-weight: 700; min-height: 2.75rem; padding: .7rem 1.4rem;
+  border: 1px solid var(--accent); border-radius: .4rem;
+  background: var(--accent); color: #fff; cursor: pointer; justify-self: start;
+}
+.lead-form__note { margin: 0; color: var(--muted); font-size: .85rem; }

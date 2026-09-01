@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 require dirname(__DIR__) . '/partials/init.php';
 require PUBLIC_ROOT . '/partials/schema.php';
+require PUBLIC_ROOT . '/partials/lead.php';
 
 $slug = (string) ($_GET['slug'] ?? '');
 
@@ -108,4 +109,12 @@ require PUBLIC_ROOT . '/partials/header.php';
 <p><a href="/materiales/<?= e($entry['category']) ?>/">Ver toda la categoría <?= e($categories[$entry['category']]['name']) ?></a></p>
 <?php endif; ?>
 
+<?php
+// El formulario va en TODA página de categoría y de material, con el slug ya preseleccionado
+// (plan §3): el visitante no tiene que volver a elegir lo que la página ya dice.
+$formSlug   = $slug;
+$formOrigen = $canonical;
+$formTitle  = 'Cotizá ' . $entry['name'];
+require PUBLIC_ROOT . '/partials/form.php';
+?>
 <?php require PUBLIC_ROOT . '/partials/footer.php'; ?>
