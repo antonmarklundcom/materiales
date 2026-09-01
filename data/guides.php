@@ -16,6 +16,7 @@ declare(strict_types=1);
 
 return [
     'cuantas-bolsas-de-cemento-por-m2' => [
+        'keyword' => 'cuántas bolsas de cemento por m2',
         'name'   => 'Cuántas bolsas de cemento por m²',
         'status' => 'proxima',
         'order'  => 1,
@@ -24,6 +25,7 @@ return [
         'related' => ['cemento', 'arena-lavada', 'ripio'],
     ],
     'que-piedra-usar-para-cimientos' => [
+        'keyword' => 'qué piedra usar para cimientos',
         'name'   => 'Qué piedra usar para cimientos',
         'status' => 'proxima',
         'order'  => 2,
@@ -32,6 +34,7 @@ return [
         'related' => ['piedra-bruta', 'piedra-triturada', 'aridos'],
     ],
     'ladrillo-comun-vs-hueco' => [
+        'keyword' => 'ladrillo común o hueco',
         'name'   => 'Ladrillo común vs hueco',
         'status' => 'proxima',
         'order'  => 3,
@@ -40,6 +43,7 @@ return [
         'related' => ['ladrillo-comun', 'ladrillo-hueco', 'ladrillos-y-bloques'],
     ],
     'que-chapa-conviene-para-techo' => [
+        'keyword' => 'qué chapa conviene para techo',
         'name'   => 'Qué chapa conviene para techo',
         'status' => 'proxima',
         'order'  => 4,
@@ -48,6 +52,7 @@ return [
         'related' => ['chapa-de-zinc', 'chapa-trapezoidal', 'chapa-termoacustica'],
     ],
     'cuanta-arena-y-ripio-por-m3-de-hormigon' => [
+        'keyword' => 'cuánta arena y ripio por m3 de hormigón',
         'name'   => 'Cuánta arena y ripio por m³ de hormigón',
         'status' => 'proxima',
         'order'  => 5,
@@ -56,6 +61,7 @@ return [
         'related' => ['arena-lavada', 'ripio', 'hormigon-elaborado'],
     ],
     'que-diametro-de-hierro-para-que-uso' => [
+        'keyword' => 'qué diámetro de hierro usar',
         'name'   => 'Qué diámetro de hierro para qué uso',
         'status' => 'proxima',
         'order'  => 6,

@@ -26,11 +26,11 @@ if (!preg_match('/^[a-z0-9-]+$/', $slug)) {
 }
 
 $categories = data('categories');
+$materials  = data('materials');
 if (isset($categories[$slug])) {
     $entry = $categories[$slug];
     $type  = 'categoria';
 } else {
-    $materials = data('materials');
     if (!isset($materials[$slug])) {
         not_found();
     }
@@ -80,6 +80,14 @@ require PUBLIC_ROOT . '/partials/header.php';
 ?>
 <h1><?= e($entry['name']) ?></h1>
 
+<?php if (($entry['intro'] ?? '') !== ''): ?>
+<p class="lead"><?= e($entry['intro']) ?></p>
+<?php endif; ?>
+
+<?php if ($type === 'material' && ($entry['sale_unit'] ?? '') !== ''): ?>
+<p class="sale-unit">Se vende por: <strong><?= e($entry['sale_unit']) ?></strong></p>
+<?php endif; ?>
+
 <?php if (is_file($contentFile)): ?>
 <?php require $contentFile; ?>
 <?php else: ?>
@@ -107,6 +115,40 @@ require PUBLIC_ROOT . '/partials/header.php';
 <?php endif; ?>
 <?php else: ?>
 <p><a href="/materiales/<?= e($entry['category']) ?>/">Ver toda la categoría <?= e($categories[$entry['category']]['name']) ?></a></p>
+<?php endif; ?>
+
+<?php $faq = $entry['faq'] ?? []; ?>
+<?php if ($faq !== []): ?>
+<?php // Las FAQ se muestran SIEMPRE que se emita FAQPage (plan §6): marcado sin contenido
+      // visible es marcado inexacto. ?>
+<section class="faq">
+  <h2>Preguntas frecuentes<?= $type === 'material' ? ' sobre ' . e(mb_strtolower($entry['name'])) : '' ?></h2>
+  <?php foreach ($faq as $item): ?>
+  <details>
+    <summary><?= e($item['q']) ?></summary>
+    <p><?= e($item['a']) ?></p>
+  </details>
+  <?php endforeach; ?>
+</section>
+<?php endif; ?>
+
+<?php if ($type === 'material'):
+    $related = [];
+    foreach ($entry['related'] ?? [] as $target) {
+        $candidate = $materials[$target] ?? $categories[$target] ?? null;
+        if ($candidate !== null && is_published($candidate)) {
+            $related[$target] = $candidate;
+        }
+    }
+?>
+<?php if ($related !== []): ?>
+<h2>También te puede servir</h2>
+<ul class="card-list">
+  <?php foreach ($related as $relatedSlug => $relatedEntry): ?>
+  <li><a href="/materiales/<?= e($relatedSlug) ?>/"><?= e($relatedEntry['name']) ?></a></li>
+  <?php endforeach; ?>
+</ul>
+<?php endif; ?>
 <?php endif; ?>
 
 <?php

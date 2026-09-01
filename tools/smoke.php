@@ -89,6 +89,52 @@ foreach ($guides as $slug => $guide) {
     $checkEntry('guides.php', (string) $slug, $guide, ['name', 'status', 'order', 'title', 'meta', 'related']);
 }
 
+// ---- fase 3: el contenido tiene que estar cerrado, no sólo declarado --------------
+// Una FAQ vacía significaría FAQPage sin preguntas visibles, y un material sin sale_unit ni
+// synonyms es una página que no puede rankear ni cotizarse bien. Se exige a TODAS las
+// entradas (también a las 'proxima': se publican tal cual cuando les toque el turno).
+$checkContent = static function (string $file, string $slug, array $entry, array $textKeys, array $listKeys) use ($fail): void {
+    foreach ($textKeys as $key) {
+        if (trim((string) ($entry[$key] ?? '')) === '') {
+            $fail("{$file}[{$slug}]: '{$key}' vacío — la fase 3 lo tiene que cerrar");
+        }
+    }
+    foreach ($listKeys as $key) {
+        if (($entry[$key] ?? []) === []) {
+            $fail("{$file}[{$slug}]: '{$key}' vacío — la fase 3 lo tiene que cerrar");
+        }
+    }
+    $faq = $entry['faq'] ?? [];
+    if (count($faq) < 3 || count($faq) > 5) {
+        $fail(sprintf('%s[%s]: %d preguntas en faq (se esperan 3 a 5)', $file, $slug, count($faq)));
+    }
+    foreach ($faq as $i => $item) {
+        if (trim((string) ($item['q'] ?? '')) === '' || trim((string) ($item['a'] ?? '')) === '') {
+            $fail("{$file}[{$slug}]: faq[{$i}] sin pregunta o sin respuesta");
+        }
+    }
+};
+
+foreach ($categories as $slug => $category) {
+    $checkContent('categories.php', (string) $slug, $category, ['keyword', 'intro'], ['intro_keywords', 'faq']);
+}
+foreach ($materials as $slug => $material) {
+    $checkContent('materials.php', (string) $slug, $material, ['keyword', 'intro', 'sale_unit', 'price_band'], ['synonyms', 'faq', 'related']);
+    foreach ($material['related'] ?? [] as $target) {
+        if (!isset($materials[$target]) && !isset($categories[$target])) {
+            $fail("materials.php[{$slug}]: related '{$target}' no existe en materials.php ni en categories.php");
+        }
+        if ($target === $slug) {
+            $fail("materials.php[{$slug}]: related se apunta a sí mismo");
+        }
+    }
+}
+foreach ($guides as $slug => $guide) {
+    if (trim((string) ($guide['keyword'] ?? '')) === '') {
+        $fail("guides.php[{$slug}]: 'keyword' vacío — la fase 3 lo tiene que cerrar");
+    }
+}
+
 // ---- EL check crítico: namespace de slugs plano y compartido (plan §2) --------------
 $collisions = array_intersect(array_keys($categories), array_keys($materials));
 foreach ($collisions as $slug) {
