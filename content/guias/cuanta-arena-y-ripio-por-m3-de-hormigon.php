@@ -35,6 +35,14 @@
   contrapiso con mezcla más pobre y una losa con mezcla más resistente— avisale al proveedor para
   que te ayude a separar las cantidades de cada tramo y no mezclar los pedidos.
 </p>
+<p>
+  Pedí la entrega con margen respecto al día de la colada, sobre todo si el acceso a tu terreno es
+  angosto o si el camión necesita descargar en un punto puntual del lote: un volquete de arena o
+  ripio mal ubicado obliga a mover material dos veces, lo que suma horas de mano de obra al costo
+  final. Si el terreno tiene pendiente o el acceso es de tierra, avisale al proveedor antes de
+  coordinar la fecha, para que confirme si el camión puede entrar cargado o si conviene una entrega
+  fraccionada.
+</p>
 
 <h2>Cuándo conviene hormigón elaborado</h2>
 <p>

@@ -36,6 +36,12 @@
   pendiente mínima que soporta el perfil elegido para el ancho de chapa que vas a usar, porque
   eso varía según el fabricante y el tipo de onda.
 </p>
+<p>
+  El sentido de montaje de las chapas —contra el viento predominante de la zona— y el solape
+  entre chapas consecutivas también afectan cuánta agua se filtra en tormentas fuertes. Un
+  solape corto ahorra material pero deja más riesgo de filtración; conversalo con el proveedor
+  antes de calcular cuántas chapas necesitás para cubrir el ancho total del techo.
+</p>
 
 <h2>Accesorios que se cotizan aparte</h2>
 <p>

@@ -36,6 +36,12 @@
   sismo o una sobrecarga. Ninguno de estos valores —diámetro, cantidad, separación— es intercambiable
   entre obras distintas: cada estructura tiene su propio cálculo según sus propias cargas y luces.
 </p>
+<p>
+  En cimientos y zapatas también aparece hierro, generalmente en diámetros intermedios y en
+  parrillas cruzadas, porque ahí la estructura transmite toda la carga del edificio al suelo. La
+  cantidad de capas y el recubrimiento del hierro respecto del borde de hormigón también forman
+  parte del cálculo, y varían según el tipo de suelo y la humedad de la zona.
+</p>
 
 <h2>Qué datos necesita el proveedor</h2>
 <p>

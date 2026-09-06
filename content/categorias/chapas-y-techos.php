@@ -10,8 +10,8 @@
   corta calor y ruido de lluvia. Si la idea es un techo de tejas, están la
   <a href="/materiales/teja-espanola/">teja española</a> (la teja colonial curva de siempre) y
   la <a href="/materiales/teja-francesa/">teja francesa</a>, de perfil plano y encastre. El
-  <a href="/materiales/fibrocemento/">fibrocemento</a> —lo que acá se conoce como
-  eternit— es otra alternativa liviana y resistente para techos y cerramientos. Para luz
+  <a href="/materiales/fibrocemento/">fibrocemento</a> es otra alternativa liviana y
+  resistente para techos y cerramientos. Para luz
   natural sin perder cobertura está el <a href="/materiales/policarbonato/">policarbonato</a>,
   ideal para galerías y claraboyas, y para cielorrasos interiores el
   <a href="/materiales/cielorraso-de-pvc/">cielorraso de PVC</a>. Completan el techo las
