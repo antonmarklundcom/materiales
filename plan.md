@@ -460,8 +460,34 @@ Index (phases 5–8 fill their line in the PR that merges them):
 | 5b new materials, synonyms, guías | Opus | ✅ | #9 | 2026-09-06 abajo |
 | 5c category promotion | Opus | ✅ | #10 | 2026-09-06 abajo |
 | 6 content wave 1 | Sonnet | ✅ | #11 | 2026-09-06 abajo |
-| 7 content wave 2 | Sonnet | ⬜ | — | — |
+| 7 content wave 2 | Sonnet | ✅ | #12 | 2026-09-06 abajo |
 | 8 imagery + QA + launch | Sonnet | ⬜ | — | — |
+
+**2026-09-06 — Fase 7 · Content wave 2 (Sonnet, PR #12).**
+- Prosa completa de las 6 categorías promovidas en 5c (`pisos-y-revestimientos`, `aberturas`,
+  `impermeabilizantes`, `yeso-y-durlock`, `canos-y-plomeria`, `madera`) y sus 30 materiales
+  activos — 36 archivos nuevos en `content/`. El catálogo entero queda escrito: 11 categorías,
+  64 materiales, 8 guías, ninguna página activa muestra ya el aviso "estamos publicando el
+  contenido". Mismo patrón de fan-out que la fase 6: un subagente Sonnet por categoría, en
+  paralelo, cada uno con su porción de CONTENT-SPEC §11.1.
+- Aberturas se escribió con el ángulo de producto a medida (§ propio de esta fase): el H2 de
+  precio pide medida real de vano, no una unidad de venta fija, y ninguna página dice
+  "instalamos" — el sitio conecta con el proveedor, no fabrica.
+- Tabla de medidas obligatoria (§11.4) en `tanque-de-agua` (litrajes) y `terciada` (espesores);
+  tabla recomendada en `ceramica-para-piso`, `porcelanato`, `cano-de-pvc` y `madera-dura`.
+- Marcas-genérico (§11.2) verificadas una por una tras el fan-out: `durlock` sólo en
+  `placa-de-yeso`, `blindex` sólo en `vidrio-templado`, `syopar` sólo en `tanque-de-agua`,
+  `sikaflex` sólo en `selladores-y-siliconas`, `caño amanco` sólo en `cano-de-pvc`. Dos
+  subagentes las habían repetido también en la prosa de categoría (`yeso-y-durlock.php` con
+  "durlock", `aberturas.php` con "blindex") — las saqué de ahí, mismo criterio que "eternit" en
+  la fase 6.
+- Ningún material quedó `proxima` por prosa insuficiente (§ regla de "thin is a defect"): las
+  30 páginas llegaron a 350+ palabras genuinamente distintas; sólo `listones.php` quedó corto
+  (335) y lo extendí a 382 con contenido real, no relleno.
+- `php -l`, `tools/smoke.php` y `tools/render-check.sh` en verde; conteo de palabras verificado
+  por script (materiales 350–600, categorías 250–450).
+- **La fase 8 empieza acá**: `prompts/sonnet-8-imagery-qa-launch.md` — imágenes OG, QA SEO y
+  checklist de salida sobre el catálogo ya completo.
 
 **2026-09-06 — Fase 6 · Content wave 1 (Sonnet, PR #11).**
 - Prosa completa de las 5 categorías de lanzamiento (`hierro`, `cemento-y-cal`, `aridos`,
