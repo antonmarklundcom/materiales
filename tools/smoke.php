@@ -153,6 +153,34 @@ foreach ($materials as $slug => $material) {
     }
 }
 
+// Una categoría publicada con una o dos páginas es una categoría vacía: no rankea y no da
+// de dónde elegir en el formulario. La fase 5c fija el piso en 3 materiales activos.
+$activeByCategory = [];
+foreach ($materials as $material) {
+    if (($material['status'] ?? '') === 'activa') {
+        $activeByCategory[(string) ($material['category'] ?? '')] = ($activeByCategory[(string) ($material['category'] ?? '')] ?? 0) + 1;
+    }
+}
+foreach ($categories as $slug => $category) {
+    if (($category['status'] ?? '') !== 'activa') {
+        continue;
+    }
+    $count = $activeByCategory[(string) $slug] ?? 0;
+    if ($count < 3) {
+        $fail(sprintf("categories.php[%s]: está 'activa' con %d materiales activos (mínimo 3)", $slug, $count));
+    }
+}
+
+// Toda página de material cierra su faq[] con la pregunta de precio (CONTENT-SPEC §11.3):
+// son ~2.500 búsquedas/mes con el modificador 'precio' y sin respuesta visible rebotan.
+foreach ($materials as $slug => $material) {
+    $faq = $material['faq'] ?? [];
+    $last = is_array($faq) && $faq !== [] ? (string) (end($faq)['q'] ?? '') : '';
+    if (!str_starts_with($last, '¿Cuánto cuesta')) {
+        $fail("materials.php[{$slug}]: la última faq tiene que ser '¿Cuánto cuesta …?' (CONTENT-SPEC §11.3)");
+    }
+}
+
 foreach ($guides as $slug => $guide) {
     foreach ($guide['related'] ?? [] as $target) {
         if (!isset($categories[$target]) && !isset($materials[$target])) {
