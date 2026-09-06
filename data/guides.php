@@ -18,7 +18,7 @@ return [
     'cuantas-bolsas-de-cemento-por-m2' => [
         'keyword' => 'cuántas bolsas de cemento por m2',
         'name'   => 'Cuántas bolsas de cemento por m²',
-        'status' => 'proxima',
+        'status' => 'activa',
         'order'  => 1,
         'title'  => 'Cuántas bolsas de cemento por m² | Cálculo rápido',
         'meta'   => 'Cuántas bolsas de cemento necesitás por m² de contrapiso, revoque o losa, con ejemplos de obra en Paraguay. Después pedí tu cotización.',
@@ -27,7 +27,7 @@ return [
     'que-piedra-usar-para-cimientos' => [
         'keyword' => 'qué piedra usar para cimientos',
         'name'   => 'Qué piedra usar para cimientos',
-        'status' => 'proxima',
+        'status' => 'activa',
         'order'  => 2,
         'title'  => 'Qué piedra usar para cimientos | Guía práctica',
         'meta'   => 'Piedra bruta o triturada para cimientos: cuál conviene según el suelo y el tipo de obra. Comparación clara y cotización en un paso.',
@@ -36,7 +36,7 @@ return [
     'ladrillo-comun-vs-hueco' => [
         'keyword' => 'ladrillo común o hueco',
         'name'   => 'Ladrillo común vs hueco',
-        'status' => 'proxima',
+        'status' => 'activa',
         'order'  => 3,
         'title'  => 'Ladrillo común vs hueco: cuál conviene',
         'meta'   => 'Diferencias reales entre ladrillo común y hueco en costo, peso, aislación y mano de obra. Elegí bien y pedí tu cotización por millar.',
@@ -45,7 +45,7 @@ return [
     'que-chapa-conviene-para-techo' => [
         'keyword' => 'qué chapa conviene para techo',
         'name'   => 'Qué chapa conviene para techo',
-        'status' => 'proxima',
+        'status' => 'activa',
         'order'  => 4,
         'title'  => 'Qué chapa conviene para tu techo | Comparativa',
         'meta'   => 'Zinc, trapezoidal o termoacústica: qué chapa conviene según el techo, el calor y el presupuesto. Después cotizá los metros que necesitás.',
@@ -54,7 +54,7 @@ return [
     'cuanta-arena-y-ripio-por-m3-de-hormigon' => [
         'keyword' => 'cuánta arena y ripio por m3 de hormigón',
         'name'   => 'Cuánta arena y ripio por m³ de hormigón',
-        'status' => 'proxima',
+        'status' => 'activa',
         'order'  => 5,
         'title'  => 'Arena y ripio por m³ de hormigón | Cálculo',
         'meta'   => 'Cuánta arena, ripio y cemento entran en un m³ de hormigón, con las dosificaciones que se usan en obra en Paraguay. Cotizá los m³ que faltan.',
@@ -63,7 +63,7 @@ return [
     'que-diametro-de-hierro-para-que-uso' => [
         'keyword' => 'qué diámetro de hierro usar',
         'name'   => 'Qué diámetro de hierro para qué uso',
-        'status' => 'proxima',
+        'status' => 'activa',
         'order'  => 6,
         'title'  => 'Qué diámetro de hierro usar en cada parte de la obra',
         'meta'   => 'Del 6 al 16: qué varilla va en columnas, vigas, losas y estribos según la obra. Guía clara y cotización con proveedores verificados.',
@@ -72,7 +72,7 @@ return [
     'como-revocar-una-pared' => [
         'keyword' => 'cómo revocar una pared',
         'name'   => 'Cómo revocar una pared',
-        'status' => 'proxima',
+        'status' => 'activa',
         'order'  => 7,
         'title'  => 'Cómo revocar una pared | Materiales y pasos',
         'meta'   => 'Qué lleva el revoque grueso y el fino, en qué orden va cada capa y cómo calcular el material por m² en obra paraguaya. Después cotizá lo que falte.',
@@ -81,7 +81,7 @@ return [
     'losa-de-hormigon-encofrado-y-hierro' => [
         'keyword' => 'losa de hormigón armado',
         'name'   => 'Losa de hormigón: encofrado y hierro',
-        'status' => 'proxima',
+        'status' => 'activa',
         'order'  => 8,
         'title'  => 'Losa de hormigón: encofrado, hierro y hormigonado',
         'meta'   => 'Cómo se arma una losa de hormigón armado —encofrado, puntales, armadura y hormigonado— y qué pedirle al proveedor de cada material, en qué orden.',

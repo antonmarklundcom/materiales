@@ -459,9 +459,36 @@ Index (phases 5–8 fill their line in the PR that merges them):
 | 5a spec amendments | Opus | ✅ | #8 | 2026-09-06 abajo |
 | 5b new materials, synonyms, guías | Opus | ✅ | #9 | 2026-09-06 abajo |
 | 5c category promotion | Opus | ✅ | #10 | 2026-09-06 abajo |
-| 6 content wave 1 | Sonnet | ⬜ | — | — |
+| 6 content wave 1 | Sonnet | ✅ | #11 | 2026-09-06 abajo |
 | 7 content wave 2 | Sonnet | ⬜ | — | — |
 | 8 imagery + QA + launch | Sonnet | ⬜ | — | — |
+
+**2026-09-06 — Fase 6 · Content wave 1 (Sonnet, PR #11).**
+- Prosa completa de las 5 categorías de lanzamiento (`hierro`, `cemento-y-cal`, `aridos`,
+  `ladrillos-y-bloques`, `chapas-y-techos`) y sus 34 materiales activos, más las 8 guías —
+  47 archivos nuevos en `content/`. Escribí `chapa-termoacustica.php` a mano como ejemplar
+  (write-first list de KEYWORDS-MATERIALES §2) y repartí el resto en 6 subagentes Sonnet en
+  paralelo, uno por categoría más uno para las guías, cada uno con su porción de
+  CONTENT-SPEC §11.1 y los datos ya cerrados de `data/materials.php` — sin tocar ningún
+  archivo de datos salvo `status` en `data/guides.php` (§4.13).
+- Tablas de medidas obligatorias (§11.4) en `varilla-de-hierro`, `ladrillo-comun`,
+  `ladrillo-hueco`, `chapa-trapezoidal` y `policarbonato`; tabla recomendada en
+  `piedra-triturada`, `perfiles-metalicos` y `chapa-de-zinc`.
+- Las 8 guías pasan de `proxima` a `activa` en `data/guides.php` junto con su prosa; las dos
+  nuevas de la fase 5a (`como-revocar-una-pared`, `losa-de-hormigon-encofrado-y-hierro`)
+  también cierran acá.
+- QA post-fan-out: revisé a mano que ningún término de marca se colara fuera de su página
+  dueña (saqué "eternit" de la prosa de la categoría `chapas-y-techos`, donde sólo
+  `fibrocemento.php` puede usarlo) y corregí un guion mal puesto en `canaletas.php`. Conteo
+  de palabras verificado por script: los 34 materiales entre 350–600, las 5 categorías entre
+  250–450, las 8 guías entre 600–900 (extendí 3 guías que habían quedado justo debajo del
+  mínimo).
+- `php -l`, `tools/smoke.php` y `tools/render-check.sh` en verde; confirmé a mano que ninguna
+  de las páginas tocadas sigue mostrando el aviso "estamos publicando el contenido" y que
+  `sitemap.xml` lista las 8 guías.
+- **La fase 7 empieza acá**: `prompts/sonnet-7-content-wave2.md`, prosa de las 6 categorías
+  promovidas en 5c (pisos-y-revestimientos, aberturas, impermeabilizantes, yeso-y-durlock,
+  canos-y-plomeria, madera) y sus materiales, en el orden de §1.15.
 
 **2026-09-06 — Fase 5c · Promoción de categorías (Opus, PR #10).**
 - 6 categorías a `activa` en el orden de §1.15 (pisos-y-revestimientos, aberturas,
