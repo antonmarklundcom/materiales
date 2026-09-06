@@ -30,9 +30,11 @@ return [
         'intro_keywords' => [
             'hierro de construcción',
             'fierro de construcción',
+            'acero',
             'varillas',
             'hierro nervurado',
             'malla sima',
+            'tejido de alambre',
         ],
         'faq'    => [
             ['q' => '¿Cómo se vende el hierro en Paraguay?',
@@ -56,6 +58,8 @@ return [
         'intro_keywords' => [
             'bolsa de cemento',
             'cemento portland',
+            'cal',
+            'cal para construcción',
             'cal apagada',
             'cal en terrón',
             'hormigón premezclado',
@@ -80,8 +84,10 @@ return [
         'keyword' => 'áridos',
         'intro'  => 'Arena, ripio, piedra triturada y piedra bruta, por metro cúbico o por camión, con entrega en obra. Decinos el volumen y la zona.',
         'intro_keywords' => [
+            'áridos',
             'arena y ripio',
             'canto rodado',
+            'tierra colorada',
             'piedra 4ta',
             'piedra 5ta',
             'piedra 6ta',
@@ -109,11 +115,16 @@ return [
         'intro'  => 'Ladrillo común, hueco, prensado, bloque de hormigón y tejuelón: pedí por millar y comparalo con la cantidad real de tu obra.',
         'intro_keywords' => [
             'ladrillo colorado',
+            'ladrillo visto',
             'ladrillo macizo',
             'ladrillo de 8',
             'ladrillo de 12',
+            'bloques',
             'bloquete',
             'tejuela',
+            'ladrillo refractario',
+            'adoquines',
+            'millar',
         ],
         'faq'    => [
             ['q' => '¿Cómo se venden los ladrillos?',
@@ -135,12 +146,17 @@ return [
         'keyword' => 'chapas para techo',
         'intro'  => 'Chapa de zinc, trapezoidal, termoacústica, tejas y fibrocemento: pasanos las medidas del techo y la pendiente, y te cotizan a medida.',
         'intro_keywords' => [
+            'chapas para techo',
+            'techos de chapa',
             'chapa acanalada',
             'chapa galvanizada',
             'isopanel',
             'panel sándwich',
             'teja colonial',
             'chapa de cemento',
+            'cielorraso de PVC',
+            'policarbonato',
+            'canaletas para techo',
         ],
         'faq'    => [
             ['q' => '¿Cómo se vende la chapa?',

@@ -87,3 +87,29 @@ la fase que la resuelve.
     skill); la analítica real con consentimiento (GA4/Meta Pixel, fase 2) sigue intacta en
     `assets/js/analytics.js`. Los dos conviven: uno mide clicks de UI sin cuenta, el otro mide
     conversión con consentimiento.
+
+## Fase 5 — Keyword expansion
+
+18. **`ladrillo sapo` (260 búsquedas/mes) quedó sin página dueña.** El plan §5.1 lo proponía
+    como sinónimo de `ladrillo-hueco` con la marca "(verify)". No se pudo verificar con una
+    fuente confiable si en Paraguay nombra al ladrillo hueco o a un macizo grande, y meterlo
+    como sinónimo en la página equivocada arrastra la prosa al vocabulario incorrecto (regla
+    de anti-fabricación). Queda anotado en CONTENT-SPEC §11.1 como término sin dueño: se
+    resuelve preguntándole a una olería o a un proveedor, y entonces se agrega a
+    `synonyms[]` de la página que corresponda.
+19. **`cano-de-agua` se autoriza con demanda sin medir.** Los términos `termofusión`, `PPR`
+    y `cañería de agua` figuran en KEYWORDS §4.2 (frases a chequear en el próximo pull), no
+    en los clústeres medidos. La página se sostiene sobre `caño` (480 búsquedas, la puja más
+    alta del clúster de plomería) y sobre el hecho de que el caño de agua y el de desagüe son
+    productos distintos. Si el segundo pull de Keyword Planner vuelve vacío, la página se
+    funde con `cano-de-pvc`.
+20. **La FAQ de entrega de `cemento` se reemplazó por una de cemento blanco y mortero.** El
+    smoke test limita `faq[]` a 5 entradas y la FAQ de precio de §11.3 ocupa un lugar. El
+    contenido de entrega y descarga no se perdió: pasó a la respuesta de la FAQ de precio,
+    que nombra el flete y la descarga entre los factores.
+21. **Los skills `paraguay-local-site` y `seo-web-builds` no están disponibles en esta
+    sesión.** Se usaron los equivalentes más cercanos que sí lo están (`paraguay-business-apps`
+    para el vocabulario y las convenciones de PY, y los límites de título ≤ 60 y meta ≤ 155 ya
+    codificados en `tools/smoke.php`, que es la forma en que este repo aplica esa regla de SEO).
+    Sin impacto en el resultado: las reglas que esos skills aportan —voseo, anti-fabricación,
+    límites de title/meta— ya están escritas en `CONTENT-SPEC.md` y verificadas por CI.

@@ -69,4 +69,22 @@ return [
         'meta'   => 'Del 6 al 16: qué varilla va en columnas, vigas, losas y estribos según la obra. Guía clara y cotización con proveedores verificados.',
         'related' => ['varilla-de-hierro', 'malla-electrosoldada', 'hierro'],
     ],
+    'como-revocar-una-pared' => [
+        'keyword' => 'cómo revocar una pared',
+        'name'   => 'Cómo revocar una pared',
+        'status' => 'proxima',
+        'order'  => 7,
+        'title'  => 'Cómo revocar una pared | Materiales y pasos',
+        'meta'   => 'Qué lleva el revoque grueso y el fino, en qué orden va cada capa y cómo calcular el material por m² en obra paraguaya. Después cotizá lo que falte.',
+        'related' => ['cal-hidratada', 'arena-lavada', 'cemento'],
+    ],
+    'losa-de-hormigon-encofrado-y-hierro' => [
+        'keyword' => 'losa de hormigón armado',
+        'name'   => 'Losa de hormigón: encofrado y hierro',
+        'status' => 'proxima',
+        'order'  => 8,
+        'title'  => 'Losa de hormigón: encofrado, hierro y hormigonado',
+        'meta'   => 'Cómo se arma una losa de hormigón armado —encofrado, puntales, armadura y hormigonado— y qué pedirle al proveedor de cada material, en qué orden.',
+        'related' => ['hormigon-elaborado', 'varilla-de-hierro', 'tabla-de-encofrado'],
+    ],
 ];
