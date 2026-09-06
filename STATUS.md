@@ -53,11 +53,11 @@ cierra el build de las fases 5–8)._
 1. **Fotografía real por página de dinero** — bloqueada por el entorno (CDN de Higgsfield
    sin permitir), KNOWN-ISSUES #22. Correr `higgsfield-image-pipeline` completo cuando el
    dominio `*.cloudfront.net` esté permitido.
-2. **Menú mobile del header** — bug de responsividad encontrado en el QA de fase 8
-   (KNOWN-ISSUES #23): en 390px el nav desborda horizontalmente. Es trabajo de
-   `web-design-system` (fase 4), no de contenido.
-3. **Datos reales de NAP** (abajo).
-4. **`staging_noindex => false`** cuando el dominio esté apuntando.
+2. **Datos reales de NAP** (abajo).
+3. **`staging_noindex => false`** cuando el dominio esté apuntando.
+
+(El supuesto bug de header mobile de la primera pasada de QA de fase 8 se descartó — era un
+artefacto de la herramienta de captura, no un problema real. Ver KNOWN-ISSUES #23.)
 
 Prosa real: ✅ completa. Las 11 categorías, 64 materiales y 8 guías ya tienen cuerpo en
 `content/categorias/`, `content/materiales/` y `content/guias/` (fases 6 y 7) — ninguna
@@ -101,12 +101,13 @@ php -S 127.0.0.1:8080 -t public_html tools/router-cli.php
 
 ## Próximo paso
 
-**Build de fases 5–8 completo.** PR #11 (fase 6) y #12 (fase 7) mergeadas; PR #13 (fase 8)
-lista para mergear con el QA final. Después de esa PR no queda trabajo de contenido ni de
-código pendiente — sólo los pasos manuales de Anton listados en el informe de cierre (DNS,
-`config/vendercrm.php`, IDs de GA4/Pixel y NAP en `data/site.php`, `staging_noindex => false`,
-Search Console, reclutamiento de proveedores fundadores) y las dos cosas que quedaron en
-KNOWN-ISSUES #22 y #23 (fotografía real bloqueada por el entorno, menú mobile del header).
+**Build de fases 5–8 completo y mergeado** (PR #11, #12, #13). No queda trabajo de contenido
+ni de código pendiente — sólo los pasos manuales de Anton listados en el informe de cierre
+(DNS, `config/vendercrm.php`, IDs de GA4/Pixel y NAP en `data/site.php`, `staging_noindex =>
+false`, Search Console, reclutamiento de proveedores fundadores) y KNOWN-ISSUES #22
+(fotografía real bloqueada por el entorno). El #23 (supuesto bug de header mobile) se revisó
+después con Playwright y se descartó: era un artefacto de la herramienta de captura de la
+fase 8, no un problema real — sin cambios de código.
 
 Nota de proceso: "Allow auto-merge" ya está habilitado en el repo (Anton, 2026-09-06), así que
 desde la fase 6 el flujo de §4.2/§4.12 corrió sin intervención manual.
