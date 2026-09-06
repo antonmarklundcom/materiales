@@ -456,12 +456,27 @@ Index (phases 5–8 fill their line in the PR that merges them):
 
 | PR | Window | Status | PR # | Entry |
 |---|---|---|---|---|
-| 5a spec amendments | Opus | ⬜ | — | — |
+| 5a spec amendments | Opus | ✅ | #8 | 2026-09-06 abajo |
 | 5b new materials, synonyms, guías | Opus | ⬜ | — | — |
 | 5c category promotion | Opus | ⬜ | — | — |
 | 6 content wave 1 | Sonnet | ⬜ | — | — |
 | 7 content wave 2 | Sonnet | ⬜ | — | — |
 | 8 imagery + QA + launch | Sonnet | ⬜ | — | — |
+
+**2026-09-06 — Fase 5a · Enmiendas al CONTENT-SPEC (Opus, PR #8).**
+- `CONTENT-SPEC.md` §11 nuevo: §11.1 tabla de propiedad de keywords con una fila por página
+  que queda `activa` después de 5c (11 categorías + sus materiales, incluidos los de 5b/5c),
+  con las columnas posee / teje / no es suya; §11.2 lista cerrada de ocho marcas-genérico;
+  §11.3 patrón de la FAQ `¿Cuánto cuesta {material}?`; §11.4 regla de medidas; §11.5 esquemas
+  de las dos guías nuevas. Fuente: `KEYWORDS-MATERIALES.md` §1, §2, §3.4 y §5.1.
+- `CONTENT-SPEC.md` §5: el segundo H2 de material pasa a `Cómo se vende, cómo pedirlo y de qué
+  depende el precio`.
+- Sin cambios en datos, plantillas, router ni CSS. Smoke y `php -l` en verde sin variación.
+- Decisiones registradas: `piso parquet` y `melamina` sin página (Backlog); `caño conduit` y
+  `canaleta para cable` quedan en electricidad (`proxima`, sin dueño); la fila de `cano-de-agua`
+  queda anotada porque `termofusión`/`PPR` no tienen volumen medido (KEYWORDS §4.2).
+- Dónde mirar primero en 5b: `CONTENT-SPEC.md` §11.1 (qué término va en qué página), §11.3
+  (FAQ de precio obligatoria) y `data/materials.php` → `varilla-de-hierro` como entrada modelo.
 
 ### 2026-09-01 — Phase 1 Foundation (branch `phase/1-foundation`)
 
