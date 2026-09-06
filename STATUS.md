@@ -4,8 +4,8 @@ Documento vivo: qué está hecho, qué falta y qué depende de Anton. Se actuali
 fase. El plan está en `plan.md`; las instrucciones por fase, en `prompts/`; el copy cerrado,
 en `CONTENT-SPEC.md`; los desvíos menores, en `KNOWN-ISSUES.md`.
 
-_Última actualización: 2026-09-06 (fase 7 lista para mergear: prosa de las 6 categorías
-promovidas — el catálogo queda 100% escrito)._
+_Última actualización: 2026-09-06 (fase 8 lista para mergear: QA + og:image de fallback —
+cierra el build de las fases 5–8)._
 
 ## Estado por fase
 
@@ -16,9 +16,9 @@ promovidas — el catálogo queda 100% escrito)._
 | 3 Content spec | Opus | ✅ Mergeada | #5 | Datos de contenido cerrados (13 categorías, 34 materiales, 6 guías) + `CONTENT-SPEC.md` |
 | 4 Design & pages | Sonnet | ✅ Mergeada | #6 (pendiente de verificar) | Capa visual completa (track INDUSTRIAL adaptado, `web-design-system`): tokens, tipografía, tarjetas, formulario, FAQ-acordeón, pie en cinta, motion |
 | 5 Keyword expansion (PR 5a · 5b · 5c) | Opus (una ventana) | ✅ Mergeada | #8, #9, #10 | CONTENT-SPEC §11 (propiedad de keywords, marcas genéricas, FAQ de precio, regla de medidas), 30 materiales nuevos, FAQ de precio en los 64, 2 guías nuevas y 6 categorías promovidas con su copy reescrita |
-| 6 Content wave 1 | Sonnet (una ventana, PR 1/3) | ✅ Lista para mergear | #11 | Prosa de las 5 categorías de lanzamiento, sus 34 materiales y las 8 guías (auto-merge armado) |
-| 7 Content wave 2 | Sonnet (misma ventana, PR 2/3) | ✅ Lista para mergear | #12 | Prosa de pisos, aberturas, impermeabilizantes, yeso, plomería y madera (auto-merge armado) |
-| 8 Imagery + QA + launch | Sonnet (misma ventana, PR 3/3) | ⬜ Pendiente | — | Imágenes OG, QA SEO, checklist de salida, informe final |
+| 6 Content wave 1 | Sonnet (una ventana, PR 1/3) | ✅ Mergeada | #11 | Prosa de las 5 categorías de lanzamiento, sus 34 materiales y las 8 guías |
+| 7 Content wave 2 | Sonnet (misma ventana, PR 2/3) | ✅ Mergeada | #12 | Prosa de pisos, aberturas, impermeabilizantes, yeso, plomería y madera |
+| 8 Imagery + QA + launch | Sonnet (misma ventana, PR 3/3) | ✅ Lista para mergear | #13 | QA SEO completo, `og-default.jpg` de fallback (sin fotografía real — CDN bloqueado, ver KNOWN-ISSUES #22), checklist de salida |
 
 ## Qué anda hoy
 
@@ -42,12 +42,20 @@ promovidas — el catálogo queda 100% escrito)._
   (`#E8562A`), Bricolage Grotesque + Inter, tarjetas y tiles de catálogo, formulario y
   FAQ-acordeón restilizados, pie en cinta de confianza, `motion.js` (reveal + header
   sticky) y `events.js` (shim `data-ev` sin proveedor, no reemplaza la analítica de fase 2).
-  Sin imágenes todavía (fase 6).
+- **QA SEO (fase 8)**: `og-default.jpg` (1200×630, fallback de paleta sin fotos, generado
+  con GD en `tools/generate-og-default.php`) sitewide; un `<h1>` por página, canonicales,
+  JSON-LD válido en todas las rutas verificadas, títulos ≤ 60 y metas ≤ 155 en las 85
+  entradas de datos, sin precios ni marcas fuera de la lista cerrada. Fotografía real por
+  página de dinero queda bloqueada por el entorno — ver KNOWN-ISSUES #22.
 
 ## Lo que falta antes de salir a producción
 
-1. **Imágenes OG** por página de dinero (fase 8).
-2. **QA SEO y checklist de salida** (fase 8).
+1. **Fotografía real por página de dinero** — bloqueada por el entorno (CDN de Higgsfield
+   sin permitir), KNOWN-ISSUES #22. Correr `higgsfield-image-pipeline` completo cuando el
+   dominio `*.cloudfront.net` esté permitido.
+2. **Menú mobile del header** — bug de responsividad encontrado en el QA de fase 8
+   (KNOWN-ISSUES #23): en 390px el nav desborda horizontalmente. Es trabajo de
+   `web-design-system` (fase 4), no de contenido.
 3. **Datos reales de NAP** (abajo).
 4. **`staging_noindex => false`** cuando el dominio esté apuntando.
 
@@ -93,9 +101,12 @@ php -S 127.0.0.1:8080 -t public_html tools/router-cli.php
 
 ## Próximo paso
 
-La misma ventana Sonnet sigue en curso: PR #11 (fase 6) mergeada, PR #12 (fase 7) lista para
-mergear, y ahora continúa con `prompts/sonnet-8-imagery-qa-launch.md` (imágenes OG, QA SEO,
-checklist de salida) para cerrar el build con el informe final.
+**Build de fases 5–8 completo.** PR #11 (fase 6) y #12 (fase 7) mergeadas; PR #13 (fase 8)
+lista para mergear con el QA final. Después de esa PR no queda trabajo de contenido ni de
+código pendiente — sólo los pasos manuales de Anton listados en el informe de cierre (DNS,
+`config/vendercrm.php`, IDs de GA4/Pixel y NAP en `data/site.php`, `staging_noindex => false`,
+Search Console, reclutamiento de proveedores fundadores) y las dos cosas que quedaron en
+KNOWN-ISSUES #22 y #23 (fotografía real bloqueada por el entorno, menú mobile del header).
 
 Nota de proceso: "Allow auto-merge" ya está habilitado en el repo (Anton, 2026-09-06), así que
-desde la fase 6 el flujo de §4.2/§4.12 corre sin intervención manual.
+desde la fase 6 el flujo de §4.2/§4.12 corrió sin intervención manual.
