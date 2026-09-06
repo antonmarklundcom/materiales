@@ -25,6 +25,6 @@
   cotizaciones. El flete pesa bastante porque el peso por millar es considerable, así que la
   zona de entrega y el acceso a la obra influyen en el total. Si tu obra necesita más de un tipo
   —por ejemplo ladrillo común para pared y ladrillo hueco para tabiques, o ladrillo prensado
-  para el frente y ladrillo común para el resto— convine pedirlos juntos para no pagar dos
+  para el frente y ladrillo común para el resto— conviene pedirlos juntos para no pagar dos
   fletes distintos el mismo día.
 </p>
