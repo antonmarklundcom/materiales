@@ -461,7 +461,33 @@ Index (phases 5–8 fill their line in the PR that merges them):
 | 5c category promotion | Opus | ✅ | #10 | 2026-09-06 abajo |
 | 6 content wave 1 | Sonnet | ✅ | #11 | 2026-09-06 abajo |
 | 7 content wave 2 | Sonnet | ✅ | #12 | 2026-09-06 abajo |
-| 8 imagery + QA + launch | Sonnet | ⬜ | — | — |
+| 8 imagery + QA + launch | Sonnet | ✅ | #13 | 2026-09-06 abajo |
+
+**2026-09-06 — Fase 8 · Imagery + QA + launch (Sonnet, PR #13, FINAL).**
+- Preflight de `higgsfield-image-pipeline` Rule 0/2: no había manifest de imágenes, y
+  `curl -sI` contra `*.cloudfront.net` devuelve 403 (bloqueado por la política de red del
+  entorno). Regla del propio skill: "CDN unreachable: stop before spending credits and tell
+  Anton the one-line fix." No se generó ninguna imagen con Higgsfield ni se gastaron créditos.
+- En su lugar, `tools/generate-og-default.php` (GD + tipografía Bricolage Grotesque local)
+  genera `public_html/assets/img/og-default.jpg` (1200×630): motivo de paleta con los tokens
+  del sitio (fondo `#0e0e0f`, acento `#e8562a`), sin fotos ni rostros. `partials/header.php`
+  ya lo sirve como fallback sitewide desde la fase 1 — no hace falta tocar plantillas.
+  KNOWN-ISSUES #22 deja escrito el paso para generar fotografía real por página cuando el
+  dominio esté permitido.
+- QA SEO ejecutado a mano (los skills `seo-web-builds` y `web-design-system` no existen en
+  esta sesión, mismo desvío que KNOWN-ISSUES #21): título ≤ 60 y meta ≤ 155 verificado por
+  script en las 85 entradas de datos (13 categorías + 64 materiales + 8 guías); un `<h1>` por
+  página, canonical y JSON-LD válido verificados en home, índice, categoría, material, índice
+  y detalle de guía; sin precios, sin "tú", sin marca fuera de la lista cerrada de §11.2
+  (verificado con grep); `robots.txt` + `sitemap.xml` correctos; ronda del formulario de leads
+  verificada en modo sólo-log (sin `config/vendercrm.php` en el repo, como corresponde).
+- Una pasada de capturas (chromium headless, 5 páginas × escritorio/mobile) encontró un bug
+  real fuera del alcance de esta fase: en 390px el header desborda horizontalmente (el nav no
+  colapsa) — anotado en KNOWN-ISSUES #23 para una fase de diseño, no se tocó CSS.
+- `staging_noindex` se deja en `true` (el dominio no está apuntando todavía). `php -l`,
+  `tools/smoke.php` y `tools/render-check.sh` en verde.
+- **Build de fases 5–8 cerrado.** No queda contenido ni código pendiente; lo que sigue son los
+  pasos manuales de Anton (informe de cierre en la PR) y los dos ítems de KNOWN-ISSUES #22/#23.
 
 **2026-09-06 — Fase 7 · Content wave 2 (Sonnet, PR #12).**
 - Prosa completa de las 6 categorías promovidas en 5c (`pisos-y-revestimientos`, `aberturas`,

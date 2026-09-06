@@ -116,3 +116,27 @@ la fase que la resuelve.
     codificados en `tools/smoke.php`, que es la forma en que este repo aplica esa regla de SEO).
     Sin impacto en el resultado: las reglas que esos skills aportan —voseo, anti-fabricación,
     límites de title/meta— ya están escritas en `CONTENT-SPEC.md` y verificadas por CI.
+
+## Fase 8 — Imagery + QA + launch
+
+22. **Sin imágenes por página: la descarga desde el CDN de Higgsfield está bloqueada en este
+    entorno.** `curl -sI` contra `*.cloudfront.net` devuelve 403 (política del proxy del
+    entorno, ver `higgsfield-image-pipeline` §Regla 2 — el fix es habilitar
+    `*.cloudfront.net` en la lista de dominios permitidos del entorno de Claude Code, un clic
+    en la configuración del entorno). Por eso esta fase no generó fotografía real ni un
+    `og:image` por página: en su lugar se generó un único `public_html/assets/img/og-default.jpg`
+    (1200×630) con `tools/generate-og-default.php`, usando GD y la tipografía de marca
+    (Bricolage Grotesque) — un motivo de paleta con los tokens del sitio (fondo oscuro, acento
+    `#E8562A`), sin fotos ni rostros. Sirve como fallback sitewide (`partials/header.php` ya lo
+    busca por convención); no hay imagen distinta por categoría o material todavía. Cuando se
+    habilite el dominio en el entorno, correr `higgsfield-image-pipeline` completo para generar
+    fotografía real por página de dinero.
+23. **Bug de responsividad real encontrado en QA, fuera del alcance de esta fase (no se toca
+    CSS/design-system en fase 8): en mobile angosto (390px) el header desborda horizontalmente**
+    — el nav (`MATERIALES · GUÍAS · COTIZAR · CONTACTO`) no colapsa ni hace wrap, así que
+    "CONTACTO" y el botón "Aceptar todo" del banner de cookies quedan cortados fuera del
+    viewport en capturas a 390px de ancho. Se verificó con una captura real (chromium headless,
+    390×1400): la imagen mide exactamente 390 px y aun así el contenido se corta, confirmando
+    scroll horizontal, no un recorte de la captura. Corresponde a la fase 4 (`web-design-system`,
+    banda oscura del header) — necesita un menú mobile (hamburguesa o nav colapsable) antes del
+    lanzamiento.
