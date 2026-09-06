@@ -17,8 +17,18 @@ the build.
 | 2 Lead pipeline | Opus | `prompts/opus-2-lead-pipeline.md` | §3 form → PHP handler → VenderCRM, consent, analytics |
 | 3 Content spec | Opus | `prompts/opus-3-content-spec.md` | Full taxonomy data populated, locked copy for homepage + templates, per-material outlines |
 | 4 Design & pages | Sonnet | `prompts/sonnet-4-design-pages.md` | Visual layer for all page types (web-design-system) |
-| 5 Content wave 1 | Sonnet | `prompts/sonnet-5-content-wave1.md` | Prose for 5 launch categories + their materials + guías |
-| 6 Content wave 2 + launch QA | Sonnet | `prompts/sonnet-6-content-wave2-qa.md` | Remaining categories, OG images, SEO QA, go-live |
+| **5 Keyword expansion** (PRs 5a · 5b · 5c) | **Opus** | `prompts/opus-5-keyword-expansion.md` | §5.1: spec amendments, new materials in active categories, promotion of 5 categories with their material data, 2 new guías — everything the prose phases build on |
+| 6 Content wave 1 | Sonnet | `prompts/sonnet-6-content-wave1.md` | Prose for the 5 recruited categories, their materials (incl. the 5a additions) and the 8 guías |
+| 7 Content wave 2 | Sonnet | `prompts/sonnet-7-content-wave2.md` | Prose for the promoted categories (pisos, aberturas, impermeabilizantes, yeso, plomería, madera) |
+| 8 Imagery + QA + launch | Sonnet | `prompts/sonnet-8-imagery-qa-launch.md` | OG images, image slots, SEO QA, go-live checklist, closing report |
+
+Phases 1–4 are merged (§9). Phases 5–8 were re-planned on 2026-09-06 from the keyword
+research in `KEYWORDS-MATERIALES.md` (Fable planning session; that file is the content input
+for every remaining phase). **Windows:** phase 5 is ONE Opus window that ships three PRs in
+sequence; phases 6–8 are ONE Sonnet window that ships three PRs in sequence (fan-out to
+Sonnet subagents inside each PR for same-shaped pages). No spawning, no watcher: the Opus
+window ends with a report telling Anton to paste the Sonnet line; the Sonnet window ends
+with the closing report.
 
 Per the model cost guardrail: phases only ever run on Opus or Sonnet — never Fable.
 
@@ -57,6 +67,33 @@ Per the model cost guardrail: phases only ever run on Opus or Sonnet — never F
    public copy and slugs in Spanish (no accents/ñ in slugs).
 10. **Deploy**: push to `main` → Hostinger Git deployment webhook. GitHub Actions is never in
     the deploy path; CI is a required lint/smoke check only (~1 min per PR).
+
+Added 2026-09-06 from the keyword research (`KEYWORDS-MATERIALES.md`), decided by Fable in
+planning — build sessions never reopen them:
+
+11. **Keyword ownership per page** is written in CONTENT-SPEC §11 (phase 5a). One head term
+    belongs to exactly one page; every other spelling/variant of it is a synonym on that
+    page. Bare `chapa`, `cal`, `arena`, `hierro`, `madera` belong to the CATEGORY pages.
+12. **Brand-as-generic exception to the no-brands rule.** Paraguayan buyers search the
+    brand as the product name: durlock, isopanel, blindex, eternit, syopar, sikaflex,
+    canaleta tigre, caño amanco. These words are allowed inside prose, synonyms and FAQ
+    text — never in H1/title, never as a page, never as a supplier or "we sell X"
+    claim. The list is closed in CONTENT-SPEC §11; anything not on it stays prohibited.
+13. **Price-intent FAQ.** Every material page carries a visible FAQ `¿Cuánto cuesta
+    {material}?` answered with the factors (unidad, cantidad, flete, zona) and the CTA —
+    never a number. This is how ~2.500 monthly "precio" searches are served without
+    breaking decision 5.
+14. **Sanitarios y grifería, herrajes/cerraduras, herramientas and pinturas stay out of
+    this build.** Sanitarios (~9k/mo) is showroom retail with no bids; herrajes and tools are
+    the Productos bucket; pinturas is the largest cluster but the lowest bids and DIY
+    intent. All four go to §10 Backlog. ⚠️ Flagged for veto — sanitarios is the one Anton
+    may want back in if the quote pipeline can route bathroom fit-outs.
+15. **Promotion order changes** to money-on-the-table order (§5.1), replacing the
+    supplier-availability order: pisos-y-revestimientos → aberturas → impermeabilizantes →
+    yeso-y-durlock + canos-y-plomeria → madera. Electricidad and pinturas remain próxima.
+16. **One window per model for the rest of the build** (Anton, 2026-09-06): phase 5 is one
+    Opus window (3 PRs), phases 6–8 one Sonnet window (3 PRs). §4.9's cross-model
+    `create_session` handoff is replaced by §4.12.
 
 ## §2 Object model & data layer (no DB)
 
@@ -198,6 +235,21 @@ launch volume. 429 → logged, no retry in-request. Duplicate (200, `duplicate:t
 11. Silence is never progress. All GitHub state checks via `mcp__github__*` tools, never
     curl/gh. Every wait has a deadline and a "could not determine" branch. No phase ends a
     turn "waiting for CI" — it ends merged, or blocked with a stated need.
+12. **Windows and PR sequence (phases 5–8, replaces §4.9's spawn step).** A window runs its
+    PRs strictly in order: branch off latest main, open PR, arm auto-merge, verify merged
+    via `mcp__github__*`, write the §9 log line, then start the next PR in the SAME window.
+    At the model switch (after 5c) the Opus window STOPS and reports the exact Sonnet line
+    to paste; it spawns nothing. The Sonnet window stops after PR 8 with the closing
+    report. No watcher Routine. Same-shaped units inside a PR (N ≥ 4 material pages) fan
+    out to parallel Sonnet subagents per `fable-directs-sonnet-builds` §Fan-out: the window
+    writes one exemplar first, fans out the rest, runs one verify, opens one PR. Per-PR
+    budget ≤ 90 min; a PR still polishing at minute 60 stops polishing (§4.13 of the
+    method skill applies: one screenshot pass, one verify reported).
+13. **What Sonnet may change in `data/*.php`:** only the `status` value of a category,
+    material or guide, from `proxima` to `activa`, and only in the same PR that ships that
+    page's prose. Never keys, never other values, never new entries — those are 5a–5c work.
+    `tools/smoke.php` enforces that an `activa` material sits in an `activa` category, so
+    the category flips in the PR that completes its material set.
 
 ## §5 Category scope & content plan
 
@@ -215,9 +267,10 @@ category costs nothing and a quote request in an unrecruited category is a *recr
 ("tengo demanda real en tu rubro"). So all category pages ship, but only the 5 above get
 active supplier outreach at launch.
 
-Expansion order (by supplier availability + lead value): madera → aberturas →
-canos-y-plomeria (PVC) → pisos-y-revestimientos → electricidad → pinturas →
-yeso-y-durlock → impermeabilizantes.
+Expansion order — superseded 2026-09-06 by §1.15 / §5.1: pisos-y-revestimientos →
+aberturas → impermeabilizantes → yeso-y-durlock + canos-y-plomeria → madera. Electricidad
+and pinturas stay próxima (the original order was madera → aberturas → caños → pisos →
+electricidad → pinturas → yeso → impermeabilizantes; the keyword data reversed it).
 
 **Material page long-tail (this is the ranking strategy).** One page per material concept,
 authentic PY vocabulary, synonyms on-page. Launch set (~40 pages, wave 1 = the 5 recruited
@@ -243,6 +296,67 @@ to its money pages with descriptive anchors.
 Quality bar: 15 real pages beat 60 thin ones. A material page ships only with genuinely
 different content (uses, sale units, how it's quoted in PY, FAQ). Thin doorway pages sink
 the whole domain.
+
+### §5.1 Keyword-driven expansion (added 2026-09-06; source: `KEYWORDS-MATERIALES.md`)
+
+Read that file's §1–§2 for the volumes and §5 for the cannibalization map. What it changes:
+
+**PR 5a — CONTENT-SPEC amendments (Opus, small, first).** Append CONTENT-SPEC §11
+"Keyword ownership and vocabulary" with: (a) the head-term → page table for every activa
+page after 5b/5c (one row per page: owned head terms, synonyms to weave in, terms that
+belong elsewhere), built from KEYWORDS-MATERIALES §5.1; (b) the closed brand-as-generic
+list (§1.12); (c) the mandatory `¿Cuánto cuesta {material}?` FAQ pattern and its answer
+template (§1.13); (d) a "Medidas" rule: any material with a size/gauge/diameter long-tail
+(varilla, ladrillo común, ladrillo hueco, chapa trapezoidal, tanque de agua, policarbonato,
+terciada) carries a measures table under `Qué mirar antes de comprar`; (e) outlines
+(H2s + mandatory links) for the two new guías below. Also amend the CONTENT-SPEC §5 material
+structure so the second H2 reads `Cómo se vende, cómo pedirlo y de qué depende el precio`.
+No data changes in 5a.
+
+**PR 5b — new materials inside the 5 active categories (Opus).** Full closed entries in
+`data/materials.php` (keyword, title, meta, synonyms, sale_unit, price_band, intro, 3–5 FAQ
+incl. the precio FAQ, related), status `activa`:
+
+| Slug | Category | Head terms it owns (vol) | Synonyms |
+|---|---|---|---|
+| cielorraso-de-pvc | chapas-y-techos | pvc para techos 1.300 · cielorraso de pvc 1.000 · cielo raso pvc 390 | techo de pvc, machimbre de pvc, cielorraso |
+| policarbonato | chapas-y-techos | techos de policarbonato 590 · policarbonato techo 390 | alveolar, compacto, claraboya, 6/8/10 mm (table) |
+| canaletas | chapas-y-techos | canaletas 590 · canaleta embutida 590 · canaletas de pvc 260 | canaleta para techo, desagüe pluvial, bajada, canaleta de chapa galvanizada |
+| tejido-de-alambre | hierro | tejido de alambre 1.300 · alambre de púas 480 | tejido romboidal, alambrado, alambre galvanizado, malla para cerco |
+| ladrillo-refractario | ladrillos-y-bloques | ladrillo refractario 880 | ladrillo para parrilla, ladrillo para horno |
+| adoquines | ladrillos-y-bloques | adoquines 1.000 · adoquinado | adoquín de hormigón, adopasto, adoquín ecológico |
+
+Synonym additions to existing entries: alambre-negro += `alambre dulce`; tierra-gorda +=
+`tierra colorada`; ripio → `canto rodado` becomes the first synonym and opens the intro;
+ladrillo-prensado → `ladrillo visto` first; ladrillo-hueco += `ladrillo sapo` (verify);
+teja-espanola += `teja romana`; chapa-termoacustica += `chapa sandwich`, `techo sandwich`;
+chapa-de-zinc += `chapa galvanizada`, `chapa ondulada`; cemento += `cemento blanco`,
+`mortero premezclado` (as FAQ lines, not pages); perfiles-metalicos += `perfil C`, `perfil
+U`, `IPN`, `UPN`, `ángulo` (table). `data/guides.php` gets two entries, status proxima:
+`como-revocar-una-pared` (revoque/revocado ~1.800; links cal-hidratada, arena-lavada,
+cemento) and `losa-de-hormigon-encofrado-y-hierro` (hormigón armado, encofrado, losas,
+zapatas ~1.900; links hormigon-elaborado, varilla-de-hierro, tabla-de-encofrado). Update
+`intro_keywords[]` of the 5 categories with their newly owned head terms. Smoke green.
+
+**PR 5c — promotion of five categories (Opus).** Flip these categories to `activa` and
+author their full material entries (status `activa`; prose comes in phase 7):
+
+| Category | Materials (slug — head terms) |
+|---|---|
+| pisos-y-revestimientos | ceramica-para-piso (cerámica 1.600, cerámicos, pisos de cerámica) · porcelanato (1.600, pisos porcelanato 1.300, símil madera) · azulejos (azulejos para baño 1.000, azulejos 720, para cocina 720) · piso-vinilico (piso vinílico 880, vinílicos adhesivos 720, piso flotante 320, SPC) · piedra-laja (piedra laja 320, revestimiento de piedra 320, símil piedra) |
+| aberturas | puerta-placa (puerta placa 480, puertas de madera 1.000 interior) · puertas-de-madera (exterior, 1.000 · bid 25,81) · puertas-de-chapa (puertas de metal 1.300, puertas metálicas 320) · ventanas-de-aluminio (ventanas 880, ventanas de aluminio 210, perfiles de aluminio 480, carpintería de aluminio) · vidrio-templado (vidrio 880, vidrio templado 590, blindex 880) · portones-y-rejas (portones de hierro 720, rejas 480+480+590, portón basculante 480 — captures the herrería lead) |
+| impermeabilizantes | membrana-asfaltica (membrana para techo 1.300, membrana 880, membranas asfálticas 390) · membrana-liquida (590, para techos 260) · pintura-antihumedad (880, antihumedad 210) · hidrofugo (impermeabilizante 590, para techos 210) · selladores-y-siliconas (silicona 1.000, silicona fría 590, sikaflex 590, sikacryl 260) |
+| yeso-y-durlock | placa-de-yeso (durlock 1.900, placas de yeso 170, cielorraso durlock 260) · yeso-en-polvo (yeso 880, yeso para pared 390) · perfiles-para-durlock (montante, solera 90) |
+| canos-y-plomeria | tanque-de-agua (tanque de agua 1.300, 1000 litros 720, 500 litros 210, syopar 320 — sizes table) · cano-de-pvc (caño 480, caños pvc 210, tubos pvc 140) · cano-de-agua (termofusión/PPR — verify volume in §4 of the research before authoring; drop if none) |
+| madera (already has 6 proxima entries) | flip to activa; add mdf-fibrofacil (material mdf 590, fibrofácil 590, madera mdf 480) · madera-dura (curupay 480, lapacho, eucalipto — species table) |
+
+Sanitarios, herrajes, herramientas, pinturas, electricidad: NOT authored (§1.14). Every
+new entry passes `tools/smoke.php` (closed content) and the slug-uniqueness check. Titles
+≤ 60 chars, metas ≤ 155, voseo, no prices, no brands outside the §1.12 list.
+
+**Phases 6–7 write the prose** to CONTENT-SPEC §5 structure (350–600 words per material,
+250–450 per category, 600–900 per guía), flipping guide/category `status` per §4.13.
+Phase 6 order = KEYWORDS-MATERIALES §2 "write-first list"; phase 7 order = §1.15.
 
 ## §6 SEO & schema decisions
 
@@ -337,6 +451,17 @@ timing.
 
 *(Each phase appends a dated 5–10 line entry before merging: phase id + PR, what now exists,
 decisions/deviations, where the next phase should look first.)*
+
+Index (phases 5–8 fill their line in the PR that merges them):
+
+| PR | Window | Status | PR # | Entry |
+|---|---|---|---|---|
+| 5a spec amendments | Opus | ⬜ | — | — |
+| 5b new materials, synonyms, guías | Opus | ⬜ | — | — |
+| 5c category promotion | Opus | ⬜ | — | — |
+| 6 content wave 1 | Sonnet | ⬜ | — | — |
+| 7 content wave 2 | Sonnet | ⬜ | — | — |
+| 8 imagery + QA + launch | Sonnet | ⬜ | — | — |
 
 ### 2026-09-01 — Phase 1 Foundation (branch `phase/1-foundation`)
 
@@ -457,3 +582,12 @@ decisions/deviations, where the next phase should look first.)*
 - `/proveedores/{empresa}/` public pages (the pivot)
 - Cloudflare Turnstile if honeypot stops sufficing
 - Daily automated replay of failed CRM posts from leads.log (cron)
+- **Sanitarios y grifería** category (~9k/mo: inodoro, canillas, cisternas, ducha higiénica) —
+  parked per §1.14; revisit if the quote pipeline can route bathroom fit-outs
+- **Pinturas** prose (~15k/mo, bids < 5 kr, DIY intent) — category stays próxima
+- **Electricidad** (cinta aisladora, caño conduit, cable canal) — thin in the Materiales bucket
+- **Aditivos para hormigón** page (sikadur / sikagrout / sika 1, ~700/mo) — brand-heavy
+- Second keyword pull: the 100 phrases in KEYWORDS-MATERIALES §6, then a Productos /
+  Profesionales bucket review
+- Guías from intent clusters: colores de pintura (inspiration), tipos de ventanas / modelos
+  de portones (gallery) — only once their categories are live

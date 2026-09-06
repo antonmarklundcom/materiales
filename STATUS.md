@@ -4,7 +4,7 @@ Documento vivo: qué está hecho, qué falta y qué depende de Anton. Se actuali
 fase. El plan está en `plan.md`; las instrucciones por fase, en `prompts/`; el copy cerrado,
 en `CONTENT-SPEC.md`; los desvíos menores, en `KNOWN-ISSUES.md`.
 
-_Última actualización: 2026-09-01._
+_Última actualización: 2026-09-06 (replanificación de fases 5–8 a partir de `KEYWORDS-MATERIALES.md`)._
 
 ## Estado por fase
 
@@ -14,8 +14,10 @@ _Última actualización: 2026-09-01._
 | 2 Lead pipeline | Opus | ✅ Mergeada | #4 | Formulario, handler → VenderCRM, consentimiento, leads.log, /gracias/, analytics con consentimiento |
 | 3 Content spec | Opus | ✅ Mergeada | #5 | Datos de contenido cerrados (13 categorías, 34 materiales, 6 guías) + `CONTENT-SPEC.md` |
 | 4 Design & pages | Sonnet | ✅ Mergeada | #6 (pendiente de verificar) | Capa visual completa (track INDUSTRIAL adaptado, `web-design-system`): tokens, tipografía, tarjetas, formulario, FAQ-acordeón, pie en cinta, motion |
-| 5 Content wave 1 | Sonnet | ⬜ Pendiente | — | Prosa de las 5 categorías de lanzamiento, sus materiales y las 6 guías |
-| 6 Content wave 2 + QA | Sonnet | ⬜ Pendiente | — | Resto de categorías, imágenes OG, QA SEO, salida a producción |
+| 5 Keyword expansion (PR 5a · 5b · 5c) | Opus (una ventana) | ⬜ Pendiente | — | CONTENT-SPEC §11 (propiedad de keywords, marcas genéricas, FAQ de precio), 6 materiales nuevos en categorías activas, 2 guías, promoción de 5 categorías con sus datos |
+| 6 Content wave 1 | Sonnet (una ventana, PR 1/3) | ⬜ Pendiente | — | Prosa de las 5 categorías de lanzamiento, sus materiales y las 8 guías |
+| 7 Content wave 2 | Sonnet (misma ventana, PR 2/3) | ⬜ Pendiente | — | Prosa de pisos, aberturas, impermeabilizantes, yeso, plomería y madera |
+| 8 Imagery + QA + launch | Sonnet (misma ventana, PR 3/3) | ⬜ Pendiente | — | Imágenes OG, QA SEO, checklist de salida, informe final |
 
 ## Qué anda hoy
 
@@ -86,4 +88,10 @@ php -S 127.0.0.1:8080 -t public_html tools/router-cli.php
 
 ## Próximo paso
 
-Fase 5 (Sonnet): `Read prompts/sonnet-5-content-wave1.md in this repo and execute it.`
+1. Mergear el PR de replanificación (rama `claude/materiales-keyword-clustering-6bbyvt`).
+2. Ventana **Opus** nueva, permisos en auto-accept:
+   `Read prompts/opus-5-keyword-expansion.md in this repo and execute it.`
+   Termina sola después de 3 PRs y deja la línea para la ventana Sonnet.
+3. Ventana **Sonnet** nueva, auto-accept:
+   `Read prompts/sonnet-6-content-wave1.md in this repo and execute it.`
+   Encadena los PRs 6 → 7 → 8 en la misma ventana y cierra con el informe final.

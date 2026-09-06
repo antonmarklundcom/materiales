@@ -311,3 +311,148 @@ precio del metro cuadrado de construcción paraguay, presupuesto de obra, cómpu
 - **Long-tail depth is a lie in three clusters.** Fibrocemento (42 phrases), piso flotante
   (34) and canaleta (45) look deep but are 10-volume foreign suggestions; phrase count is
   not a prioritization signal in this file.
+
+---
+
+## 6. Second Keyword Planner pull — 100 phrases, 10 per block
+
+None of these appear in the Materiales file. Blocks 1–5 are the 50 that most change what
+gets written; blocks 6–10 size the next tier. Paste one block per Keyword Planner run.
+
+```
+ladrillo de adobe
+isopanel
+isopanel precio
+chapa termoacustica precio
+chapa de zinc precio
+cumbrera
+precio del cemento en paraguay
+bolsa de cemento precio
+cemento inc
+hierro de construccion precio
+```
+
+```
+hierro de 8 precio
+hierro de 10 precio
+hierro precio por kilo
+ladrillo de 8
+ladrillo de 12
+ladrillo comun precio
+ladrillo por millar
+bloque de cemento precio
+camionada de arena
+arena lavada
+```
+
+```
+piedra triturada precio
+piedra 6ta
+piedra bruta
+ripio precio
+tierra para relleno
+cal viva
+hormigon elaborado precio
+hormigon premezclado
+malla sima
+alambre de atar
+```
+
+```
+tejido romboidal
+tejido de alambre precio
+alambre de puas precio
+poste de hormigon
+poste de cemento
+perfil c precio
+caño estructural
+planchuela
+cielorraso de pvc precio
+policarbonato precio
+```
+
+```
+canaleta para techo precio
+tanque de agua 1000 litros precio paraguay
+tanque syopar
+tanque de agua 2000 litros
+caño de pvc precio
+caño amanco
+porcelanato precio m2
+ceramica para piso precio
+puerta placa precio
+ventana de aluminio precio
+```
+
+```
+chapa acanalada precio
+chapa n 25
+chapa lisa
+cemento yguazu
+hierro de 12
+ladrillo prensado precio
+tejuelon
+arena gorda
+metro de arena
+piedra sexta
+```
+
+```
+camionada de tierra
+escombro
+cal hidratada precio
+mixer de hormigon
+precio m3 de hormigon
+alambre negro
+poste de eucalipto
+tubo estructural
+hierro angulo
+chapa de policarbonato
+```
+
+```
+canaleta de zinc
+caño de bajada
+tanque de agua tricapa
+tanque de agua 5000 litros
+caño de 110
+caño tigre
+termofusion
+porcelanato 60x60 precio
+ceramica 45x45
+pastina
+```
+
+```
+puerta de madera precio
+puerta de chapa precio
+porton de chapa precio
+vidrio templado precio
+blindex precio
+membrana asfaltica precio
+pintura asfaltica
+hidrofugo
+durlock precio
+placa de yeso precio
+```
+
+```
+terciado 18mm precio
+madera curupay
+lapacho madera
+madera de eucalipto
+puntal
+mdf precio
+ladrillo refractario precio
+adoquin precio
+lana de vidrio
+telgopor
+```
+
+If there is room for more: materiales de construccion · materiales de construccion precios
+· corralon · lista de precios materiales de construccion paraguay · materiales de
+construccion asuncion / luque / san lorenzo / ciudad del este · cuanto cuesta construir una
+casa en paraguay · precio del metro cuadrado de construccion paraguay · presupuesto de obra
+· computo metrico · zocalo · perfil montante · masilla para durlock · membrana aluminizada
+· vigueta pretensada · columna premoldeada · bloque de vidrio · poliestireno expandido ·
+melamina precio · tirante de madera precio · tabla de encofrado precio.
