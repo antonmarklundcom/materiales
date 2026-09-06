@@ -226,7 +226,7 @@ Columnas: **Posee** = términos de cabecera que esta página persigue (H1/intro/
 |---|---|---|---|
 | `ladrillos-y-bloques` (categoría) | ladrillo (720) · ladrillos · bloques (590) | millar, mampostería, pared de ladrillo | ladrillo visto → `ladrillo-prensado` · ladrillo hueco → `ladrillo-hueco` · bloque de cemento → `bloque-de-hormigon` |
 | `ladrillo-comun` | ladrillo común (390) · ladrillo común medidas (210) | ladrillo rústico, ladrillo de campo, ladrillo macizo, ladrillo de olería (tabla de medidas) | ladrillo visto / prensado → `ladrillo-prensado` |
-| `ladrillo-hueco` | ladrillo hueco (1.000) · ladrillo hueco medida (170) · ladrillo sapo (260) | ladrillo de 8, ladrillo de 12, ladrillo de 18, hueco de 6 (tabla de medidas) | ladrillo macizo → `ladrillo-comun` |
+| `ladrillo-hueco` | ladrillo hueco (1.000) · ladrillo hueco medida (170) | ladrillo de 8, ladrillo de 12, ladrillo de 18, hueco de 6 (tabla de medidas) | ladrillo macizo → `ladrillo-comun` · **`ladrillo sapo` (260) queda sin dueño**: es demanda paraguaya real, pero no está verificado si nombra al hueco o a un macizo grande, y adjudicarlo mal ensucia la página (KNOWN-ISSUES) |
 | `ladrillo-prensado` | ladrillo prensado (390) · ladrillo visto (1.300) | ladrillo a la vista, ladrillo de máquina; **la primera frase dice "ladrillo visto"** | ladrillo rústico y de campo → `ladrillo-comun` |
 | `bloque-de-hormigon` | bloque de hormigón · bloques de cemento (170) · bloque de cemento | bloque hueco, bloque de 15, bloque de 20, bloque estructural | bloques a secas → categoría · adoquín → `adoquines` |
 | `tejuelon` | tejuelón · tejuela | ladrillo para losa, losa de tejuelón, bovedilla cerámica | ladrillo hueco → `ladrillo-hueco` |
