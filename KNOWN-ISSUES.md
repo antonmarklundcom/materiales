@@ -102,7 +102,10 @@ la fase que la resuelve.
     en los clústeres medidos. La página se sostiene sobre `caño` (480 búsquedas, la puja más
     alta del clúster de plomería) y sobre el hecho de que el caño de agua y el de desagüe son
     productos distintos. Si el segundo pull de Keyword Planner vuelve vacío, la página se
-    funde con `cano-de-pvc`.
+    funde con `cano-de-pvc`. **Resuelto en 5c**: la página se escribió (`cano-de-agua`, agua
+    fría y caliente, roscado y termofusión) porque el caño de agua y el de desagüe son productos
+    físicamente distintos y una sola página no puede liderar los dos sin canibalizarse; el
+    término `termofusión` queda como sinónimo, no como cabecera.
 20. **La FAQ de entrega de `cemento` se reemplazó por una de cemento blanco y mortero.** El
     smoke test limita `faq[]` a 5 entradas y la FAQ de precio de §11.3 ocupa un lugar. El
     contenido de entrega y descarga no se perdió: pasó a la respuesta de la FAQ de precio,

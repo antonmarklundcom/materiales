@@ -4,7 +4,7 @@ Documento vivo: qué está hecho, qué falta y qué depende de Anton. Se actuali
 fase. El plan está en `plan.md`; las instrucciones por fase, en `prompts/`; el copy cerrado,
 en `CONTENT-SPEC.md`; los desvíos menores, en `KNOWN-ISSUES.md`.
 
-_Última actualización: 2026-09-06 (replanificación de fases 5–8 a partir de `KEYWORDS-MATERIALES.md`)._
+_Última actualización: 2026-09-06 (fase 5 cerrada: PR 5a, 5b y 5c mergeadas)._
 
 ## Estado por fase
 
@@ -14,7 +14,7 @@ _Última actualización: 2026-09-06 (replanificación de fases 5–8 a partir de
 | 2 Lead pipeline | Opus | ✅ Mergeada | #4 | Formulario, handler → VenderCRM, consentimiento, leads.log, /gracias/, analytics con consentimiento |
 | 3 Content spec | Opus | ✅ Mergeada | #5 | Datos de contenido cerrados (13 categorías, 34 materiales, 6 guías) + `CONTENT-SPEC.md` |
 | 4 Design & pages | Sonnet | ✅ Mergeada | #6 (pendiente de verificar) | Capa visual completa (track INDUSTRIAL adaptado, `web-design-system`): tokens, tipografía, tarjetas, formulario, FAQ-acordeón, pie en cinta, motion |
-| 5 Keyword expansion (PR 5a · 5b · 5c) | Opus (una ventana) | ⬜ Pendiente | — | CONTENT-SPEC §11 (propiedad de keywords, marcas genéricas, FAQ de precio), 6 materiales nuevos en categorías activas, 2 guías, promoción de 5 categorías con sus datos |
+| 5 Keyword expansion (PR 5a · 5b · 5c) | Opus (una ventana) | ✅ Mergeada | #8, #9, #10 | CONTENT-SPEC §11 (propiedad de keywords, marcas genéricas, FAQ de precio, regla de medidas), 30 materiales nuevos, FAQ de precio en los 64, 2 guías nuevas y 6 categorías promovidas con su copy reescrita |
 | 6 Content wave 1 | Sonnet (una ventana, PR 1/3) | ⬜ Pendiente | — | Prosa de las 5 categorías de lanzamiento, sus materiales y las 8 guías |
 | 7 Content wave 2 | Sonnet (misma ventana, PR 2/3) | ⬜ Pendiente | — | Prosa de pisos, aberturas, impermeabilizantes, yeso, plomería y madera |
 | 8 Imagery + QA + launch | Sonnet (misma ventana, PR 3/3) | ⬜ Pendiente | — | Imágenes OG, QA SEO, checklist de salida, informe final |
@@ -24,7 +24,10 @@ _Última actualización: 2026-09-06 (replanificación de fases 5–8 a partir de
 - Rutas: `/`, `/materiales/`, `/materiales/{categoria|material}/`, `/guias/`, `/guias/{slug}/`,
   `/cotizar/`, `/gracias/`, `/contacto/`, `/politica-de-privacidad/`, 404 y `sitemap.xml`.
 - Namespace de slugs plano y compartido; CI falla si un slug se repite entre categorías y
-  materiales (47 slugs únicos hoy).
+  materiales (77 slugs únicos hoy: 13 categorías —11 activas— y 64 materiales, todos activos).
+- Todo material cierra sus FAQ con `¿Cuánto cuesta …?` respondida con los factores y el CTA,
+  nunca con una cifra (CONTENT-SPEC §11.3). El smoke test lo exige.
+- Ninguna categoría puede publicarse con menos de 3 materiales activos: lo verifica el smoke.
 - Formulario → `/cotizar/enviar.php` → VenderCRM: idempotencia, honeypot, sello de tiempo
   firmado, validación de teléfono paraguayo, consentimiento obligatorio y `leads.log` como
   respaldo. Sin config de CRM el sitio igual funciona y guarda todo en el log.
@@ -43,9 +46,10 @@ _Última actualización: 2026-09-06 (replanificación de fases 5–8 a partir de
 ## Lo que falta antes de salir a producción
 
 1. **Prosa real** en `content/categorias/`, `content/materiales/` y `content/guias/`
-   (fases 5 y 6). Hoy las páginas muestran metadatos, FAQ y formulario, con un aviso
-   "estamos publicando el contenido" en vez de cuerpo — el diseño ya está listo para recibirla
-   dentro de `.prose`.
+   (fases 6 y 7): 11 categorías, 64 materiales y 8 guías. Hoy las páginas muestran metadatos,
+   FAQ y formulario, con un aviso "estamos publicando el contenido" en vez de cuerpo — el
+   diseño ya está listo para recibirla dentro de `.prose`. Qué término persigue cada página
+   está cerrado en `CONTENT-SPEC.md` §11.1.
 2. **Imágenes OG** por página de dinero (fase 6).
 3. **Datos reales de NAP** (abajo).
 4. **`staging_noindex => false`** cuando el dominio esté apuntando.
@@ -88,10 +92,11 @@ php -S 127.0.0.1:8080 -t public_html tools/router-cli.php
 
 ## Próximo paso
 
-1. Mergear el PR de replanificación (rama `claude/materiales-keyword-clustering-6bbyvt`).
-2. Ventana **Opus** nueva, permisos en auto-accept:
-   `Read prompts/opus-5-keyword-expansion.md in this repo and execute it.`
-   Termina sola después de 3 PRs y deja la línea para la ventana Sonnet.
-3. Ventana **Sonnet** nueva, auto-accept:
-   `Read prompts/sonnet-6-content-wave1.md in this repo and execute it.`
-   Encadena los PRs 6 → 7 → 8 en la misma ventana y cierra con el informe final.
+Ventana **Sonnet** nueva, permisos en auto-accept:
+`Read prompts/sonnet-6-content-wave1.md in this repo and execute it.`
+Encadena los PRs 6 → 7 → 8 en la misma ventana y cierra con el informe final.
+
+La ventana Opus de la fase 5 ya terminó (PR #8, #9 y #10 mergeadas). Nota de proceso: el repo
+sigue **sin "Allow auto-merge"** habilitado (§7), así que las tres PR se mergearon a mano con
+CI en verde. Habilitarlo es un clic en Settings → Pull Requests y le ahorra el paso a cada
+fase siguiente.

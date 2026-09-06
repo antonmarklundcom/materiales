@@ -65,6 +65,13 @@ Orden fijo, igual para los dos tipos:
 `title` y `meta` de cada categoría y material ya están escritos en `data/*.php` (fase 1,
 completados en fase 3). **No se reescriben** en fases posteriores.
 
+Única excepción, ya ejecutada: la fase 5c reescribió `title`, `meta`, `intro`,
+`intro_keywords` y `faq` de las **seis categorías promovidas** (madera, pisos-y-revestimientos,
+aberturas, impermeabilizantes, yeso-y-durlock, canos-y-plomeria), porque se habían escrito en
+la fase 3 sin saber qué materiales iban a colgar de ellas ni qué términos iban a poseer
+(CONTENT-SPEC §11.1). Las cinco categorías de lanzamiento no se tocaron. A partir de acá, esos
+textos también están cerrados.
+
 ## 4. Vocabulario obligatorio
 
 Cada material tiene `synonyms[]` con el vocabulario real de obra paraguaya y cada categoría

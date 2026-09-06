@@ -458,10 +458,31 @@ Index (phases 5–8 fill their line in the PR that merges them):
 |---|---|---|---|---|
 | 5a spec amendments | Opus | ✅ | #8 | 2026-09-06 abajo |
 | 5b new materials, synonyms, guías | Opus | ✅ | #9 | 2026-09-06 abajo |
-| 5c category promotion | Opus | ⬜ | — | — |
+| 5c category promotion | Opus | ✅ | #10 | 2026-09-06 abajo |
 | 6 content wave 1 | Sonnet | ⬜ | — | — |
 | 7 content wave 2 | Sonnet | ⬜ | — | — |
 | 8 imagery + QA + launch | Sonnet | ⬜ | — | — |
+
+**2026-09-06 — Fase 5c · Promoción de categorías (Opus, PR #10).**
+- 6 categorías a `activa` en el orden de §1.15 (pisos-y-revestimientos, aberturas,
+  impermeabilizantes, yeso-y-durlock, canos-y-plomeria, madera) con 24 materiales nuevos
+  escritos con el mismo estándar que 5b. Quedan 13 categorías (11 activas), 64 materiales
+  (todos activos), 8 guías y 77 slugs únicos. `electricidad` y `pinturas` siguen `proxima`.
+- `title`, `meta`, `intro`, `intro_keywords` y `faq` de las 6 promovidas reescritos a los
+  términos de CONTENT-SPEC §11.1 (estaban escritos a ciegas en la fase 3: la meta de plomería
+  prometía grifería, que está fuera del build). Las 5 de lanzamiento no se tocaron; la
+  excepción queda anotada en CONTENT-SPEC §3.
+- `cano-de-agua` se escribió pese a que `termofusión`/`PPR` no tienen volumen medido: lidera
+  con `caño` (480, la puja más alta del clúster) y el desagüe y el agua a presión son productos
+  distintos. Si el segundo pull vuelve vacío, se funde con `cano-de-pvc` (KNOWN-ISSUES #19).
+- `tools/smoke.php` suma dos checks de contenido cerrado: una categoría `activa` necesita ≥ 3
+  materiales activos, y la última FAQ de todo material tiene que ser la de precio. Verificados
+  con un fallo provocado.
+- Sin auto-merge en el repo (§7): las tres PR de la fase se mergearon a mano con CI en verde.
+- **La fase 6 empieza acá**: `CONTENT-SPEC.md` §5 (estructura de prosa, con el segundo H2
+  nuevo), §11.1 (qué término persigue cada página), §11.3 (la FAQ de precio ya está en el dato,
+  no se reescribe) y §11.4 (qué páginas llevan tabla de medidas). Orden de escritura: la
+  "write-first list" de KEYWORDS-MATERIALES §2.
 
 **2026-09-06 — Fase 5b · Materiales nuevos, sinónimos y guías (Opus, PR #9).**
 - 6 materiales nuevos con contenido cerrado, status `activa`: `cielorraso-de-pvc`,
