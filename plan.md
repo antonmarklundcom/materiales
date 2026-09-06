@@ -457,11 +457,32 @@ Index (phases 5–8 fill their line in the PR that merges them):
 | PR | Window | Status | PR # | Entry |
 |---|---|---|---|---|
 | 5a spec amendments | Opus | ✅ | #8 | 2026-09-06 abajo |
-| 5b new materials, synonyms, guías | Opus | ⬜ | — | — |
+| 5b new materials, synonyms, guías | Opus | ✅ | #9 | 2026-09-06 abajo |
 | 5c category promotion | Opus | ⬜ | — | — |
 | 6 content wave 1 | Sonnet | ⬜ | — | — |
 | 7 content wave 2 | Sonnet | ⬜ | — | — |
 | 8 imagery + QA + launch | Sonnet | ⬜ | — | — |
+
+**2026-09-06 — Fase 5b · Materiales nuevos, sinónimos y guías (Opus, PR #9).**
+- 6 materiales nuevos con contenido cerrado, status `activa`: `cielorraso-de-pvc`,
+  `policarbonato` y `canaletas` (chapas-y-techos), `tejido-de-alambre` (hierro),
+  `ladrillo-refractario` y `adoquines` (ladrillos-y-bloques). 40 materiales, 34 activos,
+  53 slugs únicos.
+- **Las 40 entradas cierran su `faq[]` con `¿Cuánto cuesta …?`** (CONTENT-SPEC §11.3). Las 34
+  que ya existían también la necesitaban: desde la fase 6 Sonnet sólo puede tocar `status`
+  (§4.13), así que ésta era la única fase que podía agregarla.
+- Sinónimos e intros corregidos según KEYWORDS §1/§5.1 (canto rodado abre `ripio`, ladrillo
+  visto abre `ladrillo-prensado`, alambre dulce, tierra colorada, teja romana, chapa sandwich,
+  chapa ondulada, perfil U/IPN/UPN, cemento blanco y mortero premezclado).
+- 2 guías nuevas `proxima` (`como-revocar-una-pared`, `losa-de-hormigon-encofrado-y-hierro`) e
+  `intro_keywords` de las 5 categorías activas alineadas con la tabla §11.1.
+- Desvíos anotados: `ladrillo sapo` queda **sin dueño** por no poder verificar a qué ladrillo
+  nombra (KNOWN-ISSUES #18); la FAQ de entrega de `cemento` se reemplazó porque el smoke
+  limita a 5 FAQ y su contenido pasó a la respuesta de precio (#20); los skills
+  `paraguay-local-site` y `seo-web-builds` no existen en esta sesión (#21).
+- Dónde mirar primero en 5c: `data/categories.php` (las 5 a promover conservan title/meta pero
+  cambian `intro_keywords` y `faq`) y `CONTENT-SPEC.md` §11.1, que ya lista los 21 materiales
+  a escribir y qué término posee cada uno.
 
 **2026-09-06 — Fase 5a · Enmiendas al CONTENT-SPEC (Opus, PR #8).**
 - `CONTENT-SPEC.md` §11 nuevo: §11.1 tabla de propiedad de keywords con una fila por página
