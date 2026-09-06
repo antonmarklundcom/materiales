@@ -481,13 +481,19 @@ Index (phases 5–8 fill their line in the PR that merges them):
   y detalle de guía; sin precios, sin "tú", sin marca fuera de la lista cerrada de §11.2
   (verificado con grep); `robots.txt` + `sitemap.xml` correctos; ronda del formulario de leads
   verificada en modo sólo-log (sin `config/vendercrm.php` en el repo, como corresponde).
-- Una pasada de capturas (chromium headless, 5 páginas × escritorio/mobile) encontró un bug
-  real fuera del alcance de esta fase: en 390px el header desborda horizontalmente (el nav no
-  colapsa) — anotado en KNOWN-ISSUES #23 para una fase de diseño, no se tocó CSS.
+- Una pasada de capturas (`chromium --headless --screenshot`, 5 páginas × escritorio/mobile)
+  pareció encontrar un bug de header desbordado en 390px — anotado como KNOWN-ISSUES #23.
+  **Descartado en una sesión posterior (2026-09-06, misma tarde):** esa herramienta arma la
+  ventana con `--window-size` en vez de fijar el viewport, así que medía un DOM más ancho que
+  390px y la captura salía recortada. Repetido con Playwright (viewport real, 320–390px, home
+  y una página de material): `scrollWidth === clientWidth` en los cuatro anchos, el nav ya
+  wrappea con `flex-wrap: wrap` sin cortar nada. Sin cambios de CSS porque no hacía falta
+  ninguno; KNOWN-ISSUES #23 queda tachado con la explicación.
 - `staging_noindex` se deja en `true` (el dominio no está apuntando todavía). `php -l`,
   `tools/smoke.php` y `tools/render-check.sh` en verde.
 - **Build de fases 5–8 cerrado.** No queda contenido ni código pendiente; lo que sigue son los
-  pasos manuales de Anton (informe de cierre en la PR) y los dos ítems de KNOWN-ISSUES #22/#23.
+  pasos manuales de Anton (informe de cierre en la PR) y KNOWN-ISSUES #22 (fotografía real
+  bloqueada por el entorno).
 
 **2026-09-06 — Fase 7 · Content wave 2 (Sonnet, PR #12).**
 - Prosa completa de las 6 categorías promovidas en 5c (`pisos-y-revestimientos`, `aberturas`,

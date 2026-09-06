@@ -131,12 +131,15 @@ la fase que la resuelve.
     busca por convención); no hay imagen distinta por categoría o material todavía. Cuando se
     habilite el dominio en el entorno, correr `higgsfield-image-pipeline` completo para generar
     fotografía real por página de dinero.
-23. **Bug de responsividad real encontrado en QA, fuera del alcance de esta fase (no se toca
-    CSS/design-system en fase 8): en mobile angosto (390px) el header desborda horizontalmente**
-    — el nav (`MATERIALES · GUÍAS · COTIZAR · CONTACTO`) no colapsa ni hace wrap, así que
-    "CONTACTO" y el botón "Aceptar todo" del banner de cookies quedan cortados fuera del
-    viewport en capturas a 390px de ancho. Se verificó con una captura real (chromium headless,
-    390×1400): la imagen mide exactamente 390 px y aun así el contenido se corta, confirmando
-    scroll horizontal, no un recorte de la captura. Corresponde a la fase 4 (`web-design-system`,
-    banda oscura del header) — necesita un menú mobile (hamburguesa o nav colapsable) antes del
-    lanzamiento.
+23. ~~Bug de responsividad en el header mobile~~ — **descartado, no era real.** El QA de la
+    fase 8 reportó desborde horizontal en 390px a partir de una captura con
+    `chromium --headless --screenshot` (modo headless viejo): esa herramienta arma la ventana
+    con `--window-size` en vez de fijar el viewport real, así que el DOM se renderizó más ancho
+    que 390px y la imagen resultante salió recortada — no hay scroll horizontal real. Repetido
+    con Playwright fijando el viewport (320/360/375/390px, home y una página de material):
+    `document.documentElement.scrollWidth` es igual a `clientWidth` en los cuatro anchos, y el
+    nav (`.site-nav`, ya tiene `flex-wrap: wrap`) baja "Contacto" a una segunda línea sin cortar
+    nada, banner de cookies incluido. Verificado en la sesión de 2026-09-06 que revisó esto;
+    sin cambios de CSS porque no hacía falta ninguno. Moraleja para QA futuro: medir
+    responsividad con Playwright/Puppeteer (viewport real), nunca con la bandera
+    `--screenshot` de la CLI de Chromium.
