@@ -28,7 +28,10 @@
   pareja entre piezas, sobre todo si vas a usarlos como clavadera, porque una diferencia de
   pocos milímetros entre listones se nota en la planitud del machimbre que apoya encima.
   Calculá la cantidad con margen para descartes por nudos o torceduras, algo más frecuente en
-  secciones chicas que en piezas de mayor escuadría.
+  secciones chicas que en piezas de mayor escuadría. Si vas a usar el listón como junquillo
+  para sujetar un vidrio o cerrar un marco, fijate también que el largo de cada pieza permita
+  cortar sin desperdicio los tramos que necesitás, porque en secciones finas el sobrante no
+  siempre sirve para otra cosa.
 </p>
 
 <p class="closing">

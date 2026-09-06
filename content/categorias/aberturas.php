@@ -7,8 +7,8 @@
   <a href="/materiales/ventanas-de-aluminio/">ventana de aluminio</a> es la que domina la obra
   nueva, con su vidrio y su mosquitero como parte de la misma cotización. Cuando la pieza de
   vidrio va sola —una mampara, un frente, una baranda— entrás a
-  <a href="/materiales/vidrio-templado/">vidrio templado</a>, que acá casi todo el mundo pide
-  como blindex. Y para el cerramiento exterior, los <a href="/materiales/portones-y-rejas/">portones y rejas</a>
+  <a href="/materiales/vidrio-templado/">vidrio templado</a>. Y para el cerramiento exterior,
+  los <a href="/materiales/portones-y-rejas/">portones y rejas</a>
   cubren desde el portón de entrada hasta la reja de una ventana que da a la calle. Ninguna de
   estas piezas se elige por catálogo sola: el material define el uso, pero el vano real de tu
   obra define casi todo lo demás.

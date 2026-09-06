@@ -2,8 +2,8 @@
 <p>
   La construcción en seco reemplaza el ladrillo y el revoque húmedo por un sistema de capas
   atornilladas, y en esta categoría están todas las piezas de ese sistema. La
-  <a href="/materiales/placa-de-yeso/">placa de yeso</a> —lo que todo el mundo pide como
-  durlock— es la cara visible: arma tabiques interiores y cielorrasos suspendidos, con
+  <a href="/materiales/placa-de-yeso/">placa de yeso</a> es la cara visible: arma tabiques
+  interiores y cielorrasos suspendidos, con
   variantes para zonas húmedas y para donde se exige resistencia al fuego. Esa placa no se
   sostiene sola: necesita el esqueleto de
   <a href="/materiales/perfiles-para-durlock/">perfiles para durlock</a>, montantes y soleras

@@ -4,8 +4,8 @@ Documento vivo: qué está hecho, qué falta y qué depende de Anton. Se actuali
 fase. El plan está en `plan.md`; las instrucciones por fase, en `prompts/`; el copy cerrado,
 en `CONTENT-SPEC.md`; los desvíos menores, en `KNOWN-ISSUES.md`.
 
-_Última actualización: 2026-09-06 (fase 6 lista para mergear: prosa de las 5 categorías de
-lanzamiento y las 8 guías)._
+_Última actualización: 2026-09-06 (fase 7 lista para mergear: prosa de las 6 categorías
+promovidas — el catálogo queda 100% escrito)._
 
 ## Estado por fase
 
@@ -17,7 +17,7 @@ lanzamiento y las 8 guías)._
 | 4 Design & pages | Sonnet | ✅ Mergeada | #6 (pendiente de verificar) | Capa visual completa (track INDUSTRIAL adaptado, `web-design-system`): tokens, tipografía, tarjetas, formulario, FAQ-acordeón, pie en cinta, motion |
 | 5 Keyword expansion (PR 5a · 5b · 5c) | Opus (una ventana) | ✅ Mergeada | #8, #9, #10 | CONTENT-SPEC §11 (propiedad de keywords, marcas genéricas, FAQ de precio, regla de medidas), 30 materiales nuevos, FAQ de precio en los 64, 2 guías nuevas y 6 categorías promovidas con su copy reescrita |
 | 6 Content wave 1 | Sonnet (una ventana, PR 1/3) | ✅ Lista para mergear | #11 | Prosa de las 5 categorías de lanzamiento, sus 34 materiales y las 8 guías (auto-merge armado) |
-| 7 Content wave 2 | Sonnet (misma ventana, PR 2/3) | ⬜ Pendiente | — | Prosa de pisos, aberturas, impermeabilizantes, yeso, plomería y madera |
+| 7 Content wave 2 | Sonnet (misma ventana, PR 2/3) | ✅ Lista para mergear | #12 | Prosa de pisos, aberturas, impermeabilizantes, yeso, plomería y madera (auto-merge armado) |
 | 8 Imagery + QA + launch | Sonnet (misma ventana, PR 3/3) | ⬜ Pendiente | — | Imágenes OG, QA SEO, checklist de salida, informe final |
 
 ## Qué anda hoy
@@ -46,14 +46,14 @@ lanzamiento y las 8 guías)._
 
 ## Lo que falta antes de salir a producción
 
-1. **Prosa real** en `content/categorias/`, `content/materiales/` y `content/guias/`
-   (fases 6 y 7): 11 categorías, 64 materiales y 8 guías. Hoy las páginas muestran metadatos,
-   FAQ y formulario, con un aviso "estamos publicando el contenido" en vez de cuerpo — el
-   diseño ya está listo para recibirla dentro de `.prose`. Qué término persigue cada página
-   está cerrado en `CONTENT-SPEC.md` §11.1.
-2. **Imágenes OG** por página de dinero (fase 6).
+1. **Imágenes OG** por página de dinero (fase 8).
+2. **QA SEO y checklist de salida** (fase 8).
 3. **Datos reales de NAP** (abajo).
 4. **`staging_noindex => false`** cuando el dominio esté apuntando.
+
+Prosa real: ✅ completa. Las 11 categorías, 64 materiales y 8 guías ya tienen cuerpo en
+`content/categorias/`, `content/materiales/` y `content/guias/` (fases 6 y 7) — ninguna
+página activa muestra ya el aviso "estamos publicando el contenido".
 
 ## Lo que depende de Anton (nada de esto lo puede inventar Claude)
 
@@ -93,11 +93,9 @@ php -S 127.0.0.1:8080 -t public_html tools/router-cli.php
 
 ## Próximo paso
 
-Ventana **Sonnet** nueva, permisos en auto-accept:
-`Read prompts/sonnet-6-content-wave1.md in this repo and execute it.`
-Encadena los PRs 6 → 7 → 8 en la misma ventana y cierra con el informe final.
+La misma ventana Sonnet sigue en curso: PR #11 (fase 6) mergeada, PR #12 (fase 7) lista para
+mergear, y ahora continúa con `prompts/sonnet-8-imagery-qa-launch.md` (imágenes OG, QA SEO,
+checklist de salida) para cerrar el build con el informe final.
 
-La ventana Opus de la fase 5 ya terminó (PR #8, #9 y #10 mergeadas). Nota de proceso: el repo
-sigue **sin "Allow auto-merge"** habilitado (§7), así que las tres PR se mergearon a mano con
-CI en verde. Habilitarlo es un clic en Settings → Pull Requests y le ahorra el paso a cada
-fase siguiente.
+Nota de proceso: "Allow auto-merge" ya está habilitado en el repo (Anton, 2026-09-06), así que
+desde la fase 6 el flujo de §4.2/§4.12 corre sin intervención manual.
