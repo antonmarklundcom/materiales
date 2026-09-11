@@ -10,6 +10,14 @@
  * router de /guias/ y el sitemap necesitan una fuente. Mismo formato que categories.php.
  * La prosa llega en content/guias/{slug}.php (olas 1 y 2); acá sólo slug, name, status,
  * title y meta.
+ *
+ * Clave OPCIONAL `image` (fase 11, decisión §1.20): ruta relativa al docroot de una foto
+ * JPG 1200×630 de hasta 150 KB, p. ej. 'assets/img/cat/hierro.jpg'. Se usa para el héroe
+ * (`<picture>`) y el `og:image` de la página. Por defecto hay UNA foto por categoría: un
+ * material sin `image` propia hereda la de su categoría y una guía la de su primera página
+ * de dinero. Si la clave no está, o el archivo todavía no se subió, la página se renderiza
+ * exactamente como hoy. `tools/smoke.php` falla sólo cuando se DECLARA una ruta cuyo
+ * archivo no existe. Los valores los cablea la fase 15.
  */
 
 declare(strict_types=1);

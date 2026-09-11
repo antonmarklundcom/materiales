@@ -26,6 +26,12 @@ $guides = array_filter(data('guides'), 'is_published');
 uasort($guides, static fn(array $a, array $b): int => ($a['order'] ?? 99) <=> ($b['order'] ?? 99));
 $guidesTeaser = array_slice($guides, 0, 3, true);
 
+// Foto del héroe de la home (fase 11, decisión §1.20): data/site.php → hero_image. Si la
+// clave está vacía o el archivo no está subido todavía, la home queda exactamente como hoy.
+$homeImage = image_for(['image' => (string) site('hero_image')], 'home');
+$heroImage = $homeImage;
+$heroAlt   = 'Materiales de construcción en Paraguay';
+
 page([
     'title'      => 'Materiales de construcción en Paraguay | Cotizá gratis',
     'meta'       => 'Pedí cotización de hierro, cemento, arena, ladrillos o chapas y hasta ' . $maxProv . ' proveedores verificados de Gran Asunción te escriben por WhatsApp.',
@@ -33,6 +39,7 @@ page([
     'h1'         => 'Materiales de construcción en Paraguay',
     'schema'     => [schema_website(), schema_local_business()],
     'body_class' => 'page-home',
+    'image'      => (string) $homeImage,
 ]);
 
 require __DIR__ . '/partials/header.php';
@@ -48,11 +55,14 @@ require __DIR__ . '/partials/header.php';
       </p>
       <p><a class="btn btn--primary" href="#cotizar" data-ev="form_submit" data-ev-loc="home-hero">Pedí tu cotización</a></p>
     </div>
+    <div class="page-hero__aside">
+    <?php require __DIR__ . '/partials/hero-image.php'; ?>
     <ul class="page-hero__facts">
       <li class="page-hero__fact"><strong><?= count($activeMaterials) ?></strong> <span>materiales para cotizar, del hierro a las aberturas</span></li>
       <li class="page-hero__fact"><strong><?= count($activeCategories) ?></strong> <span>rubros de obra, con su vocabulario de plaza</span></li>
       <li class="page-hero__fact"><strong>hasta&nbsp;<?= $maxProv ?></strong> <span>cotizaciones por pedido, gratis y sin compromiso</span></li>
     </ul>
+    </div>
   </div>
 </div>
 
