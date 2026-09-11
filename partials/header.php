@@ -10,7 +10,15 @@ $page = page();
 $site = site();
 $noindex = ($site['staging_noindex'] ?? false) === true || ($page['noindex'] ?? false) === true;
 $canonical = url($page['canonical']);
-$ogImage = is_file(PUBLIC_ROOT . '/assets/img/og-default.jpg') ? url('/assets/img/og-default.jpg') : '';
+// og:image por página (fase 11, decisión §1.20): la imagen declarada por la entrada si
+// existe en disco, y si no el fallback de paleta sitewide. page()['image'] ya viene validada
+// por image_for(), así que acá no hace falta volver a tocar el disco.
+$pageImage = trim((string) ($page['image'] ?? ''));
+if ($pageImage !== '') {
+    $ogImage = url('/' . ltrim($pageImage, '/'));
+} else {
+    $ogImage = is_file(PUBLIC_ROOT . '/assets/img/og-default.jpg') ? url('/assets/img/og-default.jpg') : '';
+}
 
 header('Content-Type: text/html; charset=utf-8');
 ?>

@@ -60,6 +60,10 @@ $guide       = $guides[$slug];
 $breadcrumbs = [['Inicio', '/'], ['Guías', '/guias/'], [$guide['name'], null]];
 $contentFile = CONTENT_DIR . '/guias/' . $slug . '.php';
 
+// Imagen del héroe: una guía hereda la de su primera página de dinero (decisión §1.20).
+$heroImage = image_for($guide, 'guia');
+$heroAlt   = $guide['name'] . ' — materiales de construcción en Paraguay';
+
 page([
     'title'       => $guide['title'],
     'meta'        => $guide['meta'],
@@ -69,15 +73,19 @@ page([
     'breadcrumbs' => $breadcrumbs,
     'schema'      => [schema_breadcrumbs($breadcrumbs)],
     'body_class'  => 'page-guia',
+    'image'       => (string) $heroImage,
 ]);
 
 require PUBLIC_ROOT . '/partials/header.php';
 ?>
 <div class="page-hero band--dark grain bleed">
-  <div class="wrap">
+  <div class="wrap<?= $heroImage !== null ? ' page-hero__grid page-hero__grid--split' : '' ?>">
+    <div>
     <h1><?= e($guide['name']) ?></h1>
     <?php // Fase 9: la guía no lleva formulario propio, así que el CTA va a /cotizar/. ?>
     <p><a class="btn btn--primary" href="/cotizar/" data-ev="form_submit" data-ev-loc="hero-guia-<?= e($slug) ?>">Pedí tu cotización</a></p>
+    </div>
+    <?php require PUBLIC_ROOT . '/partials/hero-image.php'; ?>
   </div>
 </div>
 <div class="field wrap">
@@ -109,6 +117,15 @@ require PUBLIC_ROOT . '/partials/header.php';
     <?php endforeach; ?>
   </ul>
   <?php endif; ?>
+
+  <?php
+  // Fase 11: las calculadoras que sirven a esta guía, calculadas desde data/calculators.php
+  // (la fase 12 crea el archivo; hasta entonces esto no imprime nada).
+  $relatedSlug     = $slug;
+  $relatedCategory = '';
+  $relatedBlocks   = ['calculadoras'];
+  require PUBLIC_ROOT . '/partials/related.php';
+  ?>
   </div>
 </div>
 <?php require PUBLIC_ROOT . '/partials/footer.php'; ?>

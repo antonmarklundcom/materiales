@@ -377,3 +377,22 @@ section.wrap { padding-inline: var(--gutter); }
   /* La barra tapa el final de la página: se compensa con padding en el pie. */
   .site-footer__base { padding-bottom: calc(var(--s-16) + env(safe-area-inset-bottom)); }
 }
+
+/* == 11 == foto de héroe y bloques de "relacionadas" ----------------------------------- */
+
+/* La imagen va a la derecha en pantallas anchas (el hero ya es .page-hero__grid--split) y
+   arriba del texto por debajo de 64rem. Relación fija 1200×630 para que no salte al cargar. */
+.page-hero__media { display: block; }
+.page-hero__media img {
+  display: block; width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: cover;
+  border-radius: var(--r-md); box-shadow: var(--shadow-2);
+}
+@media (min-width: 64rem) {
+  .page-hero__grid--split .page-hero__media { align-self: end; }
+}
+/* Columna derecha de la home: foto (si hay) arriba de la franja de datos. */
+.page-hero__aside { display: grid; gap: var(--s-6); align-content: end; }
+
+/* Una casilla nunca se estira como un campo de texto, esté donde esté dentro del formulario
+   (el alta de proveedor las anida dentro de .lead-form__field). */
+.lead-form__field input[type="checkbox"] { min-height: 0; padding: 0; width: 1.15rem; height: 1.15rem; }

@@ -49,6 +49,11 @@ if ($type === 'material') {
 }
 $breadcrumbs[] = [$entry['name'], null];
 
+// Imagen del héroe y og:image de esta página (fase 11, decisión §1.20). null ⇒ la página
+// se renderiza igual que antes: héroe de paleta y og-default.jpg.
+$heroImage = image_for($entry, $type);
+$heroAlt   = $entry['name'] . ' — materiales de construcción en Paraguay';
+
 $schema = [schema_breadcrumbs($breadcrumbs)];
 if ($type === 'categoria') {
     $items = [];
@@ -74,12 +79,14 @@ page([
     'breadcrumbs' => $breadcrumbs,
     'schema'      => $schema,
     'body_class'  => 'page-' . $type,
+    'image'       => (string) $heroImage,
 ]);
 
 require PUBLIC_ROOT . '/partials/header.php';
 ?>
 <div class="page-hero band--dark grain bleed">
-  <div class="wrap">
+  <div class="wrap<?= $heroImage !== null ? ' page-hero__grid page-hero__grid--split' : '' ?>">
+    <div>
     <h1><?= e($entry['name']) ?></h1>
 
     <?php if (($entry['intro'] ?? '') !== ''): ?>
@@ -93,6 +100,8 @@ require PUBLIC_ROOT . '/partials/header.php';
     <?php // Fase 9: el formulario ya está en esta página, así que el CTA del hero ancla a él
           // en vez de mandar a /cotizar/ y perder la preselección del material. ?>
     <p><a class="btn btn--primary" href="#cotizar" data-ev="form_submit" data-ev-loc="hero-<?= e($slug) ?>">Pedí tu cotización</a></p>
+    </div>
+    <?php require PUBLIC_ROOT . '/partials/hero-image.php'; ?>
   </div>
 </div>
 
@@ -176,6 +185,15 @@ require PUBLIC_ROOT . '/partials/header.php';
   </ul>
   <?php endif; ?>
   <?php endif; ?>
+
+  <?php
+  // Guías y calculadoras que apuntan a esta página (fase 11, decisión §1.19). Se calcula
+  // desde los datos: la prosa no tipea ninguno de estos enlaces.
+  $relatedSlug     = $slug;
+  $relatedCategory = $type === 'material' ? (string) $entry['category'] : '';
+  $relatedBlocks   = ['guias', 'calculadoras'];
+  require PUBLIC_ROOT . '/partials/related.php';
+  ?>
 
   <?php
   // El formulario va en TODA página de categoría y de material, con el slug ya preseleccionado

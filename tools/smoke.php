@@ -135,6 +135,30 @@ foreach ($guides as $slug => $guide) {
     }
 }
 
+// ---- fase 11: imágenes declaradas (decisión §1.20) ----------------------------------
+// Una imagen DECLARADA cuyo archivo no está en disco es una promesa rota: el héroe y el
+// og:image de esa página se caen al fallback sin que nadie se entere. Declararla y subirla
+// son dos pasos, y este check es el que los ata. No declarar nada sigue siendo válido.
+$checkImage = static function (string $where, string $value) use ($root, $fail): void {
+    if ($value === '') {
+        return;
+    }
+    if (!preg_match('#^assets/img/[a-z0-9/_-]+\.(jpg|webp)$#', $value)) {
+        $fail("{$where}: image '{$value}' no cumple el formato assets/img/…{.jpg|.webp} (minúsculas, sin espacios)");
+        return;
+    }
+    if (!is_file($root . '/' . $value)) {
+        $fail("{$where}: image '{$value}' declarada pero el archivo no existe en el repo");
+    }
+};
+
+foreach (['categories.php' => $categories, 'materials.php' => $materials, 'guides.php' => $guides] as $file => $entries) {
+    foreach ($entries as $slug => $entry) {
+        $checkImage("{$file}[{$slug}]", trim((string) ($entry['image'] ?? '')));
+    }
+}
+$checkImage('site.php[hero_image]', trim((string) ($site['hero_image'] ?? '')));
+
 // ---- EL check crítico: namespace de slugs plano y compartido (plan §2) --------------
 $collisions = array_intersect(array_keys($categories), array_keys($materials));
 foreach ($collisions as $slug) {

@@ -69,6 +69,11 @@ check "/"                          200 'data-cta-bar'
 check "/proveedores/"              200 'name="tipo"'
 check "/proveedores/"              200 'Recibí pedidos de cotización de tu rubro'
 check "/sitemap.xml"               200 '/proveedores/'
+# Fase 11 — motor de enlaces cruzados: cemento está en el related[] de la guía de bolsas de
+# cemento, así que su página tiene que listarla sin que la prosa la tipee.
+check "/materiales/cemento/"       200 'Guías relacionadas'
+check "/materiales/cemento/"       200 '/guias/cuantas-bolsas-de-cemento-por-m2/'
+check "/materiales/hierro/"        200 'Guías relacionadas'
 
 echo "LEAD HANDLER"
 
