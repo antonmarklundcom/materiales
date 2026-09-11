@@ -21,6 +21,13 @@ the build.
 | 6 Content wave 1 | Sonnet | `prompts/sonnet-6-content-wave1.md` | Prose for the 5 recruited categories, their materials (incl. the 5a additions) and the 8 guías |
 | 7 Content wave 2 | Sonnet | `prompts/sonnet-7-content-wave2.md` | Prose for the promoted categories (pisos, aberturas, impermeabilizantes, yeso, plomería, madera) |
 | 8 Imagery + QA + launch | Sonnet | `prompts/sonnet-8-imagery-qa-launch.md` | OG images, image slots, SEO QA, go-live checklist, closing report |
+| **9 Home & conversion layer** | **Opus** | `prompts/opus-9-conversion-window.md` (PR 1/4) | §11.1: homepage rebuild, hero CTA on money pages, sticky mobile CTA, WhatsApp secondary, /gracias/ next steps |
+| **10 Supplier recruitment** | **Opus** | same file (PR 2/4) | §11.2: `/proveedores/` landing, supplier form + `tipo=proveedor` + `proveedor-v1` consent, privacy clause |
+| **11 Cross-link engine & image slots** | **Opus** | same file (PR 3/4) | §11.3: data-driven "Guías relacionadas" / "Calculadoras relacionadas", optional `image` key + hero picture + per-page og:image |
+| **12 Calculators foundation** | **Opus** | same file (PR 4/4) | §11.4: `/calculadoras/` route, `data/calculators.php` contract, template, `calc.js`, CONTENT-SPEC §12, one exemplar |
+| 13 Calculators + guías wave 3 | Sonnet | `prompts/sonnet-13-content-window.md` (PR 1/3) | §11.5: 3 more calculators, 6 new guías (fan-out) |
+| 14 Technical hardening | Sonnet | same file (PR 2/3) | §11.6: .htaccess deflate/cache/headers, self-hosted fonts, sitemap lastmod, replay-leads tool, mobile overflow test |
+| 15 Link pass + images + launch QA | Sonnet | same file (PR 3/3) | §11.7: editorial cross-links in prose, image placement, KNOWN-ISSUES promotion, docs/log index, closing report |
 
 Phases 1–4 are merged (§9). Phases 5–8 were re-planned on 2026-09-06 from the keyword
 research in `KEYWORDS-MATERIALES.md` (Fable planning session; that file is the content input
@@ -31,6 +38,12 @@ window ends with a report telling Anton to paste the Sonnet line; the Sonnet win
 with the closing report.
 
 Per the model cost guardrail: phases only ever run on Opus or Sonnet — never Fable.
+
+**Improvement build (added 2026-09-11, Fable review — see `docs/IMPROVEMENT-REPORT.md`).**
+Phases 9–15 in §11. Same window pattern as §1.16: phases 9–12 are ONE Opus window that
+ships four PRs in sequence; phases 13–15 are ONE Sonnet window that ships three PRs in
+sequence. Opus ships first so every Sonnet PR starts on a finished foundation. Go-live
+(NAP, CRM config, DNS, `staging_noindex`) does NOT wait for any of these phases.
 
 ---
 
@@ -94,6 +107,59 @@ planning — build sessions never reopen them:
 16. **One window per model for the rest of the build** (Anton, 2026-09-06): phase 5 is one
     Opus window (3 PRs), phases 6–8 one Sonnet window (3 PRs). §4.9's cross-model
     `create_session` handoff is replaced by §4.12.
+
+Added 2026-09-11 from the improvement review (`docs/IMPROVEMENT-REPORT.md`), decided by
+Fable in planning — build sessions never reopen them:
+
+17. **`/proveedores/` is a recruitment landing page, not the pivot.** It lives at the
+    reserved namespace root and the pivot's `/proveedores/{empresa}/` pages are added under
+    it later — nothing moves. Its form posts to the SAME handler with a hidden
+    `tipo=proveedor`, which travels as `fields.tipo` (buyer leads send no `tipo`; the
+    handler never defaults it). Supplier consent is a SEPARATE text and version
+    (`proveedor-v1`, in `data/site.php` `consent_version_proveedor`) because a supplier is
+    not consenting to be shared with suppliers. Source stays `site:materiales`; routing by
+    `fields.tipo` is configured in VenderCRM, never in PHP. No supplier deal numbers are
+    invented: terms come from `data/site.php` `supplier_pitch` and the page degrades to
+    "te contamos las condiciones por WhatsApp" when empty.
+18. **The form is the primary CTA everywhere; WhatsApp is secondary and only renders when
+    `data/site.php` `whatsapp` is set.** The sticky mobile bar carries the form anchor
+    first, WhatsApp second. Calendar/phone-call CTAs stay dropped (§6).
+19. **Cross-links between page types are computed from data, not typed into prose.**
+    A material or category page lists every guía (and later calculator) whose `related[]`
+    names it or its category; a guía lists its `related[]` money pages (already does).
+    Editorial in-prose links are added by the link pass (phase 15) on top, never instead.
+20. **Images are an optional `image` key per category, material and guía, one photo per
+    CATEGORY by default** (`docs/imagery-brief.md`): a material without its own `image`
+    inherits its category's; a guía inherits its first `related[]` money page's. Path
+    convention `assets/img/cat/{category-slug}.jpg`, `assets/img/hero-home.jpg`, 1200×630
+    JPG ≤ 150 KB, used for the hero `<picture>` and `og:image`. Missing file ⇒ the page
+    renders exactly as today (palette hero, `og-default.jpg`). The smoke test fails only
+    on a DECLARED image whose file is missing. Generating the files is a human step (§7).
+21. **Calculators live at `/calculadoras/{slug}/`, own data file `data/calculators.php`,
+    own content dir `content/calculadoras/`, plain PHP + one vanilla JS file
+    (`assets/js/calc.js`), no build step.** Every calculator: (a) computes client-side
+    with the formula ALSO written in the page as prose (works without JS: the prose is
+    the fallback and the SEO content); (b) states its assumptions and ends every result
+    with "es una referencia — confirmá con tu proveedor"; (c) ends in the quote form with
+    `material` preselected and `cantidad` pre-filled from the result. Dosages are the
+    standard textbook ones (documented in CONTENT-SPEC §12 with the source line); nothing
+    PY-specific is invented. Never a price, never a currency.
+22. **`data/guides.php` and `data/calculators.php` entries may be ADDED by Sonnet phases**
+    (relaxes §4.13 for those two files only): same key shape as the exemplar, `status`
+    `activa` only in the PR that ships the prose/page, no new keys, no edits to existing
+    entries beyond `related[]` additions. `data/materials.php` and `data/categories.php`
+    stay Opus-only except for the `image` value and the `status` flip.
+23. **No city pages.** `/zonas/{ciudad}/` stays reserved; KEYWORDS §4.3 local terms are
+    served by the homepage prose and the form's `ciudad` field.
+24. **Fonts are self-hosted** (`assets/fonts/*.woff2`, `@font-face`, `font-display: swap`)
+    — no third-party request on page load. Same two families, same weights.
+25. **`sitemap.xml` `lastmod` comes from an optional `updated` (YYYY-MM-DD) key on the data
+    entry, never from `filemtime`** (Hostinger's git deploy rewrites mtimes on every push).
+    No `updated` ⇒ no `lastmod` for that URL.
+26. **Failed CRM posts are replayed by `tools/replay-leads.php`** (CLI, idempotent by the
+    logged `idempotency_key`, marks each replayed line in a sidecar `storage/replayed.log`,
+    never re-sends a line whose logged CRM status was 200/201). Hostinger cron, hourly.
+    Documented in DEPLOY.md; no web endpoint.
 
 ## §2 Object model & data layer (no DB)
 
@@ -250,6 +316,12 @@ launch volume. 429 → logged, no retry in-request. Duplicate (200, `duplicate:t
     page's prose. Never keys, never other values, never new entries — those are 5a–5c work.
     `tools/smoke.php` enforces that an `activa` material sits in an `activa` category, so
     the category flips in the PR that completes its material set.
+14. **Phase logs (phases 9+).** Before merging, write `docs/log/<phase>.md` (≤ 12 lines
+    "Built", ≤ 8 "Decisions", ≤ 8 "Known issues", one "Verification" line) and add ONE
+    index line to §9. No more multi-paragraph §9 entries; the detail lives in the log file.
+15. **Prompt re-read.** Before opening each PR and before merging it, `git fetch` and re-read
+    your prompt file from `origin/main`; if it changed, follow the newer version. Decisions
+    travel by files, never by chat.
 
 ## §5 Category scope & content plan
 
@@ -409,6 +481,10 @@ Phase 6 order = KEYWORDS-MATERIALES §2 "write-first list"; phase 7 order = §1.
 | Phase 3 | Real NAP: business name, RUC, IVA status, address, horarios, contact email |
 | Phase 6 | Domain live: materiales.com.py DNS → Hostinger; remove staging noindex |
 | Parallel, human-only | Recruit 2–3 founding suppliers per launch category (§8 cold start) |
+| Now (go-live, independent of phases 9–15) | NAP, `config/vendercrm.php`, GA4/Pixel IDs, DNS, `staging_noindex => false`, Search Console — see `docs/IMPROVEMENT-REPORT.md` §5 |
+| Phase 10 | Supplier pitch terms for `/proveedores/` (`data/site.php` `supplier_pitch`); empty ⇒ page says terms come by WhatsApp |
+| Before phase 15 | Image files per `docs/imagery-brief.md` committed to `assets/img/cat/{slug}.jpg` + `assets/img/hero-home.jpg` (generate from your PC, or allow `*.cloudfront.net` in the Claude Code environment so phase 15 can run `higgsfield-image-pipeline`) |
+| After phase 13 | Second Keyword Planner pull (KEYWORDS-MATERIALES §6) → `docs/keywords/` for the next planning session |
 
 ## §8 Resolved positions on the 8 open problems (+ parked questions)
 
@@ -462,6 +538,13 @@ Index (phases 5–8 fill their line in the PR that merges them):
 | 6 content wave 1 | Sonnet | ✅ | #11 | 2026-09-06 abajo |
 | 7 content wave 2 | Sonnet | ✅ | #12 | 2026-09-06 abajo |
 | 8 imagery + QA + launch | Sonnet | ✅ | #13 | 2026-09-06 abajo |
+| 9 home & conversion | Opus | ⏳ | — | `docs/log/9-home-conversion.md` |
+| 10 proveedores | Opus | ⏳ | — | `docs/log/10-proveedores.md` |
+| 11 cross-links & image slots | Opus | ⏳ | — | `docs/log/11-crosslinks-images.md` |
+| 12 calculators foundation | Opus | ⏳ | — | `docs/log/12-calculadoras-foundation.md` |
+| 13 calculators + guías wave 3 | Sonnet | ⏳ | — | `docs/log/13-calculadoras-guias.md` |
+| 14 technical hardening | Sonnet | ⏳ | — | `docs/log/14-tech-hardening.md` |
+| 15 link pass + images + launch QA | Sonnet | ⏳ | — | `docs/log/15-link-pass-launch.md` |
 
 **2026-09-06 — Fase 8 · Imagery + QA + launch (Sonnet, PR #13, FINAL).**
 - Preflight de `higgsfield-image-pipeline` Rule 0/2: no había manifest de imágenes, y
@@ -720,10 +803,12 @@ Index (phases 5–8 fill their line in the PR that merges them):
 - Automated supplier fan-out as a VenderCRM automation (not site PHP)
 - WhatsApp-ping phone validation at volume
 - `AggregateOffer` PYG ranges if public bands ever maintained
-- Materials calculator (m³/bolsas) as interactive guía
-- `/proveedores/{empresa}/` public pages (the pivot)
+- ~~Materials calculator (m³/bolsas) as interactive guía~~ → phases 12–13
+- `/proveedores/{empresa}/` public pages (the pivot) — the `/proveedores/` landing is phase 10, the per-supplier pages are still the pivot
+- `/zonas/{ciudad}/` city pages — only if genuinely localized content ever exists (§1.23)
+- CI screenshot job — deliberately not added (runner minutes); `tests/mobile-overflow.mjs` runs locally
 - Cloudflare Turnstile if honeypot stops sufficing
-- Daily automated replay of failed CRM posts from leads.log (cron)
+- ~~Daily automated replay of failed CRM posts from leads.log (cron)~~ → phase 14
 - **Sanitarios y grifería** category (~9k/mo: inodoro, canillas, cisternas, ducha higiénica) —
   parked per §1.14; revisit if the quote pipeline can route bathroom fit-outs
 - **Pinturas** prose (~15k/mo, bids < 5 kr, DIY intent) — category stays próxima
@@ -733,3 +818,251 @@ Index (phases 5–8 fill their line in the PR that merges them):
   Profesionales bucket review
 - Guías from intent clusters: colores de pintura (inspiration), tipos de ventanas / modelos
   de portones (gallery) — only once their categories are live
+
+## §11 Improvement build — phases 9–15 (added 2026-09-11)
+
+Source: `docs/IMPROVEMENT-REPORT.md`. Decisions §1.17–1.26 are locked. Two windows
+(§1.16 pattern): Opus 9→10→11→12, then Sonnet 13→14→15. Each PR ≤ 90 min; a PR still
+polishing at minute 60 stops polishing. Phase logs per §4.14.
+
+### §11.1 Phase 9 — Home & conversion layer (Opus, `phase/9-home-conversion`)
+
+Owns: `index.php`, `partials/header.php`, `partials/footer.php`, `partials/cta.php` (new),
+`materiales/index.php`, `guias/index.php`, `gracias/index.php`, `assets/css/site.css`
+(append `/* == 9 == */` block, may also edit existing rules), `assets/js/motion.js`,
+`content/home/*.php` (new dir), `tools/render-check.sh` (add checks), `docs/log/9-*.md`.
+
+Build:
+- **Homepage** (CONTENT-SPEC §1 vocabulary; voseo; no prices; no brands): hero with H1
+  owning `materiales de construcción` + `paraguay` and a facts strip using
+  `.page-hero__facts` (counts computed from data: N materiales, N rubros, "hasta 3
+  cotizaciones"); primary button → `/cotizar/`; "Cómo funciona" (3 steps: contás qué
+  necesitás → hasta 3 proveedores verificados te escriben → elegís el mejor precio);
+  rubros grid (existing); a 150–250-word prose block in `content/home/intro.php` that
+  weaves KEYWORDS §4.3 head/local terms (Asunción, Luque, San Lorenzo, Lambaré, Capiatá,
+  *corralón*, *venta de materiales de construcción*) naturally — no keyword lists, no city
+  pages; "Guías" teaser (first 3 `activa` guías from data); the quote form (`partials/form.php`,
+  no preselection) at the end; existing schema unchanged.
+- **Hero CTA on money pages**: category, material and guía heroes get a `btn btn--primary`
+  anchored to `#cotizar` (form is already on the page) — guías link `/cotizar/`.
+- **`partials/cta.php`**: sticky bottom bar on `max-width: 39.99rem` only, hidden while
+  the form is in view (IntersectionObserver in `motion.js`; no JS ⇒ bar always visible),
+  "Pedir cotización" (anchor/link) first and "WhatsApp" second only when `site('whatsapp')`
+  is set (§1.18). Included by `footer.php` on every page except `/cotizar/`, `/gracias/`.
+- **`/gracias/`**: "Qué pasa ahora" 3-line list, secondary WhatsApp (when set), 3 guía tiles.
+- `tools/render-check.sh`: `/` contains `Cómo funciona` and `name="consentimiento"`;
+  `/materiales/hierro/` contains `href="#cotizar"`.
+
+Exit: smoke + render-check + CI green; one screenshot pass (home, category, material ×
+390/1280) via Playwright with a real viewport (never `chromium --screenshot`, KNOWN-ISSUES
+#23); `scrollWidth === clientWidth` at 360/390; PR merged; log + §9 line.
+
+### §11.2 Phase 10 — Supplier recruitment (Opus, `phase/10-proveedores`)
+
+Owns: `proveedores/index.php` (new), `partials/form-proveedor.php` (new), `partials/lead.php`
+(additive only), `cotizar/enviar.php` (additive only), `config.sample.php`, `data/site.php`
+(new keys `consent_version_proveedor`, `supplier_pitch`, `supplier_categories_note`),
+`politica-de-privacidad/index.php` (one new clause), `partials/header.php` + `footer.php`
+(one nav link "Para proveedores"), `.htaccess` + `tools/router-cli.php` (only if the generic
+`/{dir}/` rule does not already serve it — it does in router-cli; verify Apache serves
+`proveedores/index.php` via `DirectoryIndex`, no rewrite needed), `tools/smoke.php`,
+`tools/render-check.sh`, `sitemap.php` (add `/proveedores/`), `docs/log/10-*.md`.
+
+Build (§1.17):
+- Page `/proveedores/`: H1 `Recibí pedidos de cotización de tu rubro`, value prop (leads
+  reales, con material, cantidad y zona; hasta 3 proveedores por pedido; pagás por lead,
+  no por publicidad), "Cómo funciona para proveedores" (3 steps), category list (11
+  activa, with the 5 launch categories marked "buscamos proveedores ahora"), FAQ (4 items,
+  visible, `FAQPage`), the supplier form. Terms text from `site('supplier_pitch')`; empty ⇒
+  "Te contamos las condiciones por WhatsApp". Title ≤ 60, meta ≤ 155, `BreadcrumbList`.
+- `partials/form-proveedor.php`: empresa (required), rubros (checkboxes of activa
+  categories, ≥ 1 required), ciudad, nombre de contacto, WhatsApp (required, PY
+  validation), mensaje, consent checkbox with its OWN text: "Acepto que Materiales.com.py
+  guarde mis datos para contactarme sobre pedidos de cotización de mi rubro. Ver la
+  Política de privacidad." Honeypot + signed stamp reused. Hidden `tipo=proveedor`.
+- Handler: when `tipo === 'proveedor'` → validate as above, payload `fields.tipo =
+  'proveedor'`, `fields.empresa`, `fields.rubros` (comma-joined slugs), `fields.consent =
+  consent_version_proveedor @ ts`, `message` = mensaje, no `material/categoria`; success →
+  `/proveedores/?ok=1#gracias` (PRG, same idempotency rule). Buyer path byte-identical to
+  today: smoke asserts the buyer payload has NO `tipo` key.
+- Privacy policy: one clause "Datos de proveedores" (finalidad, base: consentimiento,
+  encargado VenderCRM, plazo).
+- smoke: units for the supplier payload shape + the consent text guard for
+  `form-proveedor.php` (same pattern as the buyer guard). render-check: `/proveedores/`
+  200 with `name="tipo"`, a supplier POST happy path → 303 to `/proveedores/?ok=1`, log line
+  carries `tipo`.
+
+Exit: all checks green; buyer path unchanged (render-check's existing lead block passes
+untouched); PR merged; log + §9 line; STATUS "Para proveedores" row.
+
+### §11.3 Phase 11 — Cross-link engine & image slots (Opus, `phase/11-crosslinks-images`)
+
+Owns: `partials/init.php` (new helpers only), `partials/related.php` (new),
+`partials/hero-image.php` (new), `partials/header.php` (og:image), `partials/schema.php`
+(`Product.image`), `materiales/index.php`, `guias/index.php`, `index.php` (hero image
+slot), `assets/css/site.css` (`/* == 11 == */`), `tools/smoke.php`, `data/*.php` (ONLY
+adding the documented optional `image` key comment — no values), `docs/log/11-*.md`.
+
+Build (§1.19, §1.20):
+- `init.php`: `guides_for(string $slug, string $categorySlug): array` (guías whose
+  `related[]` contains the slug or the category, `activa` only, ordered by `order`);
+  `calculators_for(...)` same shape reading `data/calculators.php` IF the file exists
+  (phase 12 creates it — guard with `is_file`, return `[]`); `image_for(array $entry, string
+  $type): ?string` implementing the inheritance in §1.20 and returning null when the file
+  is missing on disk.
+- `partials/related.php`: renders "Guías relacionadas" and "Calculadoras relacionadas"
+  tile lists (reuse `.tile-grid`), included on category and material pages between FAQ
+  and the form; on guías, add "Calculadoras relacionadas" next to the existing related
+  block. Empty ⇒ prints nothing.
+- Hero image: `partials/hero-image.php` renders `<picture>` (JPG, `loading="eager"` on the
+  hero, `width/height` set, es-PY `alt` = `"{name} — materiales de construcción en
+  Paraguay"`) inside `.page-hero` when `image_for()` is non-null; CSS: split hero grid
+  (`.page-hero__grid--split` already exists) with the image on the right on ≥ 64rem,
+  above the text below that. `og:image` per page = image or `og-default.jpg`.
+  `Product.image` = absolute URL when present.
+- Smoke: for every entry with an `image` value, the file must exist; value must match
+  `^assets/img/[a-z0-9/_-]+\.(jpg|webp)$`.
+- render-check: `/materiales/cemento/` contains `Guías relacionadas` (cemento is in
+  `cuantas-bolsas-de-cemento-por-m2.related`).
+
+Exit: checks green; zero visual change on pages without images (screenshot diff of one
+material page before/after within tolerance); PR merged; log + §9 line.
+
+### §11.4 Phase 12 — Calculators foundation (Opus, `phase/12-calculadoras-foundation`)
+
+Owns: `calculadoras/index.php` (new router: index + `/calculadoras/{slug}/`),
+`data/calculators.php` (new), `content/calculadoras/{slug}.php` (new dir, one exemplar),
+`assets/js/calc.js` (new), `assets/css/site.css` (`/* == 12 == */`), `.htaccess` +
+`tools/router-cli.php` (both — mirror rule), `sitemap.php`, `partials/header.php` +
+`footer.php` (nav link "Calculadoras"), `CONTENT-SPEC.md` §12 (new), `tools/smoke.php`,
+`tools/render-check.sh`, `docs/log/12-*.md`.
+
+Build (§1.21):
+- `data/calculators.php` contract (English keys): slug ⇒ `{ name, status, order, title,
+  meta, keyword, intro, inputs: [{id, label, unit, min, max, step, default}], outputs:
+  [{id, label, unit}], formula_note (one sentence, visible), assumptions: [..], related:
+  [material|category slugs], faq: [3–5, last = '¿Cuánto cuesta …?'], cta_material: slug,
+  cta_quantity_template: 'string with {output_id}' }`. Formulas live in the content file
+  as a `<script type="application/json" data-calc>` block consumed by `calc.js`, so one
+  JS file serves every calculator; the prose in the same file explains the formula in
+  words with a worked example (the no-JS fallback and the SEO content).
+- Router mirrors `guias/index.php`; `BreadcrumbList` + `FAQPage` (+ `HowTo` NOT emitted —
+  it no longer earns rich results); index page `ItemList`.
+- `calc.js`: reads the JSON, evaluates the declared expression tree (no `eval`), updates
+  outputs live, writes `cantidad` into the on-page form and preselects `cta_material`;
+  `prefers-reduced-motion` respected; < 4 KB.
+- Exemplar `bolsas-de-cemento-por-m2`: inputs m², espesor, tipo (contrapiso/revoque/
+  carpeta); dosages from CONTENT-SPEC §12 (write §12 first: standard 1:3 / 1:4 mortar
+  and 1:2:3 concrete dosages, rendimientos per 50 kg bag, with the textbook source line;
+  no PY-specific invented numbers; every result "es una referencia — confirmá con tu
+  proveedor"); ends in the form with `cemento` preselected and "N bolsas de 50 kg" as
+  `cantidad`. Link the existing guía `cuantas-bolsas-de-cemento-por-m2` both ways
+  (`related[]`).
+- Smoke: calculators shape, slug uniqueness within the file, `related` targets exist,
+  content file exists for `activa`, JSON block parses, last FAQ is the price FAQ.
+  render-check: `/calculadoras/` 200 `ItemList`; `/calculadoras/bolsas-de-cemento-por-m2/`
+  200 contains `data-calc` and `name="consentimiento"`; `/calculadoras/no-existe/` 404.
+
+Exit: checks green; exemplar verified in Playwright (change an input → output updates →
+form `cantidad` filled); PR merged; log + §9 line; STATUS updated; **window STOPS** and
+reports the Sonnet line to paste.
+
+### §11.5 Phase 13 — Calculators + guías wave 3 (Sonnet, `phase/13-calculadoras-guias`)
+
+Owns: `data/calculators.php` (add entries), `content/calculadoras/*.php` (new files),
+`data/guides.php` (add entries), `content/guias/*.php` (new files), `docs/log/13-*.md`.
+HARD LIMITS: no router, template, JS, CSS, handler, smoke, or existing-entry changes; a
+needed template fix goes to `docs/decisions-needed.md` and the phase works around it.
+
+Build:
+- Three calculators on the phase-12 shape, each with its `content/calculadoras/{slug}.php`
+  (formula JSON + 350–500 words prose + worked example): `hormigon-por-m3` (cemento,
+  arena, ripio, agua per m³ for a 1:2:3 dosage; cta `hormigon-elaborado` alt `cemento`),
+  `ladrillos-por-m2` (común / hueco 8 / hueco 12 / bloque, with junta; cta
+  `ladrillo-comun`), `revoque-y-mortero` (cal + cemento + arena per m² by espesor; cta
+  `cal-hidratada`). Formulas only from CONTENT-SPEC §12; if §12 lacks a dosage, use the
+  standard textbook one and ADD it to §12 in the same PR with its source line — never
+  invent a PY-specific figure.
+- Six guías (600–900 words, CONTENT-SPEC §6 shape, voseo, no prices, no brands outside
+  §11.2), fan-out to Sonnet subagents after ONE exemplar: `de-que-depende-el-costo-de-
+  construir-en-paraguay` (owns *cuánto cuesta construir una casa en paraguay* — factors
+  only, never a figure), `como-hacer-un-computo-metrico` (*cómputo métrico*, *presupuesto
+  de obra*), `como-elegir-un-corralon` (*corralón*, *venta de materiales*), `chapa-o-teja-
+  que-techo-conviene`, `cuanto-hierro-lleva-una-columna` (links the hierro calculator
+  idea → Backlog, and `varilla-de-hierro`), `como-impermeabilizar-una-losa`. Each links
+  ≥ 3 money pages + ≥ 1 calculator with descriptive anchors; `related[]` set so §1.19
+  surfaces them on the money pages.
+- Titles ≤ 60, metas ≤ 155, every page `activa` in the same PR.
+
+Exit: smoke + render-check + CI green; word counts by script; PR merged; log + §9 line.
+
+### §11.6 Phase 14 — Technical hardening (Sonnet, `phase/14-tech-hardening`)
+
+Owns: `.htaccess` (headers/deflate/expires blocks only — NEVER the rewrite block),
+`assets/fonts/**` (new), `assets/css/site.css` (`@font-face` block replacing the Google
+Fonts `<link>`), `partials/header.php` (font link removal + `og:type`), `sitemap.php`,
+`404.php` (canonical removal), `tools/replay-leads.php` (new), `DEPLOY.md` (cron + headers
+verification), `tests/mobile-overflow.mjs` (new), `.gitignore`, `docs/log/14-*.md`.
+HARD LIMITS: no rewrite rules, no router, no handler contract, no data keys.
+
+Build (§1.24–1.26):
+- `.htaccess`: `mod_deflate` for html/css/js/xml/svg/json; `Cache-Control` `no-cache` for
+  PHP responses (add in `header.php`, not htaccess — PHP output), 7d css/js, 30d images
+  (existing); headers `X-Frame-Options: SAMEORIGIN`, `Permissions-Policy:
+  camera=(), microphone=(), geolocation=()`, `Strict-Transport-Security` **commented with
+  the one-line instruction to enable after SSL is confirmed** (never enable blind on
+  shared hosting). No CSP (inline JSON-LD + GA4/Pixel injection make a strict CSP a
+  project of its own → Backlog).
+- Fonts: download Bricolage Grotesque (500, 600, opsz 12..96 variable if available) and
+  Inter (400/500/600) `.woff2` (latin + latin-ext), ≤ 200 KB total; `@font-face` with
+  `font-display: swap`; `<link rel="preload">` for the two display files; remove the
+  Google Fonts `<link>`s and `preconnect`s. If the download is blocked by the sandbox,
+  write the exact file list + URLs to `docs/decisions-needed.md` and skip — do not leave
+  the site font-less.
+- `sitemap.php`: `lastmod` from `updated` key only (§1.25); document the key in the three
+  data files' header comments (comment-only edits are allowed here).
+- `404.php`: no canonical; guías + calculators `og:type=article`.
+- `tools/replay-leads.php` (§1.26): CLI, reads `storage/leads.log`, replays lines with
+  `outcome` = crm failure and no entry in `storage/replayed.log`, uses `lead_send()` with
+  the logged payload verbatim, appends result; `--dry-run`; exit codes; smoke unit with a
+  fixture log in a temp dir (no network: mock by asserting the selection logic only).
+  DEPLOY.md: hPanel cron line, hourly.
+- `tests/mobile-overflow.mjs`: Playwright (`executablePath` from
+  `PLAYWRIGHT_BROWSERS_PATH`/`/opt/pw-browsers/chromium` fallback), visits `/`,
+  `/materiales/hierro/`, `/materiales/cemento/`, `/guias/`, `/calculadoras/bolsas-de-
+  cemento-por-m2/`, `/proveedores/` at 320/360/390/1280, asserts `scrollWidth ===
+  clientWidth`, saves screenshots to a git-ignored `docs/screenshots/`. Not in CI.
+
+Exit: checks green; `tests/mobile-overflow.mjs` green locally; Lighthouse ONE run on
+`/materiales/cemento/` mobile reported in the log (no target number — record only);
+PR merged; log + §9 line.
+
+### §11.7 Phase 15 — Link pass + images + launch QA (Sonnet, `phase/15-link-pass-launch`)
+
+Owns: `content/**` (link edits only, no rewrites), `data/categories.php` + `data/materials.php`
++ `data/guides.php` (`image` values + `related[]` additions only), `assets/img/**`,
+`KNOWN-ISSUES.md`, `STATUS.md`, `README.md`, `docs/log/15-*.md`, `docs/decisions-needed.md`.
+HARD LIMITS: same as 13 + 14 combined.
+
+Build:
+- Editorial cross-links: every material prose gets ≥ 1 in-prose link to a related guía
+  or calculator (descriptive anchor, inside an existing sentence or the closing
+  paragraph — never a "see also" list; the tiles already do that); every category prose
+  links its guías; guías link the calculators. Script-verify: 0 material pages without a
+  `/guias/` or `/calculadoras/` link.
+- Images: if `assets/img/cat/*.jpg` / `hero-home.jpg` exist on `main` (Anton's §7 step),
+  set `image` on the 11 categories + home (home reads `site('hero_image')` — add the key
+  read in `index.php` only if phase 11 did not), verify ≤ 150 KB each, alt text per
+  §11.3; if they do not exist and `*.cloudfront.net` is reachable, run
+  `higgsfield-image-pipeline` for the 12 prompts in `docs/imagery-brief.md` (one attempt;
+  403 ⇒ log and move on). No images ⇒ ship without; not a failure.
+- QA: re-run the phase-8 checklist on every NEW page type (home, proveedores,
+  calculators, new guías): one `<h1>`, canonical, JSON-LD valid, titles/metas, no prices,
+  no brands outside §11.2, voseo; `tests/mobile-overflow.mjs` green.
+- Housekeeping: promote still-open items from `docs/log/9..15` to `KNOWN-ISSUES.md`; STATUS
+  phase table 9–15; README "Calculadoras" + "Proveedores" lines; `docs/log/README.md`
+  index.
+
+Exit: checks green; PR merged; log + §9 line; **closing report** to Anton: what shipped,
+open KNOWN-ISSUES, the go-live checklist status (which §7 items are still empty), and the
+suggested next Fable planning input (second keyword pull).

@@ -4,8 +4,8 @@ Documento vivo: qué está hecho, qué falta y qué depende de Anton. Se actuali
 fase. El plan está en `plan.md`; las instrucciones por fase, en `prompts/`; el copy cerrado,
 en `CONTENT-SPEC.md`; los desvíos menores, en `KNOWN-ISSUES.md`.
 
-_Última actualización: 2026-09-06 (fase 8 lista para mergear: QA + og:image de fallback —
-cierra el build de las fases 5–8)._
+_Última actualización: 2026-09-11 (revisión de Fable: informe de mejoras y plan de las fases
+9–15 — ver `docs/IMPROVEMENT-REPORT.md` y `plan.md` §11)._
 
 ## Estado por fase
 
@@ -18,7 +18,14 @@ cierra el build de las fases 5–8)._
 | 5 Keyword expansion (PR 5a · 5b · 5c) | Opus (una ventana) | ✅ Mergeada | #8, #9, #10 | CONTENT-SPEC §11 (propiedad de keywords, marcas genéricas, FAQ de precio, regla de medidas), 30 materiales nuevos, FAQ de precio en los 64, 2 guías nuevas y 6 categorías promovidas con su copy reescrita |
 | 6 Content wave 1 | Sonnet (una ventana, PR 1/3) | ✅ Mergeada | #11 | Prosa de las 5 categorías de lanzamiento, sus 34 materiales y las 8 guías |
 | 7 Content wave 2 | Sonnet (misma ventana, PR 2/3) | ✅ Mergeada | #12 | Prosa de pisos, aberturas, impermeabilizantes, yeso, plomería y madera |
-| 8 Imagery + QA + launch | Sonnet (misma ventana, PR 3/3) | ✅ Lista para mergear | #13 | QA SEO completo, `og-default.jpg` de fallback (sin fotografía real — CDN bloqueado, ver KNOWN-ISSUES #22), checklist de salida |
+| 8 Imagery + QA + launch | Sonnet (misma ventana, PR 3/3) | ✅ Mergeada | #13 | QA SEO completo, `og-default.jpg` de fallback (sin fotografía real — CDN bloqueado, ver KNOWN-ISSUES #22), checklist de salida |
+| 9 Home & conversion | Opus (ventana 1/2, PR 1/4) | ⏳ Pendiente | — | Home real, CTA en héroes, barra móvil, /gracias/ |
+| 10 Proveedores | Opus (misma ventana, PR 2/4) | ⏳ Pendiente | — | `/proveedores/`, formulario de proveedor, `tipo=proveedor`, consentimiento `proveedor-v1` |
+| 11 Cross-links + slots de imagen | Opus (misma ventana, PR 3/4) | ⏳ Pendiente | — | "Guías relacionadas" desde datos, clave `image` opcional, og:image por página |
+| 12 Calculadoras (base) | Opus (misma ventana, PR 4/4) | ⏳ Pendiente | — | Ruta `/calculadoras/`, contrato de datos, `calc.js`, CONTENT-SPEC §12, 1 calculadora |
+| 13 Calculadoras + guías ola 3 | Sonnet (ventana 2/2, PR 1/3) | ⏳ Pendiente | — | 3 calculadoras, 6 guías |
+| 14 Endurecimiento técnico | Sonnet (misma ventana, PR 2/3) | ⏳ Pendiente | — | deflate/headers, fuentes locales, lastmod, replay de leads, test de overflow |
+| 15 Link pass + imágenes + QA | Sonnet (misma ventana, PR 3/3) | ⏳ Pendiente | — | Enlaces editoriales, fotos si existen, KNOWN-ISSUES, informe de cierre |
 
 ## Qué anda hoy
 
@@ -101,13 +108,16 @@ php -S 127.0.0.1:8080 -t public_html tools/router-cli.php
 
 ## Próximo paso
 
-**Build de fases 5–8 completo y mergeado** (PR #11, #12, #13). No queda trabajo de contenido
-ni de código pendiente — sólo los pasos manuales de Anton listados en el informe de cierre
-(DNS, `config/vendercrm.php`, IDs de GA4/Pixel y NAP en `data/site.php`, `staging_noindex =>
-false`, Search Console, reclutamiento de proveedores fundadores) y KNOWN-ISSUES #22
-(fotografía real bloqueada por el entorno). El #23 (supuesto bug de header mobile) se revisó
-después con Playwright y se descartó: era un artefacto de la herramienta de captura de la
-fase 8, no un problema real — sin cambios de código.
+**Ventana Opus — fases 9–12** (ver `docs/IMPROVEMENT-REPORT.md` §4 y `plan.md` §11). Línea a
+pegar en una ventana nueva de Opus con permisos en auto-aceptar:
+
+`Read prompts/opus-9-conversion-window.md in this repo and execute it.`
+
+Cuando esa ventana termine (4 PR mergeados), la ventana Sonnet (fases 13–15) arranca con
+`Read prompts/sonnet-13-content-window.md in this repo and execute it.`
+
+Nada de esto frena el go-live: NAP, `config/vendercrm.php`, DNS y `staging_noindex => false`
+se pueden hacer hoy (informe §5). Las fotos son un paso manual de Anton antes de la fase 15.
 
 Nota de proceso: "Allow auto-merge" ya está habilitado en el repo (Anton, 2026-09-06), así que
 desde la fase 6 el flujo de §4.2/§4.12 corrió sin intervención manual.

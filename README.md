@@ -5,7 +5,9 @@ pedidos de cotización y los entrega a proveedores. Stack: HTML estático + PHP 
 compartido de Hostinger. Sin Node, sin framework, sin base de datos.
 
 El plan completo (decisiones, taxonomía, flujo de leads, fases) vive en [`plan.md`](plan.md).
-Los prompts por fase están en [`prompts/`](prompts/).
+Los prompts por fase están en [`prompts/`](prompts/). La revisión de mejoras y el plan de
+las fases 9–15 (conversión, proveedores, calculadoras, hardening) están en
+[`docs/IMPROVEMENT-REPORT.md`](docs/IMPROVEMENT-REPORT.md) y `plan.md` §11.
 
 ## Estructura
 
