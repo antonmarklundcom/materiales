@@ -396,3 +396,27 @@ section.wrap { padding-inline: var(--gutter); }
 /* Una casilla nunca se estira como un campo de texto, esté donde esté dentro del formulario
    (el alta de proveedor las anida dentro de .lead-form__field). */
 .lead-form__field input[type="checkbox"] { min-height: 0; padding: 0; width: 1.15rem; height: 1.15rem; }
+
+/* == 12 == calculadoras -------------------------------------------------------------- */
+
+.calc { margin-bottom: var(--s-12); }
+.calc__inputs { display: grid; gap: var(--s-4); margin-bottom: var(--s-6); }
+@media (min-width: 52rem) { .calc__inputs { grid-template-columns: repeat(3, 1fr); align-items: end; } }
+
+.calc__outputs {
+  list-style: none; margin: 0 0 var(--s-4); padding: var(--s-6);
+  display: grid; gap: var(--s-4);
+  background: var(--base); color: var(--ink); border-radius: var(--r-md); border-top: 3px solid var(--accent);
+}
+@media (min-width: 40rem) { .calc__outputs { grid-template-columns: repeat(3, 1fr); } }
+.calc__output { display: grid; gap: var(--s-1); }
+.calc__output strong { font-family: var(--font-display); font-size: var(--t-3); font-weight: 500; color: var(--accent); line-height: 1; }
+.calc__output span { color: var(--ink-70); font-size: var(--t--1); }
+
+.calc__disclaimer { margin: 0 0 var(--s-4); font-weight: 600; }
+.calc__formula, .calc__assumptions { color: var(--paper-ink-70); font-size: var(--t--1); }
+.calc__assumptions h3 { font-size: var(--t-0); margin-bottom: var(--s-2); }
+.calc__assumptions ul { margin: 0; padding-left: var(--s-6); }
+
+/* El aviso de "sin JavaScript" sólo se ve cuando calc.js NO tomó el control del widget. */
+.calc--live .calc__nojs { display: none; }

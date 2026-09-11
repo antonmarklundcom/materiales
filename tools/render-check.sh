@@ -74,6 +74,16 @@ check "/sitemap.xml"               200 '/proveedores/'
 check "/materiales/cemento/"       200 'Guías relacionadas'
 check "/materiales/cemento/"       200 '/guias/cuantas-bolsas-de-cemento-por-m2/'
 check "/materiales/hierro/"        200 'Guías relacionadas'
+# Fase 12 — calculadoras: índice, exemplar (con su fórmula y su formulario), 404 real, y el
+# enlace cruzado que la fase 11 calcula desde data/calculators.php.
+check "/calculadoras/"             200 'ItemList'
+check "/calculadoras/bolsas-de-cemento-por-m2/" 200 'data-calc'
+check "/calculadoras/bolsas-de-cemento-por-m2/" 200 'name="consentimiento"'
+check "/calculadoras/bolsas-de-cemento-por-m2/" 200 'Es una referencia'
+check "/calculadoras/no-existe/"   404 'No encontramos'
+check "/materiales/cemento/"       200 'Calculadoras relacionadas'
+check "/guias/cuantas-bolsas-de-cemento-por-m2/" 200 'Calculadoras relacionadas'
+check "/sitemap.xml"               200 '/calculadoras/bolsas-de-cemento-por-m2/'
 
 echo "LEAD HANDLER"
 
