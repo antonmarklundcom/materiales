@@ -49,6 +49,52 @@ require PUBLIC_ROOT . '/partials/header.php';
 </div>
 <div class="field wrap">
   <div class="field__panel">
+
+    <?php // Fase 9: qué esperar, en el orden en que va a pasar. Nada de plazos que no
+          // controlamos: "normalmente dentro del día" es lo único que se promete. ?>
+    <h2>Qué pasa ahora</h2>
+    <ol class="steps">
+      <li class="steps__item card card--hair">
+        <span class="steps__n" aria-hidden="true">1</span>
+        <p>Le pasamos tu pedido a proveedores que trabajan ese rubro y entregan en tu zona.</p>
+      </li>
+      <li class="steps__item card card--hair">
+        <span class="steps__n" aria-hidden="true">2</span>
+        <p>Te escriben por WhatsApp al número que cargaste, hasta <?= (int) site('max_proveedores', 3) ?> en total.</p>
+      </li>
+      <li class="steps__item card card--hair">
+        <span class="steps__n" aria-hidden="true">3</span>
+        <p>Comparás precio y entrega, y cerrás directo con el que más te sirva. Nosotros no cobramos nada.</p>
+      </li>
+    </ol>
+
+    <?php $whatsapp = preg_replace('/\D+/', '', (string) site('whatsapp')); ?>
+    <?php if ($whatsapp !== ''): ?>
+    <p class="gracias__wa">
+      ¿Te olvidaste de aclarar algo del pedido?
+      <a class="btn btn--wa" href="https://wa.me/<?= e($whatsapp) ?>" data-ev="whatsapp_click" data-ev-loc="gracias">Escribinos por WhatsApp</a>
+    </p>
+    <?php endif; ?>
+
+    <h2>Mientras tanto</h2>
+    <?php
+    $guides = array_filter(data('guides'), 'is_published');
+    uasort($guides, static fn(array $a, array $b): int => ($a['order'] ?? 99) <=> ($b['order'] ?? 99));
+    $guidesTeaser = array_slice($guides, 0, 3, true);
+    ?>
+    <?php if ($guidesTeaser !== []): ?>
+    <ul class="tile-grid tile-grid--3">
+      <?php foreach ($guidesTeaser as $guideSlug => $guide): ?>
+      <li>
+        <a class="tile card--hair" href="/guias/<?= e($guideSlug) ?>/">
+          <span><?= e($guide['name']) ?></span>
+          <span class="tile__arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+      <?php endforeach; ?>
+    </ul>
+    <?php endif; ?>
+
     <ul class="tile-grid">
       <?php if ($entry !== null): ?>
       <li>

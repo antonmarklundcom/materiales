@@ -89,6 +89,10 @@ require PUBLIC_ROOT . '/partials/header.php';
     <?php if ($type === 'material' && ($entry['sale_unit'] ?? '') !== ''): ?>
     <p class="sale-unit">Se vende por: <strong><?= e($entry['sale_unit']) ?></strong></p>
     <?php endif; ?>
+
+    <?php // Fase 9: el formulario ya está en esta página, así que el CTA del hero ancla a él
+          // en vez de mandar a /cotizar/ y perder la preselección del material. ?>
+    <p><a class="btn btn--primary" href="#cotizar" data-ev="form_submit" data-ev-loc="hero-<?= e($slug) ?>">Pedí tu cotización</a></p>
   </div>
 </div>
 

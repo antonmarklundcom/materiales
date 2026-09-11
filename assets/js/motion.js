@@ -41,4 +41,17 @@
       });
     }, { passive: true });
   }
+  /*
+   * Fase 9 — barra pegajosa de CTA: se esconde mientras el formulario está a la vista, para
+   * no tapar el campo que se está completando. Sin IntersectionObserver (o sin JS) la barra
+   * queda visible, que es el comportamiento correcto por defecto.
+   */
+  var bar = d.querySelector('[data-cta-bar]');
+  var form = d.getElementById('cotizar');
+  if (bar && form && 'IntersectionObserver' in window) {
+    var barIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { bar.classList.toggle('is-hidden', e.isIntersecting); });
+    }, { threshold: 0 });
+    barIo.observe(form);
+  }
 })();
