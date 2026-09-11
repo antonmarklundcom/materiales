@@ -16,7 +16,7 @@ cd "$(dirname "$0")/.."
 PORT="${PORT:-8123}"
 BASE="http://127.0.0.1:${PORT}"
 
-php -S "127.0.0.1:${PORT}" -t public_html tools/router-cli.php >/tmp/render-check.log 2>&1 &
+php -S "127.0.0.1:${PORT}" -t . tools/router-cli.php >/tmp/render-check.log 2>&1 &
 SERVER_PID=$!
 trap 'kill "${SERVER_PID}" 2>/dev/null || true' EXIT
 
@@ -69,8 +69,8 @@ mkdir -p "$(dirname "${LOG}")"
 # rompiera la firma, este check fallaría en vez de pasar por casualidad.
 stamp() { # antigüedad en segundos → "ts tsg"
   php -r '
-    require "public_html/partials/init.php";
-    require "public_html/partials/lead.php";
+    require "partials/init.php";
+    require "partials/lead.php";
     $s = lead_form_stamp(time() - (int) $argv[1]);
     echo $s["ts"], " ", $s["sig"];
   ' "$1"

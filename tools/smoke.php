@@ -8,7 +8,7 @@
  * las referencias entre archivos, y los límites de title/meta.
  *
  * Desde la fase 2 verifica además el pipeline de leads como UNIDADES sobre
- * public_html/partials/lead.php — sin servidor, sin CRM y sin red: normalización de
+ * partials/lead.php — sin servidor, sin CRM y sin red: normalización de
  * teléfonos paraguayos, idempotencia, trampa de tiempo, atribución de primer toque, forma
  * del payload (incluido lo que NUNCA se manda) y escritura de leads.log. El camino HTTP
  * completo (honeypot, rechazos, redirects) lo cubre tools/render-check.sh con POSTs reales.
@@ -201,11 +201,11 @@ foreach (['categorias' => $categories, 'materiales' => $materials, 'guias' => $g
 }
 
 // ====================================================================================
-// PIPELINE DE LEADS (fase 2) — unidades sobre public_html/partials/lead.php
+// PIPELINE DE LEADS (fase 2) — unidades sobre partials/lead.php
 // ====================================================================================
 
-require $root . '/public_html/partials/init.php';
-require $root . '/public_html/partials/lead.php';
+require $root . '/partials/init.php';
+require $root . '/partials/lead.php';
 
 $is = static function (string $what, $actual, $expected) use ($fail): void {
     if ($actual !== $expected) {
@@ -377,7 +377,7 @@ if (!is_file(CONFIG_DIR . '/vendercrm.php') && lead_crm_configured()) {
 // ---- texto de consentimiento y contrato: cambiarlos es una parada (plan §4.4) --------
 // Este check existe para que un cambio accidental falle en CI en vez de invalidar en
 // silencio la constancia de consentimiento ya guardada en los leads del CRM.
-$formSource = (string) @file_get_contents($root . '/public_html/partials/form.php');
+$formSource = (string) @file_get_contents($root . '/partials/form.php');
 $consentText = 'Acepto que mis datos sean compartidos con proveedores del rubro para recibir';
 if (!str_contains($formSource, $consentText)) {
     $fail('lead: cambió el texto de consentimiento de partials/form.php (plan §8.6 — es una parada §4.4)');

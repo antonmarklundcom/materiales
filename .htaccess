@@ -1,5 +1,8 @@
-# .htaccess — reescrituras del router (plan §2). Docroot = public_html.
-# data/, content/, config/ y storage/ viven FUERA de este directorio (ver DEPLOY.md).
+# .htaccess — reescrituras del router (plan §2). Docroot = repo root (ver DEPLOY.md: el
+# Git de Hostinger en hosting compartido sólo permite desplegar DENTRO de public_html, así
+# que el repo entero vive en el docroot. data/, content/, config/, storage/, tools/,
+# prompts/, docs/ y los .md siguen siendo internos: los bloquea el bloque de abajo, no la
+# ubicación en disco.
 
 Options -Indexes
 DirectoryIndex index.php
@@ -7,6 +10,13 @@ ErrorDocument 404 /404.php
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
+
+  # Nada de lo interno se sirve por URL: datos, contenido, config/secretos, storage
+  # (leads.log), herramientas de dev/CI, prompts, docs, control de versiones ni markdown.
+  RewriteRule ^(data|content|config|storage|tools|prompts|docs)(/|$) - [F,L]
+  RewriteRule (^|/)\.(git|github)(/|$) - [F,L]
+  RewriteRule \.md$ - [F,L]
+  RewriteRule ^config\.sample\.php$ - [F,L]
 
   # Nunca servir directamente los includes del router ni los partials.
   RewriteRule ^materiales/_index\.php$ - [F,L]

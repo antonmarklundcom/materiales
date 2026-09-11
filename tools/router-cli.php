@@ -2,15 +2,15 @@
 /**
  * tools/router-cli.php — router para el servidor embebido de PHP. SÓLO desarrollo y CI.
  *
- *   php -S 127.0.0.1:8080 -t public_html tools/router-cli.php
+ *   php -S 127.0.0.1:8080 -t . tools/router-cli.php
  *
- * Replica a mano lo que en producción hace public_html/.htaccess (Apache/LiteSpeed en
+ * Replica a mano lo que en producción hace .htaccess (docroot = repo root, ver DEPLOY.md) (Apache/LiteSpeed en
  * Hostinger). Si cambiás una regla de reescritura, cambiala en LOS DOS lugares.
  */
 
 declare(strict_types=1);
 
-$publicRoot = dirname(__DIR__) . '/public_html';
+$publicRoot = dirname(__DIR__);
 $path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
 
 // Nunca servir includes internos ni partials directamente (espejo del [F] del .htaccess).
