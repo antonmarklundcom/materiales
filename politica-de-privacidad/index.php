@@ -68,6 +68,18 @@ require PUBLIC_ROOT . '/partials/header.php';
   procesa los datos por cuenta nuestra y siguiendo nuestras instrucciones.
 </p>
 
+<h2>Datos de proveedores</h2>
+<p>
+  Si sos proveedor y te cargás en <a href="/proveedores/">Para proveedores</a>, pedimos el
+  nombre de tu empresa, los rubros que vendés, tu ciudad, tu nombre y tu WhatsApp. La
+  finalidad es una sola: contactarte para verificar la empresa y hacerte llegar pedidos de
+  cotización de esos rubros. La base legal es tu consentimiento, que se guarda con su propia
+  versión de texto y con fecha y hora, y que podés retirar cuando quieras. Estos datos NO se
+  comparten con otros proveedores ni con los compradores: los procesa VenderCRM como
+  encargado de tratamiento, igual que los pedidos de cotización, y se conservan mientras
+  dure la relación comercial o hasta que pidas la baja.
+</p>
+
 <h2>Consentimiento</h2>
 <p>
   La casilla viene desmarcada y el envío del formulario requiere marcarla. Guardamos la

@@ -23,7 +23,7 @@ $add = static function (string $path, ?string $contentFile = null) use (&$urls):
 };
 
 // Páginas fijas indexables.
-foreach (['/', '/materiales/', '/guias/', '/cotizar/', '/contacto/', '/politica-de-privacidad/'] as $path) {
+foreach (['/', '/materiales/', '/guias/', '/cotizar/', '/proveedores/', '/contacto/', '/politica-de-privacidad/'] as $path) {
     $add($path);
 }
 

@@ -227,6 +227,77 @@ function lead_build_payload(array $input): array
 }
 
 /**
+ * Payload del lado PROVEEDOR (fase 10, decisión §1.17). Función aparte a propósito: el
+ * contrato del payload del comprador es fundacional (plan §4.4) y no se toca ni un byte por
+ * agregar un segundo formulario.
+ *
+ * Diferencias con el del comprador: viaja `fields.tipo = 'proveedor'` (el comprador NO manda
+ * `tipo` y el handler nunca se lo pone por defecto), `fields.empresa`, `fields.rubros`
+ * (slugs separados por coma) y una constancia de consentimiento con SU propia versión
+ * (consent_version_proveedor). No lleva material, categoría, cantidad ni banda de precio:
+ * un proveedor no está pidiendo cotización. `source` sigue siendo 'site:materiales' — el
+ * ruteo se configura en VenderCRM por `fields.tipo`, nunca acá.
+ *
+ * $input: phone_raw, idempotency_key, nombre, empresa, rubros[], ciudad, mensaje, page_url,
+ *         referrer, attribution[], consent_at (ISO-8601).
+ */
+function lead_build_supplier_payload(array $input): array
+{
+    $consentVersion = (string) site('consent_version_proveedor', 'proveedor-v1');
+
+    $fields = [
+        'tipo'    => 'proveedor',
+        'empresa' => mb_substr(trim((string) ($input['empresa'] ?? '')), 0, 200),
+        'rubros'  => implode(',', array_map(
+            static fn($slug): string => (string) $slug,
+            (array) ($input['rubros'] ?? [])
+        )),
+        'ciudad'  => mb_substr(trim((string) ($input['ciudad'] ?? '')), 0, 200),
+        'consent' => $consentVersion . ' @ ' . (string) ($input['consent_at'] ?? ''),
+    ];
+
+    $payload = [
+        'phone'           => mb_substr(trim((string) ($input['phone_raw'] ?? '')), 0, 30),
+        'idempotency_key' => (string) ($input['idempotency_key'] ?? ''),
+        'name'            => mb_substr(trim((string) ($input['nombre'] ?? '')), 0, 200),
+        'message'         => mb_substr(trim((string) ($input['mensaje'] ?? '')), 0, 5000),
+        'source'          => 'site:materiales',
+        'page_url'        => mb_substr((string) ($input['page_url'] ?? ''), 0, 2000),
+        'referrer'        => mb_substr((string) ($input['referrer'] ?? ''), 0, 2000),
+    ];
+
+    foreach ((array) ($input['attribution'] ?? []) as $key => $value) {
+        $payload[$key] = $value;
+    }
+
+    // La API rechaza '' en vez de ignorarlo: se omite, no se manda vacío.
+    $payload = array_filter($payload, static fn($v): bool => $v !== '' && $v !== null);
+    $payload['fields'] = array_filter($fields, static fn($v): bool => $v !== '' && $v !== null);
+
+    return $payload;
+}
+
+/**
+ * Rubros válidos de un alta de proveedor: sólo slugs de categorías PUBLICADAS, sin repetir y
+ * en el orden del catálogo. Lo que no existe se descarta en silencio (un checkbox tipeado a
+ * mano no puede meter basura en el CRM).
+ *
+ * @param mixed $raw lo que llegó en $_POST['rubros']
+ * @return list<string>
+ */
+function lead_supplier_rubros(mixed $raw): array
+{
+    $posted = array_map(static fn($v): string => is_scalar($v) ? (string) $v : '', (array) $raw);
+    $valid  = [];
+    foreach (data('categories') as $slug => $category) {
+        if (is_published($category) && in_array((string) $slug, $posted, true)) {
+            $valid[] = (string) $slug;
+        }
+    }
+    return $valid;
+}
+
+/**
  * POST al CRM. Nunca lanza: cualquier fallo vuelve como ['status' => 0, 'error' => ...] y el
  * visitante igual llega a /gracias/ (skill vendercrm-lead-capture, regla 5).
  */

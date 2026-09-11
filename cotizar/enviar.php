@@ -68,6 +68,78 @@ if ($botReason !== '') {
     enviar_redirect('/gracias/');
 }
 
+// ---- 1bis. Alta de proveedor (fase 10, decisión §1.17) --------------------------------
+// Mismo handler, misma trampa de bots, misma idempotencia; otro formulario, otro payload y
+// otra versión de consentimiento. El camino del COMPRADOR sigue abajo sin un byte de cambio:
+// un POST de comprador no trae `tipo` y acá nunca se le pone uno por defecto.
+if ((string) ($_POST['tipo'] ?? '') === 'proveedor') {
+    /** Vuelve a /proveedores/ conservando sólo los campos no personales ya tipeados. */
+    $provError = static function (string $error): never {
+        $query = ['error' => $error];
+        foreach (['empresa' => 'empresa', 'ciudad' => 'ciudad'] as $field => $key) {
+            $value = trim((string) ($_POST[$field] ?? ''));
+            if ($value !== '') {
+                $query[$key] = mb_substr($value, 0, 200);
+            }
+        }
+        $rubros = lead_supplier_rubros($_POST['rubros'] ?? []);
+        if ($rubros !== []) {
+            $query['rubros'] = implode(',', $rubros);
+        }
+        enviar_redirect('/proveedores/?' . http_build_query($query) . '#sumate');
+    };
+
+    $provPhoneRaw = trim((string) ($_POST['telefono'] ?? ''));
+    $provPhone    = lead_normalize_phone($provPhoneRaw);
+    $provEmpresa  = trim((string) ($_POST['empresa'] ?? ''));
+    $provRubros   = lead_supplier_rubros($_POST['rubros'] ?? []);
+
+    if ($provEmpresa === '') {
+        $provError('empresa');
+    }
+    if ($provRubros === []) {
+        $provError('rubros');
+    }
+    if ($provPhone === null) {
+        $provError('telefono');
+    }
+    if (($_POST['consentimiento'] ?? '') !== '1') {
+        $provError('consentimiento');
+    }
+
+    $provPayload = lead_build_supplier_payload([
+        'phone_raw'       => $provPhoneRaw,
+        'idempotency_key' => lead_idempotency_key($provPhone, $now),
+        'nombre'          => (string) ($_POST['nombre'] ?? ''),
+        'empresa'         => $provEmpresa,
+        'rubros'          => $provRubros,
+        'ciudad'          => (string) ($_POST['ciudad'] ?? ''),
+        'mensaje'         => (string) ($_POST['mensaje'] ?? ''),
+        'page_url'        => url('/proveedores/'),
+        'referrer'        => (string) ($_SERVER['HTTP_REFERER'] ?? ''),
+        'attribution'     => lead_attribution($_POST, $_COOKIE),
+        'consent_at'      => gmdate('c', $now),
+    ]);
+
+    $provCrm = ['status' => 0, 'body' => '', 'error' => 'sin configuración de CRM', 'ms' => 0];
+    if (lead_crm_configured()) {
+        $provCrm = lead_send($provPayload, lead_config());
+    }
+
+    lead_log([
+        'ts'         => gmdate('c', $now),
+        'outcome'    => lead_send_ok($provCrm) ? 'enviado' : (lead_crm_configured() ? 'fallo_crm' : 'solo_log'),
+        'phone_e164' => $provPhone,
+        'crm'        => ['status' => $provCrm['status'], 'ms' => $provCrm['ms'], 'error' => $provCrm['error'], 'body' => $provCrm['body']],
+        'payload'    => $provPayload,
+        'ip'         => lead_ip_fingerprint((string) ($_SERVER['REMOTE_ADDR'] ?? '')),
+    ]);
+
+    // PRG igual que el comprador; el acuse se muestra en la misma página, no en /gracias/
+    // (esa página habla de cotizaciones que van a llegar, que no es lo que pasó acá).
+    enviar_redirect('/proveedores/?ok=1#gracias');
+}
+
 // ---- 2. Validación (plan §3.2): teléfono plausible y consentimiento marcado -----------
 // Son las DOS únicas causas por las que se le devuelve el formulario al visitante. Todo lo
 // demás (nombre vacío, material sin elegir) entra igual: el filtro de calidad es el repaso

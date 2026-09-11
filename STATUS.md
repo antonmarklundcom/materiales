@@ -19,8 +19,8 @@ _Última actualización: 2026-09-11 (revisión de Fable: informe de mejoras y pl
 | 6 Content wave 1 | Sonnet (una ventana, PR 1/3) | ✅ Mergeada | #11 | Prosa de las 5 categorías de lanzamiento, sus 34 materiales y las 8 guías |
 | 7 Content wave 2 | Sonnet (misma ventana, PR 2/3) | ✅ Mergeada | #12 | Prosa de pisos, aberturas, impermeabilizantes, yeso, plomería y madera |
 | 8 Imagery + QA + launch | Sonnet (misma ventana, PR 3/3) | ✅ Mergeada | #13 | QA SEO completo, `og-default.jpg` de fallback (sin fotografía real — CDN bloqueado, ver KNOWN-ISSUES #22), checklist de salida |
-| 9 Home & conversion | Opus (ventana 1/2, PR 1/4) | ⏳ Pendiente | — | Home real, CTA en héroes, barra móvil, /gracias/ |
-| 10 Proveedores | Opus (misma ventana, PR 2/4) | ⏳ Pendiente | — | `/proveedores/`, formulario de proveedor, `tipo=proveedor`, consentimiento `proveedor-v1` |
+| 9 Home & conversion | Opus (ventana 1/2, PR 1/4) | ✅ Mergeada | #18 | Home real (franja de datos, cómo funciona, prosa local, teaser de guías, formulario), CTA en héroes, barra móvil pegajosa, próximos pasos en /gracias/ |
+| 10 Proveedores | Opus (misma ventana, PR 2/4) | ✅ Mergeada | #19 | `/proveedores/` (landing de captación: qué recibís, cómo funciona, condiciones desde `supplier_pitch`, rubros, FAQ), formulario de proveedor, `tipo=proveedor` en el handler, consentimiento `proveedor-v1`, cláusula de privacidad y enlace "Para proveedores" en nav y pie |
 | 11 Cross-links + slots de imagen | Opus (misma ventana, PR 3/4) | ⏳ Pendiente | — | "Guías relacionadas" desde datos, clave `image` opcional, og:image por página |
 | 12 Calculadoras (base) | Opus (misma ventana, PR 4/4) | ⏳ Pendiente | — | Ruta `/calculadoras/`, contrato de datos, `calc.js`, CONTENT-SPEC §12, 1 calculadora |
 | 13 Calculadoras + guías ola 3 | Sonnet (ventana 2/2, PR 1/3) | ⏳ Pendiente | — | 3 calculadoras, 6 guías |

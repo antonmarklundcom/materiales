@@ -390,6 +390,83 @@ foreach (['name="website"', 'name="ts"', 'name="tsg"', 'name="consentimiento"', 
 if (!str_contains($formSource, 'action="/cotizar/enviar.php" method="post"')) {
     $fail('lead: partials/form.php ya no postea a /cotizar/enviar.php por POST');
 }
+// ---- fase 10: alta de proveedores (decisión §1.17) ----------------------------------
+// El payload del PROVEEDOR es otro contrato: lleva fields.tipo, empresa y rubros, y su
+// propia versión de consentimiento. El del COMPRADOR no puede contaminarse con nada de eso.
+if (array_key_exists('tipo', $payload) || array_key_exists('tipo', $payload['fields'])) {
+    $fail("lead: el payload del COMPRADOR incluye 'tipo' — sólo el alta de proveedor lo manda (decisión §1.17)");
+}
+
+$supplierPayload = lead_build_supplier_payload([
+    'phone_raw'       => '0981 123 456',
+    'idempotency_key' => $keyA,
+    'nombre'          => 'Ana Benítez',
+    'empresa'         => 'Corralón San Blas',
+    'rubros'          => ['hierro', 'aridos'],
+    'ciudad'          => 'Luque',
+    'mensaje'         => 'Entregamos con camión propio',
+    'page_url'        => 'https://materiales.com.py/proveedores/',
+    'attribution'     => [],
+    'consent_at'      => '2026-06-15T10:30:00+00:00',
+]);
+$is('proveedor: fields.tipo', $supplierPayload['fields']['tipo'] ?? null, 'proveedor');
+$is('proveedor: fields.empresa', $supplierPayload['fields']['empresa'] ?? null, 'Corralón San Blas');
+$is('proveedor: fields.rubros', $supplierPayload['fields']['rubros'] ?? null, 'hierro,aridos');
+$is('proveedor: fields.ciudad', $supplierPayload['fields']['ciudad'] ?? null, 'Luque');
+$is('proveedor: source', $supplierPayload['source'] ?? null, 'site:materiales');
+$is('proveedor: message', $supplierPayload['message'] ?? null, 'Entregamos con camión propio');
+$is(
+    'proveedor: fields.consent con SU versión',
+    $supplierPayload['fields']['consent'] ?? null,
+    site('consent_version_proveedor') . ' @ 2026-06-15T10:30:00+00:00'
+);
+// Un alta de proveedor no es un pedido de cotización: nada de material, categoría ni banda.
+foreach (['material', 'categoria', 'material_nombre', 'categoria_nombre', 'cantidad', 'presupuesto_band'] as $forbidden) {
+    if (array_key_exists($forbidden, $supplierPayload['fields'])) {
+        $fail("lead: el payload del proveedor incluye '{$forbidden}' — no está pidiendo cotización");
+    }
+}
+foreach (['pipeline', 'stage', 'owner', 'tag'] as $forbidden) {
+    if (array_key_exists($forbidden, $supplierPayload) || array_key_exists($forbidden, $supplierPayload['fields'])) {
+        $fail("lead: el payload del proveedor incluye '{$forbidden}' — el ruteo se configura en el CRM");
+    }
+}
+foreach ($supplierPayload as $key => $value) {
+    if ($value === '' || $value === null) {
+        $fail("lead: payload de proveedor['{$key}'] va vacío — la API rechaza '' en vez de ignorarlo");
+    }
+}
+
+// Rubros: sólo categorías publicadas, sin inventos ni duplicados, en el orden del catálogo.
+$is('proveedor: rubros descarta lo que no existe', lead_supplier_rubros(['hierro', 'no-existe']), ['hierro']);
+$is('proveedor: rubros descarta duplicados', lead_supplier_rubros(['hierro', 'hierro']), ['hierro']);
+$is('proveedor: rubros vacío', lead_supplier_rubros([]), []);
+$is('proveedor: rubros ignora basura', lead_supplier_rubros('../../etc/passwd'), []);
+$proximas = array_keys(array_filter($categories, static fn(array $c): bool => ($c['status'] ?? '') !== 'activa'));
+if ($proximas !== []) {
+    $is('proveedor: rubros descarta categorías proxima', lead_supplier_rubros([$proximas[0]]), []);
+}
+
+// Guard del texto de consentimiento del proveedor, igual que el del comprador.
+$supplierFormSource = (string) @file_get_contents($root . '/partials/form-proveedor.php');
+$supplierConsentText = 'Acepto que Materiales.com.py guarde mis datos para contactarme sobre pedidos de';
+if (!str_contains($supplierFormSource, $supplierConsentText)) {
+    $fail('lead: cambió el texto de consentimiento de partials/form-proveedor.php (parada §4.4 — sincronizar con la política y con consent_version_proveedor)');
+}
+foreach (['name="website"', 'name="ts"', 'name="tsg"', 'name="consentimiento"', 'name="telefono"', 'name="empresa"', 'name="rubros[]"', 'name="tipo" value="proveedor"'] as $needed) {
+    if (!str_contains($supplierFormSource, $needed)) {
+        $fail("lead: partials/form-proveedor.php ya no trae el campo {$needed}");
+    }
+}
+if (($site['consent_version_proveedor'] ?? '') !== 'proveedor-v1') {
+    $fail("lead: consent_version_proveedor cambió a '" . ($site['consent_version_proveedor'] ?? '') . "' — sincronizar con la política de privacidad antes (plan §8.6)");
+}
+foreach (['supplier_pitch', 'supplier_categories_note'] as $key) {
+    if (!array_key_exists($key, $site)) {
+        $fail("data/site.php: falta la clave '{$key}' (fase 10 — la página de proveedores la lee)");
+    }
+}
+
 if (($site['consent_version'] ?? '') !== 'proveedores-v1') {
     $fail("lead: consent_version cambió a '" . ($site['consent_version'] ?? '') . "' — sincronizar con la política de privacidad antes (plan §8.6)");
 }
