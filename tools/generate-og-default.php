@@ -1,6 +1,6 @@
 <?php
 /**
- * tools/generate-og-default.php — genera public_html/assets/img/og-default.jpg.
+ * tools/generate-og-default.php — genera assets/img/og-default.jpg.
  *
  * Fallback "motivo de paleta" para og:image cuando no hay fotografía real (fase 8,
  * KNOWN-ISSUES: descarga de CDN de Higgsfield bloqueada en este entorno — 403 en
@@ -78,7 +78,7 @@ if (is_file($fontBold) && is_file($fontReg)) {
     imagestring($img, 5, 80, 300, 'Cotiza gratis', $accent);
 }
 
-$outDir = __DIR__ . '/../public_html/assets/img';
+$outDir = __DIR__ . '/../assets/img';
 if (!is_dir($outDir)) {
     mkdir($outDir, 0775, true);
 }

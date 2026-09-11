@@ -1,5 +1,6 @@
-# Defensa en profundidad: este directorio vive FUERA de public_html (ver DEPLOY.md).
-# Si algún despliegue lo dejara dentro del docroot por error, Apache igual lo niega.
+# Defensa en profundidad: en este plan de Hostinger el repo entero vive DENTRO del docroot
+# (ver DEPLOY.md), así que la carpeta queda no-pública por las reglas [F] de .htaccess en la
+# raíz Y por este Require all denied — si una de las dos falla, la otra sigue protegiendo.
 <IfModule mod_authz_core.c>
   Require all denied
 </IfModule>

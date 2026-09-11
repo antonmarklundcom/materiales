@@ -1,4 +1,6 @@
-# Config y datos de runtime viven en el servidor, fuera del repo y fuera del docroot.
+# Config y datos de runtime viven en el servidor, fuera del repo (ver DEPLOY.md — quedan
+# no-públicos por .htaccess, no por estar fuera del docroot: el Git de Hostinger en hosting
+# compartido despliega dentro de public_html).
 /config/
 /storage/
 

@@ -9,21 +9,25 @@ Los prompts por fase están en [`prompts/`](prompts/).
 
 ## Estructura
 
+El repo ENTERO es el docroot (el Git de Hostinger en hosting compartido sólo despliega
+dentro de `public_html`, así que no hay un `public_html/` anidado — ver `DEPLOY.md`).
+`data/`, `content/`, `config/`, `storage/`, `tools/`, `prompts/`, `docs/` y los `.md` no son
+públicos por las reglas `[F]` de `.htaccess`, no por estar en otra carpeta.
+
 ```
-public_html/          ← docroot en el servidor
-  index.php             homepage
-  materiales/index.php  router de /materiales/ y /materiales/{slug}/
-  guias/index.php       router de /guias/ y /guias/{slug}/
-  cotizar/ gracias/ contacto/ politica-de-privacidad/ 404.php
-  sitemap.php           se sirve como /sitemap.xml (reescritura)
-  robots.txt  .htaccess
-  partials/             init, header, footer, schema, banner de cookies
-  assets/               css, js, img
-data/                 ← FUERA del docroot: site, categories, materials, guides (arrays PHP)
-content/              ← FUERA del docroot: prosa por página (fases 5–6)
-config/               ← FUERA del docroot y del repo: config/vendercrm.php (ver config.sample.php)
-storage/              ← FUERA del docroot y del repo: leads.log
-tools/                ← smoke test, router de desarrollo, render check
+index.php             homepage
+materiales/index.php  router de /materiales/ y /materiales/{slug}/
+guias/index.php       router de /guias/ y /guias/{slug}/
+cotizar/ gracias/ contacto/ politica-de-privacidad/ 404.php
+sitemap.php           se sirve como /sitemap.xml (reescritura)
+robots.txt  .htaccess
+partials/             init, header, footer, schema, banner de cookies
+assets/                css, js, img
+data/                 site, categories, materials, guides (arrays PHP) — bloqueado por .htaccess
+content/              prosa por página (fases 5–6) — bloqueado por .htaccess
+config/               NO viene en el repo: config/vendercrm.php (ver config.sample.php) — bloqueado por .htaccess
+storage/              NO viene en el repo: leads.log — bloqueado por .htaccess
+tools/                smoke test, router de desarrollo, render check — bloqueado por .htaccess
 ```
 
 ### El namespace de slugs es plano
@@ -39,13 +43,13 @@ renderiza un aviso, va con `noindex` y no entra en el sitemap.
 ## Desarrollo local
 
 ```sh
-php -S 127.0.0.1:8080 -t public_html tools/router-cli.php   # http://127.0.0.1:8080/
-php tools/smoke.php                                          # integridad de los datos
-./tools/render-check.sh                                      # rutas + sitemap + 404
+php -S 127.0.0.1:8080 -t . tools/router-cli.php   # http://127.0.0.1:8080/
+php tools/smoke.php                                # integridad de los datos
+./tools/render-check.sh                            # rutas + sitemap + 404
 ```
 
-`tools/router-cli.php` replica las reescrituras de `public_html/.htaccess`. Si tocás una
-regla, tocá las dos.
+`tools/router-cli.php` replica las reescrituras de `.htaccess`. Si tocás una regla, tocá
+las dos.
 
 ## CI y deploy
 

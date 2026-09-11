@@ -6,11 +6,12 @@
 
 declare(strict_types=1);
 
-// public_html/partials/init.php → APP_ROOT es el directorio que contiene public_html.
-// En el servidor: ~/domains/materiales.com.py/  (data/, content/, config/ y storage/ quedan
-// fuera del docroot, ver DEPLOY.md).
+// partials/init.php → PUBLIC_ROOT y APP_ROOT son el mismo directorio: el Git de Hostinger
+// en hosting compartido sólo despliega DENTRO de public_html, así que el repo entero (y
+// por lo tanto data/, content/, config/, storage/) vive en el docroot. Quedan no-públicos
+// por las reglas [F] de .htaccess, no por estar fuera de esta carpeta. Ver DEPLOY.md.
 define('PUBLIC_ROOT', dirname(__DIR__));
-define('APP_ROOT', dirname(__DIR__, 2));
+define('APP_ROOT', PUBLIC_ROOT);
 define('DATA_DIR', APP_ROOT . '/data');
 define('CONTENT_DIR', APP_ROOT . '/content');
 define('CONFIG_DIR', APP_ROOT . '/config');
