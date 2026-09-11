@@ -167,7 +167,7 @@ main { display: block; }
   display: flex; align-items: baseline; gap: var(--s-3);
   padding: var(--s-3) 0; border-bottom: 1px solid var(--hairline);
 }
-.page-hero__fact strong { font-family: var(--font-display); font-size: var(--t-2); color: var(--accent); font-weight: 500; }
+.page-hero__fact strong { font-family: var(--font-display); font-size: var(--t-2); color: var(--accent); font-weight: 500; white-space: nowrap; }
 .page-hero__fact span { color: var(--ink-70); font-size: var(--t--1); }
 .sale-unit {
   display: inline-flex; gap: var(--s-2); align-items: baseline; margin: 0 0 var(--s-4);
@@ -339,4 +339,41 @@ section.wrap { padding-inline: var(--gutter); }
 
 @media (max-width: 39.99rem) {
   .field__panel { padding: var(--s-6); border-radius: var(--r-md); }
+}
+
+/* == 9 == capa de conversión: pasos "cómo funciona", barra pegajosa de CTA en mobile ---- */
+
+/* ---- pasos numerados (home y /gracias/) ---- */
+.steps { list-style: none; margin: var(--s-6) 0 var(--s-12); padding: 0; display: grid; gap: var(--s-4); }
+@media (min-width: 52rem) { .steps { grid-template-columns: repeat(3, 1fr); } }
+.steps__item { display: grid; gap: var(--s-2); align-content: start; }
+.steps__n {
+  font-family: var(--font-display); font-size: var(--t-2); font-weight: 500;
+  color: var(--accent); line-height: 1;
+}
+.steps__item h3 { margin: 0; font-size: var(--t-1); }
+.steps__item p { margin: 0; color: var(--paper-ink-70); font-size: var(--t-0); }
+
+/* ---- /gracias/: CTA secundario de WhatsApp ---- */
+.gracias__wa { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-4); margin: 0 0 var(--s-12); color: var(--paper-ink-70); }
+
+/* ---- barra pegajosa: SÓLO mobile (decisión §1.18) ----
+   El formulario es el CTA primario y va primero; WhatsApp, cuando existe, va segundo.
+   Sin JS la barra queda siempre visible; con JS se esconde mientras el formulario está a
+   la vista, para no tapar el propio campo que se está completando. */
+.cta-bar { display: none; }
+@media (max-width: 39.99rem) {
+  .cta-bar {
+    position: fixed; inset: auto 0 0 0; z-index: 15;
+    display: flex; gap: var(--s-2);
+    padding: var(--s-3) var(--gutter) calc(var(--s-3) + env(safe-area-inset-bottom));
+    background: color-mix(in srgb, var(--base) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid var(--hairline);
+    transition: transform var(--dur-fast) var(--ease-io), opacity var(--dur-fast) var(--ease-io);
+  }
+  .cta-bar .btn { flex: 1 1 0; justify-content: center; padding-inline: var(--s-4); }
+  .cta-bar.is-hidden { transform: translateY(110%); opacity: 0; pointer-events: none; }
+  /* La barra tapa el final de la página: se compensa con padding en el pie. */
+  .site-footer__base { padding-bottom: calc(var(--s-16) + env(safe-area-inset-bottom)); }
 }

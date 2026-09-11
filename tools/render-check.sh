@@ -58,6 +58,12 @@ check "/materiales/no-existe-esto/" 404 'No encontramos'
 check "/partials/header.php"       403 ''
 check "/cotizar/"                  200 'name="consentimiento"'
 check "/materiales/hierro/"        200 'action="/cotizar/enviar.php"'
+# Fase 9 — capa de conversión: la home explica el modelo y cierra en el formulario, y las
+# páginas de dinero tienen el CTA del hero anclado al formulario que ya está en la página.
+check "/"                          200 'Cómo funciona'
+check "/"                          200 'name="consentimiento"'
+check "/materiales/hierro/"        200 'href="#cotizar"'
+check "/"                          200 'data-cta-bar'
 
 echo "LEAD HANDLER"
 

@@ -76,6 +76,8 @@ require PUBLIC_ROOT . '/partials/header.php';
 <div class="page-hero band--dark grain bleed">
   <div class="wrap">
     <h1><?= e($guide['name']) ?></h1>
+    <?php // Fase 9: la guía no lleva formulario propio, así que el CTA va a /cotizar/. ?>
+    <p><a class="btn btn--primary" href="/cotizar/" data-ev="form_submit" data-ev-loc="hero-guia-<?= e($slug) ?>">Pedí tu cotización</a></p>
   </div>
 </div>
 <div class="field wrap">

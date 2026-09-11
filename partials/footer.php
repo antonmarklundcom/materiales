@@ -43,6 +43,13 @@ $whatsapp = preg_replace('/\D+/', '', (string) ($site['whatsapp'] ?? ''));
     </div>
   </div>
 </footer>
+<?php
+// Barra pegajosa de CTA en mobile (fase 9). En /cotizar/ y /gracias/ no va: en la primera
+// el formulario ES la página, y en la segunda el pedido ya está hecho.
+if (!in_array(page()['canonical'] ?? '', ['/cotizar/', '/gracias/'], true)) {
+    require PUBLIC_ROOT . '/partials/cta.php';
+}
+?>
 <?php require PUBLIC_ROOT . '/partials/cookie-banner.php'; ?>
 </body>
 </html>

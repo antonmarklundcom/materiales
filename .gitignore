@@ -8,3 +8,6 @@
 .DS_Store
 Thumbs.db
 *.log
+
+# Capturas locales de Playwright (fases 9+): nunca se commitean.
+/docs/screenshots/

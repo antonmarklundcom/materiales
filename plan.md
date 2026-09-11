@@ -538,7 +538,7 @@ Index (phases 5–8 fill their line in the PR that merges them):
 | 6 content wave 1 | Sonnet | ✅ | #11 | 2026-09-06 abajo |
 | 7 content wave 2 | Sonnet | ✅ | #12 | 2026-09-06 abajo |
 | 8 imagery + QA + launch | Sonnet | ✅ | #13 | 2026-09-06 abajo |
-| 9 home & conversion | Opus | ⏳ | — | `docs/log/9-home-conversion.md` |
+| 9 home & conversion | Opus | ✅ | #18 | `docs/log/9-home-conversion.md` |
 | 10 proveedores | Opus | ⏳ | — | `docs/log/10-proveedores.md` |
 | 11 cross-links & image slots | Opus | ⏳ | — | `docs/log/11-crosslinks-images.md` |
 | 12 calculators foundation | Opus | ⏳ | — | `docs/log/12-calculadoras-foundation.md` |
