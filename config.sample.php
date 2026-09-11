@@ -13,6 +13,11 @@
  * config, los leads que hayan quedado en el log se pueden reenviar a mano al CRM: cada línea
  * trae el payload exacto, incluida su idempotency_key, así que un reenvío no duplica nada.
  *
+ * RUTEO DE LEADS (fase 10): el sitio manda un único `source` ('site:materiales') y
+ * distingue los dos formularios con `fields.tipo`: las altas de /proveedores/ viajan con
+ * `fields.tipo = 'proveedor'` y los pedidos de cotización NO mandan `tipo` en absoluto. La
+ * regla que separa unos de otros se configura en VenderCRM, nunca en el PHP del sitio.
+ *
  * Los IDs de GA4 y del Meta Pixel NO van acá: van en data/site.php (ga4_id, meta_pixel_id,
  * vc_attribution), porque no son secretos y se emiten en el HTML.
  * La clave y la URL las genera VenderCRM al crear el registro del sitio en **Sitios**

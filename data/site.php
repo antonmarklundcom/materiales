@@ -57,4 +57,20 @@ return [
     // Versión del texto de consentimiento (plan §8.6). No cambiar sin actualizar la política.
     'consent_version' => 'proveedores-v1',
     'max_proveedores' => 3,
+
+    // --- lado proveedor (fase 10, decisión §1.17) ----------------------------------
+    // El consentimiento del PROVEEDOR es otro texto y otra versión: un proveedor no está
+    // consintiendo que lo compartan con proveedores, sino que lo contactemos por pedidos de
+    // su rubro. Si cambia el texto de partials/form-proveedor.php, cambia esta versión y se
+    // actualiza la política de privacidad.
+    'consent_version_proveedor' => 'proveedor-v1',
+
+    // Condiciones comerciales a mostrar en /proveedores/ (input humano §7). VACÍO es un
+    // estado válido y esperado: la página dice "te contamos las condiciones por WhatsApp" y
+    // NO inventa números de packs, precios por lead ni plazos.
+    'supplier_pitch' => '',
+
+    // Aclaración opcional bajo la lista de rubros de /proveedores/ (p. ej. si se abre o se
+    // cierra el cupo de un rubro). Vacío = no se renderiza nada.
+    'supplier_categories_note' => '',
 ];

@@ -64,6 +64,11 @@ check "/"                          200 'Cómo funciona'
 check "/"                          200 'name="consentimiento"'
 check "/materiales/hierro/"        200 'href="#cotizar"'
 check "/"                          200 'data-cta-bar'
+# Fase 10 — landing de proveedores: existe, trae su formulario con el tipo oculto y entra
+# en el sitemap.
+check "/proveedores/"              200 'name="tipo"'
+check "/proveedores/"              200 'Recibí pedidos de cotización de tu rubro'
+check "/sitemap.xml"               200 '/proveedores/'
 
 echo "LEAD HANDLER"
 
@@ -173,6 +178,51 @@ if [ "${KEYS}" != "1" ]; then
   fail=1
 else
   echo "  ok   dos envíos idénticos comparten la clave de idempotencia"
+fi
+
+# 7bis. Alta de proveedor: mismo handler, otro camino. Vuelve a /proveedores/?ok=1 y la
+#       línea del log lleva tipo=proveedor, empresa y rubros — nunca material ni categoría.
+read -r PTS PTSG <<<"$(stamp 30)"
+post "alta de proveedor redirige a /proveedores/?ok=1" 303 '^/proveedores/?ok=1#gracias$' \
+  --data-urlencode "ts=${PTS}" --data-urlencode "tsg=${PTSG}" \
+  --data-urlencode "tipo=proveedor" --data-urlencode "empresa=Corralón San Blas" \
+  --data-urlencode "rubros[]=hierro" --data-urlencode "rubros[]=aridos" \
+  --data-urlencode "ciudad=Luque" --data-urlencode "nombre=Ana Benítez" \
+  --data-urlencode "telefono=0981 123 456" --data-urlencode "consentimiento=1"
+
+if ! grep -q '"tipo":"proveedor"' "${LOG}"; then
+  echo "  FAIL la línea del alta de proveedor no lleva tipo=proveedor"
+  fail=1
+else
+  echo "  ok   el alta de proveedor quedó registrada con tipo=proveedor"
+fi
+if ! grep -q '"rubros":"hierro,aridos"' "${LOG}"; then
+  echo "  FAIL la línea del alta de proveedor no lleva los rubros marcados"
+  fail=1
+else
+  echo "  ok   el alta de proveedor guarda los rubros marcados"
+fi
+if ! grep -q "\"consent\":\"proveedor-v1 @ " "${LOG}"; then
+  echo "  FAIL el alta de proveedor no guarda su propia versión de consentimiento"
+  fail=1
+else
+  echo "  ok   el alta de proveedor guarda la versión proveedor-v1"
+fi
+
+# Sin rubros marcados no hay alta: el rubro es lo que define qué pedidos le llegan.
+read -r PTS2 PTSG2 <<<"$(stamp 30)"
+post "alta de proveedor sin rubros vuelve al formulario" 303 'error=rubros' \
+  --data-urlencode "ts=${PTS2}" --data-urlencode "tsg=${PTSG2}" \
+  --data-urlencode "tipo=proveedor" --data-urlencode "empresa=Corralón San Blas" \
+  --data-urlencode "nombre=Ana Benítez" --data-urlencode "telefono=0981 123 456" \
+  --data-urlencode "consentimiento=1"
+
+# El camino del COMPRADOR no puede haberse contaminado: ninguna línea de comprador lleva tipo.
+if grep -v '"tipo":"proveedor"' "${LOG}" | grep -q '"tipo"'; then
+  echo "  FAIL una línea del camino del comprador lleva 'tipo' en el payload"
+  fail=1
+else
+  echo "  ok   el payload del comprador sigue sin 'tipo'"
 fi
 
 # 8. El consentimiento queda registrado con versión y timestamp (constancia, plan §8.6).

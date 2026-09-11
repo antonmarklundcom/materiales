@@ -55,6 +55,7 @@ header('Content-Type: text/html; charset=utf-8');
       <a href="/materiales/">Materiales</a>
       <a href="/guias/">Guías</a>
       <a href="/cotizar/">Cotizar</a>
+      <a href="/proveedores/">Para proveedores</a>
       <a href="/contacto/">Contacto</a>
     </nav>
   </div>
