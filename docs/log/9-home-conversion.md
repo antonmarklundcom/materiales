@@ -32,7 +32,12 @@ Fecha: 2026-09-11 · plan §11.1 · decisiones §1.18, §1.23
 - `docs/screenshots/` va al `.gitignore`: las capturas son verificación local, no entregable.
 
 ## Known issues
-- Ninguno abierto por esta fase. La barra pegajosa queda con un solo botón hasta que se
+- **Auto-merge no se pudo armar** (`enable_pr_auto_merge` → "Protected branch rules not
+  configured for this branch"): la rama `main` no tiene protección ni check requerido
+  configurados, que es el preflight §7 del plan. Mientras no exista, cada PR de esta ventana
+  se mergea a mano después de ver CI en verde. Anton: configurar protección de rama en
+  `main` con el check `CI / check` como requerido.
+- Ninguno más abierto por esta fase. La barra pegajosa queda con un solo botón hasta que se
   cargue `whatsapp` en `data/site.php` (input humano §7) — es el comportamiento diseñado.
 
 ## Verification
