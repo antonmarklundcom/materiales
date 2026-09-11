@@ -32,7 +32,7 @@ if ($slug === '') {
     ]);
 
     require PUBLIC_ROOT . '/partials/header.php';
-    echo "<div class=\"page-hero band--dark grain bleed\"><div class=\"wrap\">\n";
+    echo "<div class=\"page-hero bleed\"><div class=\"wrap\">\n";
     echo "<h1>Guías de obra y materiales</h1>\n";
     echo "</div></div>\n";
     echo "<div class=\"field wrap\"><div class=\"field__panel\">\n";
@@ -73,7 +73,7 @@ page([
 
 require PUBLIC_ROOT . '/partials/header.php';
 ?>
-<div class="page-hero band--dark grain bleed">
+<div class="page-hero bleed">
   <div class="wrap">
     <h1><?= e($guide['name']) ?></h1>
   </div>

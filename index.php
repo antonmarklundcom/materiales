@@ -22,7 +22,7 @@ page([
 
 require __DIR__ . '/partials/header.php';
 ?>
-<div class="page-hero band--dark grain bleed">
+<div class="page-hero bleed">
   <div class="wrap">
     <h1>Cotizá materiales de construcción en Paraguay</h1>
     <p class="lead">

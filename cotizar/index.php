@@ -27,7 +27,7 @@ page([
 
 require PUBLIC_ROOT . '/partials/header.php';
 ?>
-<div class="page-hero band--dark grain bleed">
+<div class="page-hero bleed">
   <div class="wrap">
     <h1>Pedí tu cotización</h1>
     <?php if ($entry !== null): ?>

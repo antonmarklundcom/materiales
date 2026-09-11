@@ -5,7 +5,8 @@
  * Fallback "motivo de paleta" para og:image cuando no hay fotografía real (fase 8,
  * KNOWN-ISSUES: descarga de CDN de Higgsfield bloqueada en este entorno — 403 en
  * *.cloudfront.net). Sin rostros, sin fotos falsas de "nuestro trabajo": sólo los
- * tokens de marca (fondo oscuro, acento, tipografía) que ya usa el sitio.
+ * tokens de marca (track CORRALÓN: papel, tinta negra, amarillo de seguridad) que ya
+ * usa el sitio.
  *
  * Uso: php tools/generate-og-default.php
  * No se ejecuta en request time ni en CI — es una utilidad de build, corrida una vez.
@@ -18,64 +19,41 @@ $height = 630;
 
 $img = imagecreatetruecolor($width, $height);
 
-$base   = imagecolorallocate($img, 0x0e, 0x0e, 0x0f);
-$ink    = imagecolorallocate($img, 0xf5, 0xf3, 0xf0);
-$inkDim = imagecolorallocate($img, 0xb8, 0xb5, 0xb0);
-$accent = imagecolorallocate($img, 0xe8, 0x56, 0x2a);
+$paper  = imagecolorallocate($img, 0xf4, 0xf0, 0xe6);
+$ink    = imagecolorallocate($img, 0x17, 0x17, 0x0f);
+$inkDim = imagecolorallocate($img, 0x5a, 0x56, 0x47);
+$accent = imagecolorallocate($img, 0xf2, 0xc3, 0x18);
 
-imagefilledrectangle($img, 0, 0, $width, $height, $base);
+imagefilledrectangle($img, 0, 0, $width, $height, $paper);
 
-// Grano sutil (igual espíritu que .grain en el CSS): puntos oscuros/claros aleatorios
-// de baja opacidad simulada por color-mix manual con el fondo.
-mt_srand(20260906);
-for ($i = 0; $i < 9000; $i++) {
-    $x = mt_rand(0, $width - 1);
-    $y = mt_rand(0, $height - 1);
-    $delta = mt_rand(-10, 10);
-    $c = imagecolorallocate(
-        $img,
-        max(0, min(255, 0x0e + $delta)),
-        max(0, min(255, 0x0e + $delta)),
-        max(0, min(255, 0x0f + $delta))
-    );
-    imagesetpixel($img, $x, $y, $c);
-}
+// Franja de peligro (amarillo/negro) arriba y abajo, como .hazard-bar en el CSS.
+imagefilledrectangle($img, 0, 0, $width, 18, $accent);
+imagefilledrectangle($img, 0, 18, $width, 20, $ink);
+imagefilledrectangle($img, 0, $height - 20, $width, $height - 18, $ink);
+imagefilledrectangle($img, 0, $height - 18, $width, $height, $accent);
 
-// Franja de acento a la izquierda, como el borde de acento de las tarjetas del sitio.
-imagefilledrectangle($img, 0, 0, 14, $height, $accent);
+// Borde de tinta alrededor del cartel, como los bordes sólidos de las tarjetas del sitio.
+imagerectangle($img, 30, 30, $width - 30, $height - 30, $ink);
 
-// Bloque geométrico de acento en la esquina inferior derecha (motivo, no foto).
-imagefilledpolygon($img, [
-    $width, $height,
-    $width - 340, $height,
-    $width, $height - 340,
-], $accent);
-// Oscurece el bloque para que el texto de abajo no compita si algún día se agrega.
-$overlay = imagecolorallocatealpha($img, 0x0e, 0x0e, 0x0f, 70);
-imagefilledpolygon($img, [
-    $width, $height,
-    $width - 340, $height,
-    $width, $height - 340,
-], $overlay);
+$fontBold = '/mnt/skills/examples/canvas-design/canvas-fonts/WorkSans-Bold.ttf';
+$fontMono = '/mnt/skills/examples/canvas-design/canvas-fonts/IBMPlexMono-Regular.ttf';
 
-$fontBold = '/mnt/skills/examples/canvas-design/canvas-fonts/BricolageGrotesque-Bold.ttf';
-$fontReg  = '/mnt/skills/examples/canvas-design/canvas-fonts/BricolageGrotesque-Regular.ttf';
-
-if (is_file($fontBold) && is_file($fontReg)) {
-    // Wordmark chico arriba.
-    imagettftext($img, 22, 0, 80, 90, $inkDim, $fontReg, 'materiales.com.py');
+if (is_file($fontBold) && is_file($fontMono)) {
+    // Wordmark chico arriba, en mono (como el eyebrow del sitio).
+    imagettftext($img, 20, 0, 80, 100, $inkDim, $fontMono, 'MATERIALES.COM.PY');
 
     // Título en dos líneas, tamaño grande.
-    imagettftext($img, 64, 0, 78, 260, $ink, $fontBold, 'Materiales de');
-    imagettftext($img, 64, 0, 78, 340, $ink, $fontBold, 'construcción');
+    imagettftext($img, 62, 0, 78, 270, $ink, $fontBold, 'Materiales de');
+    imagettftext($img, 62, 0, 78, 350, $ink, $fontBold, 'construcción');
 
-    // Bajada / CTA.
-    imagettftext($img, 30, 0, 80, 420, $accent, $fontBold, 'Cotizá gratis');
-    imagettftext($img, 22, 0, 80, 470, $inkDim, $fontReg, 'Hasta 3 proveedores verificados te escriben por WhatsApp');
+    // Bajada / CTA, sobre un bloque amarillo (como el panel de cotización del sitio).
+    imagefilledrectangle($img, 68, 400, 680, 470, $accent);
+    imagettftext($img, 26, 0, 84, 445, $ink, $fontBold, 'Cotizá gratis');
+    imagettftext($img, 18, 0, 84, 500, $inkDim, $fontMono, 'Hasta 3 proveedores verificados te escriben por WhatsApp');
 } else {
-    fwrite(STDERR, "Aviso: no se encontró la fuente Bricolage Grotesque, se usa la fuente interna de GD.\n");
+    fwrite(STDERR, "Aviso: no se encontraron las fuentes, se usa la fuente interna de GD.\n");
     imagestring($img, 5, 80, 260, 'Materiales de construccion', $ink);
-    imagestring($img, 5, 80, 300, 'Cotiza gratis', $accent);
+    imagestring($img, 5, 80, 300, 'Cotiza gratis', $ink);
 }
 
 $outDir = __DIR__ . '/../assets/img';

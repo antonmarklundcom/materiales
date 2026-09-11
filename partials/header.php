@@ -38,7 +38,7 @@ header('Content-Type: text/html; charset=utf-8');
 <?php endif; ?>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500;9..40,700;9..40,900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
 <link rel="stylesheet" href="/assets/css/site.css">
 <script src="/assets/js/consent.js" defer></script>
 <?php require PUBLIC_ROOT . '/partials/analytics.php'; ?>
@@ -48,7 +48,7 @@ header('Content-Type: text/html; charset=utf-8');
 </head>
 <body class="<?= e($page['body_class']) ?>">
 <a class="skip-link" href="#contenido">Ir al contenido</a>
-<header class="site-header band--dark grain" data-sticky-header>
+<header class="site-header" data-sticky-header>
   <div class="wrap site-header__row">
     <a class="site-header__brand" href="/"><?= e($site['brand']) ?></a>
     <nav class="site-nav" aria-label="Principal">
@@ -57,6 +57,9 @@ header('Content-Type: text/html; charset=utf-8');
       <a href="/cotizar/">Cotizar</a>
       <a href="/contacto/">Contacto</a>
     </nav>
+    <?php if (($site['horarios'] ?? '') !== ''): ?>
+    <span class="site-header__hours"><?= e($site['horarios']) ?></span>
+    <?php endif; ?>
   </div>
 </header>
 <?php if ($page['breadcrumbs'] !== []): ?>

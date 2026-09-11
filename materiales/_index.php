@@ -28,7 +28,7 @@ page([
 
 require PUBLIC_ROOT . '/partials/header.php';
 ?>
-<div class="page-hero band--dark grain bleed">
+<div class="page-hero bleed">
   <div class="wrap">
     <h1>Materiales de construcción en Paraguay</h1>
     <p class="lead">Elegí el rubro que necesitás y pedí tu cotización en un paso.</p>

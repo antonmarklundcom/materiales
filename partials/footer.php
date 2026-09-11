@@ -16,7 +16,7 @@ $whatsapp = preg_replace('/\D+/', '', (string) ($site['whatsapp'] ?? ''));
 ?>
 </main>
 <footer class="site-footer">
-  <div class="site-footer__ribbon band--dark grain">
+  <div class="site-footer__ribbon">
     <div class="wrap site-footer__trust">
       <p class="site-footer__name"><?= e($site['legal_name'] !== '' ? $site['legal_name'] : $site['brand']) ?></p>
       <?php if (($site['ruc'] ?? '') !== ''): ?><p>RUC: <?= e($site['ruc']) ?><?= ($site['iva_status'] ?? '') !== '' ? ' · ' . e($site['iva_status']) : '' ?></p><?php endif; ?>
