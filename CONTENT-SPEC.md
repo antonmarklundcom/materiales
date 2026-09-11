@@ -412,3 +412,87 @@ cotización`, ninguna dosificación afirmada como verdad universal.
 armado`, `encofrado`, `losas` y `zapatas` (~1.900, conocimiento constructivo): son términos
 que ninguna página de material persigue, precisamente porque su intención no es comprar sino
 entender.
+
+## 12. Calculadoras (`/calculadoras/{slug}/`) — fase 12
+
+Decisión §1.21. Toda calculadora cumple, sin excepción:
+
+1. **Calcula en el navegador y explica la cuenta en prosa.** El resultado sale de
+   `assets/js/calc.js`; la misma cuenta está escrita con palabras y con un ejemplo resuelto en
+   `content/calculadoras/{slug}.php`. Sin JS la página sigue siendo útil y es lo que rankea.
+2. **Declara sus supuestos** (dosificación, desperdicio, espesor típico) en pantalla.
+3. **Cierra todo resultado con esta frase, literal**:
+   > Es una referencia — confirmá con tu proveedor.
+4. **Termina en el formulario** con el material preseleccionado y la `cantidad` precargada
+   desde el resultado.
+5. **Nunca un precio, nunca una moneda, nunca una marca.** La última FAQ es la de precio
+   (§11.3), adaptada: `¿Cuánto cuesta …?` respondida con factores y el CTA.
+6. **Voseo** en todo CTA y toda instrucción ("cargá", "mirá", "pedí").
+
+### 12.1 Dosificaciones — de dónde salen los números
+
+Las proporciones son las **dosificaciones estándar en volumen** que usan los manuales de obra
+(cemento : arena : ripio, o cemento : cal : arena). No se inventa ninguna cifra "paraguaya":
+lo único que se hace es convertir la proporción declarada a kilos y bolsas con estos dos
+datos, que se escriben en la página para que cualquiera rehaga la cuenta:
+
+- **Bolsa de cemento = 50 kg**, con una densidad aparente de ~1.440 kg/m³ ⇒ **0,035 m³ por
+  bolsa** suelta.
+- **Desperdicio por defecto: 10 %**, que es el que se agrega en obra por relleno de
+  irregularidades, pérdidas de mezcla y ajuste de niveles. Es un supuesto, y se declara.
+
+| Uso | Dosificación (volumen) | Cemento por m³ de mezcla | Otros áridos por m³ |
+|---|---|---|---|
+| Carpeta / alisado | 1 : 3 (cemento : arena) | 450 kg — **9 bolsas** | 1,00 m³ arena |
+| Revoque grueso y mampostería | 1 : 4 (cemento : arena) | 350 kg — **7 bolsas** | 1,05 m³ arena |
+| Mortero con cal (revoque) | 1 : 1 : 6 (cemento : cal : arena) | 200 kg — **4 bolsas** | 100 kg cal + 1,05 m³ arena |
+| Contrapiso (hormigón pobre) | 1 : 3 : 5 (cemento : arena : ripio) | 250 kg — **5 bolsas** | 0,50 m³ arena + 0,85 m³ ripio |
+| Hormigón estructural | 1 : 2 : 3 (cemento : arena : ripio) | 350 kg — **7 bolsas** | 0,50 m³ arena + 0,75 m³ ripio + ~175 L agua |
+
+Regla de ampliación: si una calculadora nueva necesita una dosificación que no está en esta
+tabla, se **agrega acá en el mismo PR**, con su proporción y su conversión — nunca se usa un
+número suelto en el código de una calculadora.
+
+Frases obligatorias sobre dosificación, en la prosa de toda calculadora que use la tabla:
+
+> La dosificación de tu obra la define quien la calcula. Estas proporciones son las de manual;
+> si tu maestro o tu calculista usa otra, cambiá la proporción y rehacé la cuenta.
+
+### 12.2 Redacción cerrada de una calculadora
+
+| Elemento | Regla |
+|---|---|
+| H1 | La pregunta tal como se busca, en minúscula salvo la inicial: `Cuántas bolsas de cemento por m²` |
+| Bajada | Qué calcula y con qué datos, en una línea |
+| Resultados | Sustantivo + unidad, siempre en **enteros hacia arriba** para bolsas y unidades que se compran enteras |
+| Supuestos | Lista visible, arriba o debajo del resultado, con la dosificación usada y el desperdicio |
+| Prosa | 350–500 palabras: qué mueve el número, la cuenta en palabras, **un ejemplo resuelto** con números concretos, y qué pedirle al proveedor |
+| FAQ | 3 a 5, la última la de precio (§11.3) |
+| CTA | `Pedí tu cotización` con el material preseleccionado |
+
+Prohibido: precios, rendimientos de marcas, "el mejor", plazos de entrega y cualquier tabla
+de medidas que no se pueda sostener con el propio texto (§11.4).
+
+### 12.3 Esquema de la fórmula (`<script type="application/json" data-calc>`)
+
+La fórmula vive en el archivo de contenido, como un **árbol de expresiones** en JSON que
+`calc.js` evalúa nodo por nodo. Nunca `eval`, nunca una fórmula como cadena de texto: lo que
+no está en esta lista de operaciones no se puede ejecutar.
+
+```json
+{
+  "tables":  { "cemento_kg_m3": { "contrapiso": 250, "revoque": 350, "carpeta": 450 } },
+  "outputs": [
+    { "id": "bolsas", "expr": { "op": "ceil", "args": [ … ] } }
+  ]
+}
+```
+
+- **Nodos hoja**: `{"var": "m2"}` (un input declarado en `data/calculators.php`),
+  `{"const": 0.035}`, `{"table": "cemento_kg_m3", "key": {"var": "tipo"}}`.
+- **Nodos operación**: `{"op": "<op>", "args": [ … ]}` con `op` ∈
+  `add`, `sub`, `mul`, `div`, `ceil`, `floor`, `round`, `min`, `max`.
+- Cualquier nodo desconocido, división por cero o entrada no numérica ⇒ el resultado se
+  muestra como `—` y la prosa sigue siendo la respuesta. Nunca una excepción en pantalla.
+- `cta_quantity_template` de `data/calculators.php` arma la `cantidad` del formulario con los
+  ids de salida entre llaves: `"{bolsas} bolsas de cemento de 50 kg"`.

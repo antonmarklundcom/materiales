@@ -4,8 +4,10 @@ Documento vivo: qué está hecho, qué falta y qué depende de Anton. Se actuali
 fase. El plan está en `plan.md`; las instrucciones por fase, en `prompts/`; el copy cerrado,
 en `CONTENT-SPEC.md`; los desvíos menores, en `KNOWN-ISSUES.md`.
 
-_Última actualización: 2026-09-11 (revisión de Fable: informe de mejoras y plan de las fases
-9–15 — ver `docs/IMPROVEMENT-REPORT.md` y `plan.md` §11)._
+_Última actualización: 2026-09-11 (ventana Opus de la mejora: fases 9 a 12 mergeadas — home y
+capa de conversión, `/proveedores/`, motor de enlaces cruzados y slots de imagen, y la base de
+calculadoras. Quedan pendientes las fases 13 a 15, ventana Sonnet. Detalle por fase en
+`docs/log/`)._
 
 ## Estado por fase
 
@@ -21,8 +23,8 @@ _Última actualización: 2026-09-11 (revisión de Fable: informe de mejoras y pl
 | 8 Imagery + QA + launch | Sonnet (misma ventana, PR 3/3) | ✅ Mergeada | #13 | QA SEO completo, `og-default.jpg` de fallback (sin fotografía real — CDN bloqueado, ver KNOWN-ISSUES #22), checklist de salida |
 | 9 Home & conversion | Opus (ventana 1/2, PR 1/4) | ✅ Mergeada | #18 | Home real (franja de datos, cómo funciona, prosa local, teaser de guías, formulario), CTA en héroes, barra móvil pegajosa, próximos pasos en /gracias/ |
 | 10 Proveedores | Opus (misma ventana, PR 2/4) | ✅ Mergeada | #19 | `/proveedores/` (landing de captación: qué recibís, cómo funciona, condiciones desde `supplier_pitch`, rubros, FAQ), formulario de proveedor, `tipo=proveedor` en el handler, consentimiento `proveedor-v1`, cláusula de privacidad y enlace "Para proveedores" en nav y pie |
-| 11 Cross-links + slots de imagen | Opus (misma ventana, PR 3/4) | ⏳ Pendiente | — | "Guías relacionadas" desde datos, clave `image` opcional, og:image por página |
-| 12 Calculadoras (base) | Opus (misma ventana, PR 4/4) | ⏳ Pendiente | — | Ruta `/calculadoras/`, contrato de datos, `calc.js`, CONTENT-SPEC §12, 1 calculadora |
+| 11 Cross-links + slots de imagen | Opus (misma ventana, PR 3/4) | ✅ Mergeada | #20 | `guides_for()` / `calculators_for()` / `image_for()`, `partials/related.php` y `partials/hero-image.php`, og:image por página y `Product.image`; clave `image` documentada y validada (sin valores todavía) |
+| 12 Calculadoras (base) | Opus (misma ventana, PR 4/4) | ✅ Mergeada | #21 | CONTENT-SPEC §12 (dosificaciones + esquema de fórmula), ruta `/calculadoras/`, `data/calculators.php`, plantilla, `assets/js/calc.js` y la calculadora `bolsas-de-cemento-por-m2` |
 | 13 Calculadoras + guías ola 3 | Sonnet (ventana 2/2, PR 1/3) | ⏳ Pendiente | — | 3 calculadoras, 6 guías |
 | 14 Endurecimiento técnico | Sonnet (misma ventana, PR 2/3) | ⏳ Pendiente | — | deflate/headers, fuentes locales, lastmod, replay de leads, test de overflow |
 | 15 Link pass + imágenes + QA | Sonnet (misma ventana, PR 3/3) | ⏳ Pendiente | — | Enlaces editoriales, fotos si existen, KNOWN-ISSUES, informe de cierre |

@@ -42,6 +42,7 @@ $site       = $load('site');
 $categories = $load('categories');
 $materials  = $load('materials');
 $guides     = $load('guides');
+$calculators = is_file($root . '/data/calculators.php') ? $load('calculators') : [];
 
 // ---- site.php: claves obligatorias -------------------------------------------------
 foreach (['brand', 'base_url', 'locale', 'area_served', 'staging_noindex', 'consent_version', 'max_proveedores'] as $key) {
@@ -135,6 +136,110 @@ foreach ($guides as $slug => $guide) {
     }
 }
 
+// ---- fase 12: calculadoras (decisión §1.21, CONTENT-SPEC §12) -----------------------
+// El archivo puede no existir (lo crea la fase 12): si existe, se valida entero.
+foreach ($calculators as $slug => $calculator) {
+    $where = "calculators.php[{$slug}]";
+    $checkEntry('calculators.php', (string) $slug, $calculator, [
+        'name', 'status', 'order', 'title', 'meta', 'keyword', 'intro',
+        'inputs', 'outputs', 'formula_note', 'assumptions', 'related', 'faq',
+        'cta_material', 'cta_quantity_template',
+    ]);
+
+    if (count($calculator['faq'] ?? []) < 3 || count($calculator['faq'] ?? []) > 5) {
+        $fail(sprintf('%s: %d preguntas en faq (se esperan 3 a 5)', $where, count($calculator['faq'] ?? [])));
+    }
+    $lastQ = ($calculator['faq'] ?? []) !== [] ? (string) (end($calculator['faq'])['q'] ?? '') : '';
+    if (!str_starts_with($lastQ, '¿Cuánto cuesta')) {
+        $fail("{$where}: la última faq tiene que ser '¿Cuánto cuesta …?' (CONTENT-SPEC §11.3)");
+    }
+
+    foreach (['inputs', 'outputs', 'assumptions', 'related'] as $listKey) {
+        if (($calculator[$listKey] ?? []) === []) {
+            $fail("{$where}: '{$listKey}' vacío");
+        }
+    }
+    if (trim((string) ($calculator['formula_note'] ?? '')) === '') {
+        $fail("{$where}: 'formula_note' vacío — la cuenta tiene que estar visible (CONTENT-SPEC §12)");
+    }
+
+    $outputIds = [];
+    foreach ($calculator['outputs'] ?? [] as $i => $output) {
+        if (!preg_match('/^[a-z0-9_]+$/', (string) ($output['id'] ?? ''))) {
+            $fail("{$where}: outputs[{$i}] sin id válido");
+            continue;
+        }
+        $outputIds[] = (string) $output['id'];
+    }
+    foreach ($calculator['inputs'] ?? [] as $i => $input) {
+        if (!preg_match('/^[a-z0-9_]+$/', (string) ($input['id'] ?? ''))) {
+            $fail("{$where}: inputs[{$i}] sin id válido");
+        }
+        if (($input['type'] ?? 'number') === 'select' && ($input['options'] ?? []) === []) {
+            $fail("{$where}: inputs[{$i}] es un selector sin opciones");
+        }
+    }
+
+    // La plantilla de cantidad sólo puede nombrar salidas que existen: si no, el formulario
+    // se precarga con un hueco y el proveedor recibe un pedido sin cantidad.
+    preg_match_all('/\{([a-z0-9_]+)\}/i', (string) ($calculator['cta_quantity_template'] ?? ''), $placeholders);
+    foreach ($placeholders[1] ?? [] as $placeholder) {
+        if (!in_array($placeholder, $outputIds, true)) {
+            $fail("{$where}: cta_quantity_template usa '{{$placeholder}}' y no hay una salida con ese id");
+        }
+    }
+
+    $ctaMaterial = (string) ($calculator['cta_material'] ?? '');
+    if ($ctaMaterial !== '' && !isset($materials[$ctaMaterial]) && !isset($categories[$ctaMaterial])) {
+        $fail("{$where}: cta_material '{$ctaMaterial}' no existe en materials.php ni en categories.php");
+    }
+
+    foreach ($calculator['related'] ?? [] as $target) {
+        if (!isset($materials[$target]) && !isset($categories[$target]) && !isset($guides[$target])) {
+            $fail("{$where}: related '{$target}' no existe en materials.php, categories.php ni guides.php");
+        }
+    }
+
+    $contentFile = $root . '/content/calculadoras/' . $slug . '.php';
+    if (($calculator['status'] ?? '') === 'activa' && !is_file($contentFile)) {
+        $fail("{$where}: está 'activa' pero falta content/calculadoras/{$slug}.php");
+    }
+    if (is_file($contentFile)) {
+        $body = (string) @file_get_contents($contentFile);
+        if (!preg_match('#<script type="application/json" data-calc>(.*?)</script>#s', $body, $m)) {
+            $fail("content/calculadoras/{$slug}.php: falta el bloque <script type=\"application/json\" data-calc>");
+        } else {
+            $formula = json_decode(trim($m[1]), true);
+            if (!is_array($formula) || !is_array($formula['outputs'] ?? null)) {
+                $fail("content/calculadoras/{$slug}.php: el JSON de la fórmula no parsea o no trae 'outputs'");
+            } else {
+                $formulaIds = array_map(static fn(array $o): string => (string) ($o['id'] ?? ''), $formula['outputs']);
+                foreach ($outputIds as $outputId) {
+                    if (!in_array($outputId, $formulaIds, true)) {
+                        $fail("content/calculadoras/{$slug}.php: la fórmula no calcula la salida '{$outputId}' declarada en el dato");
+                    }
+                }
+            }
+        }
+    }
+}
+
+// La frase de cierre de TODO resultado es literal (CONTENT-SPEC §12): vive una sola vez, en
+// la plantilla, así que se verifica una sola vez.
+if ($calculators !== []) {
+    $calcTemplate = (string) @file_get_contents($root . '/calculadoras/index.php');
+    if (!str_contains($calcTemplate, 'Es una referencia — confirmá con tu proveedor.')) {
+        $fail('calculadoras/index.php: falta la frase literal "Es una referencia — confirmá con tu proveedor." (CONTENT-SPEC §12)');
+    }
+}
+
+foreach (glob($root . '/content/calculadoras/*.php') ?: [] as $file) {
+    $slug = basename($file, '.php');
+    if (!isset($calculators[$slug])) {
+        $fail("content/calculadoras/{$slug}.php no tiene entrada en data/calculators.php");
+    }
+}
+
 // ---- fase 11: imágenes declaradas (decisión §1.20) ----------------------------------
 // Una imagen DECLARADA cuyo archivo no está en disco es una promesa rota: el héroe y el
 // og:image de esa página se caen al fallback sin que nadie se entere. Declararla y subirla
@@ -152,7 +257,7 @@ $checkImage = static function (string $where, string $value) use ($root, $fail):
     }
 };
 
-foreach (['categories.php' => $categories, 'materials.php' => $materials, 'guides.php' => $guides] as $file => $entries) {
+foreach (['categories.php' => $categories, 'materials.php' => $materials, 'guides.php' => $guides, 'calculators.php' => $calculators] as $file => $entries) {
     foreach ($entries as $slug => $entry) {
         $checkImage("{$file}[{$slug}]", trim((string) ($entry['image'] ?? '')));
     }
@@ -505,12 +610,13 @@ if ($errors !== []) {
 }
 
 printf(
-    "SMOKE OK — %d categorías (%d activas), %d materiales (%d activos), %d guías; %d slugs únicos en /materiales/\n",
+    "SMOKE OK — %d categorías (%d activas), %d materiales (%d activos), %d guías, %d calculadoras; %d slugs únicos en /materiales/\n",
     count($categories),
     count(array_filter($categories, static fn(array $c): bool => $c['status'] === 'activa')),
     count($materials),
     count(array_filter($materials, static fn(array $m): bool => $m['status'] === 'activa')),
     count($guides),
+    count($calculators),
     count($categories) + count($materials)
 );
 exit(0);

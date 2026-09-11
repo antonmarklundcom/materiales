@@ -26,16 +26,18 @@ ErrorDocument 404 /404.php
   RewriteRule ^sitemap\.xml$ sitemap.php [L]
 
   # Canonicalización: /materiales/hierro → /materiales/hierro/ (301, una sola forma de URL).
-  RewriteCond %{REQUEST_URI} ^/(materiales|guias)/[a-z0-9-]+$
+  RewriteCond %{REQUEST_URI} ^/(materiales|guias|calculadoras)/[a-z0-9-]+$
   RewriteRule ^(.*)$ /$1/ [R=301,L]
 
   # Índices.
   RewriteRule ^materiales/$ materiales/index.php [L,QSA]
   RewriteRule ^guias/$ guias/index.php [L,QSA]
+  RewriteRule ^calculadoras/$ calculadoras/index.php [L,QSA]
 
   # Namespace plano: /materiales/{slug}/ sirve categorías Y materiales (plan §2).
   RewriteRule ^materiales/([a-z0-9-]+)/$ materiales/index.php?slug=$1 [L,QSA]
   RewriteRule ^guias/([a-z0-9-]+)/$ guias/index.php?slug=$1 [L,QSA]
+  RewriteRule ^calculadoras/([a-z0-9-]+)/$ calculadoras/index.php?slug=$1 [L,QSA]
 </IfModule>
 
 <IfModule mod_headers.c>

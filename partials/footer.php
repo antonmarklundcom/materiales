@@ -34,6 +34,7 @@ $whatsapp = preg_replace('/\D+/', '', (string) ($site['whatsapp'] ?? ''));
       <nav class="site-footer__nav" aria-label="Pie">
         <a href="/materiales/">Materiales</a>
         <a href="/guias/">Guías</a>
+        <a href="/calculadoras/">Calculadoras</a>
         <a href="/cotizar/">Pedir cotización</a>
         <a href="/proveedores/">Para proveedores</a>
         <a href="/contacto/">Contacto</a>

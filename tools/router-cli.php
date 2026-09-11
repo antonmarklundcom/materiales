@@ -43,16 +43,16 @@ if (str_ends_with($path, '.php') && is_file($publicRoot . $path)) {
 }
 
 // Canonicalización a barra final, igual que el 301 del .htaccess.
-if (preg_match('#^/(materiales|guias)/([a-z0-9-]+)$#', $path, $matches)) {
+if (preg_match('#^/(materiales|guias|calculadoras)/([a-z0-9-]+)$#', $path, $matches)) {
     header('Location: ' . $path . '/', true, 301);
     return true;
 }
 
-if (preg_match('#^/(materiales|guias)/([a-z0-9-]+)/$#', $path, $matches)) {
+if (preg_match('#^/(materiales|guias|calculadoras)/([a-z0-9-]+)/$#', $path, $matches)) {
     return $serve($matches[1] . '/index.php', ['slug' => $matches[2]]);
 }
 
-if ($path === '/materiales/' || $path === '/guias/') {
+if ($path === '/materiales/' || $path === '/guias/' || $path === '/calculadoras/') {
     return $serve(trim($path, '/') . '/index.php');
 }
 

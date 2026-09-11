@@ -23,7 +23,7 @@ $add = static function (string $path, ?string $contentFile = null) use (&$urls):
 };
 
 // Páginas fijas indexables.
-foreach (['/', '/materiales/', '/guias/', '/cotizar/', '/proveedores/', '/contacto/', '/politica-de-privacidad/'] as $path) {
+foreach (['/', '/materiales/', '/guias/', '/calculadoras/', '/cotizar/', '/proveedores/', '/contacto/', '/politica-de-privacidad/'] as $path) {
     $add($path);
 }
 
@@ -42,6 +42,12 @@ foreach (data('materials') as $slug => $material) {
 foreach (data('guides') as $slug => $guide) {
     if (is_published($guide)) {
         $add('/guias/' . $slug . '/', CONTENT_DIR . '/guias/' . $slug . '.php');
+    }
+}
+
+foreach (data('calculators') as $slug => $calculator) {
+    if (is_published($calculator)) {
+        $add('/calculadoras/' . $slug . '/', CONTENT_DIR . '/calculadoras/' . $slug . '.php');
     }
 }
 
