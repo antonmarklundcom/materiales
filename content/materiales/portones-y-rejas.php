@@ -37,5 +37,8 @@
   Volvé a <a href="/materiales/aberturas/">aberturas</a> para ver el resto de la categoría, o
   mirá <a href="/materiales/tejido-de-alambre/">tejido de alambre</a> y
   <a href="/materiales/perfiles-metalicos/">perfiles metálicos</a> si necesitás otras soluciones
-  de cerramiento.
+  de cerramiento. Y si todavía no tenés las medidas de cada vano o frente ordenadas para pedir
+  presupuesto, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">cómo hacer un cómputo métrico</a> te ayuda a
+  armar esa lista.
 </p>

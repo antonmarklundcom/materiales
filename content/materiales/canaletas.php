@@ -39,5 +39,7 @@
   <a href="/materiales/chapa-de-zinc/">chapa de zinc</a> o la
   <a href="/materiales/chapa-trapezoidal/">chapa trapezoidal</a> del faldón, o mirá el
   <a href="/materiales/cielorraso-de-pvc/">cielorraso de PVC</a> para la terminación del
-  alero.
+  alero. Antes de pedir, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">Cómo hacer un cómputo métrico</a> te ayuda a
+  calcular bien el perímetro de alero y la cantidad de metros que necesitás.
 </p>

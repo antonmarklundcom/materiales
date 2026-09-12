@@ -37,5 +37,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/impermeabilizantes/">impermeabilizantes</a> para ver el resto
   de opciones, o mirá la <a href="/materiales/membrana-liquida/">membrana líquida</a> si la
-  humedad viene del techo y no de la pared.
+  humedad viene del techo y no de la pared. Y si el origen real está en una losa o azotea, la
+  guía <a href="/guias/como-impermeabilizar-una-losa/">cómo impermeabilizar una losa</a> ayuda a
+  distinguir el síntoma del problema de fondo.
 </p>

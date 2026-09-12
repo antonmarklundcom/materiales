@@ -40,5 +40,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/aridos/">áridos</a> para ver el resto de opciones, o mirá el
   <a href="/materiales/escombro-relleno/">escombro para relleno</a> si tu relleno no necesita
-  compactación estructural.
+  compactación estructural. Para calcular el volumen de relleno o de los materiales que van
+  encima, la guía <a href="/guias/como-hacer-un-computo-metrico/">Cómo hacer un cómputo
+  métrico</a> te ayuda a ordenar las cantidades antes de pedir.
 </p>

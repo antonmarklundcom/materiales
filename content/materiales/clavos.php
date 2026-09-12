@@ -39,5 +39,8 @@
 <p class="closing">
   Volvé a <a href="/materiales/hierro/">hierro</a> para ver el resto de materiales del rubro,
   o mirá el <a href="/materiales/alambre-negro/">alambre negro</a> si también necesitás atar
-  armadura en el mismo encofrado.
+  armadura en el mismo encofrado. Si preferís calcular la cantidad de material antes de pedir en
+  vez de estimarla a ojo, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">Cómo hacer un cómputo métrico</a> explica cómo
+  hacerlo.
 </p>

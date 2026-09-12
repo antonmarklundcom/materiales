@@ -40,4 +40,7 @@
   <a href="/materiales/bloque-de-hormigon/">bloque de hormigón</a>, o mirá la
   <a href="/materiales/arena-lavada/">arena lavada</a> y la
   <a href="/materiales/piedra-triturada/">piedra triturada</a> para la base de tu adoquinado.
+  Para calcular los metros cuadrados y el volumen de base que necesitás, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">Cómo hacer un cómputo métrico</a> te sirve de
+  ayuda.
 </p>

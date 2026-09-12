@@ -26,7 +26,9 @@
   por m² o tablilla, canaletas por metro lineal. Lo que sí es común a todos es que el flete
   pesa en el presupuesto final según la zona de entrega, y que conviene pedir en la misma
   consulta los accesorios de terminación —cumbreras, babetas, tornillería, bajadas de agua—
-  para no fraccionar el flete en varios viajes. Pasanos las medidas del techo, la pendiente y
-  el material que tenés en mente, y te armamos una cotización que cubra estructura y
-  terminación juntas.
+  para no fraccionar el flete en varios viajes. Si todavía dudás entre chapa y teja, la guía
+  <a href="/guias/chapa-o-teja-que-techo-conviene/">Chapa o teja: qué techo conviene</a> compara
+  peso, aislación y mantenimiento de cada opción antes de pedir presupuesto. Pasanos las
+  medidas del techo, la pendiente y el material que tenés en mente, y te armamos una
+  cotización que cubra estructura y terminación juntas.
 </p>

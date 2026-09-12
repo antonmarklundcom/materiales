@@ -41,5 +41,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/chapas-y-techos/">chapas y techos</a> para ver el resto de
   opciones, o mirá la <a href="/materiales/chapa-trapezoidal/">chapa trapezoidal</a> si tu
-  ambiente no necesita aislación.
+  ambiente no necesita aislación. Si dudás si te conviene el panel o una chapa simple, la guía
+  <a href="/guias/que-chapa-conviene-para-techo/">Qué chapa conviene para tu techo</a> compara
+  ambas opciones.
 </p>

@@ -38,5 +38,8 @@
   Volvé a <a href="/materiales/chapas-y-techos/">chapas y techos</a>, compará con la
   <a href="/materiales/chapa-de-zinc/">chapa de zinc</a> o la
   <a href="/materiales/chapa-trapezoidal/">chapa trapezoidal</a>, o mirá la
-  <a href="/materiales/teja-espanola/">teja española</a> si buscás otra estética de techo.
+  <a href="/materiales/teja-espanola/">teja española</a> si buscás otra estética de techo. Si
+  todavía no decidiste entre chapa y teja para tu techo, la guía
+  <a href="/guias/chapa-o-teja-que-techo-conviene/">Chapa o teja: qué techo conviene</a> repasa
+  las diferencias clave.
 </p>

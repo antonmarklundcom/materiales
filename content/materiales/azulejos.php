@@ -33,7 +33,10 @@
   necesaria de una sola vez para evitar diferencias de tono a mitad de pared. Si el diseño tiene
   relieve, calculá bien los cortes en esquinas y zócalos, porque el relieve complica más el
   corte prolijo que una pieza lisa. Para baño en particular, priorizá diseños con buena
-  resistencia a la humedad constante y a la limpieza frecuente con productos fuertes.
+  resistencia a la humedad constante y a la limpieza frecuente con productos fuertes. Si no
+  tenés claro cuántos m² de pared vas a cubrir, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">cómo hacer un cómputo métrico</a> te muestra
+  cómo llegar a esa medida sin dejar aberturas de más ni de menos en la cuenta.
 </p>
 
 <p class="closing">

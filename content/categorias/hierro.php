@@ -25,5 +25,8 @@
   por ejemplo, o perfiles más chapa—, pedilos juntos en la misma consulta: aparte de ahorrar
   flete, el proveedor puede ofrecerte mejor precio por el volumen conjunto. Y si tenés el plano
   o el cálculo estructural a mano, pasá diámetros, medidas y cantidades tal cual figuran ahí;
-  si no lo tenés, contá qué vas a construir y el proveedor te ayuda a definir qué pedir.
+  si no lo tenés, contá qué vas a construir y el proveedor te ayuda a definir qué pedir. Si
+  todavía no sabés qué diámetro corresponde a cada pieza, la guía
+  <a href="/guias/que-diametro-de-hierro-para-que-uso/">Qué diámetro de hierro para qué uso</a>
+  te ayuda a orientarte antes de pedir.
 </p>

@@ -38,5 +38,8 @@
 <p class="closing">
   Volvé a <a href="/materiales/impermeabilizantes/">impermeabilizantes</a> para ver el resto
   de opciones, o si la junta es de una abertura, mirá el
-  <a href="/materiales/vidrio-templado/">vidrio templado</a> con el que suele combinarse.
+  <a href="/materiales/vidrio-templado/">vidrio templado</a> con el que suele combinarse. Y si
+  lo que tenés por delante es impermeabilizar una losa completa, la guía
+  <a href="/guias/como-impermeabilizar-una-losa/">cómo impermeabilizar una losa</a> ubica dónde
+  entran estos selladores dentro de ese trabajo.
 </p>

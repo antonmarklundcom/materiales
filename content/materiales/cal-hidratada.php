@@ -34,4 +34,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/cemento-y-cal/">cemento y cal</a> para ver el resto de la categoría, o
   mirá el <a href="/materiales/cemento/">cemento</a> si tu mezcla necesita más resistencia estructural.
+  Para estimar cuánta cal, cemento y arena lleva tu revoque, podés usar la
+  <a href="/calculadoras/revoque-y-mortero/">calculadora de cal, cemento y arena por m² de
+  revoque</a> antes de pedir el material.
 </p>

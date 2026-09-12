@@ -38,5 +38,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/hierro/">hierro</a> para ver el resto de materiales del rubro,
   o mirá la <a href="/materiales/varilla-de-hierro/">varilla de hierro</a> si tu pieza necesita
-  armado calculado y no malla.
+  armado calculado y no malla. Y si lo que estás por armar es una columna, la guía
+  <a href="/guias/cuanto-hierro-lleva-una-columna/">Cuánto hierro lleva una columna</a> te ayuda
+  a estimar cuánta varilla vas a necesitar.
 </p>

@@ -26,5 +26,7 @@
   zona de entrega y el acceso a la obra influyen en el total. Si tu obra necesita más de un tipo
   —por ejemplo ladrillo común para pared y ladrillo hueco para tabiques, o ladrillo prensado
   para el frente y ladrillo común para el resto— conviene pedirlos juntos para no pagar dos
-  fletes distintos el mismo día.
+  fletes distintos el mismo día. Antes de pedir, la
+  <a href="/calculadoras/ladrillos-por-m2/">calculadora de ladrillos o bloques por m²</a> te da
+  una estimación de cuántas piezas necesitás según el metro cuadrado de tu pared.
 </p>

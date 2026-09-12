@@ -37,5 +37,8 @@
 <p class="closing">
   Volvé a <a href="/materiales/madera/">madera</a> para ver el resto de la categoría, o mirá
   los <a href="/materiales/puntales/">puntales</a> que vas a necesitar mientras se arma y fragua
-  el resto de la estructura.
+  el resto de la estructura. Si además querés entender qué peso tiene la estructura de techo en
+  el presupuesto total de la obra, la guía
+  <a href="/guias/de-que-depende-el-costo-de-construir-en-paraguay/">De qué depende el costo
+  de construir en Paraguay</a> te da un panorama antes de pedir cotización.
 </p>

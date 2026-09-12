@@ -36,5 +36,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/madera/">madera</a> para ver el resto de la categoría, o mirá
   la <a href="/materiales/terciada/">terciada</a> si el encofrado necesita una terminación más
-  prolija.
+  prolija. Para el paso a paso de armar el molde antes de volcar el hormigón, la guía
+  <a href="/guias/losa-de-hormigon-encofrado-y-hierro/">Losa de hormigón: encofrado y hierro</a>
+  repasa cómo se ordena el encofrado y el hierro juntos.
 </p>

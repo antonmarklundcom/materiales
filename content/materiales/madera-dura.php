@@ -59,5 +59,8 @@
 <p class="closing">
   Volvé a <a href="/materiales/madera/">madera</a> para ver el resto de la categoría, o mirá
   los <a href="/materiales/tirantes/">tirantes</a> si tu estructura no necesita quedar
-  expuesta ni a la vista.
+  expuesta ni a la vista. Como la especie elegida pesa fuerte en el precio, la guía
+  <a href="/guias/de-que-depende-el-costo-de-construir-en-paraguay/">De qué depende el costo
+  de construir en Paraguay</a> ayuda a ver ese peso dentro del presupuesto general antes de
+  decidir entre curupay, lapacho o eucalipto.
 </p>

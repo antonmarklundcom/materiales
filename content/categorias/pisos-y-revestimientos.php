@@ -28,5 +28,8 @@
   el sistema de fijación en el caso de vinílicos) se cotizan aparte de la pieza, y conviene
   pedirlos juntos para que no falte nada a mitad de obra. Si dudás entre dos materiales para el
   mismo ambiente, contanos el uso —piso, pared, interior o exterior— y te orientamos hacia la
-  categoría que corresponde.
+  categoría que corresponde. Y si todavía no sabés cuánto va a pesar esta partida en el total de
+  la obra, la guía
+  <a href="/guias/de-que-depende-el-costo-de-construir-en-paraguay/">de qué depende el costo de
+  construir en Paraguay</a> te da una idea antes de pedir cotización.
 </p>

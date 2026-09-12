@@ -51,5 +51,7 @@
   <a href="/materiales/chapa-trapezoidal/">chapa trapezoidal</a> o la
   <a href="/materiales/chapa-termoacustica/">chapa termoacústica</a>, o mirá los
   <a href="/materiales/perfiles-metalicos/">perfiles metálicos</a> para la estructura de
-  apoyo.
+  apoyo. Si aún no tenés claro qué calibre y tipo de chapa pedir, la guía
+  <a href="/guias/que-chapa-conviene-para-techo/">Qué chapa conviene para tu techo</a> repasa
+  las diferencias antes de cotizar.
 </p>

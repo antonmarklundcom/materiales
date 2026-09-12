@@ -36,5 +36,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/aberturas/">aberturas</a> para comparar con otros tipos de
   puerta, o mirá <a href="/materiales/madera-dura/">madera dura</a> si buscás la materia prima
-  para un trabajo a medida.
+  para un trabajo a medida. Y como cada puerta se cotiza sobre el vano real, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">cómo hacer un cómputo métrico</a> te sirve
+  para tener esas medidas ordenadas antes de pedir presupuesto.
 </p>

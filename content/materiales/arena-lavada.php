@@ -39,5 +39,8 @@
 <p class="closing">
   Volvé a <a href="/materiales/aridos/">áridos</a> para ver el resto de opciones, o mirá la
   <a href="/materiales/arena-gorda/">arena gorda</a> si tu trabajo necesita un grano más grueso,
-  o el <a href="/materiales/ripio/">ripio</a> si vas a preparar hormigón.
+  o el <a href="/materiales/ripio/">ripio</a> si vas a preparar hormigón. Si lo que estás
+  calculando es cuánto cemento va a llevar el revoque o la carpeta, la
+  <a href="/calculadoras/bolsas-de-cemento-por-m2/">calculadora de bolsas de cemento por m²</a>
+  te da una estimación antes de pedir.
 </p>

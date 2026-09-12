@@ -37,5 +37,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/cemento-y-cal/">cemento y cal</a> para ver el resto de la categoría, o
   mirá la <a href="/materiales/hormigon-elaborado/">hormigón elaborado</a> si preferís no mezclar en
-  obra.
+  obra. Y si todavía no sabés cuántas bolsas necesitás para tu contrapiso o losa, la
+  <a href="/calculadoras/bolsas-de-cemento-por-m2/">calculadora de bolsas de cemento por m²</a>
+  te da una estimación antes de pedir.
 </p>

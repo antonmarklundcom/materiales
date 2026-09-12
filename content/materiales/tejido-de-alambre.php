@@ -40,5 +40,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/hierro/">hierro</a> para ver el resto de materiales del rubro,
   o mirá el <a href="/materiales/alambre-negro/">alambre negro</a> si además necesitás atar
-  armadura en otra parte de la obra.
+  armadura en otra parte de la obra. Si el cerco es parte de un proyecto más grande, la guía
+  <a href="/guias/de-que-depende-el-costo-de-construir-en-paraguay/">De qué depende el costo de
+  construir en Paraguay</a> te ayuda a ubicar este gasto dentro del presupuesto total.
 </p>

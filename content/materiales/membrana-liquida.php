@@ -38,5 +38,8 @@
 <p class="closing">
   Volvé a <a href="/materiales/impermeabilizantes/">impermeabilizantes</a> para ver el resto
   de opciones, o mirá los <a href="/materiales/selladores-y-siliconas/">selladores y
-  siliconas</a> para resolver juntas y encuentros puntuales antes de aplicar la membrana.
+  siliconas</a> para resolver juntas y encuentros puntuales antes de aplicar la membrana. Y si
+  la superficie a tratar es justamente una losa, la guía
+  <a href="/guias/como-impermeabilizar-una-losa/">cómo impermeabilizar una losa</a> explica
+  cuándo conviene esta opción frente al rollo asfáltico.
 </p>

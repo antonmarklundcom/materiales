@@ -37,5 +37,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/aberturas/">aberturas</a> para ver el resto de la categoría, o
   mirá <a href="/materiales/ventanas-de-aluminio/">ventanas de aluminio</a> si necesitás el vidrio
-  con marco incluido.
+  con marco incluido. Si este vidrio es una pieza más dentro de una obra más grande, la guía
+  <a href="/guias/de-que-depende-el-costo-de-construir-en-paraguay/">de qué depende el costo de
+  construir en Paraguay</a> ayuda a ver dónde entra dentro del presupuesto general.
 </p>

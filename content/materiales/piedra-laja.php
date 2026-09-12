@@ -37,7 +37,10 @@
   irregular, siempre se pierde más material en el corte y el ajuste que con una pieza cerámica
   de formato fijo, así que conviene pedir un poco más de lo calculado. Si la instalación es a
   la intemperie, preguntá por el tipo de piedra más resistente a la exposición constante al sol
-  y la lluvia.
+  y la lluvia. Y como cada placa es irregular y el margen de corte varía más que en un cerámico
+  de formato fijo, conviene repasar la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">cómo hacer un cómputo métrico</a> antes de
+  cerrar la cantidad a pedir.
 </p>
 
 <p class="closing">

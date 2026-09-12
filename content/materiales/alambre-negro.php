@@ -38,5 +38,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/hierro/">hierro</a> para ver el resto de materiales del rubro,
   o mirá los <a href="/materiales/clavos/">clavos</a> si también necesitás fijar el encofrado
-  de madera.
+  de madera. Para no quedarte corto ni sobrar material, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">Cómo hacer un cómputo métrico</a> te sirve para
+  calcular con más precisión la cantidad de cada insumo antes de pedir.
 </p>

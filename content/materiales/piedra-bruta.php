@@ -38,5 +38,8 @@
 <p class="closing">
   Volvé a <a href="/materiales/aridos/">áridos</a> para ver el resto de opciones, mirá la
   <a href="/materiales/piedra-triturada/">piedra triturada</a> si necesitás hormigón
-  estructural, o el <a href="/materiales/ripio/">ripio</a> para bases compactadas.
+  estructural, o el <a href="/materiales/ripio/">ripio</a> para bases compactadas. Si todavía
+  dudás cuál piedra corresponde a tu cimiento, la guía
+  <a href="/guias/que-piedra-usar-para-cimientos/">Qué piedra usar para cimientos</a> lo explica
+  con más detalle.
 </p>

@@ -35,4 +35,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/madera/">madera</a> para ver el resto de la categoría, o mirá
   los <a href="/materiales/listones/">listones</a> que hacen de clavadera bajo este machimbre.
+  Para no quedarte corto ni largo con los metros cuadrados de machimbre y listones que vas a
+  pedir, la guía <a href="/guias/como-hacer-un-computo-metrico/">Cómo hacer un cómputo
+  métrico</a> explica cómo sacar esa cuenta antes de cotizar.
 </p>

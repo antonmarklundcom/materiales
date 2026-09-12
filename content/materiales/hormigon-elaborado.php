@@ -36,5 +36,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/cemento-y-cal/">cemento y cal</a> para ver el resto de la categoría, o
   mirá el <a href="/materiales/ripio/">ripio</a> y la <a href="/materiales/varilla-de-hierro/">varilla de
-  hierro</a> si tu obra todavía necesita esos insumos.
+  hierro</a> si tu obra todavía necesita esos insumos. Si en cambio preferís dosificar en obra en
+  vez de pedir mixer, la <a href="/calculadoras/hormigon-por-m3/">calculadora de cemento, arena y
+  ripio por m³</a> te da las proporciones para armar la mezcla vos mismo.
 </p>

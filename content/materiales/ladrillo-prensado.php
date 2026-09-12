@@ -37,5 +37,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/ladrillos-y-bloques/">ladrillos y bloques</a> para comparar con el
   <a href="/materiales/ladrillo-comun/">ladrillo común</a> o el
-  <a href="/materiales/ladrillo-hueco/">ladrillo hueco</a> si tu pared va revocada.
+  <a href="/materiales/ladrillo-hueco/">ladrillo hueco</a> si tu pared va revocada. Para calcular
+  el millar según el metro cuadrado de tu fachada o cerco, usá la
+  <a href="/calculadoras/ladrillos-por-m2/">calculadora de ladrillos o bloques por m²</a>.
 </p>

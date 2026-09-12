@@ -42,5 +42,7 @@
   Volvé a <a href="/materiales/aridos/">áridos</a> para ver el resto de opciones, mirá la
   <a href="/materiales/piedra-triturada/">piedra triturada</a> si necesitás más resistencia, o
   el <a href="/materiales/hormigon-elaborado/">hormigón elaborado</a> si preferís que te lleguen
-  la mezcla ya lista.
+  la mezcla ya lista. Si vas a usar el ripio como base bajo un contrapiso, la
+  <a href="/calculadoras/bolsas-de-cemento-por-m2/">calculadora de bolsas de cemento por m²</a>
+  te sirve para calcular la capa que va encima.
 </p>

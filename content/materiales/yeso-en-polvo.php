@@ -37,5 +37,8 @@
 <p class="closing">
   Volvé a <a href="/materiales/yeso-y-durlock/">yeso y durlock</a> para ver el resto del
   sistema, o mirá la <a href="/materiales/placa-de-yeso/">placa de yeso</a> si el proyecto es
-  un tabique o cielorraso nuevo en seco.
+  un tabique o cielorraso nuevo en seco. Para calcular con margen los metros cuadrados a
+  enlucir y no quedarte corto de bolsas, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">Cómo hacer un cómputo métrico</a> explica cómo
+  ordenar esa cuenta antes de comprar.
 </p>

@@ -53,5 +53,8 @@
 <p class="closing">
   Volvé a <a href="/materiales/aridos/">áridos</a> para ver el resto de opciones, mirá el
   <a href="/materiales/ripio/">ripio</a> si tu base no necesita tanta resistencia, o la
-  <a href="/materiales/piedra-bruta/">piedra bruta</a> si es para cimiento.
+  <a href="/materiales/piedra-bruta/">piedra bruta</a> si es para cimiento. Y si el destino es
+  el cimiento y no el hormigón armado, la guía
+  <a href="/guias/que-piedra-usar-para-cimientos/">Qué piedra usar para cimientos</a> te ayuda
+  a confirmar cuál de las dos corresponde.
 </p>

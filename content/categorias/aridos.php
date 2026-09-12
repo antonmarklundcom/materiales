@@ -25,5 +25,8 @@
   obra necesita varios áridos —por ejemplo arena y ripio para una misma losa, o piedra
   triturada junto con cemento para el hormigón— conviene pedirlos juntos en la misma consulta:
   se optimiza el flete y evitás pagar dos veces el viaje del camión. Decinos el volumen
-  aproximado de cada material y la zona, y armamos la cotización completa.
+  aproximado de cada material y la zona, y armamos la cotización completa. Si todavía no
+  sabés cuál de estas piedras corresponde a tu cimiento, la guía
+  <a href="/guias/que-piedra-usar-para-cimientos/">Qué piedra usar para cimientos</a> te ayuda
+  a decidir antes de pedir la cotización.
 </p>

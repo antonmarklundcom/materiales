@@ -26,3 +26,8 @@
   tabique o cielorraso, los metros cuadrados aproximados y si hay zonas húmedas de por medio, y
   armamos la cotización con placa, perfilería y terminación juntas.
 </p>
+<p>
+  Si todavía no sacaste los metros cuadrados exactos de tabique o cielorraso, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">Cómo hacer un cómputo métrico</a> explica cómo
+  ordenar esa medición antes de pedir precio de placa y perfilería.
+</p>
