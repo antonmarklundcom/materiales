@@ -11,3 +11,8 @@ Thumbs.db
 
 # Capturas locales de Playwright (fases 9+): nunca se commitean.
 /docs/screenshots/
+
+# tests/mobile-overflow.mjs (fase 14) usa Playwright: si alguien lo instala local con
+# `npm i -D playwright` en vez de correr contra la instalación global, no se commitea.
+/node_modules/
+/package-lock.json

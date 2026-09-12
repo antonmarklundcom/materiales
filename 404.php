@@ -16,7 +16,8 @@ http_response_code(404);
 page([
     'title'      => 'Página no encontrada | Materiales.com.py',
     'meta'       => 'No encontramos esa página. Mirá los materiales disponibles o pedí tu cotización.',
-    'canonical'  => '/404',
+    // Sin canonical (fase 14, plan §11.6): un 404 no tiene una URL "real" a la que apuntar.
+    'canonical'  => '',
     'noindex'    => true,
     'body_class' => 'page-404',
 ]);

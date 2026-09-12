@@ -14,40 +14,43 @@ require __DIR__ . '/partials/init.php';
 /** @var array<int, array{loc: string, lastmod: ?string}> $urls */
 $urls = [];
 
-$add = static function (string $path, ?string $contentFile = null) use (&$urls): void {
+// lastmod sale SÓLO de la clave opcional 'updated' (YYYY-MM-DD) de cada entrada de datos
+// (decisión §1.25): el deploy de Hostinger reescribe los mtimes en cada push, así que
+// filemtime() no sirve de nada acá. Sin 'updated' ⇒ sin lastmod para esa URL.
+$add = static function (string $path, ?string $updated = null) use (&$urls): void {
     $lastmod = null;
-    if ($contentFile !== null && is_file($contentFile)) {
-        $lastmod = date('Y-m-d', (int) filemtime($contentFile));
+    if ($updated !== null && preg_match('/^\d{4}-\d{2}-\d{2}$/', $updated) === 1) {
+        $lastmod = $updated;
     }
     $urls[] = ['loc' => url($path), 'lastmod' => $lastmod];
 };
 
-// Páginas fijas indexables.
+// Páginas fijas indexables: sin entrada de datos, sin lastmod.
 foreach (['/', '/materiales/', '/guias/', '/calculadoras/', '/cotizar/', '/proveedores/', '/contacto/', '/politica-de-privacidad/'] as $path) {
     $add($path);
 }
 
 foreach (categories_ordered() as $slug => $category) {
     if (is_published($category)) {
-        $add('/materiales/' . $slug . '/', CONTENT_DIR . '/categorias/' . $slug . '.php');
+        $add('/materiales/' . $slug . '/', isset($category['updated']) ? (string) $category['updated'] : null);
     }
 }
 
 foreach (data('materials') as $slug => $material) {
     if (is_published($material)) {
-        $add('/materiales/' . $slug . '/', CONTENT_DIR . '/materiales/' . $slug . '.php');
+        $add('/materiales/' . $slug . '/', isset($material['updated']) ? (string) $material['updated'] : null);
     }
 }
 
 foreach (data('guides') as $slug => $guide) {
     if (is_published($guide)) {
-        $add('/guias/' . $slug . '/', CONTENT_DIR . '/guias/' . $slug . '.php');
+        $add('/guias/' . $slug . '/', isset($guide['updated']) ? (string) $guide['updated'] : null);
     }
 }
 
 foreach (data('calculators') as $slug => $calculator) {
     if (is_published($calculator)) {
-        $add('/calculadoras/' . $slug . '/', CONTENT_DIR . '/calculadoras/' . $slug . '.php');
+        $add('/calculadoras/' . $slug . '/', isset($calculator['updated']) ? (string) $calculator['updated'] : null);
     }
 }
 
