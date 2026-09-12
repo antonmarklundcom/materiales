@@ -542,7 +542,7 @@ Index (phases 5–8 fill their line in the PR that merges them):
 | 10 proveedores | Opus | ✅ | #19 | `docs/log/10-proveedores.md` |
 | 11 cross-links & image slots | Opus | ✅ | #20 | `docs/log/11-crosslinks-images.md` |
 | 12 calculators foundation | Opus | ✅ | #21 | `docs/log/12-calculadoras-foundation.md` |
-| 13 calculators + guías wave 3 | Sonnet | ⏳ | — | `docs/log/13-calculadoras-guias.md` |
+| 13 calculators + guías wave 3 | Sonnet | ✅ | — | `docs/log/13-calculadoras-guias.md` |
 | 14 technical hardening | Sonnet | ⏳ | — | `docs/log/14-tech-hardening.md` |
 | 15 link pass + images + launch QA | Sonnet | ⏳ | — | `docs/log/15-link-pass-launch.md` |
 

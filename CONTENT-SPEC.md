@@ -453,6 +453,18 @@ Regla de ampliación: si una calculadora nueva necesita una dosificación que no
 tabla, se **agrega acá en el mismo PR**, con su proporción y su conversión — nunca se usa un
 número suelto en el código de una calculadora.
 
+**Conteo de piezas de mampostería (fase 13, `ladrillos-por-m2`).** No es una dosificación de
+mezcla, pero sigue la misma regla de "nada suelto en el código": las medidas de cara que usa
+esa calculadora son las que ya están publicadas en `content/materiales/ladrillo-comun.php`
+(22 × 11, 25 × 12 y 28 × 14 cm) más la medida estándar de bloque de hormigón que usan los
+manuales de albañilería (39 × 19 cm de cara). La junta de mortero es configurable (1 a 2 cm,
+por defecto 1,5 cm) y se suma a ambos lados de la pieza antes de dividir. Sobre el total se
+aplica un **5 % de piezas extra por roturas y cortes**, la merma habitual en manuales de obra
+para unidades de mampostería (más baja que el 10 % de una mezcla porque acá no hay agua ni
+compactación de por medio). `ladrillo hueco` queda fuera del selector: sus medidas de cara no
+están documentadas en ningún material de este sitio y no se inventa una — ver
+`docs/decisions-needed.md`.
+
 Frases obligatorias sobre dosificación, en la prosa de toda calculadora que use la tabla:
 
 > La dosificación de tu obra la define quien la calcula. Estas proporciones son las de manual;
