@@ -35,5 +35,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/madera/">madera</a> para ver el resto de la categoría, o mirá
   la <a href="/materiales/terciada/">terciada</a> si la pieza necesita más resistencia a la
-  humedad o al esfuerzo.
+  humedad o al esfuerzo. Para no comprar de más ni de menos, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">Cómo hacer un cómputo métrico</a> explica cómo
+  sacar los metros cuadrados de placa que necesitás por mueble o revestimiento.
 </p>

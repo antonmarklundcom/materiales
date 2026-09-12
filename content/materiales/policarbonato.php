@@ -48,5 +48,7 @@
   Volvé a <a href="/materiales/chapas-y-techos/">chapas y techos</a>, mirá el
   <a href="/materiales/cielorraso-de-pvc/">cielorraso de PVC</a> para cerramientos interiores, o
   la <a href="/materiales/chapa-trapezoidal/">chapa trapezoidal</a> si necesitás cubrir sin luz
-  natural.
+  natural. Si dudás entre policarbonato y otra cubierta, la guía
+  <a href="/guias/chapa-o-teja-que-techo-conviene/">Chapa o teja: qué techo conviene</a> te da
+  criterios para comparar antes de decidir.
 </p>

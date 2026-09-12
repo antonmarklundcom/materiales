@@ -26,5 +26,9 @@
   con ancho, alto y tipo de apertura de cada uno: así el proveedor cotiza todo junto y vos
   comparás presupuestos que incluyen lo mismo. Aclarar de entrada si buscás sólo el producto o
   también la colocación evita el malentendido más común entre dos presupuestos que, en los
-  papeles, no se parecen en nada.
+  papeles, no se parecen en nada. Como las aberturas suelen ser uno de los rubros que más pesa
+  en el presupuesto total, la guía
+  <a href="/guias/de-que-depende-el-costo-de-construir-en-paraguay/">de qué depende el costo de
+  construir en Paraguay</a> ayuda a ubicarlas dentro del resto de la obra antes de pedir
+  cotizaciones.
 </p>

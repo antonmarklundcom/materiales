@@ -38,5 +38,8 @@
 <p class="closing">
   Volvé a <a href="/materiales/aberturas/">aberturas</a> para ver el resto de puertas y
   ventanas, o mirá <a href="/materiales/placa-de-yeso/">placa de yeso</a> si el tabique donde va
-  la puerta todavía está por hacerse.
+  la puerta todavía está por hacerse. Y si todavía estás armando el presupuesto general de la
+  obra, la guía
+  <a href="/guias/de-que-depende-el-costo-de-construir-en-paraguay/">de qué depende el costo de
+  construir en Paraguay</a> explica dónde entran las aberturas dentro de ese cálculo.
 </p>

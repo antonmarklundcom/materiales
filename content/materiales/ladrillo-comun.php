@@ -50,5 +50,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/ladrillos-y-bloques/">ladrillos y bloques</a> para ver el resto de
   opciones, o mirá el <a href="/materiales/cemento/">cemento</a> que vas a necesitar para asentar
-  y revocar esta pared.
+  y revocar esta pared. Para saber cuántos millares te hacen falta según tu metro cuadrado, la
+  <a href="/calculadoras/ladrillos-por-m2/">calculadora de ladrillos o bloques por m²</a> te da
+  una estimación rápida.
 </p>

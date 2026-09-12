@@ -50,5 +50,7 @@
   <a href="/materiales/chapa-de-zinc/">chapa de zinc</a> o con la
   <a href="/materiales/chapa-termoacustica/">chapa termoacústica</a> si necesitás aislación, y
   mirá los <a href="/materiales/perfiles-metalicos/">perfiles metálicos</a> para la
-  estructura.
+  estructura. Antes de definir el perfil, la guía
+  <a href="/guias/que-chapa-conviene-para-techo/">Qué chapa conviene para tu techo</a> te ayuda
+  a comparar opciones según tu luz entre correas.
 </p>

@@ -39,5 +39,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/aridos/">áridos</a> para ver el resto de opciones, o mirá la
   <a href="/materiales/arena-lavada/">arena lavada</a> si necesitás un grano más fino, o el
-  <a href="/materiales/ripio/">ripio</a> para tu hormigón.
+  <a href="/materiales/ripio/">ripio</a> para tu hormigón. Antes de pedir el volumen, la
+  <a href="/calculadoras/hormigon-por-m3/">calculadora de cemento, arena y ripio por m³</a> te
+  ayuda a estimar cuánto de cada material entra en tu mezcla.
 </p>

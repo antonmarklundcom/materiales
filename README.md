@@ -20,17 +20,29 @@ públicos por las reglas `[F]` de `.htaccess`, no por estar en otra carpeta.
 index.php             homepage
 materiales/index.php  router de /materiales/ y /materiales/{slug}/
 guias/index.php       router de /guias/ y /guias/{slug}/
+calculadoras/index.php router de /calculadoras/ y /calculadoras/{slug}/ (fase 12+13)
+proveedores/index.php landing de captación de proveedores (fase 10)
 cotizar/ gracias/ contacto/ politica-de-privacidad/ 404.php
 sitemap.php           se sirve como /sitemap.xml (reescritura)
 robots.txt  .htaccess
 partials/             init, header, footer, schema, banner de cookies
-assets/                css, js, img
-data/                 site, categories, materials, guides (arrays PHP) — bloqueado por .htaccess
-content/              prosa por página (fases 5–6) — bloqueado por .htaccess
+assets/                css, js, img, fonts (autohospedadas, fase 14)
+data/                 site, categories, materials, guides, calculators (arrays PHP) — bloqueado por .htaccess
+content/              prosa por página, incluida calculadoras/ (fases 5–6, 12–13) — bloqueado por .htaccess
 config/               NO viene en el repo: config/vendercrm.php (ver config.sample.php) — bloqueado por .htaccess
-storage/              NO viene en el repo: leads.log — bloqueado por .htaccess
-tools/                smoke test, router de desarrollo, render check — bloqueado por .htaccess
+storage/              NO viene en el repo: leads.log, replayed.log — bloqueado por .htaccess
+tools/                smoke test, router de desarrollo, render check, replay-leads.php — bloqueado por .htaccess
 ```
+
+**Calculadoras** (`/calculadoras/`): herramientas de cálculo en el navegador (bolsas de
+cemento, hormigón por m³, ladrillos por m², cal/cemento/arena de revoque) — la fórmula vive
+en `content/calculadoras/{slug}.php` como un árbol de expresiones JSON que evalúa
+`assets/js/calc.js` sin `eval`; sin JS, la prosa con el ejemplo resuelto sigue siendo la
+respuesta. Contrato completo en `CONTENT-SPEC.md` §12.
+
+**Para proveedores** (`/proveedores/`): landing de captación con su propio formulario
+(`tipo=proveedor`) y su propia versión de consentimiento — mismo handler que el comprador,
+payload y rutina distintos (plan §11.2).
 
 ### El namespace de slugs es plano
 

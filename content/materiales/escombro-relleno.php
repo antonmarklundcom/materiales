@@ -39,5 +39,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/aridos/">áridos</a> para ver el resto de opciones, o mirá la
   <a href="/materiales/tierra-gorda/">tierra colorada</a> si tu relleno necesita compactar bajo
-  una construcción.
+  una construcción. Si necesitás ordenar el volumen total de relleno de tu obra, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">Cómo hacer un cómputo métrico</a> explica cómo
+  calcularlo paso a paso.
 </p>

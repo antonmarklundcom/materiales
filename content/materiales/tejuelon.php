@@ -37,4 +37,7 @@
   Volvé a <a href="/materiales/ladrillos-y-bloques/">ladrillos y bloques</a>, o mirá la
   <a href="/materiales/varilla-de-hierro/">varilla de hierro</a> y el
   <a href="/materiales/cemento/">cemento</a> que necesitás para la capa de compresión de tu losa.
+  Para ordenar las cantidades de toda la losa, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">Cómo hacer un cómputo métrico</a> te sirve de
+  referencia.
 </p>

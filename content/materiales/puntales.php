@@ -35,5 +35,8 @@
 <p class="closing">
   Volvé a <a href="/materiales/madera/">madera</a> para ver el resto de la categoría, o
   completá el pedido con la <a href="/materiales/tabla-de-encofrado/">tabla de encofrado</a>
-  que se apoya sobre estos puntales.
+  que se apoya sobre estos puntales. Y si todavía no sacaste la cantidad exacta de puntales,
+  tablas y demás materiales que va a llevar el encofrado, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">Cómo hacer un cómputo métrico</a> explica cómo
+  ordenar ese cálculo antes de pedir precio.
 </p>

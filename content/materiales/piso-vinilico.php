@@ -36,7 +36,10 @@
   Comparado con un piso laminado flotante de base MDF, el vinílico y el SPC resisten mejor la
   humedad, así que son la opción más segura para cocina o zonas con algo de agua ocasional. Un
   error común es elegir el sistema por el diseño sin preguntar por la resistencia al agua de
-  ese modelo puntual, porque no todos los vinílicos toleran igual la humedad constante.
+  ese modelo puntual, porque no todos los vinílicos toleran igual la humedad constante. Si estás
+  comparando el costo de esta renovación contra el de romper y volver a colocar piso nuevo, la
+  guía <a href="/guias/de-que-depende-el-costo-de-construir-en-paraguay/">de qué depende el
+  costo de construir en Paraguay</a> ayuda a poner esa decisión en contexto.
 </p>
 
 <p class="closing">

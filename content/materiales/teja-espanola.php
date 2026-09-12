@@ -36,5 +36,8 @@
 <p class="closing">
   Volvé a <a href="/materiales/chapas-y-techos/">chapas y techos</a>, compará con la
   <a href="/materiales/teja-francesa/">teja francesa</a> de perfil plano, o mirá los
-  <a href="/materiales/tirantes/">tirantes</a> para la estructura de apoyo.
+  <a href="/materiales/tirantes/">tirantes</a> para la estructura de apoyo. Si todavía no
+  decidiste entre teja y chapa, la guía
+  <a href="/guias/chapa-o-teja-que-techo-conviene/">Chapa o teja: qué techo conviene</a> te
+  ayuda a comparar antes de pedir presupuesto.
 </p>

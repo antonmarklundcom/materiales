@@ -19,5 +19,8 @@
   comparten los tres es que conviene pedirlos juntos en la misma consulta —tanque, cañería y
   accesorios— para que el flete se reparta en un solo viaje y no en varios. Contanos qué
   instalación estás armando, cuántos baños y artefactos alimenta, y si es agua o desagüe, y
-  proveedores verificados te arman una cotización completa de cañería y plomería.
+  proveedores verificados te arman una cotización completa de cañería y plomería. Si recién
+  estás armando el pedido de toda la instalación, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">cómo hacer un cómputo métrico</a> te ayuda a
+  ordenar cantidades y metros antes de consultar.
 </p>

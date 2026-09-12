@@ -52,5 +52,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/hierro/">hierro</a> para ver el resto de materiales del rubro,
   o mirá el <a href="/materiales/alambre-negro/">alambre negro</a> que se usa para atar esta
-  misma armadura antes de hormigonar.
+  misma armadura antes de hormigonar. Si todavía tenés dudas sobre qué barra corresponde a cada
+  pieza, la guía <a href="/guias/que-diametro-de-hierro-para-que-uso/">Qué diámetro de hierro
+  para qué uso</a> amplía la tabla anterior.
 </p>

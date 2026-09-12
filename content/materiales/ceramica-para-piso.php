@@ -48,7 +48,10 @@
   mucho paso. Si es para baño o cualquier zona que se moja, pedí que te confirmen que la pieza
   es <strong>antideslizante</strong>, porque un piso esmaltado brilloso sin ese tratamiento
   resbala mucho una vez mojado. Un error común es comprar cerámica pensando que rinde igual que
-  el porcelanato en zonas de paso pesado: para eso conviene directamente cambiar de material.
+  el porcelanato en zonas de paso pesado: para eso conviene directamente cambiar de material. Y
+  si todavía no sabés cuántas cajas te van a pedir para el ambiente, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">cómo hacer un cómputo métrico</a> te ayuda a
+  llegar al pedido con la superficie ya bien calculada.
 </p>
 
 <p class="closing">

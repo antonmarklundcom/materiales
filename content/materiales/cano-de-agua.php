@@ -31,6 +31,9 @@
   que una unión mal combinada puede perder. Revisá que el diámetro corresponda a la cantidad de
   artefactos que alimenta cada tramo, sobre todo en el tramo de agua caliente, y no te olvides
   de pedir las llaves de paso de cada sector para poder cortar el agua sin afectar toda la casa.
+  Si querés llegar a esta consulta con los metros de cañería ya sumados, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">cómo hacer un cómputo métrico</a> te muestra
+  cómo ordenar ese cálculo tramo por tramo.
 </p>
 
 <p class="closing">

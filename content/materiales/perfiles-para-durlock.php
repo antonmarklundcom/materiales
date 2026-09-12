@@ -39,5 +39,8 @@
 <p class="closing">
   Volvé a <a href="/materiales/yeso-y-durlock/">yeso y durlock</a> para ver el resto del
   sistema, o mirá la <a href="/materiales/placa-de-yeso/">placa de yeso</a> que se atornilla
-  sobre esta estructura.
+  sobre esta estructura. Si estás sumando este rubro al resto del presupuesto, la guía
+  <a href="/guias/de-que-depende-el-costo-de-construir-en-paraguay/">De qué depende el costo
+  de construir en Paraguay</a> ayuda a ver cómo pesa la perfilería dentro del costo total de
+  la obra.
 </p>

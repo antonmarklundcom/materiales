@@ -33,4 +33,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/cemento-y-cal/">cemento y cal</a> para ver el resto de la categoría, o
   mirá la <a href="/materiales/cal-hidratada/">cal hidratada</a> si preferís la cal ya lista para usar.
+  Para calcular con más precisión cuánto vas a necesitar, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">Cómo hacer un cómputo métrico</a> te sirve de
+  referencia.
 </p>

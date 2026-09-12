@@ -37,5 +37,8 @@
 <p class="closing">
   Volvé a <a href="/materiales/madera/">madera</a> para ver el resto de la categoría, o mirá
   el <a href="/materiales/machimbre/">machimbre</a> que estos listones sostienen como
-  clavadera.
+  clavadera. Si vas a comprar toda la etapa de estructura y terminación juntas, la guía
+  <a href="/guias/de-que-depende-el-costo-de-construir-en-paraguay/">De qué depende el costo
+  de construir en Paraguay</a> te ayuda a ver dónde entran estos auxiliares en el presupuesto
+  general.
 </p>

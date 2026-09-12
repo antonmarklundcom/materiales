@@ -30,7 +30,10 @@
   indicado para PVC de presión cero (el de desagüe, no el de agua), porque no todos los
   pegamentos sirven para el mismo tipo de caño. Si la instalación es pluvial, confirmá con quien
   instala la pendiente mínima que necesita cada tramo para que el agua corra bien sin
-  estancarse.
+  estancarse. Esta es una de esas partidas que rara vez se calculan solas: la guía
+  <a href="/guias/de-que-depende-el-costo-de-construir-en-paraguay/">de qué depende el costo de
+  construir en Paraguay</a> explica dónde entra la plomería dentro del presupuesto general de
+  la obra.
 </p>
 <table>
   <thead>

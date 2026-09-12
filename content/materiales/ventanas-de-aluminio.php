@@ -35,5 +35,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/aberturas/">aberturas</a> para ver el resto de opciones, o mirá
   <a href="/materiales/vidrio-templado/">vidrio templado</a> si necesitás una pieza de vidrio sin
-  marco de aluminio.
+  marco de aluminio. Y ya que cada ventana se cotiza sobre la medida real de cada vano, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">cómo hacer un cómputo métrico</a> ayuda a
+  ordenar esa lista antes de mandarla a cotizar.
 </p>

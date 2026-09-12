@@ -4,10 +4,11 @@ Documento vivo: qué está hecho, qué falta y qué depende de Anton. Se actuali
 fase. El plan está en `plan.md`; las instrucciones por fase, en `prompts/`; el copy cerrado,
 en `CONTENT-SPEC.md`; los desvíos menores, en `KNOWN-ISSUES.md`.
 
-_Última actualización: 2026-09-11 (ventana Opus de la mejora: fases 9 a 12 mergeadas — home y
-capa de conversión, `/proveedores/`, motor de enlaces cruzados y slots de imagen, y la base de
-calculadoras. Quedan pendientes las fases 13 a 15, ventana Sonnet. Detalle por fase en
-`docs/log/`)._
+_Última actualización: 2026-09-12 (ventana Sonnet de la mejora cerrada: fases 13 a 15
+mergeadas — 3 calculadoras y 6 guías más, endurecimiento técnico (fuentes autohospedadas,
+cabeceras, replay de leads) y el pase de enlaces editoriales + QA de lanzamiento. Con esto
+las 15 fases del build están mergeadas; lo que queda es exclusivamente lo que depende de
+Anton (NAP, credenciales, DNS, fotografía). Detalle por fase en `docs/log/`)._
 
 ## Estado por fase
 
@@ -25,9 +26,9 @@ calculadoras. Quedan pendientes las fases 13 a 15, ventana Sonnet. Detalle por f
 | 10 Proveedores | Opus (misma ventana, PR 2/4) | ✅ Mergeada | #19 | `/proveedores/` (landing de captación: qué recibís, cómo funciona, condiciones desde `supplier_pitch`, rubros, FAQ), formulario de proveedor, `tipo=proveedor` en el handler, consentimiento `proveedor-v1`, cláusula de privacidad y enlace "Para proveedores" en nav y pie |
 | 11 Cross-links + slots de imagen | Opus (misma ventana, PR 3/4) | ✅ Mergeada | #20 | `guides_for()` / `calculators_for()` / `image_for()`, `partials/related.php` y `partials/hero-image.php`, og:image por página y `Product.image`; clave `image` documentada y validada (sin valores todavía) |
 | 12 Calculadoras (base) | Opus (misma ventana, PR 4/4) | ✅ Mergeada | #21 | CONTENT-SPEC §12 (dosificaciones + esquema de fórmula), ruta `/calculadoras/`, `data/calculators.php`, plantilla, `assets/js/calc.js` y la calculadora `bolsas-de-cemento-por-m2` |
-| 13 Calculadoras + guías ola 3 | Sonnet (ventana 2/2, PR 1/3) | ⏳ Pendiente | — | 3 calculadoras, 6 guías |
-| 14 Endurecimiento técnico | Sonnet (misma ventana, PR 2/3) | ⏳ Pendiente | — | deflate/headers, fuentes locales, lastmod, replay de leads, test de overflow |
-| 15 Link pass + imágenes + QA | Sonnet (misma ventana, PR 3/3) | ⏳ Pendiente | — | Enlaces editoriales, fotos si existen, KNOWN-ISSUES, informe de cierre |
+| 13 Calculadoras + guías ola 3 | Sonnet (ventana 2/2, PR 1/3) | ✅ Mergeada | #22 | 3 calculadoras nuevas (`hormigon-por-m3`, `ladrillos-por-m2`, `revoque-y-mortero`) y 6 guías nuevas, todas activas |
+| 14 Endurecimiento técnico | Sonnet (misma ventana, PR 2/3) | ✅ Mergeada | #23 | Fuentes autohospedadas (196 KB), cabeceras de seguridad + deflate, `lastmod` desde `updated`, `og:type` por tipo de página, `tools/replay-leads.php`, `tests/mobile-overflow.mjs` |
+| 15 Link pass + imágenes + QA | Sonnet (misma ventana, PR 3/3) | ✅ Mergeada | #24 | Enlace editorial en las 64 páginas de material y las 11 de categoría; fotografía real sigue bloqueada por el entorno (KNOWN-ISSUES #22); QA de lanzamiento sobre home/proveedores/calculadoras/guías nuevas |
 
 ## Qué anda hoy
 
@@ -59,18 +60,25 @@ calculadoras. Quedan pendientes las fases 13 a 15, ventana Sonnet. Detalle por f
 
 ## Lo que falta antes de salir a producción
 
+Con las 15 fases mergeadas, no queda código ni contenido pendiente de ninguna fase del plan.
+Lo que falta es exclusivamente lo que ya estaba fuera del alcance de Claude (§7 del plan):
+
 1. **Fotografía real por página de dinero** — bloqueada por el entorno (CDN de Higgsfield
    sin permitir), KNOWN-ISSUES #22. Correr `higgsfield-image-pipeline` completo cuando el
-   dominio `*.cloudfront.net` esté permitido.
+   dominio `*.cloudfront.net` esté permitido, o subir los 12 archivos a mano según
+   `docs/imagery-brief.md`.
 2. **Datos reales de NAP** (abajo).
 3. **`staging_noindex => false`** cuando el dominio esté apuntando.
+4. **`data/site.php` → `updated`** en las entradas que se quiera que aparezcan con `lastmod`
+   en el sitemap (fase 14, decisión §1.25) — ninguna lo tiene todavía.
 
 (El supuesto bug de header mobile de la primera pasada de QA de fase 8 se descartó — era un
 artefacto de la herramienta de captura, no un problema real. Ver KNOWN-ISSUES #23.)
 
-Prosa real: ✅ completa. Las 11 categorías, 64 materiales y 8 guías ya tienen cuerpo en
-`content/categorias/`, `content/materiales/` y `content/guias/` (fases 6 y 7) — ninguna
-página activa muestra ya el aviso "estamos publicando el contenido".
+Prosa real: ✅ completa. Las 11 categorías, 64 materiales y 14 guías ya tienen cuerpo en
+`content/categorias/`, `content/materiales/` y `content/guias/` — ninguna página activa
+muestra ya el aviso "estamos publicando el contenido", y las 75 páginas de material y
+categoría llevan además un enlace editorial en prosa a una guía o calculadora (fase 15).
 
 ## Lo que depende de Anton (nada de esto lo puede inventar Claude)
 
@@ -110,16 +118,15 @@ php -S 127.0.0.1:8080 -t public_html tools/router-cli.php
 
 ## Próximo paso
 
-**Ventana Opus — fases 9–12** (ver `docs/IMPROVEMENT-REPORT.md` §4 y `plan.md` §11). Línea a
-pegar en una ventana nueva de Opus con permisos en auto-aceptar:
+**No queda ninguna fase de código pendiente.** Las 15 fases del plan (`plan.md` §1–§11) están
+mergeadas. Lo que sigue es exclusivamente humano:
 
-`Read prompts/opus-9-conversion-window.md in this repo and execute it.`
-
-Cuando esa ventana termine (4 PR mergeados), la ventana Sonnet (fases 13–15) arranca con
-`Read prompts/sonnet-13-content-window.md in this repo and execute it.`
-
-Nada de esto frena el go-live: NAP, `config/vendercrm.php`, DNS y `staging_noindex => false`
-se pueden hacer hoy (informe §5). Las fotos son un paso manual de Anton antes de la fase 15.
+1. Cargar NAP real, credenciales de VenderCRM, GA4/Meta Pixel — tabla de abajo.
+2. DNS + `staging_noindex => false` cuando el dominio esté apuntando.
+3. Fotografía real (`docs/imagery-brief.md`) cuando el entorno permita el CDN de Higgsfield,
+   o subida a mano.
+4. Segundo pull de Keyword Planner (`KEYWORDS-MATERIALES.md` §6) como insumo de la próxima
+   sesión de planificación, si se decide seguir expandiendo contenido.
 
 Nota de proceso: "Allow auto-merge" ya está habilitado en el repo (Anton, 2026-09-06), así que
 desde la fase 6 el flujo de §4.2/§4.12 corrió sin intervención manual.

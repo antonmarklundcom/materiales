@@ -38,5 +38,8 @@
 <p class="closing">
   Volvé a <a href="/materiales/impermeabilizantes/">impermeabilizantes</a> para ver el resto
   de opciones, o mirá el <a href="/materiales/hidrofugo/">hidrófugo</a> si lo que necesitás es
-  cortar la humedad desde dentro de la mezcla, no desde la superficie.
+  cortar la humedad desde dentro de la mezcla, no desde la superficie. Si querés leer más sobre
+  cómo se prepara la superficie y se aplica el rollo paso a paso, la guía
+  <a href="/guias/como-impermeabilizar-una-losa/">cómo impermeabilizar una losa</a> lo desarrolla
+  con más detalle.
 </p>

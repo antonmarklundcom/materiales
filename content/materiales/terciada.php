@@ -61,5 +61,8 @@
 <p class="closing">
   Volvé a <a href="/materiales/madera/">madera</a> para ver el resto de la categoría, o
   completá el pedido con los <a href="/materiales/puntales/">puntales</a> que sostienen esta
-  placa mientras el hormigón fragua.
+  placa mientras el hormigón fragua. Si todavía estás definiendo el presupuesto general de la
+  obra, la guía
+  <a href="/guias/de-que-depende-el-costo-de-construir-en-paraguay/">De qué depende el costo
+  de construir en Paraguay</a> ayuda a ubicar dónde entra el encofrado dentro de ese cálculo.
 </p>

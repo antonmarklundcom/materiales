@@ -37,3 +37,9 @@
   pedir cotización. Contanos qué necesitás en cada rubro y hasta tres proveedores verificados
   te pasan precio por WhatsApp.
 </p>
+<p>
+  Si todavía no tenés claro cuánta madera te va a llevar cada etapa ni cómo pesa en el
+  presupuesto total, la guía
+  <a href="/guias/de-que-depende-el-costo-de-construir-en-paraguay/">De qué depende el costo
+  de construir en Paraguay</a> repasa qué rubros suelen mover más el número final.
+</p>

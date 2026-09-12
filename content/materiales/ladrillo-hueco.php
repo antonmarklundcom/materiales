@@ -46,5 +46,7 @@
   Volvé a <a href="/materiales/ladrillos-y-bloques/">ladrillos y bloques</a> para comparar con el
   <a href="/materiales/ladrillo-comun/">ladrillo común</a>, o mirá el
   <a href="/materiales/bloque-de-hormigon/">bloque de hormigón</a> si buscás levantar pared más
-  rápido con menos piezas.
+  rápido con menos piezas. La
+  <a href="/calculadoras/ladrillos-por-m2/">calculadora de ladrillos o bloques por m²</a> te
+  ayuda a estimar el millar según el espesor y el metro cuadrado de tu tabique.
 </p>

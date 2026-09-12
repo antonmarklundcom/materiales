@@ -52,5 +52,8 @@
 <p class="closing">
   Volvé a <a href="/materiales/hierro/">hierro</a> para ver el resto de materiales del rubro,
   o mirá la <a href="/materiales/chapa-trapezoidal/">chapa trapezoidal</a> si ya estás armando
-  el techo que va sobre esta estructura.
+  el techo que va sobre esta estructura. Si todavía estás definiendo presupuesto, la guía
+  <a href="/guias/de-que-depende-el-costo-de-construir-en-paraguay/">De qué depende el costo de
+  construir en Paraguay</a> te da un panorama de las variables que mueven el precio de una
+  estructura metálica y del resto de la obra.
 </p>

@@ -36,5 +36,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/cemento-y-cal/">cemento y cal</a> para ver el resto de la categoría, o
   mirá el <a href="/materiales/cemento/">cemento</a> si todavía necesitás la base de contrapiso antes de
-  colocar.
+  colocar. Para llegar a la obra con la cantidad justa de cada material, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">Cómo hacer un cómputo métrico</a> repasa cómo
+  calcularlo.
 </p>

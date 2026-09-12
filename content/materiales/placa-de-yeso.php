@@ -41,5 +41,8 @@
 <p class="closing">
   Volvé a <a href="/materiales/yeso-y-durlock/">yeso y durlock</a> para ver el resto del
   sistema, o mirá los <a href="/materiales/perfiles-para-durlock/">perfiles para durlock</a>
-  que sostienen la placa.
+  que sostienen la placa. Si estás sumando este rubro al resto de la obra, la guía
+  <a href="/guias/de-que-depende-el-costo-de-construir-en-paraguay/">De qué depende el costo
+  de construir en Paraguay</a> ayuda a ubicar dónde entra el sistema en seco dentro del
+  presupuesto general.
 </p>

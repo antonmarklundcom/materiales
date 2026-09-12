@@ -38,5 +38,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/impermeabilizantes/">impermeabilizantes</a> para ver el resto
   de opciones, o revisá el <a href="/materiales/cemento/">cemento</a> que vas a usar en la
-  mezcla donde entra el hidrófugo.
+  mezcla donde entra el hidrófugo. Si además tenés una losa expuesta que impermeabilizar, la
+  guía <a href="/guias/como-impermeabilizar-una-losa/">cómo impermeabilizar una losa</a> repasa
+  ese trabajo completo, no sólo la capa aisladora.
 </p>

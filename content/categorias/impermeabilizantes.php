@@ -28,5 +28,8 @@
   humedad de cimiento?— porque de ahí sale qué producto corresponde y en qué cantidad, no al
   revés. Si vas a impermeabilizar antes de la temporada de lluvias, contanos la superficie, si
   es azotea o pared, y si la humedad viene de arriba o sube desde abajo: con esos datos,
-  proveedores verificados te cotizan lo que efectivamente necesitás, sin duplicar producto.
+  proveedores verificados te cotizan lo que efectivamente necesitás, sin duplicar producto. Si
+  el punto a resolver es específicamente una losa, la guía
+  <a href="/guias/como-impermeabilizar-una-losa/">cómo impermeabilizar una losa</a> repasa el
+  paso a paso antes de que llegue la temporada de lluvias.
 </p>

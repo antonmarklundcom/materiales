@@ -37,5 +37,8 @@
 <p class="closing">
   Volvé a <a href="/materiales/aberturas/">aberturas</a> para ver otras opciones de puerta, o
   mirá <a href="/materiales/chapa-de-zinc/">chapa de zinc</a> si necesitás la materia prima para
-  otro trabajo de chapa.
+  otro trabajo de chapa. Si además estás calculando cuánto va a pesar este rubro en el total de
+  la obra, la guía
+  <a href="/guias/de-que-depende-el-costo-de-construir-en-paraguay/">de qué depende el costo de
+  construir en Paraguay</a> te da un panorama antes de pedir cotizaciones.
 </p>

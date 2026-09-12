@@ -39,5 +39,7 @@
   Volvé a <a href="/materiales/chapas-y-techos/">chapas y techos</a>, mirá el
   <a href="/materiales/policarbonato/">policarbonato</a> si buscás luz natural en vez de
   cielorraso cerrado, o la <a href="/materiales/chapa-termoacustica/">chapa termoacústica</a>
-  si necesitás aislación además de terminación.
+  si necesitás aislación además de terminación. Para no comprar de más ni de menos, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">Cómo hacer un cómputo métrico</a> te muestra
+  cómo calcular la cantidad exacta de tablillas antes de pedir.
 </p>

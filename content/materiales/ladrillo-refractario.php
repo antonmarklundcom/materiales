@@ -37,5 +37,7 @@
   Volvé a <a href="/materiales/ladrillos-y-bloques/">ladrillos y bloques</a> para comparar con el
   <a href="/materiales/ladrillo-comun/">ladrillo común</a> o el
   <a href="/materiales/ladrillo-prensado/">ladrillo visto</a> si buscás terminación expuesta sin
-  fuego directo.
+  fuego directo. Si estás armando el pedido completo del quincho, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">Cómo hacer un cómputo métrico</a> ayuda a no
+  dejar materiales afuera del cálculo.
 </p>

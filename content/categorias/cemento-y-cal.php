@@ -23,5 +23,7 @@
   zona y la cantidad de viajes que haga falta, así que conviene agrupar en una sola consulta lo que vas a
   necesitar para varias etapas —cemento para mampostería junto con cal para revoque, por ejemplo— y así
   cerrar el flete de una sola vez. Decinos qué material y qué cantidad estimás para cada etapa de tu obra y
-  te ayudamos a armar el pedido sin duplicar viajes.
+  te ayudamos a armar el pedido sin duplicar viajes. Si todavía no elegiste dónde comprar, la
+  guía <a href="/guias/como-elegir-un-corralon/">Cómo elegir un corralón</a> repasa qué mirar
+  antes de decidirte por un proveedor.
 </p>

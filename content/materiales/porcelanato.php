@@ -52,7 +52,10 @@
   sobre el pulido, porque el brillo del pulido resbala más al mojarse. Un error frecuente es
   usar adhesivo de cerámica común en porcelanato pensando que da lo mismo: con el tiempo el
   peso de la placa termina despegándola, así que conviene confirmar siempre que el adhesivo sea
-  el indicado para esta pieza.
+  el indicado para esta pieza. Como el porcelanato suele ser una de las partidas más caras del
+  presupuesto de terminaciones, conviene repasar la guía
+  <a href="/guias/de-que-depende-el-costo-de-construir-en-paraguay/">de qué depende el costo de
+  construir en Paraguay</a> antes de definir cuánta superficie cubrir con esta pieza.
 </p>
 
 <p class="closing">

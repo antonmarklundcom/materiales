@@ -67,11 +67,11 @@ la fase que la resuelve.
 
 ## Fase 4 — Design & pages
 
-14. **Fuentes vía Google Fonts CDN, no autohospedadas.** `web-design-system` recomienda
-    autohospedar; este stack no tiene paso de build (plan §1.2: sin Node), así que
-    `header.php` carga Bricolage Grotesque + Inter desde `fonts.googleapis.com` con
-    `display=swap` y `preconnect`. Si en producción se prefiere autohospedar, es reemplazar el
-    `<link>` por `@font-face` con los `.woff2` en `assets/fonts/` — no toca ninguna plantilla.
+14. ~~Fuentes vía Google Fonts CDN, no autohospedadas~~ — **resuelto en la fase 14.**
+    `assets/fonts/*.woff2` (Bricolage Grotesque + Inter, sólo latin/latin-ext, 196 KB) +
+    `@font-face` en `site.css`; `header.php` ya no pide nada a `fonts.googleapis.com`. Detalle
+    y la decisión de pinnear el eje óptico de Bricolage a 14 (para entrar en el presupuesto de
+    200 KB) en `docs/log/14-tech-hardening.md`.
 15. **Track resuelto es un híbrido, no INDUSTRIAL puro.** El track INDUSTRIAL del skill es
     dark-dominant en todo el body; acá el catálogo tiene ~50 páginas de prosa larga (300–900
     palabras) más FAQ, así que el body vive sobre un campo claro ("paper") y sólo el header, el
@@ -143,3 +143,26 @@ la fase que la resuelve.
     sin cambios de CSS porque no hacía falta ninguno. Moraleja para QA futuro: medir
     responsividad con Playwright/Puppeteer (viewport real), nunca con la bandera
     `--screenshot` de la CLI de Chromium.
+
+## Fase 13 — Calculadoras + guías ola 3
+
+24. **`ladrillos-por-m2` no incluye ladrillo hueco.** Sus medidas de cara (largo × alto) no
+    están documentadas en `content/materiales/ladrillo-hueco.php` — esa página sólo publica
+    el espesor (8/12/18 cm) — y no se inventó una para poder ofrecer la opción. El selector
+    ofrece las 3 medidas de ladrillo común ya publicadas más el bloque de hormigón estándar de
+    manual (39 × 19 cm). Se resuelve confirmando la medida real con una olería o un proveedor
+    y agregándola a las tablas `largo_cm`/`alto_cm` de `data/calculators.php` — un cambio de
+    una línea. Ver `docs/decisions-needed.md` #1.
+25. **El bloque de hormigón de `ladrillos-por-m2` usa una medida estándar de manual (39 × 19
+    cm de cara), no una verificada con una olería paraguaya.** Si un proveedor local usa otra
+    medida, es el mismo cambio de una línea que el punto anterior. Ver
+    `docs/decisions-needed.md` #2.
+
+## Fase 15 — Link pass + imágenes + QA de lanzamiento
+
+26. **Sigue sin fotografía real por página** (misma causa que #22: el entorno bloquea
+    `*.cloudfront.net`, verificado de nuevo en esta fase — `connect_rejected` por política de
+    la organización). No se gastaron créditos de Higgsfield intentándolo. Sigue pendiente el
+    paso manual de Anton: subir los 12 archivos de `docs/imagery-brief.md` a
+    `assets/img/cat/{slug}.jpg` y `assets/img/hero-home.jpg`, o habilitar el dominio en la
+    configuración del entorno para correr `higgsfield-image-pipeline`.

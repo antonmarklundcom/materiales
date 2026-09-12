@@ -33,7 +33,10 @@
   nivelada y dimensionada para el peso del tanque lleno, no sólo del tanque vacío, porque mil
   litros de agua pesan una tonelada. El litraje conviene definirlo con margen y no ajustado al
   mínimo, para no quedarte corto el día que hay más gente en la casa o se corta el servicio por
-  más tiempo del habitual.
+  más tiempo del habitual. Si estás definiendo el litraje junto con el resto de la instalación
+  sanitaria, la guía
+  <a href="/guias/como-hacer-un-computo-metrico/">cómo hacer un cómputo métrico</a> te sirve
+  para ordenar esa cuenta antes de pedir presupuesto.
 </p>
 <table>
   <thead>
