@@ -76,3 +76,33 @@ carpeta interna nueva tiene que sumarse a esa lista de `.htaccess`**.
 - [ ] `https://materiales.com.py/sitemap.xml` responde 200 y sólo lista páginas `activa`
 - [ ] `robots.txt` accesible y enlazando el sitemap
 - [ ] Sitemap enviado en Search Console
+
+## Replay de leads fallidos (fase 14, decisión §1.26)
+
+`tools/replay-leads.php` reintenta los leads que quedaron con `outcome: 'fallo_crm'` en
+`storage/leads.log` — es el "replay manual" del que habla el plan §3, ahora automático por
+cron. Es idempotente por `idempotency_key`: nunca reenvía un lead cuyo `storage/replayed.log`
+ya tenga `ok:true` para esa clave, así que correrlo de más no duplica nada en el CRM.
+
+1. En hPanel → Advanced → **Cron Jobs**, agregar (ajustar el usuario/ruta real del hosting):
+
+   ```
+   0 * * * * /usr/bin/php /home/USUARIO/domains/materiales.com.py/public_html/tools/replay-leads.php >> /home/USUARIO/logs/replay-leads.log 2>&1
+   ```
+
+2. Confirmar que el binario de PHP en el cron es el mismo PHP 8.x del sitio (`/usr/bin/php`
+   puede apuntar a una versión distinta en hosting compartido — verificar con `php -v` por
+   SSH antes de pegar la línea).
+3. `storage/replayed.log` no está en el repo (vive junto a `leads.log`, mismo `.htaccess` de
+   `storage/` lo bloquea por web) — no hace falta crearlo a mano, el script lo crea en el
+   primer reintento.
+4. Probar en seco antes de confiar en el cron: `php tools/replay-leads.php --dry-run` lista
+   lo pendiente sin enviar nada ni tocar `replayed.log`.
+
+## Headers de seguridad (fase 14, decisión §1.24)
+
+Después de desplegar, verificar con `curl -sI https://materiales.com.py/` que la respuesta
+trae `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options` y `Permissions-Policy`.
+`Strict-Transport-Security` queda comentada en `.htaccess` a propósito: activarla exige que
+el SSL del dominio ya esté confirmado y estable — recién ahí descomentar esa línea y
+redeployar. No hay `Content-Security-Policy` (ver `.htaccess` y plan §10 Backlog).

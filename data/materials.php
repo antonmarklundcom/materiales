@@ -24,6 +24,10 @@
  * de dinero. Si la clave no está, o el archivo todavía no se subió, la página se renderiza
  * exactamente como hoy. `tools/smoke.php` falla sólo cuando se DECLARA una ruta cuyo
  * archivo no existe. Los valores los cablea la fase 15.
+ *
+ * Clave OPCIONAL `updated` (YYYY-MM-DD, fase 14, decisión §1.25): la usa `sitemap.php` para
+ * `lastmod`. Nunca se calcula de `filemtime()` (el deploy de Hostinger reescribe mtimes en
+ * cada push). Sin la clave, esa URL no lleva `lastmod`.
  */
 
 declare(strict_types=1);

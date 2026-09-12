@@ -498,6 +498,53 @@ if (!lead_log(['ts' => gmdate('c'), 'outcome' => 'smoke', 'marker' => $marker]))
     }
 }
 
+// ---- fase 14: tools/replay-leads.php (decisión §1.26) --------------------------------
+// Fixture en un dir temporal — nunca toca storage/leads.log real. Sólo se verifica la
+// LÓGICA DE SELECCIÓN (--dry-run, sin red): un 'fallo_crm' pendiente aparece, y una vez que
+// su idempotency_key ya está en replayed.log con ok:true, deja de aparecer.
+$replayFixtureDir = sys_get_temp_dir() . '/materiales-smoke-replay-' . bin2hex(random_bytes(4));
+if (!@mkdir($replayFixtureDir, 0770, true)) {
+    $fail('replay-leads: no se pudo crear el directorio temporal del fixture');
+} else {
+    $fixtureKey = 'smoke-' . bin2hex(random_bytes(4));
+    $fixtureLog = $replayFixtureDir . '/leads.log';
+    $fixtureReplayed = $replayFixtureDir . '/replayed.log';
+    file_put_contents($fixtureLog, json_encode([
+        'ts' => gmdate('c'), 'outcome' => 'fallo_crm',
+        'crm' => ['status' => 0, 'ms' => 1, 'error' => 'timeout', 'body' => ''],
+        'payload' => ['idempotency_key' => $fixtureKey, 'phone' => '0981123456', 'source' => 'site:materiales'],
+    ], JSON_UNESCAPED_UNICODE) . "\n");
+
+    $runReplay = static function () use ($replayFixtureDir, $fixtureLog, $fixtureReplayed): string {
+        $cmd = sprintf(
+            '%s %s --dry-run --log=%s --replayed=%s 2>&1',
+            escapeshellarg(PHP_BINARY),
+            escapeshellarg(dirname(__DIR__) . '/tools/replay-leads.php'),
+            escapeshellarg($fixtureLog),
+            escapeshellarg($fixtureReplayed)
+        );
+        return (string) shell_exec($cmd);
+    };
+
+    $out1 = $runReplay();
+    if (!str_contains($out1, $fixtureKey) || !str_contains($out1, '1 pendientes')) {
+        $fail("replay-leads: no detectó el fallo_crm pendiente del fixture (salida: {$out1})");
+    }
+
+    file_put_contents($fixtureReplayed, json_encode([
+        'ts' => gmdate('c'), 'idempotency_key' => $fixtureKey, 'ok' => true, 'status' => 200, 'error' => '',
+    ], JSON_UNESCAPED_UNICODE) . "\n");
+
+    $out2 = $runReplay();
+    if (!str_contains($out2, '0 pendientes')) {
+        $fail("replay-leads: sigue contando como pendiente un idempotency_key ya reenviado con éxito (salida: {$out2})");
+    }
+
+    @unlink($fixtureLog);
+    @unlink($fixtureReplayed);
+    @rmdir($replayFixtureDir);
+}
+
 // ---- sin config de CRM el sitio igual funciona (plan §4.5) ---------------------------
 if (!is_file(CONFIG_DIR . '/vendercrm.php') && lead_crm_configured()) {
     $fail('lead: crm_configured() dice true sin config/vendercrm.php');
