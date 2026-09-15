@@ -544,7 +544,7 @@ Index (phases 5–8 fill their line in the PR that merges them):
 | 12 calculators foundation | Opus | ✅ | #21 | `docs/log/12-calculadoras-foundation.md` |
 | 13 calculators + guías wave 3 | Sonnet | ✅ | #22 | `docs/log/13-calculadoras-guias.md` |
 | 14 technical hardening | Sonnet | ✅ | #23 | `docs/log/14-tech-hardening.md` |
-| 15 link pass + images + launch QA | Sonnet | ✅ | — | `docs/log/15-link-pass-launch.md` |
+| 15 link pass + images + launch QA | Sonnet | ✅ | #24 | `docs/log/15-link-pass-launch.md` |
 
 **2026-09-06 — Fase 8 · Imagery + QA + launch (Sonnet, PR #13, FINAL).**
 - Preflight de `higgsfield-image-pipeline` Rule 0/2: no había manifest de imágenes, y

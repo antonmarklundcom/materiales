@@ -90,6 +90,20 @@ if ($handle === false) {
     exit(2);
 }
 
+// Reconciliar todo el log antes de reenviar: un éxito puede seguir a un fallo anterior.
+while (($line = fgets($handle)) !== false) {
+    $record = json_decode(trim($line), true);
+    if (!is_array($record) || ($record['outcome'] ?? '') !== 'enviado') {
+        continue;
+    }
+    $payload = is_array($record['payload'] ?? null) ? $record['payload'] : [];
+    $idempotencyKey = (string) ($payload['idempotency_key'] ?? '');
+    if ($idempotencyKey !== '') {
+        $alreadySent[$idempotencyKey] = true;
+    }
+}
+rewind($handle);
+
 $pending  = 0;
 $sentNow  = 0;
 $stillBad = 0;
@@ -130,6 +144,7 @@ while (($line = fgets($handle)) !== false) {
     ]);
 
     if ($ok) {
+        $alreadySent[$idempotencyKey] = true;
         $sentNow++;
         fwrite(STDOUT, "OK  idempotency_key={$idempotencyKey} status={$result['status']}\n");
     } else {

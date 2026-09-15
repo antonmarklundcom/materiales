@@ -17,7 +17,7 @@ Anton (NAP, credenciales, DNS, fotografía). Detalle por fase en `docs/log/`)._
 | 1 Foundation | Opus | ✅ Mergeada | #2, #3 | Layout, router, plantillas, partials, datos, sitemap, .htaccess, CI, smoke |
 | 2 Lead pipeline | Opus | ✅ Mergeada | #4 | Formulario, handler → VenderCRM, consentimiento, leads.log, /gracias/, analytics con consentimiento |
 | 3 Content spec | Opus | ✅ Mergeada | #5 | Datos de contenido cerrados (13 categorías, 34 materiales, 6 guías) + `CONTENT-SPEC.md` |
-| 4 Design & pages | Sonnet | ✅ Mergeada | #6 (pendiente de verificar) | Capa visual completa (track INDUSTRIAL adaptado, `web-design-system`): tokens, tipografía, tarjetas, formulario, FAQ-acordeón, pie en cinta, motion |
+| 4 Design & pages | Sonnet | ✅ Mergeada | #6 (verificado) | Capa visual completa (track INDUSTRIAL adaptado, `web-design-system`): tokens, tipografía, tarjetas, formulario, FAQ-acordeón, pie en cinta, motion |
 | 5 Keyword expansion (PR 5a · 5b · 5c) | Opus (una ventana) | ✅ Mergeada | #8, #9, #10 | CONTENT-SPEC §11 (propiedad de keywords, marcas genéricas, FAQ de precio, regla de medidas), 30 materiales nuevos, FAQ de precio en los 64, 2 guías nuevas y 6 categorías promovidas con su copy reescrita |
 | 6 Content wave 1 | Sonnet (una ventana, PR 1/3) | ✅ Mergeada | #11 | Prosa de las 5 categorías de lanzamiento, sus 34 materiales y las 8 guías |
 | 7 Content wave 2 | Sonnet (misma ventana, PR 2/3) | ✅ Mergeada | #12 | Prosa de pisos, aberturas, impermeabilizantes, yeso, plomería y madera |
@@ -69,7 +69,7 @@ Lo que falta es exclusivamente lo que ya estaba fuera del alcance de Claude (§7
    `docs/imagery-brief.md`.
 2. **Datos reales de NAP** (abajo).
 3. **`staging_noindex => false`** cuando el dominio esté apuntando.
-4. **`data/site.php` → `updated`** en las entradas que se quiera que aparezcan con `lastmod`
+4. **Campo `updated` de cada entrada de categoría, material, guía o calculadora** para incluir `lastmod`
    en el sitemap (fase 14, decisión §1.25) — ninguna lo tiene todavía.
 
 (El supuesto bug de header mobile de la primera pasada de QA de fase 8 se descartó — era un
@@ -88,7 +88,6 @@ categoría llevan además un enlace editorial en prosa a una guía o calculadora
 | Ya | Hostinger: slot del sitio, PHP 8.x, Git deploy por webhook en `main` | hPanel — ver `DEPLOY.md` |
 | Ya | VenderCRM: registro en **Sitios**, URL + API key, ruteo por defecto | `config/vendercrm.php` en el servidor, fuera del repo |
 | Ya | GA4 property ID + Meta Pixel ID (o dejarlos vacíos: degradan bien) | `data/site.php` |
-| Ya | Repo → Settings → Pull Requests → "Allow auto-merge" (sin esto, cada fase queda esperando merge manual) | GitHub |
 | Antes del lanzamiento | DNS de materiales.com.py → Hostinger | Registrador |
 | En paralelo, humano | Reclutar 2–3 proveedores fundadores por categoría de lanzamiento | Planilla + VenderCRM |
 
@@ -98,7 +97,7 @@ categoría llevan además un enlace editorial en prosa a una guía o calculadora
 find . -name '*.php' -not -path './.git/*' -print0 | xargs -0 -n1 php -l
 php tools/smoke.php          # datos + unidades del pipeline de leads
 bash tools/render-check.sh   # rutas reales y POSTs reales contra el handler
-php -S 127.0.0.1:8080 -t public_html tools/router-cli.php
+php -S 127.0.0.1:8080 -t . tools/router-cli.php
 ```
 
 ## Notas del build

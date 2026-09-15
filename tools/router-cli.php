@@ -20,6 +20,13 @@ if (preg_match('#^/(partials/|materiales/_index\.php$)#', $path)) {
     return true;
 }
 
+// Directorios internos: bloquear por prefijo aunque el archivo no exista (espejo del [F]).
+if (preg_match('#^/(data|content|config|storage|tools|prompts|docs)(/|$)#', $path)) {
+    http_response_code(403);
+    echo 'Forbidden';
+    return true;
+}
+
 // Archivos estáticos existentes: los sirve el servidor embebido tal cual.
 $candidate = $publicRoot . $path;
 if ($path !== '/' && is_file($candidate) && !str_ends_with($path, '.php')) {
