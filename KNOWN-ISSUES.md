@@ -21,8 +21,8 @@ la fase que la resuelve.
 4. **Trust stack incompleto por diseño.** Razón social, RUC, estado de IVA, dirección,
    teléfonos, horarios y el embed de Maps están vacíos en `data/site.php` y por eso no se
    renderizan. Son input humano de la fase 3 (plan §7); nada se inventa mientras tanto.
-5. **Sin `og:image`.** La etiqueta sólo se emite si existe `assets/img/og-default.jpg`. Las
-   imágenes OG por página de dinero se generan en la fase 6 con `higgsfield-web-imagery`.
+5. ~~Sin `og:image`~~ — **resuelto en la fase 8.** `assets/img/og-default.jpg` está versionado
+   y `partials/header.php` lo usa como fallback sitewide. Fotografía por página: ver #22.
 6. **`staging_noindex` está en `true`.** Todo el sitio sale con `noindex, nofollow` hasta el
    go-live. Apagarlo es parte del checklist de la fase 6 (`DEPLOY.md`).
 7. **La política de privacidad necesita revisión legal antes del go-live.** El texto refleja
@@ -37,10 +37,9 @@ la fase que la resuelve.
 
 ## Fase 2 — Lead pipeline
 
-9. **`presupuesto_band` viaja en el payload pero todavía no tiene valores.** `lead_resolve_slug()`
-   lee `price_band` de `data/materials.php` y `lead_build_payload()` lo manda en
-   `fields.presupuesto_band`, pero ningún material declara `price_band` todavía: el campo se
-   omite del payload en vez de ir vacío. Los valores son contenido de la fase 3 (plan §8.7).
+9. ~~`presupuesto_band` viaja en el payload pero todavía no tiene valores~~ — **resuelto.**
+   `data/materials.php` ya declara `price_band`; `lead_resolve_slug()` lo lee y
+   `lead_build_payload()` lo manda en `fields.presupuesto_band` (plan §8.7).
    Nunca se renderiza como precio en el sitio — es interno, para el repaso del lead en el CRM.
 10. **`vc-attribution.js` se carga sin pedir consentimiento.** Lo fija el plan §3 ("sitewide,
     defer") y es coherente: es una cookie de primer toque de nuestro propio dominio que sirve
@@ -78,10 +77,9 @@ la fase que la resuelve.
     hero de cada página y el pie quedan en la cáscara oscura (`.band--dark`) con grano. Es una
     extensión deliberada del track para legibilidad, no una desviación de las reglas duras
     (un acento, tipografía, motion, tarjetas siguen el sistema tal cual).
-16. **Sin imágenes todavía.** Ningún `hero-bleed`/`section-break`/`card-motif` se generó: la
-    fase 6 corre `higgsfield-web-imagery`. Hasta entonces el hero de cada página es texto sobre
-    banda oscura con grano — no hay ningún placeholder de imagen visible ni "ILLUSTRATIVE
-    PANEL". `og:image` sigue sin emitirse (KNOWN-ISSUES #5).
+16. ~~Sin imágenes todavía~~ — **resuelto para el fallback OG en la fase 8.**
+    `partials/header.php` emite `og:image` usando `assets/img/og-default.jpg`, ya versionado,
+    cuando no hay imagen por página. La fotografía real sigue pendiente en #22 y #26.
 17. **`events.js` es un shim inerte adicional, no reemplaza `analytics.js`.** Empuja
     `data-ev`/`data-ev-loc` a `window.dataLayer` sin proveedor y sin red (analytics-prep del
     skill); la analítica real con consentimiento (GA4/Meta Pixel, fase 2) sigue intacta en
