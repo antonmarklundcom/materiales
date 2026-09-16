@@ -50,7 +50,10 @@
   Si en cambio vas a usar piedra triturada como base compactada o como parte de una mezcla de
   hormigón para zapatas o platea, el cálculo cambia: ahí lo que importa es el volumen de la capa
   de asiento o la proporción que indique la dosificación del hormigón que te pase el calculista,
-  nunca una proporción fija de memoria. En cualquiera de los dos casos, contanos el largo de tus
+  nunca una proporción fija de memoria. Sea cual sea el tipo de piedra, conviene pedir el volumen
+  completo de una sola vez en vez de ir completando de a poco: además del flete, que pesa más
+  cuanto más lejos esté la cantera de tu obra, recibir todo junto evita diferencias de tono o de
+  tamaño entre camionadas distintas. En cualquiera de los dos casos, contanos el largo de tus
   zanjas, el ancho y la profundidad de proyecto y te ayudamos a estimar el volumen de piedra que
   necesitás pedir. <a href="/cotizar/">Pedí tu cotización</a> y coordinamos la entrega según el
   avance de tu obra.

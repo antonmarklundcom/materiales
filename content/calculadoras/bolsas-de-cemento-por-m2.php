@@ -114,11 +114,9 @@ declare(strict_types=1);
 <h2>Qué pedirle al proveedor</h2>
 <p>
   Al pedir cotización conviene mandar las tres cosas juntas: las bolsas de cemento, los metros
-  cúbicos de arena y, si va contrapiso, los de ripio. Los áridos se venden por metro cúbico o
-  por camionada, así que decir "2,2 m³ de arena lavada" evita la ida y vuelta de "¿cuántos
-  metros son?". Aclarás la zona de entrega y con eso el proveedor ya puede cerrar el flete, que
-  se cotiza aparte y suele pesar más de lo que uno espera cuando la obra está lejos del
-  corralón. Si querés repasar el criterio antes de comprar, la guía
+  cúbicos de arena y, si va contrapiso, los de ripio. Decir "2,2 m³ de arena lavada" evita la
+  ida y vuelta de "¿cuántos metros son?". Sumá la zona de entrega: el flete se cotiza aparte.
+  Si querés repasar el criterio antes de comprar, la guía
   <a href="/guias/cuantas-bolsas-de-cemento-por-m2/">cuántas bolsas de cemento por m²</a> entra
   en el detalle de contrapiso, revoque y mampostería.
 </p>

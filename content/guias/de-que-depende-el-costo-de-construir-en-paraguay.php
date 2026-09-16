@@ -71,6 +71,6 @@
   Si ya tenés claro qué rubro necesitás cotizar primero, entrá a la categoría correspondiente
   —<a href="/materiales/hierro/">hierro</a>, <a href="/materiales/cemento-y-cal/">cemento y
   cal</a>, <a href="/materiales/ladrillos-y-bloques/">ladrillos y bloques</a> o
-  <a href="/materiales/chapas-y-techos/">chapas y techos</a>— y pedí tu cotización con la
-  cantidad que ya calculaste.
+  <a href="/materiales/chapas-y-techos/">chapas y techos</a>— y <a href="/cotizar/">pedí tu
+  cotización</a> con la cantidad que ya calculaste.
 </p>
