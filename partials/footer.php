@@ -20,7 +20,8 @@ $whatsapp = preg_replace('/\D+/', '', (string) ($site['whatsapp'] ?? ''));
     <div class="wrap site-footer__trust">
       <p class="site-footer__name"><?= e($site['legal_name'] !== '' ? $site['legal_name'] : $site['brand']) ?></p>
       <?php if (($site['ruc'] ?? '') !== ''): ?><p>RUC: <?= e($site['ruc']) ?><?= ($site['iva_status'] ?? '') !== '' ? ' · ' . e($site['iva_status']) : '' ?></p><?php endif; ?>
-      <?php if (($address['street'] ?? '') !== ''): ?><p><?= e($address['street']) ?>, <?= e($address['locality']) ?>, Paraguay</p><?php endif; ?>
+      <?php if (($address['street'] ?? '') !== ''): ?><p><?= e($address['street']) ?>, <?= e($address['locality']) ?>, Paraguay</p>
+      <?php elseif (($address['locality'] ?? '') !== ''): ?><p><?= e($address['locality']) ?>, Paraguay</p><?php endif; ?>
       <?php if (($site['horarios'] ?? '') !== ''): ?><p><?= e($site['horarios']) ?></p><?php endif; ?>
       <ul class="site-footer__contact">
         <?php if ($whatsapp !== ''): ?><li><a href="https://wa.me/<?= e($whatsapp) ?>" data-ev="whatsapp_click" data-ev-loc="footer">WhatsApp</a></li><?php endif; ?>

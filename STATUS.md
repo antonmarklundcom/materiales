@@ -75,6 +75,14 @@ Lo que falta es exclusivamente lo que ya estaba fuera del alcance de Claude (§7
 (El supuesto bug de header mobile de la primera pasada de QA de fase 8 se descartó — era un
 artefacto de la herramienta de captura, no un problema real. Ver KNOWN-ISSUES #23.)
 
+**Actualización (2026-09-16): 1, 2 y 3 resueltos, el sitio salió a producción.** Fotografía
+real generada y cableada (KNOWN-ISSUES #22/#26). NAP: WhatsApp, teléfono y localidad
+(Asunción, Paraguay) cargados en `data/site.php`; razón social, RUC, condición IVA, horarios
+y email siguen PENDIENTE — Anton los deja para más adelante a propósito, no bloquean el
+go-live. `staging_noindex => false` desde hoy. Sigue pendiente: `config/vendercrm.php` en el
+servidor (los leads son `solo_log` hasta que exista), el punto 4 (`lastmod`) y el cron de
+`tools/replay-leads.php`.
+
 Prosa real: ✅ completa. Las 11 categorías, 64 materiales y 14 guías ya tienen cuerpo en
 `content/categorias/`, `content/materiales/` y `content/guias/` — ninguna página activa
 muestra ya el aviso "estamos publicando el contenido", y las 75 páginas de material y
