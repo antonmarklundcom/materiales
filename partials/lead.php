@@ -461,8 +461,8 @@ function lead_ip_fingerprint(string $ip): string
     return $ip === '' ? '' : substr(hash_hmac('sha256', $ip, lead_form_secret()), 0, 16);
 }
 
-/** Limita por huella, sin guardar la IP. Ante fallos de disco deja pasar el lead. */
-function lead_ip_throttled(string $ip, ?int $now = null): bool
+/** Limita leads distintos por huella; permite reintentos. Ante fallos deja pasar el lead. */
+function lead_ip_throttled(string $ip, string $idempotencyKey, ?int $now = null): bool
 {
     try {
         if ($ip === '') {
@@ -492,13 +492,16 @@ function lead_ip_throttled(string $ip, ?int $now = null): bool
             if ($last === false) {
                 return false;
             }
-            if ($last !== '' && !ctype_digit($last)) {
-                return false;
+            if (preg_match('/\A([0-9a-fA-F]+)\n([0-9]+)\z/', $last, $record) === 1) {
+                if ($record[1] === $idempotencyKey) {
+                    return false;
+                }
+                if ($now - (int) $record[2] < LEAD_IP_WINDOW_SECONDS) {
+                    return true;
+                }
             }
-            if ($last !== '' && $now - (int) $last < LEAD_IP_WINDOW_SECONDS) {
-                return true;
-            }
-            $timestamp = (string) $now;
+            // Un registro vacío o corrupto se reemplaza para recuperar el límite.
+            $timestamp = $idempotencyKey . "\n" . (string) $now;
             if (!@rewind($handle) || !@ftruncate($handle, 0)
                 || @fwrite($handle, $timestamp) !== strlen($timestamp) || !@fflush($handle)) {
                 return false;

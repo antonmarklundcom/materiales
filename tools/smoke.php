@@ -415,22 +415,33 @@ $is = static function (string $what, $actual, $expected) use (&$errors): void {
     }
 };
 $t0 = 1781520000;
-$is('IP vacía pasa', lead_ip_throttled('', $t0), false);
+$keyA = str_repeat('a', 64);
+$keyB = str_repeat('b', 64);
+$is('IP vacía pasa', lead_ip_throttled('', $keyA, $t0), false);
 $is('IP vacía no crea directorio', is_dir(STORAGE_DIR . '/throttle'), false);
-$is('primera IP pasa', lead_ip_throttled('192.0.2.1', $t0), false);
+$is('primera IP pasa', lead_ip_throttled('192.0.2.1', $keyA, $t0), false);
 $path = STORAGE_DIR . '/throttle/' . lead_ip_fingerprint('192.0.2.1');
-$is('archivo contiene sólo timestamp', @file_get_contents($path), (string) $t0);
+$is('archivo contiene clave y timestamp', @file_get_contents($path), $keyA . "\n" . $t0);
 $is('throttle protegido', @file_get_contents(STORAGE_DIR . '/throttle/.htaccess'), file_get_contents($argv[2] . '/tools/.htaccess'));
-$is('misma IP limitada', lead_ip_throttled('192.0.2.1', $t0 + 1), true);
-$is('otra IP pasa', lead_ip_throttled('192.0.2.2', $t0 + 1), false);
-$is('antes del límite sigue bloqueada', lead_ip_throttled('192.0.2.1', $t0 + LEAD_IP_WINDOW_SECONDS - 1), true);
-$is('expira en el límite', lead_ip_throttled('192.0.2.1', $t0 + LEAD_IP_WINDOW_SECONDS), false);
-$is('nuevo envío reinicia ventana', lead_ip_throttled('192.0.2.1', $t0 + LEAD_IP_WINDOW_SECONDS + 1), true);
-file_put_contents($path, 'timestamp-invalido');
-$is('contenido inválido deja pasar', lead_ip_throttled('192.0.2.1', $t0), false);
+$is('misma IP y clave pasa', lead_ip_throttled('192.0.2.1', $keyA, $t0 + 1), false);
+$is('reintento no reescribe', @file_get_contents($path), $keyA . "\n" . $t0);
+$is('misma IP con otra clave limitada', lead_ip_throttled('192.0.2.1', $keyB, $t0 + 1), true);
+$is('otra IP pasa', lead_ip_throttled('192.0.2.2', $keyB, $t0 + 1), false);
+$is('antes del límite sigue bloqueada', lead_ip_throttled('192.0.2.1', $keyB, $t0 + LEAD_IP_WINDOW_SECONDS - 1), true);
+$is('expira en el límite', lead_ip_throttled('192.0.2.1', $keyB, $t0 + LEAD_IP_WINDOW_SECONDS), false);
+$is('expiración guarda nuevo registro', @file_get_contents($path), $keyB . "\n" . ($t0 + LEAD_IP_WINDOW_SECONDS));
+$is('nuevo envío reinicia ventana', lead_ip_throttled('192.0.2.1', $keyA, $t0 + LEAD_IP_WINDOW_SECONDS + 1), true);
+$is('misma clave pasa aun vencida', lead_ip_throttled('192.0.2.1', $keyB, $t0 + 2 * LEAD_IP_WINDOW_SECONDS), false);
+$is('reintento vencido no reescribe', @file_get_contents($path), $keyB . "\n" . ($t0 + LEAD_IP_WINDOW_SECONDS));
+foreach (['timestamp-invalido', (string) $t0, $keyA . "\nayer", "no-hex\n" . $t0, $keyA . "\n" . $t0 . "\nextra"] as $corrupt) {
+    file_put_contents($path, $corrupt);
+    $is('contenido inválido deja pasar', lead_ip_throttled('192.0.2.1', $keyA, $t0), false);
+    $is('contenido inválido se repara', @file_get_contents($path), $keyA . "\n" . $t0);
+    $is('registro reparado limita otra clave', lead_ip_throttled('192.0.2.1', $keyB, $t0 + 1), true);
+}
 unlink($path);
 mkdir($path);
-$is('fallo al abrir deja pasar', lead_ip_throttled('192.0.2.1', $t0), false);
+$is('fallo al abrir deja pasar', lead_ip_throttled('192.0.2.1', $keyA, $t0), false);
 rmdir($path);
 echo $errors === [] ? 'THROTTLE OK' : implode("\n", $errors);
 PHP;
