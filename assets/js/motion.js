@@ -1,7 +1,7 @@
 /*
- * motion.js — web-design-system, copiado tal cual. Reveal de scroll con stagger acotado y
- * estado de header pegajoso. Sin dependencias. Presupuesto: <=15% de los elementos animan
- * (plan §4 fase 4). `prefers-reduced-motion: reduce` apaga todo.
+ * motion.js — reveal de scroll con stagger acotado, estado de header pegajoso y el menú
+ * mobile (burger + dropdown). Sin dependencias. Presupuesto de motion: <=15% de los
+ * elementos animan (plan §4 fase 4). `prefers-reduced-motion: reduce` apaga el reveal.
  */
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -56,5 +56,41 @@
       entries.forEach(function (e) { bar.classList.toggle('is-hidden', e.isIntersecting); });
     }, { threshold: 0 });
     barIo.observe(form);
+  }
+
+  /*
+   * Menú mobile: burger a la derecha del header, dropdown ancla en .site-header
+   * (ver site.css). Cierra con Escape, con click afuera y al elegir un link —
+   * sin JS el toggle no existe y .site-nav sigue mostrando todos los links
+   * apilados (nunca queda oculto para siempre).
+   */
+  var navToggle = d.querySelector('[data-nav-toggle]');
+  var nav = d.getElementById('site-nav');
+  if (navToggle && nav) {
+    var closeNav = function () {
+      navToggle.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('is-open');
+    };
+    var openNav = function () {
+      navToggle.setAttribute('aria-expanded', 'true');
+      nav.classList.add('is-open');
+    };
+    navToggle.addEventListener('click', function () {
+      if (nav.classList.contains('is-open')) { closeNav(); } else { openNav(); }
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') { closeNav(); }
+    });
+    d.addEventListener('click', function (e) {
+      if (!nav.classList.contains('is-open')) return;
+      if (nav.contains(e.target) || navToggle.contains(e.target)) return;
+      closeNav();
+    });
+    d.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) { closeNav(); navToggle.focus(); }
+    });
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 831) { closeNav(); }
+    });
   }
 })();

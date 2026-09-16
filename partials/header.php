@@ -74,7 +74,11 @@ header('Cache-Control: no-cache');
 <header class="site-header band--dark grain" data-sticky-header>
   <div class="wrap site-header__row">
     <a class="site-header__brand" href="/"><?= e($site['brand']) ?></a>
-    <nav class="site-nav" aria-label="Principal">
+    <button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="site-nav">
+      <span class="nav-toggle__box" aria-hidden="true"><span class="nav-toggle__bar"></span></span>
+      <span class="sr-only">Abrir menú</span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Principal">
       <a href="/materiales/">Materiales</a>
       <a href="/guias/">Guías</a>
       <a href="/calculadoras/">Calculadoras</a>
