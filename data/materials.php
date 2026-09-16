@@ -790,7 +790,7 @@ return [
         'title'      => 'Ladrillo sapo en Paraguay | Pedí precio',
         'meta'       => 'Ladrillo sapo cerámico o de poliestireno expandido para losa alivianada con viguetas. Pedí cotización y recibí precio por WhatsApp.',
         'keyword'    => 'ladrillo sapo',
-        'synonyms'   => [],
+        'synonyms'   => ['bloque de relleno para losa'],
         'sale_unit'  => 'unidad',
         'price_band' => 'medio',
         'intro'      => 'Pedí ladrillo sapo, un bloque de relleno para losa alivianada que se usa con viguetas y es un producto distinto del tejuelón.',
