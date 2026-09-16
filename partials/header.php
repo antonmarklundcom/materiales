@@ -97,4 +97,4 @@ header('Cache-Control: no-cache');
   </ol>
 </nav>
 <?php endif; ?>
-<main id="contenido">
+<main id="contenido" tabindex="-1">
