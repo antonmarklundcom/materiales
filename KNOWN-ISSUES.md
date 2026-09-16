@@ -114,6 +114,10 @@ la fase que la resuelve.
     fabricación de vocabulario (regla anti-fabricación). "Ladrillo sapo" es candidato a página
     propia (260 búsquedas/mes, keyword sin dueño), no a sinónimo. Queda pendiente que Anton
     decida si abre esa página nueva; no se creó en esta sesión.
+    **Actualización (2026-09-16, página creada):** se construyó la página en
+    `data/materials.php` -> `ladrillo-sapo` / `content/materiales/ladrillo-sapo.php`, con
+    variantes cerámica y de poliestireno expandido y enlaces recíprocos con `tejuelon`.
+    Issue #18 cerrado.
 19. **`cano-de-agua` se autoriza con demanda sin medir.** Los términos `termofusión`, `PPR`
     y `cañería de agua` figuran en KEYWORDS §4.2 (frases a chequear en el próximo pull), no
     en los clústeres medidos. La página se sostiene sobre `caño` (480 búsquedas, la puja más
