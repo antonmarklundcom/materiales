@@ -102,10 +102,18 @@ la fase que la resuelve.
     vendido junto con viguetas (sistema vigueta + ladrillo sapo/bovedilla). Esto confirma que
     NO corresponde a `ladrillo-hueco`. El candidato más cercano ya existente en el sitio es
     `tejuelon`, cuyos sinónimos ya incluyen "ladrillo para losa" y "bovedilla cerámica" — mismo
-    rubro de losa alivianada. Aun así, no se asignó como sinónimo todavía: la evidencia web no
-    distingue con certeza si "ladrillo sapo" (cerámico o de isopor) es exactamente lo mismo que
-    "tejuelón" para un comprador paraguayo o una variante distinta del mismo sistema. Sigue
-    pendiente la llamada de confirmación a un corralón antes de tocar `synonyms[]`.
+    rubro de losa alivianada.
+    **Actualización (2026-09-16, listas de precios reales de un corralón, vía Anton):** dos
+    listados WhatsApp de un mismo proveedor paraguayo confirman que "ladrillo sapo" y
+    "tejuelón" son SKUs distintos, no sinónimos: uno lista "🧱 Ladrillos sapo - Tergopol" y
+    "🧱 ... Tejas - Tejuelones" como líneas separadas del catálogo; el otro ofrece "ladrillo
+    hueco ladrillo común teja itagua tejuelon itagua vigueta con ladrillo sapo" — de nuevo
+    "ladrillo sapo" y "tejuelon" nombrados aparte, ambos asociados al sistema de vigueta (relleno
+    de losa alivianada) pero como productos separados. Esto cierra la pregunta: **NO** agregar
+    "ladrillo sapo" a `synonyms[]` de `tejuelon` ni de ninguna página existente — sería
+    fabricación de vocabulario (regla anti-fabricación). "Ladrillo sapo" es candidato a página
+    propia (260 búsquedas/mes, keyword sin dueño), no a sinónimo. Queda pendiente que Anton
+    decida si abre esa página nueva; no se creó en esta sesión.
 19. **`cano-de-agua` se autoriza con demanda sin medir.** Los términos `termofusión`, `PPR`
     y `cañería de agua` figuran en KEYWORDS §4.2 (frases a chequear en el próximo pull), no
     en los clústeres medidos. La página se sostiene sobre `caño` (480 búsquedas, la puja más
