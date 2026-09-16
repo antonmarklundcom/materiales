@@ -397,6 +397,62 @@ $is('sello vencido', lead_form_stamp_reason($stamp['ts'], $stamp['sig'], $t0 + L
 // Un sello robado de otra página sigue chocando con el mínimo: es firma Y tiempo, no una sola cosa.
 $is('sello del futuro', lead_form_stamp_reason((string) ($t0 + 3600), lead_form_stamp($t0 + 3600)['sig'], $t0), 'sello');
 
+// ---- throttle por IP: proceso aislado para definir STORAGE_DIR temporal -------------
+// Como el fixture de replay, nunca escribe en el storage real. Sin sleep: reloj inyectado.
+$throttleFixtureDir = sys_get_temp_dir() . '/materiales-smoke-throttle-' . bin2hex(random_bytes(4));
+if (!@mkdir($throttleFixtureDir, 0770, true)) {
+    $fail('lead: no se pudo crear el directorio temporal del throttle');
+} else {
+    try {
+        $throttleCode = <<<'PHP'
+define('STORAGE_DIR', $argv[1]);
+define('CONFIG_DIR', STORAGE_DIR . '/config');
+require $argv[2] . '/partials/lead.php';
+$errors = [];
+$is = static function (string $what, $actual, $expected) use (&$errors): void {
+    if ($actual !== $expected) {
+        $errors[] = $what;
+    }
+};
+$t0 = 1781520000;
+$is('IP vacía pasa', lead_ip_throttled('', $t0), false);
+$is('IP vacía no crea directorio', is_dir(STORAGE_DIR . '/throttle'), false);
+$is('primera IP pasa', lead_ip_throttled('192.0.2.1', $t0), false);
+$path = STORAGE_DIR . '/throttle/' . lead_ip_fingerprint('192.0.2.1');
+$is('archivo contiene sólo timestamp', @file_get_contents($path), (string) $t0);
+$is('throttle protegido', @file_get_contents(STORAGE_DIR . '/throttle/.htaccess'), file_get_contents($argv[2] . '/tools/.htaccess'));
+$is('misma IP limitada', lead_ip_throttled('192.0.2.1', $t0 + 1), true);
+$is('otra IP pasa', lead_ip_throttled('192.0.2.2', $t0 + 1), false);
+$is('antes del límite sigue bloqueada', lead_ip_throttled('192.0.2.1', $t0 + LEAD_IP_WINDOW_SECONDS - 1), true);
+$is('expira en el límite', lead_ip_throttled('192.0.2.1', $t0 + LEAD_IP_WINDOW_SECONDS), false);
+$is('nuevo envío reinicia ventana', lead_ip_throttled('192.0.2.1', $t0 + LEAD_IP_WINDOW_SECONDS + 1), true);
+file_put_contents($path, 'timestamp-invalido');
+$is('contenido inválido deja pasar', lead_ip_throttled('192.0.2.1', $t0), false);
+unlink($path);
+mkdir($path);
+$is('fallo al abrir deja pasar', lead_ip_throttled('192.0.2.1', $t0), false);
+rmdir($path);
+echo $errors === [] ? 'THROTTLE OK' : implode("\n", $errors);
+PHP;
+        $cmd = sprintf(
+            '%s -r %s %s %s 2>&1',
+            escapeshellarg(PHP_BINARY),
+            escapeshellarg($throttleCode),
+            escapeshellarg($throttleFixtureDir),
+            escapeshellarg($root)
+        );
+        $is('throttle aislado', trim((string) shell_exec($cmd)), 'THROTTLE OK');
+    } finally {
+        foreach (glob($throttleFixtureDir . '/throttle/*') ?: [] as $file) {
+            is_dir($file) ? @rmdir($file) : @unlink($file);
+        }
+        @unlink($throttleFixtureDir . '/throttle/.htaccess');
+        @rmdir($throttleFixtureDir . '/throttle');
+        @unlink($throttleFixtureDir . '/.form-secret');
+        @rmdir($throttleFixtureDir);
+    }
+}
+
 // ---- atribución: la cookie de primer toque MANDA sobre el POST ----------------------
 $attr = lead_attribution(
     ['utm_source' => 'directo-de-hoy', 'utm_medium' => 'organic'],

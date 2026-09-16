@@ -21,6 +21,9 @@ const LEAD_MIN_SECONDS = 3;
 /** Ventana máxima de validez del sello del formulario: 12 h. Más viejo = página fósil. */
 const LEAD_STAMP_TTL = 43200;
 
+/** Ventana entre envíos de una misma IP. */
+const LEAD_IP_WINDOW_SECONDS = 60;
+
 /**
  * config/vendercrm.php si existe. Nunca lanza: sin config el handler degrada a leads.log y
  * el visitante igual llega a /gracias/ (plan §4.5).
@@ -456,6 +459,58 @@ function lead_log(array $record): bool
 function lead_ip_fingerprint(string $ip): string
 {
     return $ip === '' ? '' : substr(hash_hmac('sha256', $ip, lead_form_secret()), 0, 16);
+}
+
+/** Limita por huella, sin guardar la IP. Ante fallos de disco deja pasar el lead. */
+function lead_ip_throttled(string $ip, ?int $now = null): bool
+{
+    try {
+        if ($ip === '') {
+            return false;
+        }
+        $now = $now ?? time();
+        $dir = STORAGE_DIR . '/throttle';
+        $storageIsNew = !is_dir($dir);
+        if ($storageIsNew && !@mkdir($dir, 0770, true) && !is_dir($dir)) {
+            return false;
+        }
+        if ($storageIsNew) {
+            $htaccess = $dir . '/.htaccess';
+            if (!is_file($htaccess) && !@copy(dirname(__DIR__) . '/tools/.htaccess', $htaccess)) {
+                return false;
+            }
+        }
+        $handle = @fopen($dir . '/' . lead_ip_fingerprint($ip), 'c+');
+        if ($handle === false) {
+            return false;
+        }
+        try {
+            if (!@flock($handle, LOCK_EX)) {
+                return false;
+            }
+            $last = @stream_get_contents($handle);
+            if ($last === false) {
+                return false;
+            }
+            if ($last !== '' && !ctype_digit($last)) {
+                return false;
+            }
+            if ($last !== '' && $now - (int) $last < LEAD_IP_WINDOW_SECONDS) {
+                return true;
+            }
+            $timestamp = (string) $now;
+            if (!@rewind($handle) || !@ftruncate($handle, 0)
+                || @fwrite($handle, $timestamp) !== strlen($timestamp) || !@fflush($handle)) {
+                return false;
+            }
+            return false;
+        } finally {
+            // Cerrar libera también el LOCK_EX, incluso ante una excepción.
+            @fclose($handle);
+        }
+    } catch (Throwable $e) {
+        return false;
+    }
 }
 
 /**

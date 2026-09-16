@@ -56,6 +56,9 @@ $stampReason = lead_form_stamp_reason(
     $now
 );
 $botReason = !empty($_POST['website']) ? 'honeypot' : $stampReason;
+if ($botReason === '' && lead_ip_throttled((string) ($_SERVER['REMOTE_ADDR'] ?? ''), $now)) {
+    $botReason = 'limite_ip';
+}
 
 if ($botReason !== '') {
     lead_log([
