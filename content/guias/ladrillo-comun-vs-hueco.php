@@ -46,7 +46,9 @@
   portante, y pedí ver una muestra si es para un frente visto, porque el color y la textura
   pueden variar entre partidas. Si vas a combinar ladrillo común y hueco en la misma obra, avisale
   al proveedor para que te oriente sobre cantidades de cada uno según los metros cuadrados de cada
-  tipo de pared. También podés revisar el resto de la familia en
+  tipo de pared. Conviene también preguntar si el precio es por millar o por unidad, porque los dos
+  formatos conviven en plaza y comparar mal esa unidad hace parecer más caro un ladrillo que en
+  realidad no lo es. También podés revisar el resto de la familia en
   <a href="/materiales/ladrillos-y-bloques/">ladrillos y bloques</a> si tu proyecto necesita otras
   variantes.
 </p>

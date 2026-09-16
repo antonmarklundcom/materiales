@@ -52,7 +52,8 @@
   doblado si esa es una opción disponible, ahorrándote tiempo en obra. Si todavía no tenés la
   planilla definitiva pero ya sabés qué elementos vas a armar primero —por ejemplo zapatas y
   columnas antes que losa— podés pedir por etapas para no acumular material esperando en el
-  terreno.
+  terreno, algo que además reduce el riesgo de que las barras tomen óxido superficial por estar
+  mucho tiempo a la intemperie antes de usarse.
 </p>
 <p>
   Contanos qué elementos estructurales tenés que armar, si ya contás con la planilla de tu

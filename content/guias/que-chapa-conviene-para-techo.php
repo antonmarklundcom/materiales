@@ -48,7 +48,9 @@
   Ninguna cotización de techo queda completa con solo la chapa. Cumbreras, babetas laterales,
   canaletas y la tornillería autoperforante con arandela se cotizan aparte del metro cuadrado de
   chapa, y conviene pedirlos en la misma consulta para no terminar coordinando dos fletes
-  distintos. Si vas a usar chapa termoacústica también en paredes —algo común en cámaras
+  distintos. Contar bien la cantidad de tornillos por chapa también evita un segundo pedido a
+  mitad de obra: cada perfil trae su propia recomendación de tornillos por metro cuadrado según
+  el viento y la pendiente de la zona. Si vas a usar chapa termoacústica también en paredes —algo común en cámaras
   frigoríficas o depósitos— avisá desde el pedido, porque ahí entran además los perfiles de
   fijación oculta que dan una terminación más prolija que el tornillo visto.
 </p>
