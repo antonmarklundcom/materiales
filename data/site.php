@@ -63,7 +63,7 @@ return [
     // (p. ej. 'assets/img/hero-home.jpg'). Vacío o archivo inexistente ⇒ la home usa el
     // héroe de paleta y og-default.jpg. Los archivos los sube Anton (§7) y los cablea la
     // fase 15; tools/smoke.php falla sólo si se declara una ruta que no existe en disco.
-    'hero_image' => '',
+    'hero_image' => 'assets/img/hero-home.jpg',
 
     // --- lado proveedor (fase 10, decisión §1.17) ----------------------------------
     // El consentimiento del PROVEEDOR es otro texto y otra versión: un proveedor no está
