@@ -540,6 +540,17 @@ if (!@mkdir($replayFixtureDir, 0770, true)) {
         $fail("replay-leads: sigue contando como pendiente un idempotency_key ya reenviado con éxito (salida: {$out2})");
     }
 
+    $fixtureSoloKey = 'smoke-' . bin2hex(random_bytes(4));
+    file_put_contents($fixtureLog, json_encode([
+        'ts' => gmdate('c'), 'outcome' => 'solo_log',
+        'payload' => ['idempotency_key' => $fixtureSoloKey, 'phone' => '0981123456', 'source' => 'site:materiales'],
+    ], JSON_UNESCAPED_UNICODE) . "\n", FILE_APPEND);
+
+    $out3 = $runReplay();
+    if (!str_contains($out3, $fixtureSoloKey) || !str_contains($out3, '1 pendientes')) {
+        $fail("replay-leads: no detectó el solo_log pendiente del fixture (salida: {$out3})");
+    }
+
     @unlink($fixtureLog);
     @unlink($fixtureReplayed);
     @rmdir($replayFixtureDir);

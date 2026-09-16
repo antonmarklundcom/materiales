@@ -115,7 +115,7 @@ while (($line = fgets($handle)) !== false) {
     }
 
     $record = json_decode($line, true);
-    if (!is_array($record) || ($record['outcome'] ?? '') !== 'fallo_crm') {
+    if (!is_array($record) || !in_array($record['outcome'] ?? '', ['fallo_crm', 'solo_log'], true)) {
         continue;
     }
 
