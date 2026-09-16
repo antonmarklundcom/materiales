@@ -1,8 +1,8 @@
 <h2>Para qué se usa</h2>
 <p>
-  El hormigón elaborado —lo que en obra se pide como <strong>hormigón premezclado</strong> u
-  <strong>hormigón listo</strong>— es la opción para cuando no querés dosificar cemento, arena y ripio a
-  mano en el sitio. Llega en un <strong>mixer de hormigón</strong> ya mezclado y en punto para volcar, así
+  El hormigón elaborado —lo que en obra se pide como <strong>hormigón premezclado</strong>,
+  <strong>hormigón listo</strong> o simplemente <strong>concreto</strong>— es la opción para cuando no
+  querés dosificar cemento, arena y ripio a mano en el sitio. Llega en un <strong>mixer de hormigón</strong> ya mezclado y en punto para volcar, así
   que se usa mucho en losas, contrapisos grandes y zapatas donde el volumen necesario sería lento y poco
   parejo de preparar en obra. También se pide para columnas y estructuras donde conviene un hormigón de
   calidad uniforme de principio a fin del volcado, algo difícil de garantizar mezclando en varias tandas

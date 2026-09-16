@@ -8,7 +8,7 @@
   atar barra por barra. Para sujetar esa armadura antes de hormigonar está el
   <a href="/materiales/alambre-negro/">alambre negro</a>, y para la carpintería de obra —
   encofrados, tablas, listones— los <a href="/materiales/clavos/">clavos</a>. Cuando la
-  estructura no es de hormigón sino metálica —techos, entrepisos, galpones— entran los
+  estructura no es de hormigón sino de acero —techos, entrepisos, galpones— entran los
   <a href="/materiales/perfiles-metalicos/">perfiles metálicos</a>: caños estructurales,
   ángulos y perfiles C o U. Y si lo que buscás es cerrar un perímetro y no levantar una
   estructura, el <a href="/materiales/tejido-de-alambre/">tejido de alambre</a> es el material

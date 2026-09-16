@@ -218,7 +218,7 @@ return [
         'title'  => 'Aberturas en Paraguay: puertas, ventanas y rejas',
         'meta'   => 'Puertas de madera y de chapa, ventanas de aluminio, vidrio templado, portones y rejas. Pasanos las medidas y proveedores verificados te cotizan.',
         'keyword' => 'aberturas',
-        'intro'  => 'Puertas de madera, placa y chapa, ventanas de aluminio con su vidrio, blindex, portones y rejas: de línea o hechas a medida sobre el vano real.',
+        'intro'  => 'Puertas de madera, placa y chapa, ventanas de aluminio con su vidrio, portones y rejas: de línea o hechas a medida sobre el vano real.',
         'intro_keywords' => [
             'puertas y ventanas',
             'aberturas de aluminio',

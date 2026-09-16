@@ -3,8 +3,8 @@
   Los perfiles metálicos son la estructura cuando la obra no es de hormigón sino metálica:
   techos, entrepisos, galpones y correas de galpón que sostienen la chapa. Entran acá el
   <strong>perfil C</strong> y el <strong>perfil U</strong>, más usados como correas y montantes
-  livianos; los <strong>perfiles IPN</strong> y <strong>UPN</strong>, de mayor sección, para
-  vigas y columnas de estructuras más exigentes; el <strong>ángulo de hierro</strong>, para
+  livianos; los <strong>perfiles IPN</strong> y <strong>UPN</strong>, de mayor sección, que hacen de
+  <strong>viga de hierro</strong> y columna en estructuras más exigentes; el <strong>ángulo de hierro</strong>, para
   refuerzos, marcos y uniones; y el <strong>caño estructural</strong> o <strong>tubo
   cuadrado</strong>, que arma columnas y pórticos livianos. La <strong>planchuela</strong>
   completa el grupo para refuerzos y piezas de unión. Cuando la estructura de techo va a llevar
