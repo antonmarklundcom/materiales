@@ -191,20 +191,16 @@ Las 8 guías no llevan foto propia: reutilizan la foto de la categoría a la que
 > maderas (ocres, marrones) contra sombras oscuras, grano fotográfico, alto contraste. Sin
 > personas, sin manos, sin logos, sin texto ni medidas visibles. Encuadre 1200×630.
 
-## Cómo usarlo cuando el CDN esté permitido
+## Estado de las imágenes
 
-1. Confirmar Regla 2 de `higgsfield-image-pipeline`: `curl -sI -m 15 https://*.cloudfront.net/`
-   ya no debe dar 403.
-2. Generar las 12 imágenes de arriba, en orden, con `generate_image` /
-   `generate_image_batch` — `model: "nano_banana_pro"`, `resolution: "2k"`, un prompt por
-   imagen, tal cual están escritos.
-3. Verificar en el ledger (`transactions`) que cada job cobró como "Nano Banana Pro" (Regla 1).
-4. Convertir con `webimg` al nombre de archivo indicado en cada sección, alt text en español
-   paraguayo describiendo el contenido real (no el prompt), y colocarlas en
-   `public_html/assets/img/`.
-5. Actualizar este archivo con un bloque `_notes` (generated, cost_preflight,
-   actual_spend_credits, ledger_checked, download_status) por imagen, para que la próxima
-   sesión no repita el trabajo (Regla 0).
-6. Recién ahí conviene decidir si vale la pena tocar `partials/header.php` para servir un
-   `og:image` distinto por categoría (hoy sólo hay un `og-default.jpg` compartido) — es un
-   cambio de plantilla, no de contenido, así que necesita su propia fase/PR.
+Las 12 imágenes se generaron el 2026-09-16 con `gpt_image_2_5`, variante `sunburst`, calidad
+`medium` y resolución `2k`: una desviación explícita del valor usual `nano_banana_pro` de
+`higgsfield-image-pipeline`, elegida por Anton para esta tanda. El costo total fue de 18
+créditos (12 imágenes × 1,5 créditos), verificado contra el ledger de transacciones; se
+descargaron, recortaron exactamente a JPG 1200×630 con `sharp` y quedaron commiteadas en
+`assets/img/`. No se pudo usar Style Elements (consistencia entre imágenes mediante una
+referencia registrada) porque `gpt_image_2_5` no figura entre los modelos compatibles; la
+consistencia depende del lenguaje de prompt compartido ya escrito en los 12 prompts de arriba.
+Las imágenes quedaron cableadas en `data/categories.php` (clave `image` en las 11 categorías
+activas) y `data/site.php` (`hero_image`) en este mismo cambio.
+
