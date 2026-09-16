@@ -74,6 +74,8 @@ materiales page (belongs in Productos / Profesionales or is noise).
 | **Rejas y portones** | ~3.000 | portones de hierro 720 · rejas para ventanas 590 · rejas 480 · rejas para frentes 480 · portón basculante 480 · rejas y portones 260 · portones 170 · 32,74 · portones corredizos 170 · portones eléctricos 90 | aberturas, or Profesionales (herrero) | Made-to-measure herrería; the searcher wants a fabricator. Suggest a single aberturas page `portones-y-rejas` that captures the lead and routes to a herrero. |
 | **Herrajes y cerraduras** | ~4.500 | cerraduras para puertas 1.300 · bisagra 1.000 · cerraduras 880 · bisagras para puertas 880 · tornillo autoperforante 390 · cerradura electrónica 260 · manija 260 · topes 170 | **OUT → Productos** | Misclassified; hardware-store SKUs. The 76,59 bids are one advertiser. |
 
+Gap closed: Anton decided to build Sanitarios y grifería on 2026-09-16. It now lives at `data/categories.php` -> `sanitarios-y-griferia`, with 5 materials: `inodoro`, `griferia-de-cocina`, `llave-de-ducha`, `canilla-de-lavatorio`, `ducha-electrica`.
+
 ---
 
 ## 2. Top 40 by combined volume × bid value
