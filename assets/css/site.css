@@ -441,10 +441,10 @@ section.wrap { padding-inline: var(--gutter); }
 /* == 11 == foto de héroe y bloques de "relacionadas" ----------------------------------- */
 
 /* La imagen va a la derecha en pantallas anchas (el hero ya es .page-hero__grid--split) y
-   arriba del texto por debajo de 64rem. Relación fija 1200×630 para que no salte al cargar. */
+   arriba del texto por debajo de 64rem. Relación fija 16:9 de las imágenes originales para que no salte al cargar. */
 .page-hero__media { display: block; }
 .page-hero__media img {
-  display: block; width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: cover;
+  display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover;
   border-radius: var(--r-md); box-shadow: var(--shadow-2);
 }
 @media (min-width: 64rem) {

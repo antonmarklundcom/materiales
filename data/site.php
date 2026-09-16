@@ -59,11 +59,11 @@ return [
     'max_proveedores' => 3,
 
     // --- imágenes (fase 11, decisión §1.20) ----------------------------------------
-    // Foto del héroe de la home: ruta relativa al docroot, JPG 1200×630 de hasta 150 KB
-    // (p. ej. 'assets/img/hero-home.jpg'). Vacío o archivo inexistente ⇒ la home usa el
-    // héroe de paleta y og-default.jpg. Los archivos los sube Anton (§7) y los cablea la
-    // fase 15; tools/smoke.php falla sólo si se declara una ruta que no existe en disco.
-    'hero_image' => 'assets/img/hero-home.jpg',
+    // Foto del héroe de la home: ruta BASE sin extensión (p. ej. 'assets/img/hero-home'),
+    // con AVIF+WebP en 640/1280/1920 generados por webimg (fase de imágenes responsive).
+    // Vacío o archivo inexistente ⇒ la home usa el héroe de paleta y og-default.jpg.
+    // tools/smoke.php falla sólo si se declara una ruta cuyo -1280.webp no existe en disco.
+    'hero_image' => 'assets/img/hero-home',
 
     // --- lado proveedor (fase 10, decisión §1.17) ----------------------------------
     // El consentimiento del PROVEEDOR es otro texto y otra versión: un proveedor no está

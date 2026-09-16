@@ -1,18 +1,16 @@
 <?php
 /**
- * partials/hero-image.php — foto del héroe (fase 11, decisión §1.20).
+ * partials/hero-image.php — foto responsive del héroe.
  *
- * Se incluye DENTRO de `.page-hero`; si la entrada no declara imagen o el archivo todavía no
- * está en disco (`image_for()` devuelve null), la página no cambia en nada respecto de hoy:
- * héroe de paleta y `og-default.jpg`. Los archivos los sube Anton (§7) y los cablea la
- * fase 15.
+ * Se incluye DENTRO de `.page-hero`; si image_for() devuelve null o la ruta base
+ * está vacía, no imprime nada y se conserva el héroe de paleta.
  *
  * Variables que define la página que lo incluye:
- *   $heroImage  ruta relativa devuelta por image_for() — null/'' ⇒ no imprime nada
+ *   $heroImage  ruta base relativa sin extensión ni ancho, devuelta por image_for()
  *   $heroAlt    texto alternativo en es-PY
  *
- * `<picture>` sin `<source>` alternativo a propósito: hoy sólo hay JPG 1200×630. El día que
- * haya WebP se agrega acá y ninguna plantilla se entera.
+ * Cada base dispone de AVIF y WebP en anchos 640, 1280 y 1920, con proporción 16:9.
+ * El fallback es WebP 1280×720; la carga eager es deliberada para el héroe (LCP).
  */
 
 declare(strict_types=1);
@@ -25,6 +23,8 @@ if ($heroImage === '') {
 }
 ?>
 <picture class="page-hero__media">
-  <img src="/<?= e(ltrim($heroImage, '/')) ?>" alt="<?= e($heroAlt) ?>"
-       width="1200" height="630" loading="eager" decoding="async">
+  <source type="image/avif" srcset="<?= e('/' . ltrim($heroImage, '/') . '-640.avif 640w, /' . ltrim($heroImage, '/') . '-1280.avif 1280w, /' . ltrim($heroImage, '/') . '-1920.avif 1920w') ?>">
+  <source type="image/webp" srcset="<?= e('/' . ltrim($heroImage, '/') . '-640.webp 640w, /' . ltrim($heroImage, '/') . '-1280.webp 1280w, /' . ltrim($heroImage, '/') . '-1920.webp 1920w') ?>">
+  <img src="/<?= e(ltrim($heroImage, '/') . '-1280.webp') ?>" alt="<?= e($heroAlt) ?>"
+       width="1280" height="720" loading="eager" decoding="async">
 </picture>

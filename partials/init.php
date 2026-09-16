@@ -163,7 +163,7 @@ function image_for(array $entry, string $type): ?string
         }
     }
 
-    if ($candidate === '' || !is_file(PUBLIC_ROOT . '/' . $candidate)) {
+    if ($candidate === '' || !is_file(PUBLIC_ROOT . '/' . $candidate . '-1280.webp')) {
         return null;
     }
     return $candidate;

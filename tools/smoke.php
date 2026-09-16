@@ -248,12 +248,15 @@ $checkImage = static function (string $where, string $value) use ($root, $fail):
     if ($value === '') {
         return;
     }
-    if (!preg_match('#^assets/img/[a-z0-9/_-]+\.(jpg|webp)$#', $value)) {
-        $fail("{$where}: image '{$value}' no cumple el formato assets/img/…{.jpg|.webp} (minúsculas, sin espacios)");
+    // Ruta base sin extensión (fase de imágenes responsive): cada base tiene AVIF+WebP en
+    // 640/1280/1920, generados por webimg. El WebP de 1280 siempre existe si la conversión
+    // corrió, así que es el archivo que este check usa como prueba de existencia.
+    if (!preg_match('#^assets/img/[a-z0-9/_-]+$#', $value)) {
+        $fail("{$where}: image '{$value}' no cumple el formato assets/img/… (minúsculas, sin espacios, sin extensión)");
         return;
     }
-    if (!is_file($root . '/' . $value)) {
-        $fail("{$where}: image '{$value}' declarada pero el archivo no existe en el repo");
+    if (!is_file($root . '/' . $value . '-1280.webp')) {
+        $fail("{$where}: image '{$value}' declarada pero {$value}-1280.webp no existe en el repo");
     }
 };
 

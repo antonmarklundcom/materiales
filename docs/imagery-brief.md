@@ -196,11 +196,21 @@ Las 8 guías no llevan foto propia: reutilizan la foto de la categoría a la que
 Las 12 imágenes se generaron el 2026-09-16 con `gpt_image_2_5`, variante `sunburst`, calidad
 `medium` y resolución `2k`: una desviación explícita del valor usual `nano_banana_pro` de
 `higgsfield-image-pipeline`, elegida por Anton para esta tanda. El costo total fue de 18
-créditos (12 imágenes × 1,5 créditos), verificado contra el ledger de transacciones; se
-descargaron, recortaron exactamente a JPG 1200×630 con `sharp` y quedaron commiteadas en
-`assets/img/`. No se pudo usar Style Elements (consistencia entre imágenes mediante una
-referencia registrada) porque `gpt_image_2_5` no figura entre los modelos compatibles; la
-consistencia depende del lenguaje de prompt compartido ya escrito en los 12 prompts de arriba.
+créditos (12 imágenes × 1,5 créditos), verificado contra el ledger de transacciones. No se
+pudo usar Style Elements (consistencia entre imágenes mediante una referencia registrada)
+porque `gpt_image_2_5` no figura entre los modelos compatibles; la consistencia depende del
+lenguaje de prompt compartido ya escrito en los 12 prompts de arriba.
+
+**Actualización (2026-09-16, más tarde el mismo día): reconvertidas con `webimg`.** La primera
+pasada usó un script de `sharp` propio porque `partials/hero-image.php` sólo soportaba un JPG
+plano; esa limitación ya no existe. Las 12 imágenes (más `hero-sanitarios-y-griferia`, generada
+después para esa categoría nueva) se reconvirtieron desde los PNG originales de Higgsfield con
+`webimg` a AVIF+WebP en 640/1280/1920, ratio 16:9 sin recorte (las fuentes ya son 16:9 nativas).
+`data/categories.php`/`data/site.php` ahora declaran una ruta BASE sin extensión
+(`assets/img/hero-<slug>`, sin `.jpg`); `partials/hero-image.php` arma el `<picture>` responsive
+con `loading="eager"` (es el elemento LCP de cada página). Los JPG planos originales se
+borraron. Ver `partials/init.php` → `image_for()` y `tools/smoke.php` → `$checkImage` para el
+nuevo contrato (ambos verifican `<base>-1280.webp`, no la ruta declarada tal cual).
 Las imágenes quedaron cableadas en `data/categories.php` (clave `image` en las 11 categorías
 activas) y `data/site.php` (`hero_image`) en este mismo cambio.
 
