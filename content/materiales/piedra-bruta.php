@@ -1,8 +1,8 @@
 <h2>Para qué se usa</h2>
 <p>
-  La piedra bruta —pedida también como <strong>piedra de cimiento</strong>,
-  <strong>piedra en bruto</strong> o <strong>piedra de basalto</strong> sin procesar— es la que
-  se usa directamente en cimientos, sobre todo en construcciones que arrancan con
+  La piedra bruta —pedida también como <strong>piedra para cimiento</strong>, <strong>piedra de
+  cimiento</strong>, <strong>piedra en bruto</strong> o <strong>piedra de basalto</strong> sin
+  procesar— es la que se usa directamente en cimientos, sobre todo en construcciones que arrancan con
   <strong>piedra para muro de contención</strong> o zapata corrida de piedra. Al no pasar por
   el proceso de trituración, mantiene su forma irregular tal como sale de la cantera, lo que la
   hace ideal para asentarse con mortero en la base de una obra sin necesitar el traba fino que

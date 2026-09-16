@@ -1,7 +1,8 @@
 <h2>Para qué se usa</h2>
 <p>
-  Los adoquines —también llamados <strong>adoquín de hormigón</strong>, o
-  <strong>adopasto</strong> cuando llevan aberturas para pasto entre pieza y pieza— se usan para
+  Los adoquines —también llamados <strong>adoquines de cemento</strong>, <strong>adoquín de
+  hormigón</strong>, o <strong>adopasto</strong> cuando llevan aberturas para pasto entre pieza y
+  pieza— se usan para
   pisos exteriores que van a recibir tránsito de personas o vehículos sin necesitar una losa de
   hormigón continua. Se usan en veredas, patios, entradas de vehículos, estacionamientos y
   playones, formando lo que en obra se conoce como <strong>adoquinado</strong>. Una de sus

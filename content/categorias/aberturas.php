@@ -1,11 +1,12 @@
 <h2>Qué incluye esta categoría</h2>
 <p>
-  Acá entran todas las aberturas de una obra o una reforma: las <a href="/materiales/puertas-de-madera/">puertas de madera</a>
+  Acá entran todas las puertas y ventanas de una obra o una reforma: las <a href="/materiales/puertas-de-madera/">puertas de madera</a>
   macizas para la entrada, la <a href="/materiales/puerta-placa/">puerta placa</a> liviana para
   interiores, y la <a href="/materiales/puertas-de-chapa/">puerta de chapa</a> cuando el destino
   es un depósito, una sala de máquinas o un acceso de servicio. Del lado de las ventanas, la
   <a href="/materiales/ventanas-de-aluminio/">ventana de aluminio</a> es la que domina la obra
-  nueva, con su vidrio y su mosquitero como parte de la misma cotización. Cuando la pieza de
+  nueva, con su vidrio y su mosquitero como parte de la misma cotización, aunque en reformas y
+  restauraciones también se piden ventanas de madera a medida. Cuando la pieza de
   vidrio va sola —una mampara, un frente, una baranda— entrás a
   <a href="/materiales/vidrio-templado/">vidrio templado</a>. Y para el cerramiento exterior,
   los <a href="/materiales/portones-y-rejas/">portones y rejas</a>

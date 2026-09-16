@@ -4,7 +4,7 @@
   <strong>pegamento para cerámica</strong> o <strong>cola para cerámica</strong>— es el que reemplaza a la
   mezcla de cemento y arena para fijar piso y revestimiento cuando se busca un agarre más parejo y menos
   peso sobre la superficie. Se usa tanto en piso interior como en pared de baño y cocina, y en su versión
-  reforzada funciona como <strong>adhesivo para porcelanato</strong>, porque esa pieza pesa más y absorbe
+  reforzada funciona como <strong>adhesivo</strong> o <strong>pegamento para porcelanato</strong>, porque esa pieza pesa más y absorbe
   menos que la cerámica común, así que necesita un agarre distinto para no despegarse con el tiempo. Una
   vez colocada la pieza, la <strong>pastina</strong> es la que toma la junta entre placa y placa,
   cerrando el trabajo y evitando que se filtre humedad por esas líneas. Cubre desde el baño chico hasta el
