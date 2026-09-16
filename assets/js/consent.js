@@ -25,8 +25,12 @@
     } catch (err) { /* modo privado: la elección dura la sesión */ }
     publish(consent);
     if (banner) banner.hidden = true;
-    var skipLink = document.querySelector('.skip-link');
-    if (skipLink) skipLink.focus();
+    // Foco a #contenido (tabindex="-1", invisible) en vez del skip-link: enfocar el
+    // skip-link lo hace visible por :focus y queda superpuesto al logo del header
+    // (ambos caen cerca de la esquina superior izquierda) — acá sólo hace falta que el
+    // foco no se pierda en un botón que `banner.hidden` recién ocultó, no un highlight.
+    var main = document.getElementById('contenido');
+    if (main) main.focus();
   }
 
   function publish(consent) {

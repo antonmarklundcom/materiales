@@ -60,20 +60,33 @@
 
   /*
    * Menú mobile: burger a la derecha del header, dropdown ancla en .site-header
-   * (ver site.css). Cierra con Escape, con click afuera y al elegir un link —
-   * sin JS el toggle no existe y .site-nav sigue mostrando todos los links
-   * apilados (nunca queda oculto para siempre).
+   * (ver site.css). Cierra con Escape, con click afuera y al elegir un link.
+   *
+   * html.js-nav es lo que habilita el dropdown colapsado (mismo patrón que
+   * html.js-reveal más arriba): sin esta clase .site-nav queda SIEMPRE visible, apilada
+   * en columna debajo de marca/toggle — nunca depende de JS para ser alcanzable.
    */
+  d.documentElement.classList.add('js-nav');
+
+  var header = d.querySelector('.site-header');
   var navToggle = d.querySelector('[data-nav-toggle]');
   var nav = d.getElementById('site-nav');
-  if (navToggle && nav) {
+  var navLabel = navToggle ? navToggle.querySelector('.sr-only') : null;
+  if (header && navToggle && nav) {
     var closeNav = function () {
       navToggle.setAttribute('aria-expanded', 'false');
       nav.classList.remove('is-open');
+      header.classList.remove('nav-is-open');
+      if (navLabel) navLabel.textContent = 'Abrir menú';
     };
     var openNav = function () {
       navToggle.setAttribute('aria-expanded', 'true');
       nav.classList.add('is-open');
+      // .site-header ya es su propio contexto de apilamiento (position: sticky):
+      // subir el z-index del nav solo no alcanza para ganarle a un hermano fixed
+      // (cookie banner, wa-float, cta-bar) con más z-index que el del header entero.
+      header.classList.add('nav-is-open');
+      if (navLabel) navLabel.textContent = 'Cerrar menú';
     };
     navToggle.addEventListener('click', function () {
       if (nav.classList.contains('is-open')) { closeNav(); } else { openNav(); }

@@ -161,6 +161,11 @@ img { max-width: 100%; height: auto; display: block; }
 .band--dark h1, .band--dark h2, .band--dark h3 { color: var(--ink); }
 
 main { display: block; }
+/* tabindex="-1": el skip-link salta acá y consent.js enfoca esto al cerrar el banner de
+   cookies — en ninguno de los dos casos hace falta un anillo de foco rodeando toda la
+   página, sólo que el cursor de teclado/lector de pantalla no se quede en un botón que ya
+   desapareció. */
+#contenido:focus { outline: none; }
 .skip-link { position: absolute; left: -9999px; z-index: 30; }
 .skip-link:focus {
   left: var(--s-4); top: var(--s-4); background: var(--paper-raised); color: var(--paper-ink);
@@ -182,6 +187,13 @@ main { display: block; }
   border-image: repeating-linear-gradient(135deg, var(--accent) 0 12px, var(--base) 12px 24px) 6;
 }
 .site-header.is-stuck { box-shadow: var(--shadow-2); }
+/* Mientras el dropdown mobile está abierto, todo el header (y el nav adentro) tiene que
+   ganarle a CUALQUIER otra capa fixed de la página (cookie banner z-index 20, wa-float 18,
+   cta-bar 15) — no alcanza con subir el z-index del nav solo: .site-header ya es su propio
+   contexto de apilamiento (position: sticky + z-index), así que un hijo con z-index alto
+   sigue perdiendo contra un hermano fixed con más z-index que el del padre. motion.js agrega
+   esta clase al abrir. */
+.site-header.nav-is-open { z-index: 25; }
 .site-header__row {
   display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-6); align-items: center;
   justify-content: space-between;
@@ -203,10 +215,13 @@ main { display: block; }
 }
 
 /* ---- menú mobile: burger a la derecha, dropdown anclado a la cáscara sticky ----
-   .site-nav se convierte en un panel position:absolute con top:100% del propio
-   .site-header (que ya es position:sticky, así que sigue siendo el contenedor de
-   posicionamiento aunque haya scrolleado). z-index por encima de TODO lo que flota
-   en la página (cookie banner 20, wa-float 18, cta-bar 15) para que nada lo tape. */
+   Sin JS, .site-nav NUNCA se oculta: sigue en flujo, apilada en columna debajo del
+   renglón de marca/toggle — el toggle en sí queda oculto (html.js-nav es lo único que lo
+   muestra), así que no hay un botón "muerto" que no responda. Con JS, motion.js agrega
+   html.js-nav apenas corre y recién ahí .site-nav se convierte en un panel position:absolute
+   con top:100% del propio .site-header (que ya es position:sticky, así que sigue siendo el
+   contenedor de posicionamiento aunque haya scrolleado). Mismo patrón que html.js-reveal más
+   arriba: un elemento nunca depende de JS para estar disponible, sólo para su capa avanzada. */
 .nav-toggle {
   display: none; align-items: center; justify-content: center;
   width: 44px; height: 44px; padding: 0; margin-left: auto;
@@ -227,21 +242,23 @@ main { display: block; }
 .nav-toggle[aria-expanded="true"] .nav-toggle__bar::after { top: 0; transform: rotate(-45deg); background: var(--accent); }
 
 @media (max-width: 51.99rem) {
-  .nav-toggle { display: inline-flex; }
-  .site-nav {
-    display: none; flex-direction: column; flex-wrap: nowrap; gap: 0;
-    position: absolute; top: 100%; left: 0; right: 0; z-index: 25;
-    background: var(--base); border-top: 1px solid var(--hairline);
-    box-shadow: var(--shadow-2); padding: var(--s-2) var(--gutter) var(--s-4);
-    max-height: calc(100vh - 100%); overflow-y: auto;
-  }
-  .site-nav.is-open { display: flex; }
+  .site-nav { flex-direction: column; flex-wrap: nowrap; gap: 0; }
   .site-nav a {
     display: flex; align-items: center; min-height: 48px;
     border-bottom: 1px solid var(--hairline);
   }
   .site-nav a:last-child { border-bottom: 0; }
-  html:has(.site-nav.is-open) { overflow: hidden; }
+
+  html.js-nav .nav-toggle { display: inline-flex; }
+  html.js-nav .site-nav {
+    display: none;
+    position: absolute; top: 100%; left: 0; right: 0; z-index: 25;
+    background: var(--base); border-top: 1px solid var(--hairline);
+    box-shadow: var(--shadow-2); padding: var(--s-2) var(--gutter) var(--s-4);
+    max-height: calc(100vh - 100%); overflow-y: auto;
+  }
+  html.js-nav .site-nav.is-open { display: flex; }
+  html.js-nav:has(.site-nav.is-open) { overflow: hidden; }
 }
 
 /* ---- miga de pan ---- */
