@@ -107,9 +107,21 @@ if ((string) ($_POST['tipo'] ?? '') === 'proveedor') {
         $provError('consentimiento');
     }
 
+    $provIdemKey = lead_idempotency_key($provPhone, $now);
+    if (lead_ip_throttled((string) ($_SERVER['REMOTE_ADDR'] ?? ''), $provIdemKey, $now)) {
+        lead_log([
+            'ts'      => gmdate('c', $now),
+            'outcome' => 'descartado',
+            'reason'  => 'limite_ip',
+            'ip'      => lead_ip_fingerprint((string) ($_SERVER['REMOTE_ADDR'] ?? '')),
+            'ua'      => mb_substr((string) ($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 300),
+        ]);
+        enviar_redirect('/gracias/');
+    }
+
     $provPayload = lead_build_supplier_payload([
         'phone_raw'       => $provPhoneRaw,
-        'idempotency_key' => lead_idempotency_key($provPhone, $now),
+        'idempotency_key' => $provIdemKey,
         'nombre'          => (string) ($_POST['nombre'] ?? ''),
         'empresa'         => $provEmpresa,
         'rubros'          => $provRubros,
@@ -154,6 +166,18 @@ if (($_POST['consentimiento'] ?? '') !== '1') {
     enviar_error_path($origen, 'consentimiento', $_POST);
 }
 
+$idempotencyKey = lead_idempotency_key($phone, $now);
+if (lead_ip_throttled((string) ($_SERVER['REMOTE_ADDR'] ?? ''), $idempotencyKey, $now)) {
+    lead_log([
+        'ts'      => gmdate('c', $now),
+        'outcome' => 'descartado',
+        'reason'  => 'limite_ip',
+        'ip'      => lead_ip_fingerprint((string) ($_SERVER['REMOTE_ADDR'] ?? '')),
+        'ua'      => mb_substr((string) ($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 300),
+    ]);
+    enviar_redirect('/gracias/');
+}
+
 // ---- 3–4. Payload (plan §3.3 y §3.4) --------------------------------------------------
 $slug     = (string) ($_POST['material'] ?? '');
 $resolved = lead_resolve_slug($slug) ?? [
@@ -163,7 +187,7 @@ $resolved = lead_resolve_slug($slug) ?? [
 
 $payload = lead_build_payload($resolved + [
     'phone_raw'       => $phoneRaw,
-    'idempotency_key' => lead_idempotency_key($phone, $now),
+    'idempotency_key' => $idempotencyKey,
     'nombre'          => (string) ($_POST['nombre'] ?? ''),
     'mensaje'         => (string) ($_POST['mensaje'] ?? ''),
     'cantidad'        => (string) ($_POST['cantidad'] ?? ''),

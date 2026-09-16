@@ -203,6 +203,11 @@ la fase que la resuelve.
     miles de leads con teléfonos ajenos. Antes del go-live conviene decidir una estrategia de
     rate limiting (por IP, por sello de un solo uso con un store simple en `storage/`, o a
     nivel de servidor) — es una decisión de diseño, no un cambio de una línea. Anton decide.
+    **Actualización (2026-09-16): resuelto.** Se agregó throttling por (IP, clave de idempotencia)
+    con una ventana de 60 segundos, compartida por compradores y proveedores: sólo limita ráfagas
+    de leads distintos desde una IP; reenviar el mismo lead (doble clic o reintento) siempre pasa.
+    Anton eligió este enfoque en vez
+    de un store de tokens de un solo uso; se guarda sólo la huella de la IP en `storage/throttle/`.
 28. **El CRM recibe el teléfono tal cual lo tipeó el visitante (`fields.phone`), no el
     normalizado a E.164.** Es intencional y está fijado por `tools/smoke.php:441` (plan §4.4),
     pero la validación de `lead_normalize_phone()` sólo exige que el string tenga la
