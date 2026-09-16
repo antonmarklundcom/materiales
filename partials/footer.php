@@ -51,6 +51,7 @@ $whatsapp = preg_replace('/\D+/', '', (string) ($site['whatsapp'] ?? ''));
 if (!in_array(page()['canonical'] ?? '', ['/cotizar/', '/gracias/'], true)) {
     require PUBLIC_ROOT . '/partials/cta.php';
 }
+require PUBLIC_ROOT . '/partials/whatsapp-float.php';
 ?>
 </body>
 </html>
