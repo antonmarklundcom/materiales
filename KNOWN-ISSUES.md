@@ -95,6 +95,17 @@ la fase que la resuelve.
     de anti-fabricación). Queda anotado en CONTENT-SPEC §11.1 como término sin dueño: se
     resuelve preguntándole a una olería o a un proveedor, y entonces se agrega a
     `synonyms[]` de la página que corresponda.
+    **Actualización (2026-09-16, investigación web, no reemplaza la consulta al proveedor):**
+    evidencia consistente de varios corralones paraguayos (Construex, Termopac) y de
+    clasificados reales (Clasipar, Facebook) muestra que "ladrillo sapo" **no es un ladrillo de
+    pared** — ni hueco ni macizo grande —, sino un bloque de relleno para losa alivianada,
+    vendido junto con viguetas (sistema vigueta + ladrillo sapo/bovedilla). Esto confirma que
+    NO corresponde a `ladrillo-hueco`. El candidato más cercano ya existente en el sitio es
+    `tejuelon`, cuyos sinónimos ya incluyen "ladrillo para losa" y "bovedilla cerámica" — mismo
+    rubro de losa alivianada. Aun así, no se asignó como sinónimo todavía: la evidencia web no
+    distingue con certeza si "ladrillo sapo" (cerámico o de isopor) es exactamente lo mismo que
+    "tejuelón" para un comprador paraguayo o una variante distinta del mismo sistema. Sigue
+    pendiente la llamada de confirmación a un corralón antes de tocar `synonyms[]`.
 19. **`cano-de-agua` se autoriza con demanda sin medir.** Los términos `termofusión`, `PPR`
     y `cañería de agua` figuran en KEYWORDS §4.2 (frases a chequear en el próximo pull), no
     en los clústeres medidos. La página se sostiene sobre `caño` (480 búsquedas, la puja más
@@ -104,6 +115,14 @@ la fase que la resuelve.
     fría y caliente, roscado y termofusión) porque el caño de agua y el de desagüe son productos
     físicamente distintos y una sola página no puede liderar los dos sin canibalizarse; el
     término `termofusión` queda como sinónimo, no como cabecera.
+    **Actualización (2026-09-16, investigación web, no reemplaza el segundo pull de Keyword
+    Planner):** varios proveedores paraguayos independientes (Ferremas, Titan, Casa de los
+    Compresores, Sanitarios Roy, Construex) tienen líneas de producto dedicadas a
+    termofusión/PPR, y hay actividad de instaladores especializados (termofusoras) en
+    clasificados — señal de que el mercado es real, no una traducción sin uso. Esto no mide
+    volumen de búsqueda, pero reduce el riesgo de que la página dependa de un término inventado.
+    Recomendación: mantener `cano-de-agua` como página propia hasta que el segundo pull real
+    de Keyword Planner diga lo contrario.
 20. **La FAQ de entrega de `cemento` se reemplazó por una de cemento blanco y mortero.** El
     smoke test limita `faq[]` a 5 entradas y la FAQ de precio de §11.3 ocupa un lugar. El
     contenido de entrega y descarga no se perdió: pasó a la respuesta de la FAQ de precio,

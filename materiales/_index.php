@@ -40,7 +40,7 @@ require PUBLIC_ROOT . '/partials/header.php';
       <?php foreach ($categories as $categorySlug => $category): ?>
       <li>
         <a class="tile card--hair<?= is_published($category) ? ' tile--featured' : ' is-proxima' ?>"
-           href="/materiales/<?= e($categorySlug) ?>/"<?= is_published($category) ? '' : ' aria-disabled="true"' ?>>
+           href="/materiales/<?= e($categorySlug) ?>/">
           <span><?= e($category['name']) ?></span>
           <span class="tile__arrow" aria-hidden="true">→</span>
         </a>

@@ -8,6 +8,7 @@
 (function () {
   window.dataLayer = window.dataLayer || [];
   document.addEventListener('click', function (e) {
+    if (!e.target || typeof e.target.closest !== 'function') return;
     var t = e.target.closest('[data-ev]');
     if (!t) return;
     window.dataLayer.push({

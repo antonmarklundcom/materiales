@@ -39,10 +39,9 @@ if ($slug === '') {
     echo "<ul class=\"tile-grid\">\n";
     foreach ($guides as $guideSlug => $guide) {
         printf(
-            "  <li><a class=\"tile card--hair%s\" href=\"/guias/%s/\"%s><span>%s</span><span class=\"tile__arrow\" aria-hidden=\"true\">→</span></a></li>\n",
+            "  <li><a class=\"tile card--hair%s\" href=\"/guias/%s/\"><span>%s</span><span class=\"tile__arrow\" aria-hidden=\"true\">→</span></a></li>\n",
             is_published($guide) ? '' : ' is-proxima',
             e($guideSlug),
-            is_published($guide) ? '' : ' aria-disabled="true"',
             e($guide['name'])
         );
     }
