@@ -197,6 +197,53 @@ main { display: block; }
 }
 .site-nav a:hover { color: var(--ink); }
 
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ---- menú mobile: burger a la derecha, dropdown anclado a la cáscara sticky ----
+   .site-nav se convierte en un panel position:absolute con top:100% del propio
+   .site-header (que ya es position:sticky, así que sigue siendo el contenedor de
+   posicionamiento aunque haya scrolleado). z-index por encima de TODO lo que flota
+   en la página (cookie banner 20, wa-float 18, cta-bar 15) para que nada lo tape. */
+.nav-toggle {
+  display: none; align-items: center; justify-content: center;
+  width: 44px; height: 44px; padding: 0; margin-left: auto;
+  background: transparent; border: 0; cursor: pointer; flex: none;
+}
+.nav-toggle__box { position: relative; width: 22px; height: 16px; display: block; }
+.nav-toggle__bar,
+.nav-toggle__bar::before,
+.nav-toggle__bar::after {
+  position: absolute; left: 0; width: 100%; height: 2px; top: 7px;
+  background: var(--ink); border-radius: 2px;
+  transition: transform var(--dur-fast) var(--ease-io), opacity var(--dur-fast) var(--ease-io), top var(--dur-fast) var(--ease-io), background var(--dur-fast) var(--ease-io);
+}
+.nav-toggle__bar::before { content: ""; top: -7px; }
+.nav-toggle__bar::after { content: ""; top: 7px; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar { background: transparent; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar::before { top: 0; transform: rotate(45deg); background: var(--accent); }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar::after { top: 0; transform: rotate(-45deg); background: var(--accent); }
+
+@media (max-width: 51.99rem) {
+  .nav-toggle { display: inline-flex; }
+  .site-nav {
+    display: none; flex-direction: column; flex-wrap: nowrap; gap: 0;
+    position: absolute; top: 100%; left: 0; right: 0; z-index: 25;
+    background: var(--base); border-top: 1px solid var(--hairline);
+    box-shadow: var(--shadow-2); padding: var(--s-2) var(--gutter) var(--s-4);
+    max-height: calc(100vh - 100%); overflow-y: auto;
+  }
+  .site-nav.is-open { display: flex; }
+  .site-nav a {
+    display: flex; align-items: center; min-height: 48px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .site-nav a:last-child { border-bottom: 0; }
+  html:has(.site-nav.is-open) { overflow: hidden; }
+}
+
 /* ---- miga de pan ---- */
 .breadcrumbs { padding-block: var(--s-3) 0; font-size: var(--t--1); color: var(--paper-ink-55); }
 .breadcrumbs ol { display: flex; flex-wrap: wrap; gap: .35rem; list-style: none; margin: 0; padding: 0; }
