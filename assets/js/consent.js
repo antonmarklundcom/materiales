@@ -25,6 +25,8 @@
     } catch (err) { /* modo privado: la elección dura la sesión */ }
     publish(consent);
     if (banner) banner.hidden = true;
+    var skipLink = document.querySelector('.skip-link');
+    if (skipLink) skipLink.focus();
   }
 
   function publish(consent) {
