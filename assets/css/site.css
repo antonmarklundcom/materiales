@@ -143,16 +143,6 @@ img { max-width: 100%; height: auto; display: block; }
 .wrap { max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
 .bleed { width: 100%; position: relative; }
 
-.eyebrow {
-  font-size: var(--t--1); letter-spacing: .12em; text-transform: uppercase;
-  color: var(--accent); font-weight: 600; margin: 0 0 var(--s-4); display: block;
-}
-.statement {
-  font-family: var(--font-display); font-weight: 500;
-  font-size: clamp(var(--t-4), 7vw, var(--t-6)); line-height: .97; letter-spacing: -.03em;
-  color: inherit; max-width: none;
-}
-
 /* ---- banda oscura (cáscara: header, hero, pie) ---- */
 .band--dark { background: var(--base); color: var(--ink); }
 .band--dark p { color: var(--ink-70); }
@@ -237,15 +227,11 @@ section.wrap { padding-inline: var(--gutter); }
 
 /* ---- tarjetas: usar >= 3 variantes, ninguna más de 4 veces por sección curada ---- */
 .card { padding: var(--s-6); border-radius: var(--r-md); }
-.card--bare { padding-inline: 0; }
 .card--hair { border: 1px solid var(--paper-hairline); background: var(--paper-raised); }
-.card--raised { background: var(--paper-raised); box-shadow: var(--shadow-1); }
-.card--ink { background: var(--base); color: var(--ink); }
-.card--ink p { color: var(--ink-70); }
 .card--accent { background: var(--paper-raised); border: 1px solid var(--paper-hairline); border-top: 3px solid var(--accent); }
 .closing-cta { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); margin-top: var(--s-12); }
 .closing-cta a { color: var(--paper-ink); font-weight: 600; text-decoration: none; }
-.closing-cta a::after { content: "→"; margin-left: var(--s-2); color: var(--accent); }
+.closing-cta a::after { content: "→"; margin-left: var(--s-2); color: var(--accent); font-family: system-ui, sans-serif; }
 
 /* ---- grillas de listado (catálogo: categorías / materiales / guías) ---- */
 .tile-grid { list-style: none; margin: var(--s-6) 0; padding: 0; display: grid; gap: var(--s-4); }
@@ -258,7 +244,7 @@ section.wrap { padding-inline: var(--gutter); }
   transition: transform var(--dur-fast) var(--ease-io), box-shadow var(--dur-fast) var(--ease-io), border-color var(--dur-fast) var(--ease-io);
 }
 .tile:hover { transform: translateY(-3px); box-shadow: var(--shadow-1); border-color: var(--paper-hairline-strong); }
-.tile__arrow { color: var(--accent); flex: none; font-family: var(--font-display); }
+.tile__arrow { color: var(--accent); flex: none; font-family: system-ui, sans-serif; }
 .tile.is-proxima { color: var(--paper-ink-55); }
 .tile.is-proxima:hover { transform: none; box-shadow: none; }
 .tile.is-proxima .tile__arrow { color: var(--paper-hairline-strong); }
@@ -414,6 +400,7 @@ section.wrap { padding-inline: var(--gutter); }
    la vista, para no tapar el propio campo que se está completando. */
 .cta-bar { display: none; }
 @media (max-width: 39.99rem) {
+  .cookie-banner { bottom: calc(var(--s-4) + 4.5rem); }
   .cta-bar {
     position: fixed; inset: auto 0 0 0; z-index: 15;
     display: flex; gap: var(--s-2);

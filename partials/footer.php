@@ -52,6 +52,5 @@ if (!in_array(page()['canonical'] ?? '', ['/cotizar/', '/gracias/'], true)) {
     require PUBLIC_ROOT . '/partials/cta.php';
 }
 ?>
-<?php require PUBLIC_ROOT . '/partials/cookie-banner.php'; ?>
 </body>
 </html>

@@ -70,6 +70,7 @@ header('Cache-Control: no-cache');
 </head>
 <body class="<?= e($page['body_class']) ?>">
 <a class="skip-link" href="#contenido">Ir al contenido</a>
+<?php require PUBLIC_ROOT . '/partials/cookie-banner.php'; ?>
 <header class="site-header band--dark grain" data-sticky-header>
   <div class="wrap site-header__row">
     <a class="site-header__brand" href="/"><?= e($site['brand']) ?></a>
