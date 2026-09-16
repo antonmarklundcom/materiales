@@ -12,11 +12,13 @@ ErrorDocument 404 /404.php
   RewriteEngine On
 
   # Nada de lo interno se sirve por URL: datos, contenido, config/secretos, storage
-  # (leads.log), herramientas de dev/CI, prompts, docs, control de versiones ni markdown.
-  RewriteRule ^(data|content|config|storage|tools|prompts|docs)(/|$) - [F,L]
-  RewriteRule (^|/)\.(git|github)(/|$) - [F,L]
-  RewriteRule \.md$ - [F,L]
-  RewriteRule ^config\.sample\.php$ - [F,L]
+  # (leads.log), herramientas de dev/CI, tests locales, prompts, docs, control de versiones
+  # ni markdown. [NC] porque el bloqueo por prefijo es la única defensa real de storage/ y no
+  # debe depender de que el filesystem sea case-sensitive.
+  RewriteRule ^(data|content|config|storage|tools|tests|prompts|docs)(/|$) - [NC,F,L]
+  RewriteRule (^|/)\.(git|github|gitignore)(/|$) - [NC,F,L]
+  RewriteRule \.md$ - [NC,F,L]
+  RewriteRule ^config\.sample\.php$ - [NC,F,L]
 
   # Nunca servir directamente los includes del router ni los partials.
   RewriteRule ^materiales/_index\.php$ - [F,L]

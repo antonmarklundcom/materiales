@@ -551,6 +551,20 @@ if (!@mkdir($replayFixtureDir, 0770, true)) {
         $fail("replay-leads: no detectó el solo_log pendiente del fixture (salida: {$out3})");
     }
 
+    // Un solo_log de hace 200 horas no debe reintentarse con el tope por defecto (72h): si se
+    // configura el CRM después de meses de log-only, no hay que volcarle todo el historial de
+    // golpe a los proveedores.
+    $fixtureOldKey = 'smoke-' . bin2hex(random_bytes(4));
+    file_put_contents($fixtureLog, json_encode([
+        'ts' => gmdate('c', time() - 200 * 3600), 'outcome' => 'solo_log',
+        'payload' => ['idempotency_key' => $fixtureOldKey, 'phone' => '0981123456', 'source' => 'site:materiales'],
+    ], JSON_UNESCAPED_UNICODE) . "\n", FILE_APPEND);
+
+    $out4 = $runReplay();
+    if (str_contains($out4, $fixtureOldKey) || !str_contains($out4, '1 descartados por antiguos')) {
+        $fail("replay-leads: un solo_log de 200h debería descartarse por antiguo, no reintentarse (salida: {$out4})");
+    }
+
     @unlink($fixtureLog);
     @unlink($fixtureReplayed);
     @rmdir($replayFixtureDir);

@@ -21,7 +21,11 @@ if (preg_match('#^/(partials/|materiales/_index\.php$)#', $path)) {
 }
 
 // Directorios internos: bloquear por prefijo aunque el archivo no exista (espejo del [F]).
-if (preg_match('#^/(data|content|config|storage|tools|prompts|docs)(/|$)#', $path)) {
+// Insensible a mayúsculas, igual que el [NC] de .htaccess.
+if (preg_match('#^/(data|content|config|storage|tools|tests|prompts|docs)(/|$)#i', $path)
+    || preg_match('#(^|/)\.(git|github|gitignore)(/|$)#i', $path)
+    || preg_match('#\.md$#i', $path)
+    || preg_match('#^/config\.sample\.php$#i', $path)) {
     http_response_code(403);
     echo 'Forbidden';
     return true;

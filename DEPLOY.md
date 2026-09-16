@@ -84,6 +84,14 @@ carpeta interna nueva tiene que sumarse a esa lista de `.htaccess`**.
 cron. Es idempotente por `idempotency_key`: nunca reenvía un lead cuyo `storage/replayed.log`
 ya tenga `ok:true` para esa clave, así que correrlo de más no duplica nada en el CRM.
 
+También reintenta `outcome: 'solo_log'` — leads que llegaron mientras `config/vendercrm.php`
+todavía no existía. **Importante al configurar el CRM por primera vez**: el primer cron después
+de esa configuración va a intentar reenviar todo el historial de `solo_log` acumulado hasta ese
+momento. Para no volcarle de golpe a los proveedores un pedido de hace semanas, el script sólo
+reintenta `solo_log` de menos de 72 horas por defecto — ajustable con `--max-age-hours=N`. Los
+`fallo_crm` no tienen tope de antigüedad porque son fallos técnicos recientes de un CRM que ya
+funcionaba, no backlog acumulado.
+
 1. En hPanel → Advanced → **Cron Jobs**, agregar (ajustar el usuario/ruta real del hosting):
 
    ```

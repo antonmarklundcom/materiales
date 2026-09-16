@@ -91,22 +91,83 @@ function lead_normalize_phone(string $raw): ?string
  * Clave de idempotencia (plan §3): mismo teléfono dentro de la misma hora UTC = mismo envío.
  * Colapsa el doble clic y el reintento por timeout, pero deja consultar de nuevo mañana.
  * Se hashea el teléfono NORMALIZADO para que el formato tipeado no genere claves distintas.
+ *
+ * Firmado con HMAC y el mismo secreto de lead_form_secret() (nunca hash() a secas): sin
+ * secreto, la clave era el hash público de "teléfono + hora", adivinable por cualquiera que
+ * conociera el número de otra persona — alcanzaba para chocar a propósito un pedido futuro
+ * ajeno contra uno inventado, y para recuperar el teléfono probando el espacio de numeración
+ * paraguayo. Con HMAC, sólo quien tiene el secreto puede calcular o invertir la clave.
  */
 function lead_idempotency_key(string $phoneE164, ?int $now = null): string
 {
-    return hash('sha256', $phoneE164 . '|' . gmdate('Y-m-d-H', $now ?? time()));
+    return hash_hmac('sha256', $phoneE164 . '|' . gmdate('Y-m-d-H', $now ?? time()), lead_form_secret());
+}
+
+/**
+ * Secreto persistido y generado en el primer uso, para cuando no hay 'form_secret' explícito
+ * en config/vendercrm.php. Evita dos problemas del esquema anterior (derivar el secreto de
+ * 'api_key' o, en su ausencia, de site('base_url'), un valor público que aparece en cada URL
+ * del sitio):
+ *   1. Con el CRM sin configurar, cualquiera podía calcular el secreto y falsificar el sello.
+ *   2. El día que se cargaba config/vendercrm.php, el secreto cambiaba de golpe y todo
+ *      formulario ya renderizado (pestañas abiertas, back-button, una posible caché de
+ *      página) quedaba con un sello que ya no valida — el visitante ve "Listo, recibimos tu
+ *      pedido" pero el lead nunca se guarda.
+ * Con este archivo, el secreto por defecto es aleatorio desde el primer request y no depende
+ * de si el CRM ya está configurado, así que no cambia solo. Vive en storage/ (protegido por
+ * su .htaccess y por el bloqueo de la raíz) y nunca se commitea (storage/ está en
+ * .gitignore).
+ */
+function lead_form_secret_auto(): string
+{
+    static $cached = null;
+    if ($cached !== null) {
+        return $cached;
+    }
+
+    $path = STORAGE_DIR . '/.form-secret';
+    $existing = @file_get_contents($path);
+    if (is_string($existing) && strlen(trim($existing)) >= 32) {
+        return $cached = trim($existing);
+    }
+
+    try {
+        $fresh = bin2hex(random_bytes(32));
+    } catch (Throwable $e) {
+        // Entorno sin CSPRNG disponible: extremadamente improbable en PHP 8, pero no hay que
+        // tirar una excepción por esto — degradar es mejor que romper el formulario entero.
+        return $cached = hash('sha256', uniqid('materiales-form-fallback', true));
+    }
+
+    if (!is_dir(STORAGE_DIR)) {
+        @mkdir(STORAGE_DIR, 0770, true);
+    }
+    // O_EXCL vía 'x': si dos requests concurrentes generan el archivo a la vez, sólo el
+    // primero gana y el segundo lee lo que ya quedó escrito, evitando dos secretos distintos.
+    $handle = @fopen($path, 'x');
+    if ($handle !== false) {
+        fwrite($handle, $fresh);
+        fclose($handle);
+        @chmod($path, 0600);
+        return $cached = $fresh;
+    }
+
+    // Alguien más lo creó primero entre el file_get_contents() y el fopen('x') de arriba.
+    $existing = @file_get_contents($path);
+    if (is_string($existing) && strlen(trim($existing)) >= 32) {
+        return $cached = trim($existing);
+    }
+    return $cached = $fresh;
 }
 
 /** Secreto para firmar el sello del formulario. Ver lead_form_stamp(). */
 function lead_form_secret(): string
 {
     $config = lead_config();
-    foreach ([$config['form_secret'], $config['api_key'], (string) site('base_url')] as $candidate) {
-        if ($candidate !== '') {
-            return hash('sha256', 'materiales-form|' . $candidate);
-        }
+    if ($config['form_secret'] !== '') {
+        return hash('sha256', 'materiales-form|' . $config['form_secret']);
     }
-    return 'materiales-form|sin-secreto';
+    return hash('sha256', 'materiales-form|' . lead_form_secret_auto());
 }
 
 /**
@@ -357,23 +418,44 @@ function lead_send_ok(array $result): bool
 function lead_log(array $record): bool
 {
     try {
-        if (!is_dir(STORAGE_DIR) && !@mkdir(STORAGE_DIR, 0770, true) && !is_dir(STORAGE_DIR)) {
+        $storageIsNew = !is_dir(STORAGE_DIR);
+        if ($storageIsNew && !@mkdir(STORAGE_DIR, 0770, true) && !is_dir(STORAGE_DIR)) {
+            error_log('lead_log: no se pudo crear ' . STORAGE_DIR . ' — lead perdido');
             return false;
+        }
+        if ($storageIsNew) {
+            // Defensa en profundidad además de las reglas [F] de la raíz: si esas reglas
+            // fallan alguna vez, este Require all denied sigue protegiendo storage/ (plan §2).
+            $htaccess = STORAGE_DIR . '/.htaccess';
+            if (!is_file($htaccess)) {
+                @copy(dirname(__DIR__) . '/tools/.htaccess', $htaccess);
+            }
         }
         $line = json_encode($record, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         if ($line === false) {
+            error_log('lead_log: json_encode falló — lead perdido');
             return false;
         }
-        return @file_put_contents(STORAGE_DIR . '/leads.log', $line . "\n", FILE_APPEND | LOCK_EX) !== false;
+        $written = @file_put_contents(STORAGE_DIR . '/leads.log', $line . "\n", FILE_APPEND | LOCK_EX);
+        if ($written === false) {
+            error_log('lead_log: no se pudo escribir en ' . STORAGE_DIR . '/leads.log — lead perdido');
+            return false;
+        }
+        return true;
     } catch (Throwable $e) {
+        error_log('lead_log: excepción — lead perdido: ' . $e->getMessage());
         return false;
     }
 }
 
-/** Huella de IP para diagnosticar spam sin guardar la IP en claro. */
+/**
+ * Huella de IP para diagnosticar spam sin guardar la IP en claro. Firmada con HMAC y el
+ * secreto de lead_form_secret(): con site('base_url') como única sal (público, en cada URL
+ * del sitio), el espacio IPv4 se recorre en segundos y la "huella" no anonimiza nada.
+ */
 function lead_ip_fingerprint(string $ip): string
 {
-    return $ip === '' ? '' : substr(hash('sha256', $ip . '|' . site('base_url')), 0, 16);
+    return $ip === '' ? '' : substr(hash_hmac('sha256', $ip, lead_form_secret()), 0, 16);
 }
 
 /**
