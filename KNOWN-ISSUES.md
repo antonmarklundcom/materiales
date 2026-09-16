@@ -156,6 +156,12 @@ la fase que la resuelve.
     busca por convención); no hay imagen distinta por categoría o material todavía. Cuando se
     habilite el dominio en el entorno, correr `higgsfield-image-pipeline` completo para generar
     fotografía real por página de dinero.
+    **Actualización (2026-09-16): resuelto.** El dominio de Higgsfield es alcanzable desde esta
+    máquina (local, no el sandbox de nube que dio el 403 original) — se generaron las 12
+    imágenes con `gpt_image_2_5`/sunburst y quedaron cableadas en `data/categories.php`/
+    `data/site.php` (PR #34). Sigue sin haber una foto por MATERIAL individual — eso sigue
+    siendo la decisión de alcance de `docs/imagery-brief.md` (una foto por categoría, no por
+    material), no una limitación técnica.
 23. ~~Bug de responsividad en el header mobile~~ — **descartado, no era real.** El QA de la
     fase 8 reportó desborde horizontal en 390px a partir de una captura con
     `chromium --headless --screenshot` (modo headless viejo): esa herramienta arma la ventana
@@ -191,6 +197,7 @@ la fase que la resuelve.
     paso manual de Anton: subir los 12 archivos de `docs/imagery-brief.md` a
     `assets/img/cat/{slug}.jpg` y `assets/img/hero-home.jpg`, o habilitar el dominio en la
     configuración del entorno para correr `higgsfield-image-pipeline`.
+    **Actualización (2026-09-16): resuelto**, ver #22.
 
 ## Post-Fase 15 — auditoría de seguridad y correctitud
 
