@@ -24,7 +24,7 @@ return [
     // --- contacto -----------------------------------------------------------------
     // WhatsApp/tel en E.164 sin espacios (+595...). Vacío = el canal no se renderiza.
     'whatsapp'    => '+595992279599',
-    'phone'       => '',            // PENDIENTE (fase 3)
+    'phone'       => '+595992279599',
     'email'       => '',            // PENDIENTE (fase 3)
     'horarios'    => '',            // PENDIENTE (fase 3) p.ej. "Lunes a viernes 07:00–17:00"
 
@@ -49,8 +49,8 @@ return [
     'vc_attribution'  => '',        // PENDIENTE (fase 2): {CRM_URL}/vc-attribution.js
 
     // --- flags ---------------------------------------------------------------------
-    // staging_noindex: true hasta el go-live (fase 6, plan §7). Emite noindex sitewide.
-    'staging_noindex' => true,
+    // staging_noindex: go-live 2026-09-16, Anton. Antes emitía noindex sitewide (fase 6, plan §7).
+    'staging_noindex' => false,
     // has_search: el sitio no tiene búsqueda interna todavía; SearchAction sólo se emite
     // cuando esto sea true (ver nota de desviación en el build log, plan §9).
     'has_search'      => false,
