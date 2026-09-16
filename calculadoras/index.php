@@ -143,7 +143,7 @@ require PUBLIC_ROOT . '/partials/header.php';
         <?php endforeach; ?>
       </div>
 
-      <ul class="calc__outputs">
+      <ul class="calc__outputs" aria-live="polite">
         <?php foreach ($calculator['outputs'] ?? [] as $output): ?>
         <li class="calc__output">
           <strong data-calc-output="<?= e($output['id']) ?>">—</strong>

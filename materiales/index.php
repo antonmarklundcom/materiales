@@ -133,7 +133,7 @@ require PUBLIC_ROOT . '/partials/header.php';
     <?php foreach ($children as $materialSlug => $material): ?>
     <li>
       <a class="tile card--hair<?= is_published($material) ? '' : ' is-proxima' ?>"
-         href="/materiales/<?= e($materialSlug) ?>/"<?= is_published($material) ? '' : ' aria-disabled="true"' ?>>
+         href="/materiales/<?= e($materialSlug) ?>/">
         <span><?= e($material['name']) ?></span>
         <span class="tile__arrow" aria-hidden="true">→</span>
       </a>

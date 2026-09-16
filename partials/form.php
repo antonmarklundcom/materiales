@@ -48,7 +48,7 @@ $formCategories = categories_ordered();
   </p>
 
   <?php if (isset($formErrors[$formError])): ?>
-  <p class="lead-form__error" role="alert"><?= e($formErrors[$formError]) ?></p>
+  <p class="lead-form__error" id="lead-form-error" role="alert"><?= e($formErrors[$formError]) ?></p>
   <?php endif; ?>
 
   <form class="lead-form__form" action="/cotizar/enviar.php" method="post" novalidate>
@@ -89,7 +89,7 @@ $formCategories = categories_ordered();
       <span>Tu WhatsApp <em>(por acá te pasan el precio)</em></span>
       <input name="telefono" type="tel" inputmode="tel" maxlength="30" required autocomplete="tel"
              placeholder="0981 123 456"
-             <?= $formError === 'telefono' ? ' aria-invalid="true" autofocus' : '' ?>>
+             <?= $formError === 'telefono' ? ' aria-invalid="true" aria-describedby="lead-form-error" autofocus' : '' ?>>
     </label>
 
     <label class="lead-form__field">
@@ -98,7 +98,8 @@ $formCategories = categories_ordered();
     </label>
 
     <label class="lead-form__consent">
-      <input type="checkbox" name="consentimiento" value="1" required>
+      <input type="checkbox" name="consentimiento" value="1" required
+             <?= $formError === 'consentimiento' ? ' aria-invalid="true" aria-describedby="lead-form-error"' : '' ?>>
       <span>
         Acepto que mis datos sean compartidos con proveedores del rubro para recibir
         cotizaciones. Ver la <a href="/politica-de-privacidad/">Política de privacidad</a>.
@@ -106,8 +107,7 @@ $formCategories = categories_ordered();
     </label>
 
     <?php /* Honeypot: los bots lo completan, las personas no lo ven nunca. */ ?>
-    <input name="website" tabindex="-1" autocomplete="off" aria-hidden="true"
-           style="position:absolute;left:-9999px" value="">
+    <input class="lead-form__honeypot" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" value="">
 
     <?php /* Trampa de tiempo: sello firmado del momento del render (partials/lead.php). */ ?>
     <input type="hidden" name="ts" value="<?= e($stamp['ts']) ?>">

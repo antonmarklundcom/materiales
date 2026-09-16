@@ -11,6 +11,9 @@
   if (reduce || !('IntersectionObserver' in window)) {
     items.forEach(function (el) { el.style.opacity = 1; el.style.transform = 'none'; });
   } else {
+    // Marca que JS va a manejar el reveal — ver el selector html.js-reveal en site.css: sin
+    // esta clase, [data-reveal] nunca queda oculto por CSS solo.
+    d.documentElement.classList.add('js-reveal');
     items.forEach(function (el) {
       el.style.opacity = 0;
       el.style.transform = 'translateY(18px)';

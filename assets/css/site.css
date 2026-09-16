@@ -52,7 +52,11 @@
   --font-text: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --base: #0e0e0f;      /* cáscara oscura: header, hero, pie */
   --ink: #f5f3f0;       /* texto sobre la cáscara oscura */
-  --accent: #e8562a;    /* único acento — sólo CTAs y un highlight por pantalla */
+  /* Auditoría de accesibilidad 2026-09-16: #e8562a daba 3.21:1 sobre --paper y 3.62:1 como
+     fondo del botón primario con texto blanco — ambos por debajo del 4.5:1 que exige AA para
+     texto normal. #c2410c es el mismo acento, más oscuro: 4.59:1 sobre --paper, 5.18:1 sobre
+     blanco, calculado con la fórmula de contraste relativo de WCAG 2.1. */
+  --accent: #c2410c;    /* único acento — sólo CTAs y un highlight por pantalla */
   --surface: #17171a;   /* tarjetas elevadas sobre la cáscara oscura */
 
   /* ---- campo claro: prosa, FAQ, formulario, listas ---- */
@@ -66,9 +70,13 @@
   --hairline: color-mix(in srgb, var(--ink) 12%, transparent);
   --hairline-strong: color-mix(in srgb, var(--ink) 22%, transparent);
   --paper-ink-70: color-mix(in srgb, var(--paper-ink) 70%, transparent);
-  --paper-ink-55: color-mix(in srgb, var(--paper-ink) 58%, transparent);
+  /* 58% daba 4.19:1 sobre --paper (peor caso vs. blanco) — bajo el 4.5:1 de AA para texto
+     normal a 13px (breadcrumbs, notas del formulario). 63% da ~4.6:1 sobre --paper. */
+  --paper-ink-55: color-mix(in srgb, var(--paper-ink) 63%, transparent);
   --paper-hairline: color-mix(in srgb, var(--paper-ink) 12%, transparent);
-  --paper-hairline-strong: color-mix(in srgb, var(--paper-ink) 24%, transparent);
+  /* 24% daba 1.67:1 — muy por debajo del 3:1 que exige 1.4.11 para el borde de un input o de
+     un botón (ahí el borde ES el único indicio de que hay un control). 50% da ~3.3:1. */
+  --paper-hairline-strong: color-mix(in srgb, var(--paper-ink) 50%, transparent);
 
   /* ---- escala tipográfica, ratio 1.30, base 17px ---- */
   --t--1: 0.812rem;
@@ -160,7 +168,10 @@ main { display: block; }
 
 /* ---- header ---- */
 .site-header {
-  position: relative; z-index: 5;
+  /* sticky, no sólo relative: partials/header.php trae data-sticky-header y motion.js escucha
+     scroll para alternar .is-stuck (line ~168) — sin position: sticky esa clase se aplicaba a
+     un header que ya había salido del viewport, sin efecto visible. */
+  position: sticky; top: 0; z-index: 5;
   padding-block: var(--s-4);
   border-bottom: 1px solid var(--hairline);
   transition: box-shadow var(--dur) var(--ease-io);
@@ -340,6 +351,7 @@ section.wrap { padding-inline: var(--gutter); }
 
 .lead-form__submit { justify-self: start; }
 .lead-form__note { margin: var(--s-2) 0 0; color: var(--paper-ink-55); font-size: var(--t--1); }
+.lead-form__honeypot { position: absolute; left: -9999px; }
 
 /* ---- contenido: bajada, prosa y FAQ ---- */
 .lead { font-size: var(--t-1); color: var(--paper-ink-70); }
@@ -363,9 +375,13 @@ section.wrap { padding-inline: var(--gutter); }
 .faq details p { margin: var(--s-3) 0 0; }
 
 /* ---- motion: <= 15% de los elementos animan ---- */
+/* [data-reveal] no se usa todavía en ningún template (queda listo para cuando se necesite).
+   El selector exige html.js-reveal, que sólo motion.js agrega, para que un elemento nunca
+   dependa de JS para hacerse visible: si el script no corre (bloqueado, falla, JS off), el
+   contenido queda con la opacidad base de arriba, nunca oculto para siempre. */
 [data-reveal] { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: no-preference) {
-  [data-reveal] { opacity: 0; transform: translateY(18px); }
+  html.js-reveal [data-reveal] { opacity: 0; transform: translateY(18px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

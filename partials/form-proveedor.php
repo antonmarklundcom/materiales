@@ -36,7 +36,7 @@ $provOldRubros = array_filter(explode(',', $provOld('rubros')));
   </p>
 
   <?php if (isset($provErrors[$provError])): ?>
-  <p class="lead-form__error" role="alert"><?= e($provErrors[$provError]) ?></p>
+  <p class="lead-form__error" id="prov-form-error" role="alert"><?= e($provErrors[$provError]) ?></p>
   <?php endif; ?>
 
   <form class="lead-form__form" action="/cotizar/enviar.php" method="post" novalidate>
@@ -46,7 +46,7 @@ $provOldRubros = array_filter(explode(',', $provOld('rubros')));
       <span>Nombre de la empresa o corralón</span>
       <input name="empresa" type="text" maxlength="200" required autocomplete="organization"
              value="<?= e($provOld('empresa')) ?>"
-             <?= $provError === 'empresa' ? ' aria-invalid="true" autofocus' : '' ?>>
+             <?= $provError === 'empresa' ? ' aria-invalid="true" aria-describedby="prov-form-error" autofocus' : '' ?>>
     </label>
 
     <?php // Grupo de casillas sin <fieldset> (el borde por defecto del navegador rompe el
@@ -57,7 +57,8 @@ $provOldRubros = array_filter(explode(',', $provOld('rubros')));
       <span id="rubros-label">¿Qué rubros vendés?</span>
       <p class="lead-form__note">Marcá todos los que trabajes: sólo te llegan pedidos de esos rubros.</p>
     </div>
-    <div role="group" aria-labelledby="rubros-label" style="display:grid;gap:.5rem">
+    <div role="group" aria-labelledby="rubros-label" style="display:grid;gap:.5rem"
+         <?= $provError === 'rubros' ? ' aria-describedby="prov-form-error"' : '' ?>>
       <?php foreach ($provCategories as $provSlug => $provCategory): ?>
       <label class="lead-form__consent">
         <input type="checkbox" name="rubros[]" value="<?= e($provSlug) ?>"<?= in_array($provSlug, $provOldRubros, true) ? ' checked' : '' ?>>
@@ -81,7 +82,7 @@ $provOldRubros = array_filter(explode(',', $provOld('rubros')));
       <span>Tu WhatsApp <em>(por acá te escribimos)</em></span>
       <input name="telefono" type="tel" inputmode="tel" maxlength="30" required autocomplete="tel"
              placeholder="0981 123 456"
-             <?= $provError === 'telefono' ? ' aria-invalid="true" autofocus' : '' ?>>
+             <?= $provError === 'telefono' ? ' aria-invalid="true" aria-describedby="prov-form-error" autofocus' : '' ?>>
     </label>
 
     <label class="lead-form__field">
@@ -98,8 +99,7 @@ $provOldRubros = array_filter(explode(',', $provOld('rubros')));
     </label>
 
     <?php /* Honeypot: los bots lo completan, las personas no lo ven nunca. */ ?>
-    <input name="website" tabindex="-1" autocomplete="off" aria-hidden="true"
-           style="position:absolute;left:-9999px" value="">
+    <input class="lead-form__honeypot" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" value="">
 
     <?php /* Trampa de tiempo: sello firmado del momento del render (partials/lead.php). */ ?>
     <input type="hidden" name="ts" value="<?= e($provStamp['ts']) ?>">
