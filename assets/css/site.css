@@ -287,6 +287,28 @@ section.wrap { padding-inline: var(--gutter); }
 .band--dark .btn--wa { background: var(--surface); }
 .btn--wa svg { fill: #25d366; flex: none; }
 
+/* ---- desktop WhatsApp: secondary, icon-only shortcut ---- */
+.wa-float {
+  display: none;
+  position: fixed; right: var(--s-4); bottom: var(--s-4); z-index: 18;
+  width: 3.25rem; height: 3.25rem; border-radius: var(--r-lg);
+  align-items: center; justify-content: center;
+  background: var(--base); color: var(--ink); text-decoration: none;
+  box-shadow: var(--shadow-1);
+  transition: transform var(--dur-fast) var(--ease-io), background var(--dur-fast) var(--ease-io);
+}
+.wa-float svg { fill: #25d366; flex: none; }
+.wa-float:hover, .wa-float:focus-visible {
+  transform: translateY(-2px); background: var(--surface);
+}
+@media (min-width: 40rem) {
+  .wa-float { display: flex; }
+  /* Reserve a separate right-hand lane, regardless of the banner's height. */
+  body:has(.wa-float) .cookie-banner {
+    right: calc(3.25rem + var(--s-4) + var(--s-4));
+  }
+}
+
 /* ---- banner de cookies ---- */
 .cookie-banner {
   position: fixed; inset: auto var(--s-4) var(--s-4) var(--s-4); z-index: 20;
