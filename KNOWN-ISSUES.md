@@ -164,3 +164,23 @@ la fase que la resuelve.
     paso manual de Anton: subir los 12 archivos de `docs/imagery-brief.md` a
     `assets/img/cat/{slug}.jpg` y `assets/img/hero-home.jpg`, o habilitar el dominio en la
     configuración del entorno para correr `higgsfield-image-pipeline`.
+
+## Post-Fase 15 — auditoría de seguridad y correctitud
+
+27. **El sello anti-bot del formulario (`lead_form_stamp`) no tiene ventana de un solo uso.**
+    Un sello válido puede reenviarse cualquier cantidad de veces dentro de `LEAD_STAMP_TTL`
+    (12 h) — no hay rate limiting en `cotizar/enviar.php` ni en `.htaccess`. La falsificación
+    del secreto ya se resolvió (ver `partials/lead.php` → `lead_form_secret_auto()`, un
+    secreto aleatorio persistido en vez de derivar de `api_key`/`base_url`), pero la reutilización
+    del mismo sello sigue abierta: alguien con un sello scrapeado de `/cotizar/` podría postear
+    miles de leads con teléfonos ajenos. Antes del go-live conviene decidir una estrategia de
+    rate limiting (por IP, por sello de un solo uso con un store simple en `storage/`, o a
+    nivel de servidor) — es una decisión de diseño, no un cambio de una línea. Anton decide.
+28. **El CRM recibe el teléfono tal cual lo tipeó el visitante (`fields.phone`), no el
+    normalizado a E.164.** Es intencional y está fijado por `tools/smoke.php:441` (plan §4.4),
+    pero la validación de `lead_normalize_phone()` sólo exige que el string tenga la
+    subsecuencia de dígitos correcta — no que el string typed sea *sólo* dígitos y separadores,
+    así que hasta ~30 caracteres de contenido arbitrario pueden colarse junto con el número
+    real. Si VenderCRM alguna vez renderiza ese campo sin escapar, es un vector de XSS
+    almacenado ahí (fuera de este repo). Cambiar el contrato del payload es decisión de plan,
+    no de esta auditoría — Anton decide si vale la pena.

@@ -56,14 +56,16 @@
     if (typeof node.var === 'string') return value(node.var);
 
     if (typeof node.table === 'string') {
+      if (!Object.prototype.hasOwnProperty.call(tables, node.table)) return NaN;
       var table = tables[node.table];
-      if (!table) return NaN;
       var key = node.key && typeof node.key === 'object' ? evaluate(node.key) : node.key;
+      if (typeof key !== 'string' && typeof key !== 'number') return NaN;
+      if (!Object.prototype.hasOwnProperty.call(table, key)) return NaN;
       var found = table[key];
       return typeof found === 'number' ? found : NaN;
     }
 
-    if (typeof node.op === 'string' && OPS[node.op] && Array.isArray(node.args)) {
+    if (typeof node.op === 'string' && Object.prototype.hasOwnProperty.call(OPS, node.op) && Array.isArray(node.args)) {
       var args = node.args.map(evaluate);
       for (var i = 0; i < args.length; i++) {
         if (typeof args[i] !== 'number' || !isFinite(args[i])) return NaN;

@@ -63,6 +63,8 @@ check "/storage/leads.log"         403 ''
 check "/tools/smoke.php"           403 ''
 check "/prompts/opus-1-foundation.md" 403 ''
 check "/docs/imagery-brief.md"     403 ''
+check "/tests/mobile-overflow.mjs" 403 ''
+check "/.gitignore"                403 ''
 check "/cotizar/"                  200 'name="consentimiento"'
 check "/materiales/hierro/"        200 'action="/cotizar/enviar.php"'
 # Fase 9 — capa de conversión: la home explica el modelo y cierra en el formulario, y las
