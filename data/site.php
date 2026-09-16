@@ -23,7 +23,7 @@ return [
 
     // --- contacto -----------------------------------------------------------------
     // WhatsApp/tel en E.164 sin espacios (+595...). Vacío = el canal no se renderiza.
-    'whatsapp'    => '',            // PENDIENTE (fase 3) p.ej. +595981000000
+    'whatsapp'    => '+595992279599',
     'phone'       => '',            // PENDIENTE (fase 3)
     'email'       => '',            // PENDIENTE (fase 3)
     'horarios'    => '',            // PENDIENTE (fase 3) p.ej. "Lunes a viernes 07:00–17:00"
