@@ -72,6 +72,10 @@ $checkEntry = static function (string $file, string $slug, array $entry, array $
     if (mb_strlen((string) ($entry['title'] ?? '')) > 60) {
         $fail(sprintf('%s[%s]: title de %d caracteres (máx. 60)', $file, $slug, mb_strlen((string) $entry['title'])));
     }
+    // S12 (CONTENT-SPEC §13): sin precios publicados, ningún título promete uno.
+    if (stripos((string) ($entry['title'] ?? ''), 'precio por') !== false) {
+        $fail(sprintf('%s[%s]: el title dice "Precio por" y la página no muestra precios (CONTENT-SPEC §13)', $file, $slug));
+    }
     if (mb_strlen((string) ($entry['meta'] ?? '')) > 155) {
         $fail(sprintf('%s[%s]: meta de %d caracteres (máx. 155)', $file, $slug, mb_strlen((string) $entry['meta'])));
     }

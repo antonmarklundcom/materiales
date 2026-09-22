@@ -1,7 +1,7 @@
 <h2>Para qué se usa</h2>
 <p>
-  Las <strong>puertas de chapa</strong> —puertas metálicas para quien las busca por ese nombre—
-  resuelven entradas de servicio, depósitos, salas de máquinas y cualquier acceso donde importa
+  Las <strong>puertas de metal</strong> —puertas de chapa o puertas metálicas, según a quién le
+  preguntes— resuelven entradas de servicio, depósitos, salas de máquinas y cualquier acceso donde importa
   más la resistencia que la estética. Se piden como puerta metálica reforzada cuando el bastidor
   y la chapa son más gruesos de lo normal, y como puerta de seguridad cuando el objetivo
   principal es dificultar una entrada forzada. Es trabajo de herrería hecho sobre el vano real,

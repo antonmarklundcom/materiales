@@ -38,7 +38,7 @@ return [
         'category'   => 'hierro',
         'name'       => 'Varilla de hierro',
         'status'     => 'activa',
-        'title'      => 'Varilla de hierro en Paraguay | Precio por barra',
+        'title'      => 'Varilla de hierro en Paraguay | Cotizá por barra',
         'meta'       => 'Varillas del 6 al 16 para columnas, vigas y losas. Decinos cuántas barras necesitás y hasta 3 proveedores verificados te cotizan por WhatsApp.',
         'keyword'    => 'varilla de hierro',
         'synonyms'   => [
@@ -136,7 +136,7 @@ return [
         'category'   => 'hierro',
         'name'       => 'Clavos',
         'status'     => 'activa',
-        'title'      => 'Clavos para construcción en Paraguay | Precio por kilo',
+        'title'      => 'Clavos para construcción en Paraguay | Cotizá por kilo',
         'meta'       => 'Clavos de punta París y para encofrado, por kilo o por caja. Pedí tu cotización y hasta 3 proveedores verificados te escriben por WhatsApp.',
         'keyword'    => 'clavos para construcción',
         'synonyms'   => [
@@ -237,7 +237,7 @@ return [
         'category'   => 'cemento-y-cal',
         'name'       => 'Cemento',
         'status'     => 'activa',
-        'title'      => 'Cemento en Paraguay | Precio por bolsa de 50 kg',
+        'title'      => 'Cemento en Paraguay | Cotizá por bolsa de 50 kg',
         'meta'       => 'Cemento en bolsa para obra, con entrega en tu zona. Decinos cuántas bolsas necesitás y hasta 3 proveedores verificados te pasan precio hoy.',
         'keyword'    => 'cemento',
         'synonyms'   => [
@@ -267,6 +267,7 @@ return [
             'arena-lavada',
             'ripio',
             'hormigon-elaborado',
+            'cal-viva',
         ],
     ],
     'cal-viva' => [
@@ -303,7 +304,7 @@ return [
         'category'   => 'cemento-y-cal',
         'name'       => 'Cal hidratada',
         'status'     => 'activa',
-        'title'      => 'Cal hidratada en Paraguay | Precio por bolsa',
+        'title'      => 'Cal hidratada en Paraguay | Cotizá por bolsa',
         'meta'       => 'Cal hidratada para revoques y asentado de mampostería. Decinos la cantidad y proveedores verificados te cotizan con flete a tu obra.',
         'keyword'    => 'cal hidratada',
         'synonyms'   => [
@@ -368,7 +369,7 @@ return [
         'category'   => 'cemento-y-cal',
         'name'       => 'Adhesivo para cerámica',
         'status'     => 'activa',
-        'title'      => 'Adhesivo para cerámica en Paraguay | Precio por bolsa',
+        'title'      => 'Adhesivo para cerámica en Paraguay | Cotizá por bolsa',
         'meta'       => 'Pegamento para cerámica, porcelanato y piedra. Decinos cuántos m² vas a colocar y proveedores verificados te pasan precio por bolsa.',
         'keyword'    => 'adhesivo para cerámica',
         'synonyms'   => [
@@ -400,7 +401,7 @@ return [
         'category'   => 'aridos',
         'name'       => 'Arena lavada',
         'status'     => 'activa',
-        'title'      => 'Arena lavada en Paraguay | Precio por m³ con flete',
+        'title'      => 'Arena lavada en Paraguay | Cotizá por m³ con flete',
         'meta'       => 'Arena lavada para hormigón y revoque fino, con entrega en obra. Decinos los m³ y tu zona: hasta 3 proveedores verificados te cotizan.',
         'keyword'    => 'arena lavada',
         'synonyms'   => [
@@ -461,12 +462,13 @@ return [
     'ripio' => [
         'category'   => 'aridos',
         'name'       => 'Ripio',
+        'h1'         => 'Canto rodado y ripio en Paraguay',
         'status'     => 'activa',
-        'title'      => 'Ripio en Paraguay | Precio por m³ con entrega',
-        'meta'       => 'Ripio para hormigón, contrapisos y caminos. Decinos cuántos m³ necesitás y hasta 3 proveedores verificados te cotizan por WhatsApp.',
-        'keyword'    => 'ripio',
+        'title'      => 'Canto rodado y ripio en Paraguay | Cotizá por m³',
+        'meta'       => 'Canto rodado (ripio) para hormigón, contrapisos y caminos. Decinos cuántos m³ necesitás y hasta 3 proveedores verificados te cotizan por WhatsApp.',
+        'keyword'    => 'canto rodado',
         'synonyms'   => [
-            'canto rodado',
+            'ripio',
             'grava',
             'ripio para hormigón',
         ],
@@ -528,7 +530,7 @@ return [
         'category'   => 'aridos',
         'name'       => 'Piedra bruta',
         'status'     => 'activa',
-        'title'      => 'Piedra bruta en Paraguay | Precio por m³ para cimientos',
+        'title'      => 'Piedra bruta en Paraguay | Cotizá por m³ para cimientos',
         'meta'       => 'Piedra bruta para cimientos y muros de contención, con entrega en obra. Decinos los m³ y hasta 3 proveedores verificados te cotizan.',
         'keyword'    => 'piedra bruta',
         'synonyms'   => [
@@ -557,24 +559,26 @@ return [
             'cemento',
             'arena-gorda',
             'ripio',
+            'piedra-laja',
         ],
     ],
     'tierra-gorda' => [
         'category'   => 'aridos',
         'name'       => 'Tierra gorda',
+        'h1'         => 'Tierra colorada (tierra gorda) en Paraguay',
         'status'     => 'activa',
-        'title'      => 'Tierra gorda en Paraguay | Cotizá por camionada',
-        'meta'       => 'Tierra gorda para relleno y nivelación de terreno. Pasanos la cantidad y tu zona y proveedores verificados te pasan precio con flete.',
-        'keyword'    => 'tierra gorda',
+        'title'      => 'Tierra colorada (tierra gorda) en Paraguay | Cotizá',
+        'meta'       => 'Tierra colorada (tierra gorda) para relleno y nivelación de terreno. Pasanos la cantidad y tu zona y proveedores verificados te pasan precio con flete.',
+        'keyword'    => 'tierra colorada',
         'synonyms'   => [
-            'tierra colorada',
+            'tierra gorda',
             'tierra negra',
             'tierra para relleno',
             'tierra vegetal',
         ],
         'sale_unit'  => 'metro cúbico o camionada',
         'price_band' => 'bajo',
-        'intro'      => 'Tierra para relleno, nivelación de terreno y jardinería, entregada a granel por metro cúbico o camionada.',
+        'intro'      => 'La tierra colorada —tierra gorda— es la de relleno y nivelación de terreno: compacta bien bajo contrapisos y veredas, y se entrega a granel por metro cúbico o camionada.',
         'faq'        => [
             ['q' => '¿Sirve para nivelar un terreno?',
              'a' => 'Sí, es uno de sus usos principales, junto con el relleno de patios y canteros. Para rellenos estructurales conviene consultar qué material corresponde.'],
@@ -627,7 +631,7 @@ return [
         'category'   => 'ladrillos-y-bloques',
         'name'       => 'Ladrillo común',
         'status'     => 'activa',
-        'title'      => 'Ladrillo común en Paraguay | Precio por millar',
+        'title'      => 'Ladrillo común en Paraguay | Cotizá por millar',
         'meta'       => 'Ladrillo común para mampostería, por millar y con flete a tu obra. Decinos cuántos necesitás y hasta 3 proveedores verificados te cotizan.',
         'keyword'    => 'ladrillo común',
         'synonyms'   => [
@@ -655,6 +659,7 @@ return [
             'ladrillo-prensado',
             'cemento',
             'cal-hidratada',
+            'ladrillo-refractario',
         ],
     ],
     'ladrillo-hueco' => [
@@ -691,12 +696,13 @@ return [
     'ladrillo-prensado' => [
         'category'   => 'ladrillos-y-bloques',
         'name'       => 'Ladrillo prensado',
+        'h1'         => 'Ladrillo visto (prensado) en Paraguay',
         'status'     => 'activa',
-        'title'      => 'Ladrillo prensado en Paraguay | Precio por millar',
-        'meta'       => 'Ladrillo prensado a la vista para fachadas y muros. Pedí tu cotización por millar y hasta 3 proveedores verificados te responden hoy.',
-        'keyword'    => 'ladrillo prensado',
+        'title'      => 'Ladrillo visto (prensado) en Paraguay | Cotizá por millar',
+        'meta'       => 'Ladrillo visto (prensado) para fachadas y muros. Pedí tu cotización por millar y hasta 3 proveedores verificados te responden hoy.',
+        'keyword'    => 'ladrillo visto',
         'synonyms'   => [
-            'ladrillo visto',
+            'ladrillo prensado',
             'ladrillo a la vista',
             'ladrillo prensado colorado',
         ],
@@ -717,6 +723,8 @@ return [
             'ladrillo-comun',
             'ladrillo-hueco',
             'cemento',
+            'ladrillo-refractario',
+            'adoquines',
         ],
     ],
     'bloque-de-hormigon' => [
@@ -748,13 +756,14 @@ return [
             'ladrillo-hueco',
             'cemento',
             'varilla-de-hierro',
+            'adoquines',
         ],
     ],
     'tejuelon' => [
         'category'   => 'ladrillos-y-bloques',
         'name'       => 'Tejuelón',
         'status'     => 'activa',
-        'title'      => 'Tejuelón en Paraguay | Precio por m² de losa',
+        'title'      => 'Tejuelón en Paraguay | Cotizá por m² de losa',
         'meta'       => 'Tejuelón para losas y techos tradicionales. Pasanos los m² de losa y hasta 3 proveedores verificados te pasan precio por WhatsApp.',
         'keyword'    => 'tejuelón',
         'synonyms'   => [
@@ -881,7 +890,7 @@ return [
         'category'   => 'chapas-y-techos',
         'name'       => 'Chapa de zinc',
         'status'     => 'activa',
-        'title'      => 'Chapa de zinc en Paraguay | Precio por metro',
+        'title'      => 'Chapa de zinc en Paraguay | Cotizá por metro',
         'meta'       => 'Chapa de zinc acanalada para techos, en varios espesores y largos. Decinos los metros y proveedores verificados te cotizan el mismo día.',
         'keyword'    => 'chapa de zinc',
         'synonyms'   => [
@@ -939,6 +948,7 @@ return [
             'chapa-de-zinc',
             'chapa-termoacustica',
             'perfiles-metalicos',
+            'policarbonato',
         ],
     ],
     'chapa-termoacustica' => [
@@ -979,7 +989,7 @@ return [
         'category'   => 'chapas-y-techos',
         'name'       => 'Teja española',
         'status'     => 'activa',
-        'title'      => 'Teja española en Paraguay | Precio por m² de techo',
+        'title'      => 'Teja española en Paraguay | Cotizá por m² de techo',
         'meta'       => 'Teja española cerámica para techos a dos aguas. Pasanos los m² y hasta 3 proveedores verificados te pasan precio con flete a tu obra.',
         'keyword'    => 'teja española',
         'synonyms'   => [
@@ -1042,7 +1052,7 @@ return [
         'category'   => 'chapas-y-techos',
         'name'       => 'Chapa de fibrocemento',
         'status'     => 'activa',
-        'title'      => 'Chapa de fibrocemento en Paraguay | Precio por chapa',
+        'title'      => 'Chapa de fibrocemento en Paraguay | Cotizá por chapa',
         'meta'       => 'Chapas de fibrocemento para techos de galpón y depósito. Decinos la medida y la cantidad: proveedores verificados te cotizan sin vueltas.',
         'keyword'    => 'chapa de fibrocemento',
         'synonyms'   => [
@@ -1198,13 +1208,14 @@ return [
             'puntales',
             'tabla-de-encofrado',
             'teja-espanola',
+            'madera-dura',
         ],
     ],
     'puntales' => [
         'category'   => 'madera',
         'name'       => 'Puntales',
         'status'     => 'activa',
-        'title'      => 'Puntales de madera en Paraguay | Precio por unidad',
+        'title'      => 'Puntales de madera en Paraguay | Cotizá por unidad',
         'meta'       => 'Puntales para apuntalar losas y encofrados. Decinos cuántos necesitás y por cuánto tiempo, y proveedores verificados te cotizan.',
         'keyword'    => 'puntales de madera',
         'synonyms'   => [
@@ -1264,7 +1275,7 @@ return [
         'category'   => 'madera',
         'name'       => 'Terciada',
         'status'     => 'activa',
-        'title'      => 'Terciada (fenólico) en Paraguay | Precio por placa',
+        'title'      => 'Terciada (fenólico) en Paraguay | Cotizá por placa',
         'meta'       => 'Placas de terciada y fenólico para encofrado y carpintería. Decinos el espesor y la cantidad: proveedores verificados te cotizan.',
         'keyword'    => 'terciada',
         'synonyms'   => [
@@ -1289,6 +1300,7 @@ return [
             'tabla-de-encofrado',
             'puntales',
             'machimbre',
+            'mdf-fibrofacil',
         ],
     ],
     'machimbre' => [
@@ -1320,13 +1332,14 @@ return [
             'tirantes',
             'terciada',
             'listones',
+            'mdf-fibrofacil',
         ],
     ],
     'listones' => [
         'category'   => 'madera',
         'name'       => 'Listones',
         'status'     => 'activa',
-        'title'      => 'Listones de madera en Paraguay | Precio por metro',
+        'title'      => 'Listones de madera en Paraguay | Cotizá por metro',
         'meta'       => 'Listones para clavaderas, cielorrasos y trabajos de obra. Decinos la escuadría y los metros y proveedores verificados te cotizan.',
         'keyword'    => 'listones de madera',
         'synonyms'   => [
@@ -1351,6 +1364,7 @@ return [
             'machimbre',
             'tirantes',
             'clavos',
+            'mdf-fibrofacil',
         ],
     ],
 
@@ -1452,6 +1466,7 @@ return [
             'porcelanato',
             'azulejos',
             'adhesivo-para-ceramica',
+            'piedra-laja',
         ],
     ],
     'porcelanato' => [
@@ -1651,9 +1666,10 @@ return [
     'puertas-de-chapa' => [
         'category'   => 'aberturas',
         'name'       => 'Puertas de chapa',
+        'h1'         => 'Puertas de metal y de chapa en Paraguay',
         'status'     => 'activa',
-        'title'      => 'Puertas de chapa en Paraguay | Cotizá por unidad',
-        'meta'       => 'Puertas metálicas y de chapa para entrada, depósito y frente. Pasanos las medidas del vano y hasta 3 proveedores verificados te cotizan.',
+        'title'      => 'Puertas de metal y de chapa en Paraguay | Cotizá',
+        'meta'       => 'Puertas de metal y de chapa para entrada, depósito y frente. Pasanos las medidas del vano y hasta 3 proveedores verificados te cotizan.',
         'keyword'    => 'puertas de metal',
         'synonyms'   => [
             'puertas metálicas',
@@ -1663,7 +1679,7 @@ return [
         ],
         'sale_unit'  => 'unidad, por medida de vano',
         'price_band' => 'medio',
-        'intro'      => 'La puerta de chapa resuelve entradas, depósitos, salas de máquinas y accesos de servicio: se hace en herrería sobre el vano real, no se compra por catálogo.',
+        'intro'      => 'Las puertas de metal —de chapa— resuelven entradas, depósitos, salas de máquinas y accesos de servicio: se hacen en herrería sobre el vano real, no se compran por catálogo.',
         'faq'        => [
             ['q' => '¿Qué chapa lleva?',
              'a' => 'Cuanto más gruesa la chapa y más reforzado el bastidor, más pesa y más aguanta. Contá si es para una entrada, un depósito o un acceso de servicio.'],
@@ -1678,6 +1694,7 @@ return [
             'portones-y-rejas',
             'puertas-de-madera',
             'chapa-de-zinc',
+            'puerta-placa',
         ],
     ],
     'ventanas-de-aluminio' => [
@@ -1782,9 +1799,10 @@ return [
     'membrana-asfaltica' => [
         'category'   => 'impermeabilizantes',
         'name'       => 'Membrana asfáltica',
+        'h1'         => 'Membrana para techo: membrana asfáltica en Paraguay',
         'status'     => 'activa',
-        'title'      => 'Membrana asfáltica en Paraguay | Cotizá el rollo',
-        'meta'       => 'Membrana asfáltica en rollo para losas, techos y azoteas, en varios espesores. Decinos los m² a cubrir y proveedores verificados te cotizan.',
+        'title'      => 'Membrana para techo (asfáltica) en Paraguay | Cotizá',
+        'meta'       => 'Membrana para techo: membrana asfáltica en rollo para losas y azoteas, en varios espesores. Decinos los m² a cubrir y proveedores verificados te cotizan.',
         'keyword'    => 'membrana para techo',
         'synonyms'   => [
             'membrana asfáltica',
@@ -1794,7 +1812,7 @@ return [
         ],
         'sale_unit'  => 'rollo (metros cuadrados por rollo)',
         'price_band' => 'medio',
-        'intro'      => 'La membrana asfáltica en rollo es la solución clásica para losas y azoteas expuestas: se coloca con soplete y resuelve superficies grandes de una sola pasada.',
+        'intro'      => 'La membrana para techo más usada es la asfáltica en rollo: la solución clásica para losas y azoteas expuestas, colocada con soplete de una sola pasada.',
         'faq'        => [
             ['q' => '¿Cómo se vende la membrana?',
              'a' => 'Por rollo, con una cantidad de metros cuadrados que depende del espesor. Calculá con solape entre paños: por eso conviene pedir por m² y que te digan cuántos rollos son.'],
@@ -2044,8 +2062,9 @@ return [
     'tanque-de-agua' => [
         'category'   => 'canos-y-plomeria',
         'name'       => 'Tanque de agua',
+        'h1'         => 'Tanque de agua de 500 y 1000 litros en Paraguay',
         'status'     => 'activa',
-        'title'      => 'Tanque de agua en Paraguay | Cotizá por litraje',
+        'title'      => 'Tanque de agua 500 y 1000 litros en Paraguay | Cotizá',
         'meta'       => 'Tanques de agua de 500, 1000 y 2000 litros, tricapa y con tapa hermética. Decinos el litraje y proveedores verificados te pasan precio.',
         'keyword'    => 'tanque de agua',
         'synonyms'   => [
@@ -2056,7 +2075,7 @@ return [
         ],
         'sale_unit'  => 'unidad, por litraje',
         'price_band' => 'medio',
-        'intro'      => 'El tanque es lo primero que se define en la instalación de agua: el litraje sale de cuánta gente vive en la casa y de cuántas horas de reserva querés tener cuando falta presión.',
+        'intro'      => 'El tanque de agua de 1000 litros es el más buscado, pero el litraje sale de cuánta gente vive en la casa y de cuántas horas de reserva querés tener cuando falta presión.',
         'faq'        => [
             ['q' => '¿Qué litraje necesito?',
              'a' => 'Depende de cuántas personas viven, cuántos baños hay y cuánta reserva querés. Contá esos tres datos en el pedido y te orientan con el litraje.'],
@@ -2231,6 +2250,7 @@ return [
             'canilla-de-lavatorio',
             'ducha-electrica',
             'cano-de-agua',
+            'inodoro',
         ],
     ],
     'canilla-de-lavatorio' => [
@@ -2262,6 +2282,7 @@ return [
             'inodoro',
             'llave-de-ducha',
             'griferia-de-cocina',
+            'ducha-electrica',
         ],
     ],
     'ducha-electrica' => [

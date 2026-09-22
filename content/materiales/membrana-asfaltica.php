@@ -1,7 +1,8 @@
 <h2>Para qué se usa</h2>
 <p>
-  La membrana asfáltica —también conocida como <strong>membrana aluminizada</strong> cuando
-  lleva foil metálico en la cara expuesta— es la solución de referencia para
+  La <strong>membrana para techo</strong> más usada es la membrana asfáltica en rollo —también
+  conocida como <strong>membrana aluminizada</strong> cuando lleva foil metálico en la cara
+  expuesta—, la solución de referencia para
   <strong>losas y azoteas</strong> grandes: una losa expuesta a la que no le sigue una
   construcción encima, un techo de losa transitable o no, cualquier superficie horizontal que
   tiene que quedar estanca antes de la temporada de lluvias. Viene en <strong>rollo</strong>,

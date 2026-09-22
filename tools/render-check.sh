@@ -93,6 +93,23 @@ check "/"                          200 'href="/assets/css/site.css?v='
 check "/calculadoras/hormigon-por-m3/" 200 'src="/assets/js/calc.js?v='
 # S7: robots.txt ya no bloquea /gracias/ (tiene que poder leer su noindex).
 absent "/robots.txt"               'Disallow: /gracias/'
+# ---- PR E (targeting on-page) ----
+# S11/S13: el H1 lleva el término medido o el país, no el nombre pelado.
+check "/materiales/tierra-gorda/"  200 '<h1>Tierra colorada (tierra gorda) en Paraguay</h1>'
+check "/materiales/cemento/"       200 '<h1>Cemento en Paraguay</h1>'
+check "/materiales/membrana-asfaltica/" 200 '<title>Membrana para techo (asfáltica) en Paraguay'
+# S12: ningún título dice "Precio por" (la página no muestra precios).
+absent "/materiales/cemento/"      '<title>[^<]*Precio por'
+# S14: guía y calculadora con H1 distinto; la guía manda a la calculadora.
+check "/guias/cuantas-bolsas-de-cemento-por-m2/" 200 '<h1>Cómo calcular las bolsas de cemento por m²</h1>'
+check "/guias/cuantas-bolsas-de-cemento-por-m2/" 200 'href="/calculadoras/bolsas-de-cemento-por-m2/"'
+# S15: páginas antes casi huérfanas reciben enlaces en prosa.
+check "/materiales/ladrillo-prensado/" 200 'href="/materiales/ladrillo-refractario/"'
+check "/materiales/piso-vinilico/" 200 'href="/materiales/mdf-fibrofacil/"'
+# G8: intros de los hubs.
+check "/guias/"                    200 'Estas guías responden'
+check "/calculadoras/"             200 'Cada calculadora resuelve'
+
 # ---- PR D (conversión) ----
 # C2: botón bajo el resultado de la calculadora, y la barra pegajosa ancla al formulario de
 # la misma página (antes mandaba a un /cotizar/ en blanco).

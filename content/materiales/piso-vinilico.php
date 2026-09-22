@@ -33,7 +33,7 @@
   irregularidad del piso de abajo se termina marcando en la superficie del vinílico una vez
   colocado. Revisá el espesor en milímetros, generalmente entre 4 y 8 mm según el sistema:
   cuanto más grueso, mejor absorbe pequeñas imperfecciones y más dura frente al uso diario.
-  Comparado con un piso laminado flotante de base MDF, el vinílico y el SPC resisten mejor la
+  Comparado con un piso laminado flotante de base <a href="/materiales/mdf-fibrofacil/">MDF</a>, el vinílico y el SPC resisten mejor la
   humedad, así que son la opción más segura para cocina o zonas con algo de agua ocasional. Un
   error común es elegir el sistema por el diseño sin preguntar por la resistencia al agua de
   ese modelo puntual, porque no todos los vinílicos toleran igual la humedad constante. Si estás

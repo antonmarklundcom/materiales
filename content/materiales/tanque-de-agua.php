@@ -1,7 +1,8 @@
 <h2>Para qué se usa</h2>
 <p>
-  El tanque de agua guarda la reserva que alimenta toda la instalación de la casa cuando falta
-  presión de la red o se corta el servicio, y por eso es de los primeros materiales que se
+  El tanque de agua —el de <strong>1000 litros</strong> es el más buscado— guarda
+  la reserva que alimenta toda la instalación cuando falta presión de la red o se corta el
+  servicio, y por eso es de los primeros materiales que se
   definen en una obra nueva. Acá casi todo el mundo pide el <strong>tanque tricapa</strong> o
   directamente lo que se conoce o pide como <strong>syopar</strong>, marca tan instalada en el
   rubro que terminó nombrando al tanque de agua en general, tenga o no ese origen. El litraje

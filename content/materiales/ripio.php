@@ -6,7 +6,7 @@
   muros y como parte del hormigón cuando no se necesita la resistencia de una piedra triturada.
   Se pide como <strong>ripio para hormigón</strong> en mezclas de menor exigencia estructural,
   y también se usa suelto como terminación decorativa en jardines o como base de asiento antes
-  de una capa de hormigón o adoquín. A diferencia de la piedra triturada, que tiene bordes
+  de una capa de hormigón o <a href="/materiales/adoquines/">adoquín</a>. A diferencia de la piedra triturada, que tiene bordes
   filosos por el proceso de trituración, el canto rodado es de origen natural y su forma
   redondeada lo hace más fácil de compactar en capas de base. Si tu obra necesita mayor
   resistencia estructural —una losa cargada o un pavimento de tránsito pesado— ahí conviene la

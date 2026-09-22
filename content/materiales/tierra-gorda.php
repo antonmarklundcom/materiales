@@ -1,8 +1,8 @@
 <h2>Para qué se usa</h2>
 <p>
-  La tierra gorda —en la mayoría de las obras se pide directamente como <strong>tierra
-  colorada</strong>, y a veces como <strong>tosca</strong> o <strong>tierra vegetal</strong>
-  cuando se necesita para jardín— es la que se usa para nivelar terrenos, rellenar desniveles y
+  La <strong>tierra colorada</strong> —la tierra gorda, como también se la conoce, y a veces
+  <strong>tosca</strong> o <strong>tierra vegetal</strong> cuando se necesita para jardín— es la
+  que se usa para nivelar terrenos, rellenar desniveles y
   preparar la base antes de un contrapiso o una vereda. Se pide también como <strong>tierra
   para relleno</strong> cuando el objetivo es simplemente ganar cota en un terreno bajo o
   parejizar un desnivel antes de empezar a construir. A diferencia de la <strong>tierra

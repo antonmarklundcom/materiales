@@ -31,7 +31,7 @@
   uniforme entre unidades del mismo pedido: una diferencia de pocos milímetros por pieza se
   acumula rápido en una pared larga. Si vas a usar bloque estructural, confirmá que el hueco
   tenga el diámetro adecuado para pasar el hierro vertical sin apretarlo. Un error común es
-  comprar bloque de cemento pensando que es lo mismo que un adoquín: son productos distintos,
+  comprar bloque de cemento pensando que es lo mismo que un <a href="/materiales/adoquines/">adoquín</a>: son productos distintos,
   con usos distintos, y no se reemplazan entre sí.
 </p>
 
