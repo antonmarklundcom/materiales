@@ -22,6 +22,13 @@
   que se cotizan aparte de las tablillas. El precio final depende de la cantidad de m², del
   ancho de tablilla elegido y del flete hasta tu zona.
 </p>
+<p>
+  Un ejemplo: un dormitorio de <strong>4 × 3,5 m</strong> son <strong>14 m²</strong> de
+  cielorraso y <strong>15 m</strong> de perímetro, que es lo que recorren los perfiles de borde
+  (2 × 4 + 2 × 3,5). Con esos dos números el proveedor calcula cuántas tablillas salen según el
+  ancho y el largo de la que te ofrece, y cuántos perfiles de arranque y de terminación
+  hacen falta.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

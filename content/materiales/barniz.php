@@ -38,6 +38,18 @@
   terminación quede lisa, y aplicá sobre madera seca y sin polvo: la humedad atrapada debajo
   del barniz es la que después forma manchas blancas.
 </p>
+<table>
+  <thead>
+    <tr><th>Producto</th><th>Dónde conviene</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Barniz de interior</td><td>Muebles, machimbre de cielorraso y aberturas que no reciben sol</td></tr>
+    <tr><td>Barniz de exterior con filtro solar</td><td>Puertas que dan a la calle, ventanas, pérgolas y quinchos</td></tr>
+    <tr><td>Barniz marino</td><td>Piezas muy expuestas al agua y a la intemperie</td></tr>
+    <tr><td>Protector tipo impregnante</td><td>Cuando preferís que penetre en vez de formar película, y renovarlo con más facilidad</td></tr>
+    <tr><td>Barniz con color (por ejemplo, color cedro)</td><td>Cuando querés teñir sin tapar la veta: probalo antes sobre tu madera</td></tr>
+  </tbody>
+</table>
 
 <p class="closing">
   Volvé a <a href="/materiales/pinturas/">pinturas</a> para ver qué va en cada superficie, o

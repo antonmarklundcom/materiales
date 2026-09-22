@@ -36,6 +36,16 @@
   También pedí las condiciones de presión del modelo; ese dato ayuda al instalador a
   verificar que el conjunto pueda trabajar con la alimentación de tu baño.
 </p>
+<table>
+  <thead>
+    <tr><th>Situación</th><th>Qué definir antes de pedir</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Obra nueva, pared sin revestir</td><td>Posición y profundidad del cuerpo, contando el revestimiento terminado</td></tr>
+    <tr><td>Reemplazo, pared revestida</td><td>Datos del cuerpo existente y si lo conservás o cambiás todo</td></tr>
+    <tr><td>Con ducha de mano</td><td>Lugar del soporte, recorrido de la manguera y desviador compatible</td></tr>
+  </tbody>
+</table>
 
 <p class="closing">
   Volvé a <a href="/materiales/sanitarios-y-griferia/">sanitarios y grifería</a> o revisá la <a href="/materiales/ducha-electrica/">ducha eléctrica con calentamiento en el equipo</a>.

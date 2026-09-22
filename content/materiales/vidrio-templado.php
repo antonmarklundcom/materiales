@@ -22,6 +22,11 @@
   ubicación de las perforaciones para herrajes, y de que la toma de medidas en obra es parte del
   trabajo, no un paso aparte.
 </p>
+<p>
+  Un ejemplo de cómo se llega a los m²: una mampara de dos paños de 0,80 × 1,90 m cada uno
+  suma 2 × 1,52 = 3,04 m². Pero como el templado no se corta después, no se pide "3 m² de
+  vidrio": se pide cada paño con su ancho, su alto y la posición de sus perforaciones.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>
@@ -33,6 +38,15 @@
   templado con una medida mal tomada no se puede ajustar después. Y si la pieza lleva espejo o
   algún tratamiento adicional, aclaralo desde el pedido inicial.
 </p>
+<table>
+  <thead>
+    <tr><th>Vidrio</th><th>Qué pasa si rompe</th><th>Dónde se usa</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Templado</td><td>Se desgrana en pedacitos sin filo</td><td>Mamparas de baño, puertas, frentes, barandas y divisiones</td></tr>
+    <tr><td>Laminado</td><td>La lámina interna sostiene los pedazos</td><td>Techos y cerramientos en altura, donde importa que no se desprenda</td></tr>
+  </tbody>
+</table>
 
 <p class="closing">
   Volvé a <a href="/materiales/aberturas/">aberturas</a> para ver el resto de la categoría, o

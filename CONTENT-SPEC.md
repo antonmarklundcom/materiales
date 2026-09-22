@@ -111,6 +111,19 @@ triturada, como *4ta*, *5ta* o *6ta*; el isopanel es *panel sándwich*; el ladri
 Prohibido en ambas: precios, plazos concretos de entrega, marcas o nombres de proveedores, y
 cualquier afirmación numérica que no salga del propio dato.
 
+**Profundidad (improvement report #2, G5).** Los rangos de palabras de arriba cuentan la prosa;
+una tabla o un ejemplo resuelto pueden llevar una página por encima (categorías hasta ~650,
+materiales hasta ~680) sin que sea relleno. Reglas de lo que se agregó en G5 y de lo que se
+agregue después:
+- Categoría: la plantilla imprime sola la tabla "Cómo se vende cada material" (sale de
+  `sale_unit`); la prosa suma un H2 `Cómo elegir entre …` con una tabla cualitativa (material |
+  para qué va | qué pedirle al proveedor) armada sólo con lo que dicen las páginas de material,
+  y, si hay calculadora del rubro, un ejemplo con números de esa calculadora y su enlace.
+- Material: "Un ejemplo: …" sólo con números que salen de una calculadora del sitio (con los
+  valores cargados declarados) o de geometría sobre medidas que se declaran; si no hay de dónde
+  sacarlo, la página no se toca.
+- Guías con dosificación: la tabla de §12.1 y un ejemplo que coincide con la calculadora.
+
 ## 6. Guías — esquemas cerrados (`content/guias/{slug}.php`)
 
 H1, title, meta y `related` ya están en `data/guides.php`. 600–900 palabras. Cada guía cierra

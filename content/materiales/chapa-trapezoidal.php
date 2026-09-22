@@ -44,6 +44,16 @@
   aplastamientos por mal estibado, y que el largo pedido no obligue a hacer empalmes
   innecesarios en el faldón, porque cada empalme es un punto más de filtración a futuro.
 </p>
+<p>
+  Un ejemplo: un galpón a 2 aguas con faldones de <strong>7,5 m</strong> de cumbrera a alero y
+  <strong>20 m</strong> de largo. Con una chapa de <strong>1 m de ancho útil</strong> (valor de
+  ejemplo: el de tu perfil te lo da el proveedor), la
+  <a href="/calculadoras/chapas-para-techo/">calculadora de chapas para techo</a> da 20 chapas
+  por faldón y, con el 5 % de chapas de más, <strong>42 chapas de 7,5 m</strong>: 315 metros
+  lineales para 300 m² de techo. La cuenta supone cada chapa entera de cumbrera a alero; si el
+  largo que te pueden entregar es menor que el faldón, consultá dónde conviene el empalme antes
+  de cerrar el pedido.
+</p>
 
 <p class="closing">
   Volvé a <a href="/materiales/chapas-y-techos/">chapas y techos</a>, comparala con la

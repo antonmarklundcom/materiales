@@ -38,6 +38,17 @@
   Coordiná la colocación con personal calificado y dejá definidas las adecuaciones antes
   de poner el equipo en uso.
 </p>
+<table>
+  <thead>
+    <tr><th>Qué revisar</th><th>Quién</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Instalación, cableado y llave térmica, según la ficha del modelo</td><td>Un electricista, antes de comprar</td></tr>
+    <tr><td>Conexión y condiciones de alimentación de agua</td><td>Quien coloca el equipo</td></tr>
+    <tr><td>Soporte, accesorios y manual detallados en la oferta</td><td>Vos, al recibirlo</td></tr>
+    <tr><td>Identificación del modelo para pedir repuestos</td><td>Vos, guardándola</td></tr>
+  </tbody>
+</table>
 
 <p class="closing">
   Mirá <a href="/materiales/sanitarios-y-griferia/">sanitarios y grifería</a> y la <a href="/materiales/llave-de-ducha/">llave de ducha para una instalación con agua caliente</a>.

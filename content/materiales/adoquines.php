@@ -24,6 +24,12 @@
   no duplicar el flete. El precio final depende del tipo de adoquín, de la cantidad de metros
   cuadrados y de la distancia de entrega.
 </p>
+<p>
+  Un ejemplo: una entrada de vehículos de 3 × 12 m son 36 m². Si tiene un cantero de 1 × 2 m
+  que queda con pasto, restá 2 m² y quedan <strong>34 m²</strong> de adoquín. Para la base,
+  multiplicá esos 34 m² por el espesor de cada capa que te marque quien hace la obra: así tenés
+  los m³ de arena y de piedra triturada para pedir en la misma consulta.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

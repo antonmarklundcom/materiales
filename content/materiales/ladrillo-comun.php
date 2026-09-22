@@ -46,6 +46,13 @@
   La medida exacta varía según la olería, así que siempre conviene confirmarla antes de calcular
   cuántos entran por metro cuadrado de tu diseño.
 </p>
+<p>
+  Un ejemplo con la <a href="/calculadoras/ladrillos-por-m2/">calculadora de ladrillos o bloques
+  por m²</a>: una pared de 6 × 2,5 m son 15 m². Con ladrillo de 22 × 11 cm de cara y junta de
+  1,5 cm, cada pieza puesta ocupa 0,235 × 0,125 m, y con un 5 % extra por roturas y cortes
+  salen <strong>537 ladrillos</strong>, algo más de medio millar. Si tu olería trabaja otra
+  medida, la cuenta cambia: confirmala con el proveedor antes de cerrar el pedido.
+</p>
 
 <p class="closing">
   Volvé a <a href="/materiales/ladrillos-y-bloques/">ladrillos y bloques</a> para ver el resto de

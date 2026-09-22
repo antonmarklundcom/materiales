@@ -19,7 +19,9 @@
   sellar —vidrio, sanitario, junta de dilatación, remate de techo— y en qué material, porque de
   ahí sale si corresponde silicona común, acrílico o poliuretánico. También ayuda calcular los
   metros de junta a cubrir, porque el rendimiento de un cartucho varía según el ancho y la
-  profundidad del cordón que necesita esa junta en particular. El precio final depende del tipo
+  profundidad del cordón que necesita esa junta en particular: en una ventana de
+  <strong>1,20 × 1 m</strong>, por ejemplo, la junta es su perímetro, 4,4 m por cada cara que
+  selles. El precio final depende del tipo
   de sellador, de la marca, del tamaño del cartucho y de la cantidad que pidas, así que conviene
   cerrar primero el uso antes de comparar precios entre productos que no son intercambiables.
 </p>

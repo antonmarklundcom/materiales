@@ -23,6 +23,17 @@
   sistema de descarga, la terminación y los accesorios incluidos. Compará presupuestos con
   el mismo detalle para no enfrentar un artefacto solo con otro listo para conectar.
 </p>
+<table>
+  <thead>
+    <tr><th>Dato para el pedido</th><th>Quién lo confirma</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Tipo de salida del desagüe y su posición respecto de la pared terminada</td><td>El instalador, en obra</td></tr>
+    <tr><td>Ubicación de la toma de agua</td><td>El instalador, en obra</td></tr>
+    <tr><td>Espacio disponible entre puerta, lavatorio y ducha</td><td>Vos, midiendo el baño</td></tr>
+    <tr><td>Qué trae el conjunto: asiento, tapa, mecanismo, fijaciones y conexiones</td><td>El proveedor, en la oferta</td></tr>
+  </tbody>
+</table>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

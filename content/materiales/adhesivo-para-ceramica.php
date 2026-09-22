@@ -21,6 +21,15 @@
   precio depende de la cantidad de bolsas, del tipo de adhesivo —común o reforzado para porcelanato— y del
   flete hasta tu obra.
 </p>
+<p>
+  Un ejemplo con la <a href="/calculadoras/ceramica-por-m2/">calculadora de cajas de cerámica y
+  adhesivo por m²</a>:
+  un piso de 4 × 3 m son 12 m². Con el rendimiento y el peso de bolsa que trae cargados como
+  ejemplo (5 kg por m² y bolsa de 25 kg), da 12 × 5 = 60 kg, o sea <strong>3 bolsas</strong>.
+  El adhesivo se calcula sobre los m² del ambiente, no sobre las piezas de más por cortes. El
+  rendimiento real figura en la bolsa y cambia con la pieza: cargá el de la tuya y rehacé la
+  cuenta.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

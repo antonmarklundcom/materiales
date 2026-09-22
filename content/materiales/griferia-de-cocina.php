@@ -35,6 +35,17 @@
   largo de los flexibles. Pedí esos datos y comprobá que el producto recibido coincida
   con la descripción antes de instalarlo.
 </p>
+<table>
+  <thead>
+    <tr><th>Montaje o pico</th><th>Qué revisar</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>En la pared</td><td>La posición de las tomas y el espacio sobre la pileta</td></tr>
+    <tr><td>Sobre la mesada o la pileta</td><td>Las perforaciones y el espesor del apoyo donde se sujeta la base</td></tr>
+    <tr><td>Pico giratorio</td><td>Que su recorrido sirva para tu pileta sin chocar con la pared o la ventana</td></tr>
+    <tr><td>Pico extraíble</td><td>El lugar debajo de la mesada para la manguera, con el instalador</td></tr>
+  </tbody>
+</table>
 
 <p class="closing">
   Mirá toda la categoría de <a href="/materiales/sanitarios-y-griferia/">sanitarios y grifería</a> y la <a href="/materiales/canilla-de-lavatorio/">canilla de lavatorio para el baño</a>.

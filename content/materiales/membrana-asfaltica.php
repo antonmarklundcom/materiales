@@ -23,6 +23,15 @@
   del espesor, de la cantidad de rollos que salen con el solape incluido, y del flete hasta tu
   obra, así que conviene pedir los m² exactos en vez de una cantidad de rollos estimada a ojo.
 </p>
+<p>
+  Un ejemplo: una azotea de <strong>8 × 6 m</strong> (48 m²) con parapeto en todo el contorno,
+  o sea 28 m de perímetro, y la membrana subiendo <strong>20 cm</strong> por ese borde. En la
+  <a href="/calculadoras/membrana-por-m2/">calculadora de rollos de membrana</a>, con un rollo
+  de ejemplo de 10 m² y 1 m de ancho, 10 cm de solape y 5 % por cortes y remates, salen
+  <strong>53,6 m² a cubrir</strong>, <strong>62,53 m² de membrana</strong> y
+  <strong>7 rollos</strong>. A ojo, 48 ÷ 10 da 5 rollos: te faltarían dos. Los m² por rollo, el
+  ancho y el solape reales figuran en la etiqueta del espesor que elijas.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

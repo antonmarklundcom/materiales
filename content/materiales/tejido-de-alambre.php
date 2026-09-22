@@ -25,6 +25,12 @@
   depende de la altura del rollo, el calibre, los metros lineales totales y el flete hasta tu
   zona.
 </p>
+<p>
+  Un ejemplo de cómo sacar ese dato: un lote de 12 × 30 m tiene un perímetro de 12 + 30 + 12 +
+  30 = <strong>84 metros lineales</strong>. Si un lado ya tiene muro, o vas a dejar un portón,
+  restá esos metros antes de pedir. Si arriba va alambre de púas, cada hilera suma otra vez los
+  mismos metros lineales, así que decile al proveedor cuántas hileras querés.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

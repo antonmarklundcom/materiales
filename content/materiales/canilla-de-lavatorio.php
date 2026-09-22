@@ -23,6 +23,16 @@
   El precio depende de la altura, el material del cuerpo, el mecanismo, el montaje y el
   acabado. Compará modelos con el mismo alcance y contenido para evaluar el presupuesto.
 </p>
+<table>
+  <thead>
+    <tr><th>Montaje</th><th>Qué medir antes de pedir</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Sobre el artefacto</td><td>Altura del borde de la bacha y ubicación de la perforación</td></tr>
+    <tr><td>En la mesada</td><td>Ubicación de la perforación y espesor del apoyo, además de la altura de la bacha</td></tr>
+    <tr><td>En la pared</td><td>Posición de las tomas respecto del lavatorio</td></tr>
+  </tbody>
+</table>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

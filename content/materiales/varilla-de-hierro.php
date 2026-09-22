@@ -26,6 +26,14 @@
   el diámetro, el volumen total en kilos o toneladas, si comprás por barra suelta o por lote
   completo, y la distancia hasta la obra.
 </p>
+<p>
+  Un ejemplo con la <a href="/calculadoras/hierro-para-columnas/">calculadora de hierro para
+  columnas</a>: si tu plano marca 6 columnas de 2,80 m de 20 × 20 cm, con 4 barras de 10 mm,
+  0,50 m de empalme y estribos de 6 mm cada 20 cm (2,5 cm de recubrimiento y 10 cm de
+  ganchos), la cuenta da <strong>8 barras de 12 m de 10 mm</strong> y <strong>6 barras de 12 m de
+  6 mm</strong> para 90 estribos de 70 cm: <strong>70 kg</strong> en total, con un 10 % por cortes. Esos
+  datos son un ejemplo; los de tu obra salen de tu plano.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

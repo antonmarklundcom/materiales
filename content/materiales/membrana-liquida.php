@@ -22,6 +22,15 @@
   El precio final depende del producto, del rendimiento por mano, de los m² reales y de si
   suma o no la malla de refuerzo.
 </p>
+<p>
+  Los m² a pasar no son sólo los de la losa: si hay parapetos, la membrana también sube por el
+  borde. Un ejemplo: un techo de <strong>6 × 5 m</strong> (30 m²) con 22 m de parapeto y una
+  subida de <strong>15 cm</strong> suma 22 × 0,15 = 3,3 m², o sea <strong>33,3 m² a
+  cubrir</strong>. Es el primer resultado de la
+  <a href="/calculadoras/membrana-por-m2/">calculadora de membrana por m²</a> (los rollos y el
+  solape no aplican a la líquida). Con esos 33,3 m², las manos que pide el producto y su
+  rendimiento por mano, el proveedor te dice cuántos baldes salen.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

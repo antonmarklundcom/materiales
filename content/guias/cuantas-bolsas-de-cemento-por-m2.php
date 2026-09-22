@@ -39,6 +39,25 @@
   cemento se necesita para asentar cada hilada.
 </p>
 <p>
+  Como referencia, estas son las dosificaciones de manual que usan nuestras calculadoras
+  (proporciones en volumen) y lo que dan por cada metro cúbico de mezcla:
+</p>
+<table>
+  <thead><tr><th>Uso</th><th>Dosificación</th><th>Cemento por m³ de mezcla</th><th>Áridos por m³</th></tr></thead>
+  <tbody>
+    <tr><td>Contrapiso</td><td>1 : 3 : 5 (cemento : arena : ripio)</td><td>250 kg — 5 bolsas</td><td>0,50 m³ de arena y 0,85 m³ de ripio</td></tr>
+    <tr><td>Revoque grueso y mampostería</td><td>1 : 4 (cemento : arena)</td><td>350 kg — 7 bolsas</td><td>1,05 m³ de arena</td></tr>
+    <tr><td>Carpeta o alisado</td><td>1 : 3 (cemento : arena)</td><td>450 kg — 9 bolsas</td><td>1,00 m³ de arena</td></tr>
+  </tbody>
+</table>
+<p>
+  <strong>Un ejemplo:</strong> un contrapiso de 20 m² con 8 cm de espesor es 20 × 0,08 =
+  1,6 m³ de mezcla. Con un 10 % de desperdicio son 1,76 m³, y a 5 bolsas por m³ dan 8,8, que se
+  redondean a <strong>9 bolsas de 50 kg</strong>, más unos 0,9 m³ de arena y 1,5 m³ de ripio.
+  La dosificación de tu obra la define quien la calcula. Estas proporciones son las de manual;
+  si tu maestro o tu calculista usa otra, cambiá la proporción y rehacé la cuenta.
+</p>
+<p>
   En los tres casos, la recomendación es la misma: no traslades de memoria una proporción que
   usaste en otra obra, porque el clima, la humedad de los áridos y la dosificación que decida tu
   maestro o tu calculista pueden mover el número final. Si tenés planos o al menos las medidas de

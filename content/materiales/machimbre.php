@@ -19,6 +19,15 @@
   por debajo. El precio varía con el tipo de madera, el espesor y el ancho de la tablilla, los
   metros cuadrados totales y el flete hasta la obra.
 </p>
+<p>
+  Si el machimbre va a la vista bajo el techo, siguiendo la pendiente, los m² son los del
+  faldón medido sobre la pendiente, no los de la planta. Un ejemplo: un techo a 2 aguas con
+  faldones de <strong>5 m</strong> de cumbrera a alero y <strong>9 m</strong> de largo son
+  <strong>90 m²</strong>, que es la superficie de techo que te da la
+  <a href="/calculadoras/chapas-para-techo/">calculadora de chapas para techo</a> con esas
+  medidas. Esa cuenta incluye el vuelo del alero: si el alero no lleva machimbre, descontalo
+  antes de pedir.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

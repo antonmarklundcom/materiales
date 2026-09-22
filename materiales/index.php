@@ -155,6 +155,30 @@ require PUBLIC_ROOT . '/partials/header.php';
     </li>
     <?php endforeach; ?>
   </ul>
+
+  <?php
+  // G5: la tabla "cómo se vende cada material" sale de sale_unit, el mismo dato que ya muestra
+  // cada página de material ("Se vende por: …"): cero afirmaciones nuevas, y es la forma que
+  // Google usa para fragmentos destacados de "cómo se vende / por qué unidad se pide".
+  $saleRows = array_filter($children, static fn(array $m): bool => is_published($m) && ($m['sale_unit'] ?? '') !== '');
+  ?>
+  <?php if ($saleRows !== []): ?>
+  <h2>Cómo se vende cada material de <?= e(mb_strtolower($entry['name'])) ?></h2>
+  <div class="table-wrap">
+    <table class="sale-table">
+      <thead><tr><th scope="col">Material</th><th scope="col">Se vende por</th></tr></thead>
+      <tbody>
+        <?php foreach ($saleRows as $materialSlug => $material): ?>
+        <tr>
+          <th scope="row"><a href="/materiales/<?= e($materialSlug) ?>/"><?= e($material['name']) ?></a></th>
+          <td><?= e($material['sale_unit']) ?></td>
+        </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note">Para cotizar, pasale al proveedor la cantidad en esa unidad y la zona de entrega.</p>
+  <?php endif; ?>
   <?php endif; ?>
   <?php else: ?>
   <p class="card card--accent closing-cta">

@@ -45,6 +45,16 @@
   Confirmá también el ancho útil real (descontando el solape) antes de calcular cuántas chapas
   necesitás, para no quedarte corto en obra.
 </p>
+<p>
+  Un ejemplo: un techo a 2 aguas con faldones de <strong>4 m</strong> de cumbrera a alero y
+  <strong>10 m</strong> a lo largo del alero. Si la chapa que te ofrecen cubre
+  <strong>0,80 m</strong> útiles, la
+  <a href="/calculadoras/chapas-para-techo/">calculadora de chapas para techo</a> da 13 chapas
+  por faldón y, con el 5 % de chapas de más, <strong>28 chapas de 4 m</strong> (112 metros
+  lineales). Con un perfil de <strong>1 m</strong> útil, el mismo techo de 80 m² pide 10 por
+  faldón y <strong>21 chapas</strong> (84 metros lineales). Los dos anchos son sólo de ejemplo:
+  pedí el real antes de comparar cotizaciones, porque es el dato que más mueve la cantidad.
+</p>
 
 <p class="closing">
   Volvé a <a href="/materiales/chapas-y-techos/">chapas y techos</a> para comparar con la

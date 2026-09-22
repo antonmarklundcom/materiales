@@ -33,3 +33,29 @@
   construir en Paraguay</a> ayuda a ubicarlas dentro del resto de la obra antes de pedir
   cotizaciones.
 </p>
+
+<h2>Cómo elegir entre las distintas aberturas</h2>
+<p>
+  El uso del vano define el material; el resto de la cotización sale de la medida tomada en
+  obra y de lo que incluya cada oferta.
+</p>
+<table>
+  <thead>
+    <tr><th>Material</th><th>Para qué va</th><th>Qué pedirle al proveedor</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><a href="/materiales/puertas-de-madera/">Puertas de madera</a></td><td>Entrada principal: pesa, aísla y se puede volver a barnizar</td><td>Especie y estacionamiento, espesor de hoja, bisagras y cerradura</td></tr>
+    <tr><td><a href="/materiales/puerta-placa/">Puerta placa</a></td><td>Dormitorios, baños, cocinas: vanos interiores</td><td>Espesor de pared, sentido de apertura y si trae marco y herrajes</td></tr>
+    <tr><td><a href="/materiales/puertas-de-chapa/">Puertas de chapa</a></td><td>Depósitos, accesos de servicio y puertas de seguridad</td><td>Uso, espesor de chapa, refuerzo del bastidor y si va pintada</td></tr>
+    <tr><td><a href="/materiales/ventanas-de-aluminio/">Ventanas de aluminio</a></td><td>Ventanas de obra nueva, corredizas o de abrir</td><td>Línea de perfil, color, vidrio y mosquitero</td></tr>
+    <tr><td><a href="/materiales/vidrio-templado/">Vidrio templado</a></td><td>Mamparas, frentes, puertas y barandas de vidrio</td><td>Toma de medidas en obra, espesor y perforaciones para herrajes</td></tr>
+    <tr><td><a href="/materiales/portones-y-rejas/">Portones y rejas</a></td><td>Entrada vehicular y rejas de ventanas y frentes</td><td>Tipo de apertura, diseño, terminación y si incluye anclaje</td></tr>
+  </tbody>
+</table>
+<p>
+  Lo que se cotiza por metro cuadrado —el vidrio templado siempre, y portones y rejas según el
+  taller— sale de ancho por alto de cada pieza: una reja de ventana de 1,20 × 1,00 m son
+  1,2 m², y un frente de 10 m con reja de 1,80 m de alto, 18 m². Anotá esas medidas por
+  ambiente, en la misma lista que el tipo de apertura, y los presupuestos que recibas van a
+  cubrir lo mismo.
+</p>
