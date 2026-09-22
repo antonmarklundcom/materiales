@@ -47,8 +47,9 @@
     form.setAttribute('data-ev-started', '1');
     var tipo = form.querySelector('input[name="tipo"]');
     var material = form.querySelector('select[name="material"]');
+    var prefix = form.hasAttribute('data-lead-compact') ? 'hero-' : '';
     window.matTrack(tipo && tipo.value === 'proveedor' ? 'supplier_form_start' : 'form_start', {
-      ev_loc: material && material.value ? material.value : ''
+      ev_loc: prefix + (material && material.value ? material.value : '')
     });
   }, true);
 })();

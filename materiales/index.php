@@ -94,6 +94,7 @@ require PUBLIC_ROOT . '/partials/header.php';
   <div class="wrap<?= $heroImage !== null ? ' page-hero__grid page-hero__grid--split' : '' ?>">
     <div>
     <h1><?= e($h1) ?></h1>
+    <?= updated_line($entry) ?>
 
     <?php if (($entry['intro'] ?? '') !== ''): ?>
     <p class="lead"><?= e($entry['intro']) ?></p>
@@ -103,9 +104,17 @@ require PUBLIC_ROOT . '/partials/header.php';
     <p class="sale-unit">Se vende por: <strong><?= e($entry['sale_unit']) ?></strong></p>
     <?php endif; ?>
 
-    <?php // Fase 9: el formulario ya está en esta página, así que el CTA del hero ancla a él
-          // en vez de mandar a /cotizar/ y perder la preselección del material. ?>
-    <p><a class="btn btn--primary" href="#cotizar" data-ev="cta_click" data-ev-loc="hero-<?= e($slug) ?>">Pedí tu cotización</a></p>
+    <?php
+    // C3: el pedido empieza en el héroe. Antes el formulario estaba a ~6.000 px en mobile y el
+    // héroe sólo tenía un botón que anclaba ahí. Cantidad + WhatsApp, y al tocarlo se despliega
+    // el resto (partials/form.php, variante 'hero'). El formulario completo sigue al final.
+    $formSlug    = $slug;
+    $formOrigen  = $canonical;
+    $formTitle   = $type === 'material' ? 'Pedí precio de ' . mb_strtolower($entry['name']) : 'Pedí precio de ' . mb_strtolower($entry['name']);
+    $formVariant = 'hero';
+    require PUBLIC_ROOT . '/partials/form.php';
+    $formVariant = 'full';
+    ?>
     </div>
     <?php require PUBLIC_ROOT . '/partials/hero-image.php'; ?>
   </div>

@@ -327,6 +327,28 @@ foreach ($guides as $slug => $guide) {
     }
 }
 
+// ---- S16: fechas de publicación/actualización (las escribe tools/sync-dates.php desde git)
+$calculatorsData = is_file($root . '/data/calculators.php') ? require $root . '/data/calculators.php' : [];
+foreach (['categories' => [$categories, 'categorias'], 'materials' => [$materials, 'materiales'],
+          'guides' => [$guides, 'guias'], 'calculators' => [$calculatorsData, 'calculadoras']] as $dataName => [$entries, $dir]) {
+    foreach ($entries as $slug => $entry) {
+        $hasContent = is_file($root . '/content/' . $dir . '/' . $slug . '.php');
+        $published = (string) ($entry['published'] ?? '');
+        $updated   = (string) ($entry['updated'] ?? '');
+        if ($hasContent && ($entry['status'] ?? '') === 'activa' && ($published === '' || $updated === '')) {
+            $fail("{$dataName}.php[{$slug}]: falta published/updated — correr php tools/sync-dates.php");
+        }
+        foreach (['published' => $published, 'updated' => $updated] as $key => $value) {
+            if ($value !== '' && (preg_match('/^\d{4}-\d{2}-\d{2}$/', $value) !== 1 || $value > gmdate('Y-m-d', time() + 86400))) {
+                $fail("{$dataName}.php[{$slug}]: '{$key}' inválido o en el futuro ({$value})");
+            }
+        }
+        if ($published !== '' && $updated !== '' && $updated < $published) {
+            $fail("{$dataName}.php[{$slug}]: updated ({$updated}) anterior a published ({$published})");
+        }
+    }
+}
+
 // ---- los archivos de contenido referenciados deben existir (si se declararon) --------
 foreach (['categorias' => $categories, 'materiales' => $materials, 'guias' => $guides] as $dir => $entries) {
     $contentDir = $root . '/content/' . $dir;

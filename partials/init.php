@@ -251,6 +251,31 @@ function wa_url(string $subject = '', string $extra = ''): string
     return 'https://wa.me/' . $number . '?text=' . rawurlencode($text);
 }
 
+/** 'YYYY-MM-DD' → '22 de septiembre de 2026' (es-PY), o '' si no es una fecha válida. */
+function date_es(string $ymd): string
+{
+    if (preg_match('/^(\d{4})-(\d{2})-(\d{2})$/', $ymd, $m) !== 1 || !checkdate((int) $m[2], (int) $m[3], (int) $m[1])) {
+        return '';
+    }
+    $months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto',
+               'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    return (int) $m[3] . ' de ' . $months[(int) $m[2] - 1] . ' de ' . $m[1];
+}
+
+/**
+ * Línea visible "Actualizado: …" (S16). La fecha sale de 'updated' del dato, que escribe
+ * tools/sync-dates.php desde la historia de git del archivo de contenido — nunca a mano.
+ */
+function updated_line(array $entry): string
+{
+    $updated = (string) ($entry['updated'] ?? '');
+    $human = date_es($updated);
+    if ($human === '') {
+        return '';
+    }
+    return '<p class="page-updated">Actualizado: <time datetime="' . e($updated) . '">' . e($human) . '</time></p>';
+}
+
 /** Envía el status HTTP y termina la request sirviendo la página 404. */
 function not_found(): never
 {

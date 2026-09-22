@@ -26,7 +26,7 @@ $add = static function (string $path, ?string $updated = null) use (&$urls): voi
 };
 
 // Páginas fijas indexables: sin entrada de datos, sin lastmod.
-foreach (['/', '/materiales/', '/guias/', '/calculadoras/', '/cotizar/', '/proveedores/', '/contacto/', '/politica-de-privacidad/'] as $path) {
+foreach (['/', '/materiales/', '/guias/', '/calculadoras/', '/cotizar/', '/proveedores/', '/contacto/', '/nosotros/', '/como-trabajamos/', '/politica-de-privacidad/'] as $path) {
     $add($path);
 }
 

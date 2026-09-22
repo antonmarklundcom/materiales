@@ -51,12 +51,17 @@
    */
   var bar = d.querySelector('[data-cta-bar]');
   // #sumate: en /proveedores/ la barra lleva al formulario de proveedor (C7).
-  var form = d.getElementById('cotizar') || d.getElementById('sumate');
-  if (bar && form && 'IntersectionObserver' in window) {
+  // #cotizar-rapido (C3): el formulario corto del héroe también cuenta como "a la vista".
+  var forms = [d.getElementById('cotizar-rapido'), d.getElementById('cotizar') || d.getElementById('sumate')]
+    .filter(function (f) { return f; });
+  if (bar && forms.length && 'IntersectionObserver' in window) {
+    var visible = {};
     var barIo = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { bar.classList.toggle('is-hidden', e.isIntersecting); });
+      entries.forEach(function (e) { visible[e.target.id] = e.isIntersecting; });
+      var any = Object.keys(visible).some(function (k) { return visible[k]; });
+      bar.classList.toggle('is-hidden', any);
     }, { threshold: 0 });
-    barIo.observe(form);
+    forms.forEach(function (f) { barIo.observe(f); });
   }
 
   /*
