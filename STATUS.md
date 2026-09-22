@@ -4,11 +4,9 @@ Documento vivo: qué está hecho, qué falta y qué depende de Anton. Se actuali
 fase. El plan está en `plan.md`; las instrucciones por fase, en `prompts/`; el copy cerrado,
 en `CONTENT-SPEC.md`; los desvíos menores, en `KNOWN-ISSUES.md`.
 
-_Última actualización: 2026-09-12 (ventana Sonnet de la mejora cerrada: fases 13 a 15
-mergeadas — 3 calculadoras y 6 guías más, endurecimiento técnico (fuentes autohospedadas,
-cabeceras, replay de leads) y el pase de enlaces editoriales + QA de lanzamiento. Con esto
-las 15 fases del build están mergeadas; lo que queda es exclusivamente lo que depende de
-Anton (NAP, credenciales, DNS, fotografía). Detalle por fase en `docs/log/`)._
+_Última actualización: 2026-09-22 (mejora post-lanzamiento en curso: `docs/IMPROVEMENT-REPORT-2.md`
+por lotes de PR — ver "Mejora post-lanzamiento" abajo. Build original: 15 fases mergeadas,
+detalle por fase en `docs/log/`)._
 
 ## Estado por fase
 
@@ -30,12 +28,27 @@ Anton (NAP, credenciales, DNS, fotografía). Detalle por fase en `docs/log/`)._
 | 14 Endurecimiento técnico | Sonnet (misma ventana, PR 2/3) | ✅ Mergeada | #23 | Fuentes autohospedadas (196 KB), cabeceras de seguridad + deflate, `lastmod` desde `updated`, `og:type` por tipo de página, `tools/replay-leads.php`, `tests/mobile-overflow.mjs` |
 | 15 Link pass + imágenes + QA | Sonnet (misma ventana, PR 3/3) | ✅ Mergeada | #24 | Enlace editorial en las 64 páginas de material y las 11 de categoría; fotografía real sigue bloqueada por el entorno (KNOWN-ISSUES #22); QA de lanzamiento sobre home/proveedores/calculadoras/guías nuevas |
 
+## Mejora post-lanzamiento (improvement report #2)
+
+| Lote | Ítems | Estado |
+|---|---|---|
+| PR A — Tier 0 | B1–B8, R6 | ✅ #44 |
+| PR B — Ops/confiabilidad | R1, R3, R4, R5, R8, resumen diario de leads | ✅ este PR |
+
+Scripts de operación nuevos (todos CLI, ver `DEPLOY.md`): `tools/replay-leads.php` (con tope
+de reintentos y alerta), `tools/lead-digest.php` (resumen diario), `tools/maintenance.php`
+(rotación mensual de `leads.log`, retención 12 meses, limpieza de `storage/throttle/`),
+`tools/check-rewrites.php` (CI: `.htaccess` ↔ `router-cli.php`) y `tools/prod-check.sh`
+(manual, contra producción). `plan.md` y `prompts/` se quedan: README, STATUS, `.htaccess`,
+`render-check.sh` y los comentarios del código (`plan §…`) los referencian.
+
 ## Qué anda hoy
 
 - Rutas: `/`, `/materiales/`, `/materiales/{categoria|material}/`, `/guias/`, `/guias/{slug}/`,
   `/cotizar/`, `/gracias/`, `/contacto/`, `/politica-de-privacidad/`, 404 y `sitemap.xml`.
 - Namespace de slugs plano y compartido; CI falla si un slug se repite entre categorías y
-  materiales (77 slugs únicos hoy: 13 categorías —11 activas— y 64 materiales, todos activos).
+  materiales (84 slugs únicos hoy: 14 categorías —12 activas— y 70 materiales, todos activos;
+  más 14 guías y 4 calculadoras).
 - Todo material cierra sus FAQ con `¿Cuánto cuesta …?` respondida con los factores y el CTA,
   nunca con una cifra (CONTENT-SPEC §11.3). El smoke test lo exige.
 - Ninguna categoría puede publicarse con menos de 3 materiales activos: lo verifica el smoke.
@@ -49,7 +62,7 @@ Anton (NAP, credenciales, DNS, fotografía). Detalle por fase en `docs/log/`)._
 - Todo el sitio sale con `noindex` mientras `data/site.php` tenga `staging_noindex => true`.
 - **Capa visual completa** (fase 4): track INDUSTRIAL de `web-design-system` adaptado —
   cáscara oscura con grano en header/hero/pie, campo claro para prosa y FAQ, un acento
-  (`#E8562A`), Bricolage Grotesque + Inter, tarjetas y tiles de catálogo, formulario y
+  (amarillo de seguridad + negro desde el PR #40; tokens en `assets/css/site.css`), Bricolage Grotesque + Inter, tarjetas y tiles de catálogo, formulario y
   FAQ-acordeón restilizados, pie en cinta de confianza, `motion.js` (reveal + header
   sticky) y `events.js` (shim `data-ev` sin proveedor, no reemplaza la analítica de fase 2).
 - **QA SEO (fase 8)**: `og-default.jpg` (1200×630, fallback de paleta sin fotos, generado
@@ -83,9 +96,9 @@ go-live. `staging_noindex => false` desde hoy. Sigue pendiente: `config/vendercr
 servidor (los leads son `solo_log` hasta que exista), el punto 4 (`lastmod`) y el cron de
 `tools/replay-leads.php`.
 
-Prosa real: ✅ completa. Las 11 categorías, 64 materiales y 14 guías ya tienen cuerpo en
+Prosa real: ✅ completa. Las 12 categorías activas, 70 materiales y 14 guías ya tienen cuerpo en
 `content/categorias/`, `content/materiales/` y `content/guias/` — ninguna página activa
-muestra ya el aviso "estamos publicando el contenido", y las 75 páginas de material y
+muestra ya el aviso "estamos publicando el contenido", y las páginas de material y
 categoría llevan además un enlace editorial en prosa a una guía o calculadora (fase 15).
 
 ## Lo que depende de Anton (nada de esto lo puede inventar Claude)

@@ -77,35 +77,126 @@ carpeta interna nueva tiene que sumarse a esa lista de `.htaccess`**.
 - [ ] `robots.txt` accesible y enlazando el sitemap
 - [ ] Sitemap enviado en Search Console
 
-## Replay de leads fallidos (fase 14, decisión §1.26)
+## Avisos de lead (`config/vendercrm.php`)
+
+Sin estos valores, un pedido que queda en modo sólo-log o que el CRM rechaza no le llega a
+nadie. Van en `config/vendercrm.php` (plantilla en `config.sample.php`):
+
+| Clave | Qué es |
+|---|---|
+| `notify_email` | Casilla que recibe el aviso de cada lead (vía `mail()` de PHP, Hostinger lo trae). |
+| `notify_from` | Remitente; vacío = `no-reply@materiales.com.py`. Conviene que sea un buzón real del dominio para que no caiga en spam. |
+| `telegram_bot_token` | Token del bot (crearlo con @BotFather). |
+| `telegram_chat_id` | Chat donde llega el aviso (escribirle al bot y leer el id en `https://api.telegram.org/bot<TOKEN>/getUpdates`). |
+| `notify_on` | `todos` = aviso por cada lead; `problemas` = sólo `solo_log`, `fallo_crm` y `retenido`. |
+| `leads_retention_months` | Meses que se guardan los `storage/leads-AAAA-MM.log` rotados (por defecto 12). Si se cambia, cambiar el texto de "Conservación" en la política de privacidad (la página ya muestra el valor de la config). |
+
+Email y Telegram pueden ir juntos. Los mismos canales los usan la alerta de
+`tools/replay-leads.php` y el resumen diario de `tools/lead-digest.php`.
+
+Probar después de cargarlos: `php tools/lead-digest.php` tiene que llegar al email/Telegram
+(aunque sea con "0 pedidos").
+
+## Crons (hPanel → Advanced → Cron Jobs)
+
+Ajustar `USUARIO` y la ruta real. Confirmar antes por SSH que `/usr/bin/php -v` es el mismo PHP
+8.x del sitio (en hosting compartido puede apuntar a otra versión). Crear `~/logs/` una vez.
+
+```
+# Reintento de leads al CRM, cada hora
+0 * * * *   /usr/bin/php /home/USUARIO/domains/materiales.com.py/public_html/tools/replay-leads.php >> /home/USUARIO/logs/replay-leads.log 2>&1
+# Resumen diario de leads (10:00 UTC = 7:00 en Paraguay; ajustar a la hora del servidor)
+0 10 * * *  /usr/bin/php /home/USUARIO/domains/materiales.com.py/public_html/tools/lead-digest.php >> /home/USUARIO/logs/lead-digest.log 2>&1
+# Rotación mensual de leads.log + retención + limpieza de storage/throttle/, diario
+30 4 * * *  /usr/bin/php /home/USUARIO/domains/materiales.com.py/public_html/tools/maintenance.php >> /home/USUARIO/logs/maintenance.log 2>&1
+```
+
+Los tres son sólo CLI (devuelven 403 por web y además `tools/` está bloqueada).
+
+## Replay de leads fallidos (fase 14, decisión §1.26; R1)
 
 `tools/replay-leads.php` reintenta los leads que quedaron con `outcome: 'fallo_crm'` en
-`storage/leads.log` — es el "replay manual" del que habla el plan §3, ahora automático por
-cron. Es idempotente por `idempotency_key`: nunca reenvía un lead cuyo `storage/replayed.log`
-ya tenga `ok:true` para esa clave, así que correrlo de más no duplica nada en el CRM.
+`storage/leads.log` (y en el último `leads-AAAA-MM.log` rotado). Es idempotente por
+`idempotency_key`: nunca reenvía un lead cuyo `storage/replayed.log` ya tenga `ok:true` para
+esa clave, así que correrlo de más no duplica nada en el CRM.
 
-También reintenta `outcome: 'solo_log'` — leads que llegaron mientras `config/vendercrm.php`
-todavía no existía. **Importante al configurar el CRM por primera vez**: el primer cron después
-de esa configuración va a intentar reenviar todo el historial de `solo_log` acumulado hasta ese
-momento. Para no volcarle de golpe a los proveedores un pedido de hace semanas, el script sólo
-reintenta `solo_log` de menos de 72 horas por defecto — ajustable con `--max-age-hours=N`. Los
-`fallo_crm` no tienen tope de antigüedad porque son fallos técnicos recientes de un CRM que ya
-funcionaba, no backlog acumulado.
+- **Tope de reintentos**: un rechazo 4xx permanente del CRM (400, 401, 403, 404, 409, 422…) no
+  se reintenta nunca; 408, 425, 429, 5xx y errores de red se reintentan hasta
+  `--max-attempts=N` veces (24 por defecto, un día de cron horario). Los abandonados se listan
+  como `ABANDONADO idempotency_key=…` en cada corrida: cargarlos a mano en VenderCRM.
+- **Alerta**: si una corrida real termina con exit ≠ 0 (1 = quedó un fallo o se abandonó un
+  lead; 2 = CRM sin configurar o log ilegible) avisa por email/Telegram, como mucho una vez por
+  día por código de salida (`storage/replay-alert.json`). `--no-alert` la apaga. Mientras el
+  CRM no esté configurado, el cron va a avisar una vez por día que está en exit 2: es el
+  recordatorio de que los leads siguen en `solo_log`.
+- **Backlog `solo_log`**: también reintenta `outcome: 'solo_log'` (leads que llegaron mientras
+  `config/vendercrm.php` no existía), pero sólo los de menos de 72 horas por defecto, para no
+  volcarle de golpe a los proveedores un pedido de hace semanas. Los `fallo_crm` no tienen
+  tope de antigüedad.
 
-1. En hPanel → Advanced → **Cron Jobs**, agregar (ajustar el usuario/ruta real del hosting):
+### El día que se configura el CRM por primera vez
 
-   ```
-   0 * * * * /usr/bin/php /home/USUARIO/domains/materiales.com.py/public_html/tools/replay-leads.php >> /home/USUARIO/logs/replay-leads.log 2>&1
-   ```
+El sitio está en `solo_log` desde el go-live (2026-09-16). Para no perder ese backlog:
 
-2. Confirmar que el binario de PHP en el cron es el mismo PHP 8.x del sitio (`/usr/bin/php`
-   puede apuntar a una versión distinta en hosting compartido — verificar con `php -v` por
-   SSH antes de pegar la línea).
-3. `storage/replayed.log` no está en el repo (vive junto a `leads.log`, mismo `.htaccess` de
-   `storage/` lo bloquea por web) — no hace falta crearlo a mano, el script lo crea en el
-   primer reintento.
-4. Probar en seco antes de confiar en el cron: `php tools/replay-leads.php --dry-run` lista
-   lo pendiente sin enviar nada ni tocar `replayed.log`.
+1. Cargar `url` y `api_key` en `config/vendercrm.php`.
+2. Ver qué se mandaría, sin enviar nada:
+   `php tools/replay-leads.php --max-age-hours=0 --dry-run`
+   (`--max-age-hours=0` = sin tope de antigüedad).
+3. Revisar esa lista contra lo que ya se cargó a mano en VenderCRM (los avisos por email/
+   Telegram de cada lead). Lo ya cargado a mano no se debería reenviar: si hace falta
+   excluirlo, anotar su clave en `storage/replayed.log` como
+   `{"idempotency_key":"…","ok":true,"status":200,"error":"manual"}`.
+4. Correrlo de verdad: `php tools/replay-leads.php --max-age-hours=0`.
+5. Recién después activar el cron horario de arriba.
+
+`storage/replayed.log` y `storage/replay-alert.json` no están en el repo (viven junto a
+`leads.log`, el `.htaccess` de `storage/` los bloquea por web) — el script los crea solo.
+
+## Resumen diario (`tools/lead-digest.php`)
+
+Cuenta los pedidos de las últimas 24 h por resultado (`enviado`, `solo_log`, `fallo_crm`,
+`retenido`, `descartado`, con el motivo de retenidos y descartados) y lo manda por
+email/Telegram. Se manda aunque sean 0: así también confirma que cron y avisos siguen vivos.
+`--dry-run` sólo imprime; `--hours=N` cambia la ventana.
+
+## Rotación y retención (`tools/maintenance.php`, R5)
+
+- `storage/leads.log` se rota el primer día del mes (la primera corrida después de que cambió
+  el mes) a `storage/leads-AAAA-MM.log`, con permisos 0640. Correrlo todos los días es
+  inofensivo.
+- Los rotados de más de `leads_retention_months` (12 por defecto) se borran. Es lo que dice
+  la sección "Conservación" de la política de privacidad.
+- Borra las huellas de IP de `storage/throttle/` más viejas que la ventana del límite por IP
+  (10 minutos): antes quedaba un archivo por IP para siempre.
+- Un pedido de supresión (Ley 7593) se atiende a mano: borrar la persona en VenderCRM y sus
+  líneas en `storage/leads*.log` (buscar por teléfono).
+
+`--dry-run` muestra qué haría.
+
+## Monitoreo (R2)
+
+Crear dos monitores gratis en UptimeRobot (o similar), tipo *Keyword*, cada 5 minutos:
+
+- `https://materiales.com.py/` — keyword `<title>`.
+- `https://materiales.com.py/cotizar/` — keyword `name="consentimiento"` (si el formulario deja
+  de renderizar, se pierden leads aunque la home ande).
+
+Avisos al mismo email/Telegram de los leads.
+
+## Verificación contra producción (`tools/prod-check.sh`, R3)
+
+Las reglas de bloqueo están en `.htaccess` (producción) y replicadas en
+`tools/router-cli.php` (dev/CI); CI verifica con `tools/check-rewrites.php` que las listas
+coincidan, pero sólo el servidor real prueba el `.htaccess`. Después de cada deploy que toque
+`.htaccess`, desde cualquier máquina con bash + curl:
+
+```sh
+bash tools/prod-check.sh                  # https://materiales.com.py
+```
+
+Chequea que las páginas públicas respondan (con el formulario), que todo lo interno y los
+respaldos (`*.bak`, `*~`, `*.sql`, `*.log`, `*.sh`…) den 403 y que estén las cabeceras de
+seguridad.
 
 ## Headers de seguridad (fase 14, decisión §1.24)
 

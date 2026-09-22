@@ -25,7 +25,8 @@ if (preg_match('#^/(partials/|materiales/_index\.php$)#', $path)) {
 if (preg_match('#^/(data|content|config|storage|tools|tests|prompts|docs)(/|$)#i', $path)
     || preg_match('#(^|/)\.(git|github|gitignore)(/|$)#i', $path)
     || preg_match('#\.md$#i', $path)
-    || preg_match('#^/config\.sample\.php$#i', $path)) {
+    || preg_match('#^/config\.sample\.php$#i', $path)
+    || preg_match('#(\.(bak|orig|sh|log|sql|swp)|~)$#i', $path)) {
     http_response_code(403);
     echo 'Forbidden';
     return true;
