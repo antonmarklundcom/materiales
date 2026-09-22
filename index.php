@@ -37,7 +37,7 @@ page([
     'meta'       => 'Pedí cotización de hierro, cemento, arena, ladrillos o chapas y hasta ' . $maxProv . ' proveedores verificados de Gran Asunción te escriben por WhatsApp.',
     'canonical'  => '/',
     'h1'         => 'Materiales de construcción en Paraguay',
-    'schema'     => [schema_website(), schema_local_business()],
+    'schema'     => [schema_website(), schema_organization()],
     'body_class' => 'page-home',
     'image'      => (string) $homeImage,
 ]);
@@ -89,17 +89,7 @@ require __DIR__ . '/partials/header.php';
     </ol>
 
     <h2>Rubros</h2>
-    <ul class="tile-grid tile-grid--3">
-      <?php foreach ($categories as $categorySlug => $category): ?>
-      <li>
-        <a class="tile card--hair<?= is_published($category) ? ' tile--featured' : ' is-proxima' ?>"
-           href="/materiales/<?= e($categorySlug) ?>/">
-          <span><?= e($category['name']) ?></span>
-          <span class="tile__arrow" aria-hidden="true">→</span>
-        </a>
-      </li>
-      <?php endforeach; ?>
-    </ul>
+    <?php require __DIR__ . '/partials/category-tiles.php'; ?>
     <p class="card card--accent closing-cta">
       <a href="/materiales/">Ver todos los materiales</a>
     </p>

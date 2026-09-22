@@ -57,6 +57,17 @@ function url(string $path = '/'): string
 }
 
 /** true si la página está publicada (entra en sitemap y es indexable). */
+/**
+ * Ruta de un CSS/JS propio con ?v=<mtime> (S8): el .htaccess los cachea un año, así que
+ * después de un deploy la versión nueva tiene que ser otra URL o el visitante que vuelve
+ * combina HTML nuevo con CSS viejo. El mtime cambia solo con cada deploy del archivo.
+ */
+function asset(string $path): string
+{
+    $mtime = @filemtime(PUBLIC_ROOT . $path);
+    return $mtime === false ? $path : $path . '?v=' . $mtime;
+}
+
 function is_published(array $entry): bool
 {
     return ($entry['status'] ?? 'proxima') === 'activa';

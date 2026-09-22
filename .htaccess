@@ -11,6 +11,18 @@ ErrorDocument 404 /404.php
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # S1 — una sola forma de URL: https y sin www, con 301 (antes dependía del toggle "Force
+  # HTTPS" de hPanel, que un redeploy del .htaccess puede pisar). Primero www → apex en https
+  # (un solo salto), después http → https. X-Forwarded-Proto cubre el caso de un proxy/CDN
+  # que termina el SSL adelante. tools/router-cli.php no los replica: en dev/CI no hay SSL
+  # ni www. Los verifica tools/prod-check.sh contra producción.
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteCond %{HTTP_HOST} ^materiales\.com\.py$ [NC]
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
   # Nada de lo interno se sirve por URL: datos, contenido, config/secretos, storage
   # (leads.log), herramientas de dev/CI, tests locales, prompts, docs, control de versiones
   # ni markdown. [NC] porque el bloqueo por prefijo es la única defensa real de storage/ y no
@@ -64,10 +76,12 @@ ErrorDocument 404 /404.php
   # estos permisos, así que negarlos de entrada no rompe nada.
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
-  # HSTS queda comentado a propósito: activarla a ciegas en hosting compartido puede dejar el
-  # sitio inaccesible si el SSL falla o se desconfigura. Descomentar recién cuando el
-  # certificado esté confirmado y estable en producción (ver DEPLOY.md).
-  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  # HSTS (S1/R7): el sitio sirve por https desde el go-live (2026-09-16) y ahora redirige
+  # todo http → https. Sin includeSubDomains ni preload a propósito: no sabemos si todo
+  # subdominio (webmail, paneles de Hostinger) tiene certificado, y preload es difícil de
+  # deshacer. Los navegadores ignoran la cabecera si llega por http, así que mandarla siempre
+  # es inofensivo (y no depende de que el servidor exponga la variable HTTPS).
+  Header always set Strict-Transport-Security "max-age=31536000"
   # Sin Content-Security-Policy: el JSON-LD inline y la inyección de GA4/Pixel post-consentimiento
   # hacen que una CSP estricta sea un proyecto aparte (plan §10 Backlog).
 </IfModule>
@@ -80,9 +94,23 @@ ErrorDocument 404 /404.php
 
 <IfModule mod_expires.c>
   ExpiresActive On
-  ExpiresByType text/css "access plus 7 days"
-  ExpiresByType application/javascript "access plus 7 days"
+  # S8: CSS/JS van con ?v=<mtime> (asset() en partials/init.php), así que un año es seguro:
+  # cada deploy que los cambia cambia la URL. Las fuentes no cambian nunca.
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  # Imágenes: sin versión en la URL, 30 días. AVIF es lo que reciben los navegadores de hoy.
+  ExpiresByType image/avif "access plus 30 days"
   ExpiresByType image/webp "access plus 30 days"
   ExpiresByType image/jpeg "access plus 30 days"
-  ExpiresByType font/woff2 "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType image/x-icon "access plus 30 days"
+  ExpiresByType image/vnd.microsoft.icon "access plus 30 days"
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType image/avif .avif
+  AddType image/svg+xml .svg
 </IfModule>

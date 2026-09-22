@@ -198,10 +198,17 @@ Chequea que las páginas públicas respondan (con el formulario), que todo lo in
 respaldos (`*.bak`, `*~`, `*.sql`, `*.log`, `*.sh`…) den 403 y que estén las cabeceras de
 seguridad.
 
-## Headers de seguridad (fase 14, decisión §1.24)
+## Headers de seguridad (fase 14, decisión §1.24; S1)
 
 Después de desplegar, verificar con `curl -sI https://materiales.com.py/` que la respuesta
-trae `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options` y `Permissions-Policy`.
-`Strict-Transport-Security` queda comentada en `.htaccess` a propósito: activarla exige que
-el SSL del dominio ya esté confirmado y estable — recién ahí descomentar esa línea y
-redeployar. No hay `Content-Security-Policy` (ver `.htaccess` y plan §10 Backlog).
+trae `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options`, `Permissions-Policy` y
+`Strict-Transport-Security` (o correr `bash tools/prod-check.sh`, que además prueba las
+redirecciones). No hay `Content-Security-Policy` (ver `.htaccess` y plan §10 Backlog).
+
+**https y sin www (S1).** `.htaccess` redirige con 301 `http://` → `https://` y `www.` → el
+dominio sin www, sin depender del toggle "Force HTTPS" de hPanel. HSTS va con
+`max-age=31536000`, sin `includeSubDomains` ni `preload`. Si alguna vez el certificado deja de
+renovarse, los navegadores que ya visitaron el sitio no van a poder entrar por http durante
+ese año: renovar el SSL es la solución, no sacar la cabecera. Si se agrega un subdominio con
+SSL propio y se quiere `includeSubDomains`, primero confirmar que TODOS los subdominios
+(webmail, etc.) sirven https válido.

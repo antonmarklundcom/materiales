@@ -67,13 +67,21 @@ header('Cache-Control: no-cache');
 <?php endif; ?>
 <meta name="twitter:card" content="summary_large_image">
 <?php endif; ?>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#17170f">
+<?php /* S6: la clase que colapsa el menú mobile se pone ANTES del primer render. Si la ponía
+         sólo motion.js (defer), el menú se pintaba desplegado y saltaba al colapsarse (CLS). */ ?>
+<script>document.documentElement.classList.add('js-nav');</script>
 <link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css">
-<script src="/assets/js/consent.js" defer></script>
+<link rel="stylesheet" href="<?= e(asset('/assets/css/site.css')) ?>">
+<script src="<?= e(asset('/assets/js/consent.js')) ?>" defer></script>
 <?php require PUBLIC_ROOT . '/partials/analytics.php'; ?>
-<script src="/assets/js/events.js" defer></script>
-<script src="/assets/js/motion.js" defer></script>
+<script src="<?= e(asset('/assets/js/events.js')) ?>" defer></script>
+<script src="<?= e(asset('/assets/js/motion.js')) ?>" defer></script>
 <?php schema_render($page['schema']); ?>
 </head>
 <body class="<?= e($page['body_class']) ?>">

@@ -228,5 +228,5 @@ require PUBLIC_ROOT . '/partials/header.php';
     ?>
   </div>
 </div>
-<script src="/assets/js/calc.js" defer></script>
+<script src="<?= e(asset('/assets/js/calc.js')) ?>" defer></script>
 <?php require PUBLIC_ROOT . '/partials/footer.php'; ?>

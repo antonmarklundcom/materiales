@@ -18,7 +18,7 @@ page([
     'meta'        => 'Escribinos por WhatsApp si tenés dudas sobre materiales, cantidades o entregas. Para precios, pedí tu cotización y te contactan proveedores verificados.',
     'canonical'   => '/contacto/',
     'breadcrumbs' => $breadcrumbs,
-    'schema'      => [schema_breadcrumbs($breadcrumbs), schema_local_business()],
+    'schema'      => [schema_breadcrumbs($breadcrumbs), schema_organization()],
     'body_class'  => 'page-contacto',
 ]);
 

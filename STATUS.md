@@ -33,7 +33,8 @@ detalle por fase en `docs/log/`)._
 | Lote | Ítems | Estado |
 |---|---|---|
 | PR A — Tier 0 | B1–B8, R6 | ✅ #44 |
-| PR B — Ops/confiabilidad | R1, R3, R4, R5, R8, resumen diario de leads | ✅ este PR |
+| PR B — Ops/confiabilidad | R1, R3, R4, R5, R8, resumen diario de leads | ✅ #45 |
+| PR C — SEO técnico | S1–S10 | ✅ este PR |
 
 Scripts de operación nuevos (todos CLI, ver `DEPLOY.md`): `tools/replay-leads.php` (con tope
 de reintentos y alerta), `tools/lead-digest.php` (resumen diario), `tools/maintenance.php`
