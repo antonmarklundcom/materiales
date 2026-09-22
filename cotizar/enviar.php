@@ -26,6 +26,40 @@ function enviar_redirect(string $path): never
     exit;
 }
 
+/**
+ * Registra un lead en leads.log y avisa (lead_notify). Un solo lugar para las dos cosas: un
+ * pedido que se registra sin avisar es justamente el que nadie contesta.
+ */
+function enviar_log_and_notify(array $record): void
+{
+    $logged = lead_log($record);
+    if (!$logged) {
+        $record['log_error'] = 'no se pudo escribir storage/leads.log';
+    }
+    lead_notify($record);
+}
+
+/**
+ * Pedido con teléfono y consentimiento válidos que el filtro anti-bot o el límite por IP
+ * frenaron. Antes se descartaba SIN el payload: una persona real (IP compartida, pestaña
+ * abierta de ayer, autocompletado del navegador en el campo trampa) veía /gracias/ y
+ * esperaba una respuesta que nunca iba a llegar. Ahora se guarda completo como `retenido` y
+ * se avisa: nada se manda al CRM automáticamente, lo revisa una persona.
+ */
+function enviar_retain(string $reason, int $now, string $phone, array $payload, string $redirect): never
+{
+    enviar_log_and_notify([
+        'ts'         => gmdate('c', $now),
+        'outcome'    => 'retenido',
+        'reason'     => $reason,
+        'phone_e164' => $phone,
+        'payload'    => $payload,
+        'ip'         => lead_ip_fingerprint((string) ($_SERVER['REMOTE_ADDR'] ?? '')),
+        'ua'         => mb_substr((string) ($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 300),
+    ]);
+    enviar_redirect($redirect);
+}
+
 /** Query string con sólo los campos NO personales, para repoblar el formulario tras un error. */
 function enviar_error_path(string $origen, string $error, array $post): never
 {
@@ -46,18 +80,73 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'POST') {
 
 $origen = lead_safe_path((string) ($_POST['origen'] ?? '/cotizar/'));
 $now    = time();
+$isSupplier = (string) ($_POST['tipo'] ?? '') === 'proveedor';
+
+/** Payload del comprador (plan §3.3 y §3.4). */
+$buildBuyerPayload = static function (string $phoneRaw, string $idempotencyKey, array $resolved) use ($origen, $now): array {
+    return lead_build_payload($resolved + [
+        'phone_raw'       => $phoneRaw,
+        'idempotency_key' => $idempotencyKey,
+        'nombre'          => (string) ($_POST['nombre'] ?? ''),
+        'mensaje'         => (string) ($_POST['mensaje'] ?? ''),
+        'cantidad'        => (string) ($_POST['cantidad'] ?? ''),
+        'ciudad'          => (string) ($_POST['ciudad'] ?? ''),
+        'page_url'        => url($origen),
+        'referrer'        => (string) ($_SERVER['HTTP_REFERER'] ?? ''),
+        'attribution'     => lead_attribution($_POST, $_COOKIE),
+        'consent_at'      => gmdate('c', $now),
+    ]);
+};
+
+/** Payload del alta de proveedor (fase 10, decisión §1.17). */
+$buildSupplierPayload = static function (string $phoneRaw, string $idempotencyKey) use ($now): array {
+    return lead_build_supplier_payload([
+        'phone_raw'       => $phoneRaw,
+        'idempotency_key' => $idempotencyKey,
+        'nombre'          => (string) ($_POST['nombre'] ?? ''),
+        'empresa'         => trim((string) ($_POST['empresa'] ?? '')),
+        'rubros'          => lead_supplier_rubros($_POST['rubros'] ?? []),
+        'ciudad'          => (string) ($_POST['ciudad'] ?? ''),
+        'mensaje'         => (string) ($_POST['mensaje'] ?? ''),
+        'page_url'        => url('/proveedores/'),
+        'referrer'        => (string) ($_SERVER['HTTP_REFERER'] ?? ''),
+        'attribution'     => lead_attribution($_POST, $_COOKIE),
+        'consent_at'      => gmdate('c', $now),
+    ]);
+};
+
+$emptyResolved = [
+    'material' => '', 'material_name' => '', 'categoria' => '', 'categoria_name' => '',
+    'presupuesto_band' => '',
+];
 
 // ---- 1. Bots: honeypot y trampa de tiempo (plan §3.1) --------------------------------
 // Se acepta en silencio: el bot ve un 303 a /gracias/ y se va. No se postea nada al CRM y
-// no se le dice nunca qué lo delató.
+// no se le dice nunca qué lo delató. `website` es el nombre viejo del campo trampa (lo
+// autocompletaban algunos navegadores); se sigue leyendo por las páginas ya renderizadas.
 $stampReason = lead_form_stamp_reason(
     (string) ($_POST['ts'] ?? ''),
     (string) ($_POST['tsg'] ?? ''),
     $now
 );
-$botReason = !empty($_POST['website']) ? 'honeypot' : $stampReason;
+$honeypot  = !empty($_POST['hp_extra']) || !empty($_POST['website']);
+$botReason = $honeypot ? 'honeypot' : $stampReason;
 
 if ($botReason !== '') {
+    // Con teléfono y consentimiento válidos puede ser una persona: se retiene, no se tira.
+    $botPhoneRaw = trim((string) ($_POST['telefono'] ?? ''));
+    $botPhone    = lead_normalize_phone($botPhoneRaw);
+    if ($botPhone !== null && ($_POST['consentimiento'] ?? '') === '1') {
+        if ($isSupplier) {
+            enviar_retain($botReason, $now, $botPhone,
+                $buildSupplierPayload($botPhoneRaw, lead_idempotency_key($botPhone, $now, 'proveedor')),
+                '/proveedores/?ok=1#gracias');
+        }
+        $botResolved = lead_resolve_slug((string) ($_POST['material'] ?? '')) ?? $emptyResolved;
+        enviar_retain($botReason, $now, $botPhone,
+            $buildBuyerPayload($botPhoneRaw, lead_idempotency_key($botPhone, $now, $botResolved['material']), $botResolved),
+            '/gracias/');
+    }
     lead_log([
         'ts'      => gmdate('c', $now),
         'outcome' => 'descartado',
@@ -72,7 +161,7 @@ if ($botReason !== '') {
 // Mismo handler, misma trampa de bots, misma idempotencia; otro formulario, otro payload y
 // otra versión de consentimiento. El camino del COMPRADOR sigue abajo sin un byte de cambio:
 // un POST de comprador no trae `tipo` y acá nunca se le pone uno por defecto.
-if ((string) ($_POST['tipo'] ?? '') === 'proveedor') {
+if ($isSupplier) {
     /** Vuelve a /proveedores/ conservando sólo los campos no personales ya tipeados. */
     $provError = static function (string $error): never {
         $query = ['error' => $error];
@@ -107,38 +196,18 @@ if ((string) ($_POST['tipo'] ?? '') === 'proveedor') {
         $provError('consentimiento');
     }
 
-    $provIdemKey = lead_idempotency_key($provPhone, $now);
+    $provIdemKey = lead_idempotency_key($provPhone, $now, 'proveedor');
+    $provPayload = $buildSupplierPayload($provPhoneRaw, $provIdemKey);
     if (lead_ip_throttled((string) ($_SERVER['REMOTE_ADDR'] ?? ''), $provIdemKey, $now)) {
-        lead_log([
-            'ts'      => gmdate('c', $now),
-            'outcome' => 'descartado',
-            'reason'  => 'limite_ip',
-            'ip'      => lead_ip_fingerprint((string) ($_SERVER['REMOTE_ADDR'] ?? '')),
-            'ua'      => mb_substr((string) ($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 300),
-        ]);
-        enviar_redirect('/gracias/');
+        enviar_retain('limite_ip', $now, $provPhone, $provPayload, '/proveedores/?ok=1#gracias');
     }
-
-    $provPayload = lead_build_supplier_payload([
-        'phone_raw'       => $provPhoneRaw,
-        'idempotency_key' => $provIdemKey,
-        'nombre'          => (string) ($_POST['nombre'] ?? ''),
-        'empresa'         => $provEmpresa,
-        'rubros'          => $provRubros,
-        'ciudad'          => (string) ($_POST['ciudad'] ?? ''),
-        'mensaje'         => (string) ($_POST['mensaje'] ?? ''),
-        'page_url'        => url('/proveedores/'),
-        'referrer'        => (string) ($_SERVER['HTTP_REFERER'] ?? ''),
-        'attribution'     => lead_attribution($_POST, $_COOKIE),
-        'consent_at'      => gmdate('c', $now),
-    ]);
 
     $provCrm = ['status' => 0, 'body' => '', 'error' => 'sin configuración de CRM', 'ms' => 0];
     if (lead_crm_configured()) {
         $provCrm = lead_send($provPayload, lead_config());
     }
 
-    lead_log([
+    enviar_log_and_notify([
         'ts'         => gmdate('c', $now),
         'outcome'    => lead_send_ok($provCrm) ? 'enviado' : (lead_crm_configured() ? 'fallo_crm' : 'solo_log'),
         'phone_e164' => $provPhone,
@@ -166,37 +235,18 @@ if (($_POST['consentimiento'] ?? '') !== '1') {
     enviar_error_path($origen, 'consentimiento', $_POST);
 }
 
-$idempotencyKey = lead_idempotency_key($phone, $now);
-if (lead_ip_throttled((string) ($_SERVER['REMOTE_ADDR'] ?? ''), $idempotencyKey, $now)) {
-    lead_log([
-        'ts'      => gmdate('c', $now),
-        'outcome' => 'descartado',
-        'reason'  => 'limite_ip',
-        'ip'      => lead_ip_fingerprint((string) ($_SERVER['REMOTE_ADDR'] ?? '')),
-        'ua'      => mb_substr((string) ($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 300),
-    ]);
-    enviar_redirect('/gracias/');
-}
-
 // ---- 3–4. Payload (plan §3.3 y §3.4) --------------------------------------------------
 $slug     = (string) ($_POST['material'] ?? '');
-$resolved = lead_resolve_slug($slug) ?? [
-    'material' => '', 'material_name' => '', 'categoria' => '', 'categoria_name' => '',
-    'presupuesto_band' => '',
-];
+$resolved = lead_resolve_slug($slug) ?? $emptyResolved;
 
-$payload = lead_build_payload($resolved + [
-    'phone_raw'       => $phoneRaw,
-    'idempotency_key' => $idempotencyKey,
-    'nombre'          => (string) ($_POST['nombre'] ?? ''),
-    'mensaje'         => (string) ($_POST['mensaje'] ?? ''),
-    'cantidad'        => (string) ($_POST['cantidad'] ?? ''),
-    'ciudad'          => (string) ($_POST['ciudad'] ?? ''),
-    'page_url'        => url($origen),
-    'referrer'        => (string) ($_SERVER['HTTP_REFERER'] ?? ''),
-    'attribution'     => lead_attribution($_POST, $_COOKIE),
-    'consent_at'      => gmdate('c', $now),
-]);
+// La clave lleva el material pedido: dos pedidos distintos de la misma persona en la misma
+// hora son dos leads, no un duplicado (ver lead_idempotency_key()).
+$idempotencyKey = lead_idempotency_key($phone, $now, $resolved['material']);
+$payload        = $buildBuyerPayload($phoneRaw, $idempotencyKey, $resolved);
+
+if (lead_ip_throttled((string) ($_SERVER['REMOTE_ADDR'] ?? ''), $idempotencyKey, $now)) {
+    enviar_retain('limite_ip', $now, $phone, $payload, '/gracias/');
+}
 
 $crm = ['status' => 0, 'body' => '', 'error' => 'sin configuración de CRM', 'ms' => 0];
 if (lead_crm_configured()) {
@@ -207,7 +257,7 @@ if (lead_crm_configured()) {
 // Es el respaldo ante caída del CRM (el replay manual del que habla el plan) y la pista de
 // auditoría del consentimiento. Se guarda el teléfono NORMALIZADO además del tipeado para
 // poder reconstruir la clave de idempotencia en un replay.
-lead_log([
+enviar_log_and_notify([
     'ts'          => gmdate('c', $now),
     'outcome'     => lead_send_ok($crm) ? 'enviado' : (lead_crm_configured() ? 'fallo_crm' : 'solo_log'),
     'phone_e164'  => $phone,
@@ -219,7 +269,8 @@ lead_log([
 // ---- 6. PRG a /gracias/ (plan §3.6) ---------------------------------------------------
 // `k` es un token de un solo uso: /gracias/ dispara los eventos de analítica una vez por
 // token y los recuerda en sessionStorage, así refrescar la página no infla las conversiones.
-$query = ['k' => bin2hex(random_bytes(8))];
+// Va firmado (lead_conversion_token): un /gracias/?k= tipeado a mano no cuenta.
+$query = ['k' => lead_conversion_token()];
 if ($resolved['material'] !== '') {
     $query = ['m' => $resolved['material']] + $query;
 }

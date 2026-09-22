@@ -69,7 +69,7 @@ require PUBLIC_ROOT . '/partials/header.php';
       Compradores de Gran Asunción piden precio de materiales todos los días. Nosotros les
       pedimos el material, la cantidad y la zona, y te pasamos el pedido para que cotices.
     </p>
-    <p><a class="btn btn--primary" href="#sumate" data-ev="form_submit" data-ev-loc="proveedores-hero">Sumate como proveedor</a></p>
+    <p><a class="btn btn--primary" href="#sumate" data-ev="cta_click" data-ev-loc="proveedores-hero">Sumate como proveedor</a></p>
   </div>
 </div>
 

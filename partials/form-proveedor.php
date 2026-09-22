@@ -99,14 +99,14 @@ $provOldRubros = array_filter(explode(',', $provOld('rubros')));
     </label>
 
     <?php /* Honeypot: los bots lo completan, las personas no lo ven nunca. */ ?>
-    <input class="lead-form__honeypot" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" value="">
+    <input class="lead-form__honeypot" name="hp_extra" tabindex="-1" autocomplete="off" aria-hidden="true" value="">
 
     <?php /* Trampa de tiempo: sello firmado del momento del render (partials/lead.php). */ ?>
     <input type="hidden" name="ts" value="<?= e($provStamp['ts']) ?>">
     <input type="hidden" name="tsg" value="<?= e($provStamp['sig']) ?>">
     <input type="hidden" name="origen" value="/proveedores/">
 
-    <button class="lead-form__submit btn btn--primary" type="submit" data-ev="form_submit" data-ev-loc="proveedores">Quiero recibir pedidos</button>
+    <button class="lead-form__submit btn btn--primary" type="submit" data-ev="supplier_submit_attempt" data-ev-loc="proveedores">Quiero recibir pedidos</button>
     <p class="lead-form__note">No publicamos tus datos en el sitio. Te contactamos nosotros.</p>
   </form>
 </section>

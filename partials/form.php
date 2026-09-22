@@ -107,14 +107,14 @@ $formCategories = categories_ordered();
     </label>
 
     <?php /* Honeypot: los bots lo completan, las personas no lo ven nunca. */ ?>
-    <input class="lead-form__honeypot" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" value="">
+    <input class="lead-form__honeypot" name="hp_extra" tabindex="-1" autocomplete="off" aria-hidden="true" value="">
 
     <?php /* Trampa de tiempo: sello firmado del momento del render (partials/lead.php). */ ?>
     <input type="hidden" name="ts" value="<?= e($stamp['ts']) ?>">
     <input type="hidden" name="tsg" value="<?= e($stamp['sig']) ?>">
     <input type="hidden" name="origen" value="<?= e($formOrigen) ?>">
 
-    <button class="lead-form__submit btn btn--primary" type="submit" data-ev="form_submit" data-ev-loc="<?= e($formSlug !== '' ? $formSlug : 'cotizar') ?>">Pedir cotización</button>
+    <button class="lead-form__submit btn btn--primary" type="submit" data-ev="form_submit_attempt" data-ev-loc="<?= e($formSlug !== '' ? $formSlug : 'cotizar') ?>">Pedir cotización</button>
     <p class="lead-form__note">Sin costo. No publicamos tu teléfono en ningún lado.</p>
   </form>
 </section>

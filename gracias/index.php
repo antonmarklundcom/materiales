@@ -17,10 +17,11 @@ require PUBLIC_ROOT . '/partials/schema.php';
 $slug  = (string) ($_GET['m'] ?? '');
 $entry = data('categories')[$slug] ?? data('materials')[$slug] ?? null;
 
-// Sólo se declara el evento si el token viene del handler y tiene la forma que emite
-// (16 hex). Sin token no hay conversión que contar: alguien llegó a /gracias/ por su cuenta.
+// Sólo se declara el evento si el token viene del handler con su firma válida
+// (lead_conversion_token). Sin token, o con uno tipeado a mano, no hay conversión que contar.
+require PUBLIC_ROOT . '/partials/lead.php';
 $token = (string) ($_GET['k'] ?? '');
-if (preg_match('/^[0-9a-f]{16}$/', $token)) {
+if (lead_conversion_token_valid($token)) {
     $leadEvent = [
         'token'     => $token,
         'material'  => $entry !== null ? $slug : '',

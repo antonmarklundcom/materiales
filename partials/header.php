@@ -11,13 +11,17 @@ $site = site();
 $noindex = ($site['staging_noindex'] ?? false) === true || ($page['noindex'] ?? false) === true;
 // canonical vacío (fase 14, plan §11.6): la página no declara una URL canónica propia — hoy
 // sólo el 404, que no debería apuntar a ninguna URL como si fuera la "real".
-$canonical = $page['canonical'] !== '' ? url($page['canonical']) : '';
+// $canonicalUrl, NO $canonical: este partial corre en el scope de la página que lo incluye, y
+// las plantillas usan $canonical (ruta interna) después, como origen del formulario. Pisarlo
+// con la URL absoluta hacía que lead_safe_path() la rechazara y todo lead de material,
+// categoría o calculadora quedara registrado como enviado desde /cotizar/.
+$canonicalUrl = $page['canonical'] !== '' ? url($page['canonical']) : '';
 // og:image por página (fase 11, decisión §1.20): la imagen declarada por la entrada si
 // existe en disco, y si no el fallback de paleta sitewide. page()['image'] ya viene validada
 // por image_for(), así que acá no hace falta volver a tocar el disco.
-$pageImage = trim((string) ($page['image'] ?? ''));
+$pageImage = image_file_for_og(trim((string) ($page['image'] ?? '')));
 if ($pageImage !== '') {
-    $ogImage = url('/' . ltrim($pageImage, '/'));
+    $ogImage = url('/' . $pageImage);
 } else {
     $ogImage = is_file(PUBLIC_ROOT . '/assets/img/og-default.jpg') ? url('/assets/img/og-default.jpg') : '';
 }
@@ -40,8 +44,8 @@ header('Cache-Control: no-cache');
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?= e($page['title']) ?></title>
 <meta name="description" content="<?= e($page['meta']) ?>">
-<?php if ($canonical !== ''): ?>
-<link rel="canonical" href="<?= e($canonical) ?>">
+<?php if ($canonicalUrl !== ''): ?>
+<link rel="canonical" href="<?= e($canonicalUrl) ?>">
 <?php endif; ?>
 <?php if ($noindex): ?>
 <?php /* staging: el flag se apaga en la fase 6 */ ?>
@@ -52,11 +56,15 @@ header('Cache-Control: no-cache');
 <meta property="og:site_name" content="<?= e($site['brand']) ?>">
 <meta property="og:title" content="<?= e($page['title']) ?>">
 <meta property="og:description" content="<?= e($page['meta']) ?>">
-<?php if ($canonical !== ''): ?>
-<meta property="og:url" content="<?= e($canonical) ?>">
+<?php if ($canonicalUrl !== ''): ?>
+<meta property="og:url" content="<?= e($canonicalUrl) ?>">
 <?php endif; ?>
 <?php if ($ogImage !== ''): ?>
 <meta property="og:image" content="<?= e($ogImage) ?>">
+<?php if (str_ends_with($ogImage, '.jpg')): /* -og.jpg y og-default.jpg son 1200×630 */ ?>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<?php endif; ?>
 <meta name="twitter:card" content="summary_large_image">
 <?php endif; ?>
 <link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>

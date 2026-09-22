@@ -15,7 +15,10 @@ define('APP_ROOT', PUBLIC_ROOT);
 define('DATA_DIR', APP_ROOT . '/data');
 define('CONTENT_DIR', APP_ROOT . '/content');
 define('CONFIG_DIR', APP_ROOT . '/config');
-define('STORAGE_DIR', APP_ROOT . '/storage');
+// MATERIALES_STORAGE_DIR sólo lo fijan los checks locales/CI (tools/render-check.sh,
+// tools/smoke.php) para no tocar nunca el storage/leads.log real: el repo ES el docroot, así
+// que correr un check en el servidor pisaba los leads de producción. En producción no existe.
+define('STORAGE_DIR', (string) (getenv('MATERIALES_STORAGE_DIR') ?: APP_ROOT . '/storage'));
 
 /** Carga (y cachea) un archivo de datos: data('categories') → data/categories.php */
 function data(string $name): array
@@ -167,6 +170,26 @@ function image_for(array $entry, string $type): ?string
         return null;
     }
     return $candidate;
+}
+
+/**
+ * Archivo real para og:image / schema `image` a partir de la ruta BASE que devuelve
+ * image_for() ('assets/img/hero-hierro'). La base sola no es un archivo — antes se emitía tal
+ * cual y og:image/Product.image apuntaban a un 404 en toda página con foto. Prefiere el JPG
+ * 1200×630 de tools/generate-og-images.php; si no existe, el WebP 1280 del héroe.
+ */
+function image_file_for_og(string $base): string
+{
+    $base = ltrim($base, '/');
+    if ($base === '') {
+        return '';
+    }
+    foreach (['-og.jpg', '-1280.webp'] as $suffix) {
+        if (is_file(PUBLIC_ROOT . '/' . $base . $suffix)) {
+            return $base . $suffix;
+        }
+    }
+    return '';
 }
 
 /**
