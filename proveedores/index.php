@@ -128,10 +128,11 @@ require PUBLIC_ROOT . '/partials/header.php';
       <?php foreach ($activeCategories as $catSlug => $category): ?>
       <?php $isNow = in_array($catSlug, $recruitingNow, true); ?>
       <li>
-        <a class="tile card--hair<?= $isNow ? ' tile--featured' : '' ?>" href="/materiales/<?= e($catSlug) ?>/">
+        <?php /* C7: sin enlace. Llevaban al proveedor a páginas de COMPRADOR (con el formulario
+                 de cotización) en medio de su propia alta. */ ?>
+        <span class="tile card--hair tile--static<?= $isNow ? ' tile--featured' : '' ?>">
           <span><?= e($category['name']) ?><?= $isNow ? ' — buscamos proveedores ahora' : '' ?></span>
-          <span class="tile__arrow" aria-hidden="true">→</span>
-        </a>
+        </span>
       </li>
       <?php endforeach; ?>
     </ul>

@@ -103,6 +103,7 @@ page([
     'breadcrumbs' => $breadcrumbs,
     'schema'      => $schema,
     'body_class'  => 'page-calculadora',
+    'wa_subject'  => (string) ((data('materials')[$calculator['cta_material'] ?? ''] ?? data('categories')[$calculator['cta_material'] ?? ''] ?? [])['name'] ?? ''),
 ]);
 
 require PUBLIC_ROOT . '/partials/header.php';
@@ -151,6 +152,14 @@ require PUBLIC_ROOT . '/partials/header.php';
         </li>
         <?php endforeach; ?>
       </ul>
+
+      <?php // C2: el resultado lleva directo al formulario de esta misma página, que calc.js ya
+            // precargó con la cantidad. calc.js reescribe el texto con los números reales. ?>
+      <p class="calc__cta">
+        <a class="btn btn--primary" href="#cotizar" data-calc-cta
+           data-calc-cta-template="<?= e((string) ($calculator['cta_button'] ?? '')) ?>"
+           data-ev="cta_click" data-ev-loc="calc-<?= e($slug) ?>">Cotizá estas cantidades →</a>
+      </p>
 
       <p class="calc__disclaimer">Es una referencia — confirmá con tu proveedor.</p>
       <p class="calc__nojs">Si no ves los resultados, tu navegador tiene el JavaScript desactivado: la misma cuenta está explicada paso a paso más abajo, con un ejemplo resuelto.</p>

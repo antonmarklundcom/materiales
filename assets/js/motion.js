@@ -50,7 +50,8 @@
    * queda visible, que es el comportamiento correcto por defecto.
    */
   var bar = d.querySelector('[data-cta-bar]');
-  var form = d.getElementById('cotizar');
+  // #sumate: en /proveedores/ la barra lleva al formulario de proveedor (C7).
+  var form = d.getElementById('cotizar') || d.getElementById('sumate');
   if (bar && form && 'IntersectionObserver' in window) {
     var barIo = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { bar.classList.toggle('is-hidden', e.isIntersecting); });

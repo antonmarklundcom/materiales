@@ -63,6 +63,16 @@ $contentFile = CONTENT_DIR . '/guias/' . $slug . '.php';
 $heroImage = image_for($guide, 'guia');
 $heroAlt   = $guide['name'] . ' — materiales de construcción en Paraguay';
 
+// C9: la guía no tiene formulario propio, pero sí sabe de qué material habla: su primer
+// related[] válido va preseleccionado en /cotizar/?m= en vez de mandar a un formulario vacío.
+$related = array_values(array_filter(
+    $guide['related'] ?? [],
+    static fn(string $target): bool => isset(data('categories')[$target]) || isset(data('materials')[$target])
+));
+$ctaTarget = $related[0] ?? '';
+$ctaEntry  = $ctaTarget !== '' ? (data('categories')[$ctaTarget] ?? data('materials')[$ctaTarget]) : null;
+$ctaHref   = $ctaTarget !== '' ? '/cotizar/?m=' . rawurlencode($ctaTarget) : '/cotizar/';
+
 page([
     'title'       => $guide['title'],
     'meta'        => $guide['meta'],
@@ -73,6 +83,7 @@ page([
     'schema'      => [schema_breadcrumbs($breadcrumbs)],
     'body_class'  => 'page-guia',
     'image'       => (string) $heroImage,
+    'wa_subject'  => $ctaEntry !== null ? (string) $ctaEntry['name'] : '',
 ]);
 
 require PUBLIC_ROOT . '/partials/header.php';
@@ -81,8 +92,9 @@ require PUBLIC_ROOT . '/partials/header.php';
   <div class="wrap<?= $heroImage !== null ? ' page-hero__grid page-hero__grid--split' : '' ?>">
     <div>
     <h1><?= e($guide['name']) ?></h1>
-    <?php // Fase 9: la guía no lleva formulario propio, así que el CTA va a /cotizar/. ?>
-    <p><a class="btn btn--primary" href="/cotizar/" data-ev="cta_click" data-ev-loc="hero-guia-<?= e($slug) ?>">Pedí tu cotización</a></p>
+    <?php // Fase 9: la guía no lleva formulario propio, así que el CTA va a /cotizar/ (C9: con
+          // el material de la guía ya elegido). ?>
+    <p><a class="btn btn--primary" href="<?= e($ctaHref) ?>" data-ev="cta_click" data-ev-loc="hero-guia-<?= e($slug) ?>">Pedí tu cotización</a></p>
     </div>
     <?php require PUBLIC_ROOT . '/partials/hero-image.php'; ?>
   </div>
@@ -96,13 +108,14 @@ require PUBLIC_ROOT . '/partials/header.php';
   <?php else: ?>
   <p class="notice">Estamos escribiendo esta guía. Mientras tanto, <a href="/cotizar/">pedí tu cotización</a>.</p>
   <?php endif; ?>
-  <?php
-  $related = array_filter(
-      $guide['related'] ?? [],
-      static fn(string $target): bool => isset(data('categories')[$target]) || isset(data('materials')[$target])
-  );
-  if ($related !== []):
-  ?>
+  <?php if ($ctaEntry !== null): ?>
+  <div class="card card--accent guide-cta">
+    <p class="guide-cta__text"><strong>¿Ya tenés la cuenta?</strong> Pasale la cantidad a hasta
+      <?= (int) site('max_proveedores', 3) ?> proveedores verificados y compará precios. Gratis.</p>
+    <p><a class="btn btn--primary" href="<?= e($ctaHref) ?>" data-ev="cta_click" data-ev-loc="guia-cierre-<?= e($slug) ?>">Cotizá <?= e(mb_strtolower($ctaEntry['name'])) ?></a></p>
+  </div>
+  <?php endif; ?>
+  <?php if ($related !== []): ?>
   <h2>Páginas relacionadas</h2>
   <ul class="tile-grid">
     <?php foreach ($related as $target): ?>

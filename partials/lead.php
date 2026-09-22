@@ -606,6 +606,12 @@ function lead_conversion_token(): string
     return $nonce . substr(hash_hmac('sha256', 'gracias|' . $nonce, lead_form_secret()), 0, 8);
 }
 
+/** Referencia legible del pedido (C8): los 8 hex aleatorios del token, en mayúsculas. */
+function lead_reference(string $token): string
+{
+    return strtoupper(substr($token, 0, 8));
+}
+
 function lead_conversion_token_valid(string $token): bool
 {
     if (preg_match('/\A([0-9a-f]{8})([0-9a-f]{8})\z/', $token, $m) !== 1) {
@@ -712,6 +718,7 @@ function lead_notify_text(array $record): string
         'Resultado: ' . (string) ($record['outcome'] ?? '')
             . (isset($record['reason']) ? ' (' . (string) $record['reason'] . ')' : ''),
         'Nombre: ' . (string) ($payload['name'] ?? ''),
+        ...(($record['ref'] ?? '') !== '' ? ['Referencia: ' . (string) $record['ref']] : []),
         'Teléfono: ' . (string) ($record['phone_e164'] ?? ($payload['phone'] ?? '')),
     ];
     foreach (['material_nombre' => 'Material', 'cantidad' => 'Cantidad', 'ciudad' => 'Ciudad',

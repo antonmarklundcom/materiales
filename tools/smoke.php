@@ -182,10 +182,12 @@ foreach ($calculators as $slug => $calculator) {
 
     // La plantilla de cantidad sólo puede nombrar salidas que existen: si no, el formulario
     // se precarga con un hueco y el proveedor recibe un pedido sin cantidad.
-    preg_match_all('/\{([a-z0-9_]+)\}/i', (string) ($calculator['cta_quantity_template'] ?? ''), $placeholders);
-    foreach ($placeholders[1] ?? [] as $placeholder) {
-        if (!in_array($placeholder, $outputIds, true)) {
-            $fail("{$where}: cta_quantity_template usa '{{$placeholder}}' y no hay una salida con ese id");
+    foreach (['cta_quantity_template', 'cta_button'] as $templateKey) {
+        preg_match_all('/\{([a-z0-9_]+)\}/i', (string) ($calculator[$templateKey] ?? ''), $placeholders);
+        foreach ($placeholders[1] ?? [] as $placeholder) {
+            if (!in_array($placeholder, $outputIds, true)) {
+                $fail("{$where}: {$templateKey} usa '{{$placeholder}}' y no hay una salida con ese id");
+            }
         }
     }
 

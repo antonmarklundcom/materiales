@@ -82,6 +82,7 @@ header('Cache-Control: no-cache');
 <?php require PUBLIC_ROOT . '/partials/analytics.php'; ?>
 <script src="<?= e(asset('/assets/js/events.js')) ?>" defer></script>
 <script src="<?= e(asset('/assets/js/motion.js')) ?>" defer></script>
+<script src="<?= e(asset('/assets/js/forms.js')) ?>" defer></script>
 <?php schema_render($page['schema']); ?>
 </head>
 <body class="<?= e($page['body_class']) ?>">

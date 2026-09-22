@@ -39,7 +39,10 @@
     if (loaded.ga4 || !cfg.ga4_id) return;
     loaded.ga4 = true;
     window.dataLayer = window.dataLayer || [];
-    window.gtag = function () { window.dataLayer.push(arguments); };
+    /* El stub con Consent Mode ya lo definió partials/analytics.php; esto es sólo defensa. */
+    if (typeof window.gtag !== 'function') {
+      window.gtag = function () { window.dataLayer.push(arguments); };
+    }
     window.gtag('js', new Date());
     window.gtag('config', cfg.ga4_id, { anonymize_ip: true });
     var script = document.createElement('script');
@@ -79,8 +82,22 @@
     }
   }
 
+  /* C1: Consent Mode v2 — refleja la elección del banner en el estado de consentimiento de
+     gtag (el default "denied" lo fija partials/analytics.php). También cuando el visitante
+     vuelve a rechazar: el update a "denied" corta lo que ya estuviera cargado. */
+  function updateConsent(consent) {
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('consent', 'update', {
+      analytics_storage: consent.analytics ? 'granted' : 'denied',
+      ad_storage: consent.marketing ? 'granted' : 'denied',
+      ad_user_data: consent.marketing ? 'granted' : 'denied',
+      ad_personalization: consent.marketing ? 'granted' : 'denied'
+    });
+  }
+
   function apply(consent) {
     if (!consent) return;
+    updateConsent(consent);
     if (consent.analytics) loadGa4();
     if (consent.marketing) loadPixel();
     fireLead();

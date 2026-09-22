@@ -39,10 +39,13 @@ $provOldRubros = array_filter(explode(',', $provOld('rubros')));
   <p class="lead-form__error" id="prov-form-error" role="alert"><?= e($provErrors[$provError]) ?></p>
   <?php endif; ?>
 
-  <form class="lead-form__form" action="/cotizar/enviar.php" method="post" novalidate>
+  <?php /* novalidate: la validación la hace assets/js/forms.js (C5) con mensajes propios, y
+         el servidor la repite siempre. */ ?>
+  <form class="lead-form__form" action="/cotizar/enviar.php" method="post" novalidate data-lead-form>
+    <p class="lead-form__legend">Los campos con <span aria-hidden="true">*</span> son obligatorios.</p>
     <input type="hidden" name="tipo" value="proveedor">
 
-    <label class="lead-form__field">
+    <label class="lead-form__field is-required">
       <span>Nombre de la empresa o corralón</span>
       <input name="empresa" type="text" maxlength="200" required autocomplete="organization"
              value="<?= e($provOld('empresa')) ?>"
@@ -53,7 +56,7 @@ $provOldRubros = array_filter(explode(',', $provOld('rubros')));
           // sistema visual) y FUERA de .lead-form__field: esa clase estira cualquier input
           // que tenga adentro a 3rem de alto, que es lo correcto para un campo de texto y
           // no para una casilla. El gap va inline porque site.css lo escribe la fase 11. ?>
-    <div class="lead-form__field">
+    <div class="lead-form__field is-required">
       <span id="rubros-label">¿Qué rubros vendés?</span>
       <p class="lead-form__note">Marcá todos los que trabajes: sólo te llegan pedidos de esos rubros.</p>
     </div>
@@ -75,10 +78,10 @@ $provOldRubros = array_filter(explode(',', $provOld('rubros')));
 
     <label class="lead-form__field">
       <span>Tu nombre</span>
-      <input name="nombre" type="text" maxlength="200" required autocomplete="name" value="">
+      <input name="nombre" type="text" maxlength="200" autocomplete="name" value="">
     </label>
 
-    <label class="lead-form__field">
+    <label class="lead-form__field is-required">
       <span>Tu WhatsApp <em>(por acá te escribimos)</em></span>
       <input name="telefono" type="tel" inputmode="tel" maxlength="30" required autocomplete="tel"
              placeholder="0981 123 456"
@@ -90,7 +93,7 @@ $provOldRubros = array_filter(explode(',', $provOld('rubros')));
       <textarea name="mensaje" rows="3" maxlength="5000" placeholder="Ej: entregamos con camión propio hasta 40 km"></textarea>
     </label>
 
-    <label class="lead-form__consent">
+    <label class="lead-form__consent is-required">
       <input type="checkbox" name="consentimiento" value="1" required>
       <span>
         Acepto que Materiales.com.py guarde mis datos para contactarme sobre pedidos de

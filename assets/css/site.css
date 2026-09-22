@@ -139,6 +139,7 @@
   --paper-hairline: color-mix(in srgb, var(--paper-ink) 12%, transparent);
   /* 24% daba 1.67:1 — muy por debajo del 3:1 que exige 1.4.11 para el borde de un input o de
      un botón (ahí el borde ES el único indicio de que hay un control). 50% da ~3.3:1. */
+  --error: #b3261e;
   --paper-hairline-strong: color-mix(in srgb, var(--paper-ink) 50%, transparent);
 
   /* ---- escala tipográfica, ratio 1.30, base 17px ---- */
@@ -379,6 +380,7 @@ section.wrap { padding-inline: var(--gutter); }
 .tile.is-proxima { color: var(--paper-ink-55); }
 .tile.is-proxima:hover { transform: none; box-shadow: none; }
 .tile.is-proxima .tile__arrow { color: var(--paper-hairline-strong); }
+.tile--static:hover { transform: none; box-shadow: none; }
 .tile__soon { flex: none; font-size: var(--t--1); text-transform: uppercase; letter-spacing: .04em; }
 .tile--featured { background: var(--base); color: var(--ink); border-top: 3px solid var(--accent); }
 .tile--featured:hover { box-shadow: var(--shadow-2); }
@@ -447,33 +449,51 @@ section.wrap { padding-inline: var(--gutter); }
   }
 }
 
-/* ---- banner de cookies ---- */
+/* ---- banner de cookies (C4: tira compacta) ---- */
 .cookie-banner {
   position: fixed; inset: auto var(--s-4) var(--s-4) var(--s-4); z-index: 20;
-  max-width: 34rem; margin-inline: auto;
-  background: var(--paper-raised); border-radius: var(--r-lg);
-  box-shadow: var(--shadow-2); padding: var(--s-6);
-  font-size: var(--t--1);
+  max-width: 44rem; margin-inline: auto;
+  background: var(--paper-raised); border-radius: var(--r-md);
+  box-shadow: var(--shadow-2); padding: var(--s-3) var(--s-4);
+  font-size: var(--t--1); line-height: 1.4;
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-4);
 }
-.cookie-banner__title { font-size: var(--t-1); margin: 0 0 var(--s-2); }
-.cookie-banner__text { margin: 0 0 var(--s-4); color: var(--paper-ink-70); }
-.cookie-banner__options { display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-4); align-items: center; margin: 0 0 var(--s-4); }
+.cookie-banner[hidden] { display: none; }
+.cookie-banner__text { margin: 0; flex: 1 1 18rem; color: var(--paper-ink-70); }
+.cookie-banner__text strong { color: var(--paper-ink); }
+.cookie-banner__form { flex: 0 1 auto; }
+.cookie-banner__options { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-4); align-items: center; margin-top: var(--s-3); }
+.cookie-banner__options[hidden] { display: none; }
 .cookie-banner__options label { display: flex; align-items: center; gap: var(--s-2); }
 .cookie-banner__actions { display: flex; flex-wrap: wrap; gap: var(--s-2); }
 .cookie-banner button {
   min-height: 40px; padding: 0 var(--s-4); border: 1px solid var(--paper-hairline-strong);
   border-radius: var(--r-sm); background: var(--paper-raised); cursor: pointer; font: inherit; font-weight: 600;
 }
-.cookie-banner button[data-consent="accept-all"] { background: var(--accent); border-color: var(--accent); color: var(--base); }
+/* Aceptar y Rechazar con el mismo peso (mismo tamaño, los dos con borde fuerte);
+   Configurar queda como enlace. */
+.cookie-banner button[data-consent="accept-all"],
+.cookie-banner button[data-consent="reject"] { background: var(--base); border-color: var(--base); color: var(--ink); }
+.cookie-banner__configure { border-color: transparent !important; text-decoration: underline; padding-inline: var(--s-2) !important; }
 
 /* ---- formulario de cotización — el CTA primario del sitio entero ---- */
 .lead-form { margin: 0; }
 .lead-form__title { margin-top: 0; }
 .lead-form__lead { color: var(--paper-ink-70); font-size: var(--t-0); }
+/* C5: el error se ve como error (rojo, no el beige del acento) y el formulario no queda
+   debajo del header pegajoso al anclar a #cotizar / #sumate. #b3261e: 6.5:1 sobre blanco. */
+.lead-form { scroll-margin-top: 5rem; }
 .lead-form__error {
-  border: 1px solid var(--accent-ink); border-left-width: 3px; border-radius: var(--r-sm);
-  padding: var(--s-3) var(--s-4); margin: 0 0 var(--s-4); background: color-mix(in srgb, var(--accent-ink) 8%, var(--paper-raised));
+  border: 1px solid var(--error); border-left-width: 4px; border-radius: var(--r-sm);
+  padding: var(--s-3) var(--s-4); margin: 0 0 var(--s-4); color: var(--error);
+  background: color-mix(in srgb, var(--error) 7%, var(--paper-raised)); font-weight: 600;
 }
+.lead-form [aria-invalid="true"] { border-color: var(--error); box-shadow: 0 0 0 2px color-mix(in srgb, var(--error) 30%, transparent); }
+.lead-form__consent input[aria-invalid="true"] { outline: 2px solid var(--error); outline-offset: 2px; }
+/* C10: marca de obligatorio (el `required` real lo anuncia el lector de pantalla). */
+.is-required > span:first-of-type::after { content: " *"; color: var(--error); font-weight: 700; }
+.lead-form__legend { margin: 0; font-size: var(--t--1); color: var(--paper-ink-70); }
+.lead-form__legend span { color: var(--error); font-weight: 700; }
 
 .lead-form__form { display: grid; gap: var(--s-4); margin-top: var(--s-6); }
 .lead-form__field { display: grid; gap: .3rem; }
@@ -560,7 +580,8 @@ section.wrap { padding-inline: var(--gutter); }
    la vista, para no tapar el propio campo que se está completando. */
 .cta-bar { display: none; }
 @media (max-width: 39.99rem) {
-  .cookie-banner { bottom: calc(var(--s-4) + 4.5rem); }
+  .cookie-banner { bottom: calc(var(--s-3) + 4.5rem); inset-inline: var(--s-3); padding: var(--s-3); }
+  .cookie-banner__actions button { flex: 1 1 auto; min-height: 36px; }
   .cta-bar {
     position: fixed; inset: auto 0 0 0; z-index: 15;
     display: flex; gap: var(--s-2);
@@ -629,3 +650,16 @@ section.wrap { padding-inline: var(--gutter); }
 .catalog__group ul { list-style: none; margin: 0; padding: 0; }
 .catalog__group li { padding: var(--s-1) 0; border-bottom: 1px solid var(--paper-hairline); }
 .catalog__group li a { color: var(--paper-ink); }
+
+/* C9: cierre de guía con el material preseleccionado. */
+.guide-cta { margin: var(--s-8) 0; padding: var(--s-6); }
+.guide-cta p { margin: 0 0 var(--s-4); }
+.guide-cta p:last-child { margin: 0; }
+
+/* C2: botón bajo el resultado de la calculadora. */
+.calc__cta { margin: 0 0 var(--s-4); }
+
+/* C8: /gracias/ — referencia y "guardá nuestro número". */
+.gracias__ref { margin: 0 0 var(--s-4); font-size: var(--t-1); }
+.gracias__ref strong { font-family: var(--font-display); letter-spacing: .06em; }
+.gracias__save { margin: calc(-1 * var(--s-8)) 0 var(--s-12); color: var(--paper-ink-70); }
