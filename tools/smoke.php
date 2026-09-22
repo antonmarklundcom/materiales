@@ -739,7 +739,8 @@ file_put_contents($opsDir . '/throttle/vigente', "x 1\n");
 touch($opsDir . '/throttle/vigente', $opsNow - 10);
 $maint = (string) shell_exec(sprintf('%s %s --storage=%s --now=%d 2>&1', escapeshellarg(PHP_BINARY),
     escapeshellarg($root . '/tools/maintenance.php'), escapeshellarg($opsDir), $opsNow));
-if (is_file($opsLog) || glob($opsDir . '/leads-*.log') === [] || count(glob($opsDir . '/leads-*.log')) !== 1) {
+clearstatcache();
+if (is_file($opsLog) || count(glob($opsDir . '/leads-*.log') ?: []) !== 1) {
     $fail("maintenance: no rotó leads.log a leads-AAAA-MM.log (salida: {$maint})");
 }
 if (is_file($oldRotated)) {
