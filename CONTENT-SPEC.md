@@ -78,7 +78,8 @@ ejecutada y registrada en §13. Después de §13 vuelven a estar cerrados.
 aberturas, impermeabilizantes, yeso-y-durlock, canos-y-plomeria), porque se habían escrito en
 la fase 3 sin saber qué materiales iban a colgar de ellas ni qué términos iban a poseer
 (CONTENT-SPEC §11.1). Las cinco categorías de lanzamiento no se tocaron. A partir de acá, esos
-textos también están cerrados.
+textos también están cerrados. La misma excepción se aplicó una vez más a `pinturas` al
+promoverla (§15).
 
 ## 4. Vocabulario obligatorio
 
@@ -242,7 +243,7 @@ Columnas: **Posee** = términos de cabecera que esta página persigue (H1/intro/
 |---|---|---|---|
 | `ladrillos-y-bloques` (categoría) | ladrillo (720) · ladrillos · bloques (590) | millar, mampostería, pared de ladrillo | ladrillo visto → `ladrillo-prensado` · ladrillo hueco → `ladrillo-hueco` · bloque de cemento → `bloque-de-hormigon` |
 | `ladrillo-comun` | ladrillo común (390) · ladrillo común medidas (210) | ladrillo rústico, ladrillo de campo, ladrillo macizo, ladrillo de olería (tabla de medidas) | ladrillo visto / prensado → `ladrillo-prensado` |
-| `ladrillo-hueco` | ladrillo hueco (1.000) · ladrillo hueco medida (170) | ladrillo de 8, ladrillo de 12, ladrillo de 18, hueco de 6 (tabla de medidas) | ladrillo macizo → `ladrillo-comun` · **`ladrillo sapo` (260) queda sin dueño**: es demanda paraguaya real, pero no está verificado si nombra al hueco o a un macizo grande, y adjudicarlo mal ensucia la página (KNOWN-ISSUES) |
+| `ladrillo-hueco` | ladrillo hueco (1.000) · ladrillo hueco medida (170) | ladrillo de 8, ladrillo de 12, ladrillo de 18, hueco de 6 (tabla de medidas) | ladrillo macizo → `ladrillo-comun` · `ladrillo sapo` (260) → `ladrillo-sapo` (página propia, sumada después de esta tabla) |
 | `ladrillo-prensado` | ladrillo prensado (390) · ladrillo visto (1.300) | ladrillo a la vista, ladrillo de máquina; **la primera frase dice "ladrillo visto"** | ladrillo rústico y de campo → `ladrillo-comun` |
 | `bloque-de-hormigon` | bloque de hormigón · bloques de cemento (170) · bloque de cemento | bloque hueco, bloque de 15, bloque de 20, bloque estructural | bloques a secas → categoría · adoquín → `adoquines` |
 | `tejuelon` | tejuelón · tejuela | ladrillo para losa, losa de tejuelón, bovedilla cerámica | ladrillo hueco → `ladrillo-hueco` |
@@ -341,11 +342,30 @@ rubro (`inodoro`, `griferia-de-cocina`, `llave-de-ducha`, `canilla-de-lavatorio`
 |---|---|---|---|
 | `ducha-higienica` | ducha higiénica (590) | ducha higiénica para inodoro, ducha de mano para inodoro, kit de ducha higiénica, una sola agua / mezcladora, flexible, soporte, pulsador | ducha de mano del box y llave para ducha (480) → `llave-de-ducha` · inodoro y cisternas → `inodoro` · marcas de grifería (§3.4 del keyword research): **no se escriben** |
 
-Categorías que **no** se promueven en la fase 5 y por lo tanto no tienen fila: `pinturas` y
-`electricidad` (quedan `proxima`, plan §1.15). Herrajes y cerraduras y herramientas están
-fuera del build (plan §1.14). Sanitarios y grifería se sumó después como categoría activa
-(`sanitarios-y-griferia`); su tabla de arriba todavía sólo tiene la fila de `ducha-higienica`
-(improvement report #2, G3).
+#### Pinturas
+
+Promovida en la mejora G2 del improvement report #2 (§15). Volúmenes: `KEYWORDS-MATERIALES.md`
+§1.2 fila "Pinturas" y filas 15 y 31 de la tabla de prioridades.
+
+| Página | Posee | Teje | No es suya |
+|---|---|---|---|
+| `pinturas` (categoría) | pintura (2.400) · pinturas | pintura para casa, pintura de obra, lata, balde de pintura, mano de pintura, rodillo y pincel, m² a pintar | pared → `pintura-para-pared` · piso → `pintura-para-piso` · madera → `barniz` · metal → `esmalte-sintetico` · fondo y fijador → `sellador-para-pared` · **pintura antihumedad (880) → `pintura-antihumedad`, que es de impermeabilizantes y se enlaza, no se persigue** · pintura impermeabilizante (260) → `membrana-liquida` · colores de pintura para casa (1.000) y demás "colores de…" (~2.000, inspiración): guía futura (G3), ninguna página de material · pinturería (880, store-finder) y las marcas de pintura (navegacionales, §11.2): **no se escriben** |
+| `pintura-para-pared` | pintura para pared (2.900) · látex interior · látex exterior | látex, pintura látex, pintura acrílica (1.000), acrílico (sólo como "pintura acrílica"), pintura para frente, mate, satinado, lavable (tabla de terminaciones) | fondo y fijador → `sellador-para-pared` · humedad y salitre → `pintura-antihumedad` · pintura a la cal → `cal-hidratada` · `acrílico` a secas (1.300) queda sin dueño: mezcla placas de acrílico y otros rubros |
+| `pintura-para-piso` | pintura para piso (1.600) · pintura para pisos de cemento (480) | pintura para garaje, pintura epoxi, alto tránsito, pintura para cancha, demarcación, carpeta alisada | piso cerámico y vinílico → `ceramica-para-piso`, `piso-vinilico` · hormigón pulido / impreso: intención de servicio, ninguna página |
+| `barniz` | barniz para madera (880) · barniz (720, 4 grafías) · pintura para madera (590) | barnices, barniz marino, barniz color cedro (140), colores de barniz (140), protector para madera, impregnante, tinte | color opaco sobre madera → `esmalte-sintetico` (se enlaza desde "pintura para madera") · madera como producto → `madera` |
+| `esmalte-sintetico` | pintura sintética (390) · esmalte sintético · esmalte | pintura para rejas, pintura para metal, antióxido, fondo antióxido, aguarrás, diluyente, brillante, satinado | rejas y portones como producto → `portones-y-rejas` · barniz transparente → `barniz` |
+| `sellador-para-pared` | sellador para pared (880) · fijador · fondo blanco | fijador sellador, fondo para pared, imprimación, enduido (paso de preparación, sin página) | sellador de juntas y silicona → `selladores-y-siliconas` · humedad → `pintura-antihumedad` · masilla para juntas de placa → `yeso-y-durlock` |
+
+El nombre de la ficha `barniz` es "Barniz para madera" (H1 `Barniz para madera en Paraguay`)
+porque ése es el término medido más alto del clúster (880 contra 720 de `barniz`); el slug
+queda corto. Los términos de cabecera que van sin volumen en la tabla (`látex interior`,
+`látex exterior`, `esmalte sintético`, `fijador`, `fondo blanco`) no figuran medidos en
+KEYWORDS: se poseen porque son el vocabulario de mostrador, no por volumen.
+
+Categoría que **no** se promueve y por lo tanto no tiene fila: `electricidad` (queda
+`proxima`, plan §1.15). Herrajes y cerraduras y herramientas están fuera del build (plan
+§1.14). Sanitarios y grifería se sumó después como categoría activa (`sanitarios-y-griferia`);
+su tabla todavía sólo tiene la fila de `ducha-higienica` (improvement report #2, G3).
 
 ### 11.2 Marcas usadas como genérico — lista CERRADA
 
@@ -428,6 +448,12 @@ cotización`, ninguna dosificación afirmada como verdad universal.
 |---|---|---|
 | `como-revocar-una-pared` | `Qué lleva un revoque` · `Grueso y fino: cómo se hace` · `Cuánto material calcular` · `Qué pedirle al proveedor` | `cal hidratada` → /materiales/cal-hidratada/ · `arena lavada` → /materiales/arena-lavada/ · `cemento` → /materiales/cemento/ |
 | `losa-de-hormigon-encofrado-y-hierro` | `Qué es el hormigón armado` · `El encofrado: tablas, puntales y desencofrado` · `El hierro de la losa y de las zapatas` · `Qué pedir al proveedor y en qué orden` | `hormigón elaborado` → /materiales/hormigon-elaborado/ · `varilla de hierro` → /materiales/varilla-de-hierro/ · `tabla de encofrado` → /materiales/tabla-de-encofrado/ |
+
+**Glosario (`glosario-de-obra-paraguay`, improvement report #2 G6).** Excepción de largo: ~2.000
+palabras, porque son 45 términos de 1–3 oraciones. Cada término se define con lo que el sitio
+ya dice y enlaza a la página dueña de §11.1; el glosario no compite por ningún término de
+cabecera (términos en minúscula, H2 = letras). Emite `DefinedTermSet` además de `Article`. Las
+únicas marcas son las de §11.2, en minúscula y como genérico.
 
 `como-revocar-una-pared` absorbe el clúster `revoque` / `revocado` / `revoco de pared`
 (~1.800, intención de cómo-hacerlo). `losa-de-hormigon-encofrado-y-hierro` absorbe `hormigón
@@ -633,4 +659,20 @@ revisor técnico con nombre: si Anton suma uno (decisión D4), va en `/como-trab
 `hero` de `partials/form.php`: cantidad + WhatsApp, que se despliega al resto de los campos. Es
 el mismo formulario (mismos campos, mismo handler, mismo texto de consentimiento); el completo
 sigue al final de la página y es el único que muestra los errores del servidor.
+
+## 15. Promoción de `pinturas` (improvement report #2, G2)
+
+`pinturas` pasa de `proxima` a `activa` con cinco materiales: `pintura-para-pared`,
+`pintura-para-piso`, `barniz` ("Barniz para madera"), `esmalte-sintetico` y
+`sellador-para-pared`. Propiedad de términos en §11.1 ("Pinturas"). Como en la fase 5c (§3), se
+reescribieron `title`, `meta`, `keyword` (ahora `pintura`), `intro`, `intro_keywords` y `faq` de
+la categoría para que describan lo que realmente cuelga de ella (la versión de la fase 3
+prometía "impermeabilizantes de techo", que viven en `impermeabilizantes`). Desde acá quedan
+cerrados igual que los demás.
+
+Reglas propias del rubro: el rendimiento nunca se escribe con cifra ("figura en el envase":
+depende del producto, de las manos y de la absorción); tampoco litrajes de envase ni tiempos
+de secado. `pintura-antihumedad` sigue en `impermeabilizantes`: las páginas de pinturas la
+enlazan, no la persiguen. Ninguna marca de pintura entra en la lista de §11.2. Pendiente: foto
+de héroe (`image`) de la categoría y proveedores del rubro.
 
