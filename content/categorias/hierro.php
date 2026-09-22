@@ -10,7 +10,9 @@
   encofrados, tablas, listones— los <a href="/materiales/clavos/">clavos</a>. Cuando la
   estructura no es de hormigón sino de acero —techos, entrepisos, galpones— entran los
   <a href="/materiales/perfiles-metalicos/">perfiles metálicos</a>: caños estructurales,
-  ángulos y perfiles C o U. Y si lo que buscás es cerrar un perímetro y no levantar una
+  ángulos y perfiles C o U. Para dar agarre al revoque en los encuentros entre ladrillo y
+  hormigón, armar un cielorraso revocado o cerrar un vano con una chapa de rombos, está el
+  <a href="/materiales/metal-desplegado/">metal desplegado</a>. Y si lo que buscás es cerrar un perímetro y no levantar una
   estructura, el <a href="/materiales/tejido-de-alambre/">tejido de alambre</a> es el material
   del rubro que corresponde, con su alambre de púas y su alambre galvanizado.
 </p>

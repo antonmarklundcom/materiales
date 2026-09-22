@@ -121,6 +121,10 @@ require PUBLIC_ROOT . '/partials/header.php';
       explicarlas hablando y no publicar una tabla que después no se ajusta a tu rubro.
     </p>
     <?php endif; ?>
+    <p>
+      Una vez verificada, tu empresa puede mostrar el
+      <a href="/proveedores/verificado/">sello de proveedor verificado</a> en su propia web.
+    </p>
 
     <h2>Rubros</h2>
     <p>Hoy estamos sumando proveedores con prioridad en estos rubros, pero podés cargarte en cualquiera de los que publicamos.</p>

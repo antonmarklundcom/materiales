@@ -72,7 +72,9 @@ if ($path === '/') {
     return $serve('index.php');
 }
 
-if (preg_match('#^/([a-z0-9-]+)/$#', $path, $matches) && is_file($publicRoot . '/' . $matches[1] . '/index.php')) {
+// Carpetas con index.php, a cualquier profundidad (/proveedores/verificado/): Apache las sirve
+// solo por DirectoryIndex, sin regla de reescritura.
+if (preg_match('#^/([a-z0-9-]+(?:/[a-z0-9-]+)*)/$#', $path, $matches) && is_file($publicRoot . '/' . $matches[1] . '/index.php')) {
     return $serve($matches[1] . '/index.php');
 }
 

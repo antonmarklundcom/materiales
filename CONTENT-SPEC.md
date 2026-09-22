@@ -205,11 +205,12 @@ Columnas: **Posee** = términos de cabecera que esta página persigue (H1/intro/
 |---|---|---|---|
 | `hierro` (categoría) | hierro (1.600) · hierro de construcción · acero (720) | fierro, fierro de construcción, hierro para obra | perfiles → `perfiles-metalicos` · varillas → `varilla-de-hierro` · perfiles de aluminio → `ventanas-de-aluminio` |
 | `varilla-de-hierro` | varilla de hierro · varillas (480) · varilla de 8 (320) · varillas de hierro (260) · varilla conformada (140) | hierro nervurado, barra de hierro, hierro de 8/10/12, estribo | hierro a secas → categoría · hormigón armado → guía `losa-de-hormigon-encofrado-y-hierro` |
-| `malla-electrosoldada` | malla electrosoldada (590, 4 grafías) · malla (880) · malla metálica (390) | malla sima, malla para contrapiso, electro soldada, microsoldada, termosoldada, 6 6 10 10 | malla para cerco / tejido → `tejido-de-alambre` |
+| `malla-electrosoldada` | malla electrosoldada (590, 4 grafías) · malla (880) · malla metálica (390) | malla sima, malla para contrapiso, electro soldada, microsoldada, termosoldada, 6 6 10 10 | malla para cerco / tejido → `tejido-de-alambre` · metal desplegado → `metal-desplegado` |
 | `alambre-negro` | alambre (720) · alambre dulce (390) | alambre recocido, alambre de atar, alambre para atar armadura | alambre galvanizado y alambre de púas → `tejido-de-alambre` |
 | `tejido-de-alambre` | tejido de alambre (1.300) · alambre de púas (480) · alambre galvanizado (210) · alambre tejido (90) | tejido romboidal, alambrado, malla para cerco, cerco perimetral, poste de alambrado | malla de obra → `malla-electrosoldada` |
 | `perfiles-metalicos` | perfiles (4.400) · perfiles C / en C (480) · perfiles en U (390) · perfiles de hierro (260) · ángulo de hierro (210) · perfiles IPN (170) · perfiles UPN (140) · viga de hierro (170) | planchuela, caño estructural, tubo estructural, perfilería, correa de galpón | perfiles de aluminio (480) y aluminio (590) → `ventanas-de-aluminio` · montante y solera → `perfiles-para-durlock` |
 | `clavos` | clavos (90) · clavo de acero | clavo de albañil, clavo punta parís | tornillos y autoperforantes → bucket Productos, sin página acá |
+| `metal-desplegado` | metal desplegado (320) | malla de metal desplegado, chapa desplegada, malla desplegada, metal desplegado para revoque, liviano / pesado, rombo, galvanizado, cielorraso armado | malla metálica y malla de obra → `malla-electrosoldada` · malla para cerco → `tejido-de-alambre` · revoque como técnica → guía `como-revocar-una-pared` · sin tabla de medidas (§11.4): espesores y rombos en plaza sin verificar |
 
 #### Cemento y cal
 
@@ -281,11 +282,12 @@ Columnas: **Posee** = términos de cabecera que esta página persigue (H1/intro/
 
 | Página | Posee | Teje | No es suya |
 |---|---|---|---|
-| `pisos-y-revestimientos` (categoría) | pisos y revestimientos · revestimientos para pared (880) · zócalo | m² de piso, caja de cerámica, colocación, junta | cerámica → `ceramica-para-piso` · porcelanato → `porcelanato` · azulejos → `azulejos` · adhesivo y pastina → `adhesivo-para-ceramica`. `piso parquet` (480) no tiene página: es madera maciza, queda en Backlog |
+| `pisos-y-revestimientos` (categoría) | pisos y revestimientos · revestimientos para pared (880) · zócalo | m² de piso, caja de cerámica, colocación, junta | cerámica → `ceramica-para-piso` · porcelanato → `porcelanato` · azulejos → `azulejos` · adhesivo y pastina → `adhesivo-para-ceramica`. piso parquet → `piso-parquet` (G3, improvement report #2) |
 | `ceramica-para-piso` | cerámica (1.600, todas las grafías) · pisos de cerámica (320) · cerámica para piso (140) · baldosa piso (480) · piso para baño (480) | cerámico, piso cerámico, 45x45, esmaltado, PEI, antideslizante (tabla de medidas) | porcelanato → `porcelanato` · azulejo de pared → `azulejos` |
 | `porcelanato` | porcelanato (1.600) · pisos porcelanato (1.300) · porcelanato para cocina (260) · porcelanato símil madera (170) | porcelanato rectificado, pulido, mate, 60x60, símil madera (tabla de medidas) | cerámica esmaltada → `ceramica-para-piso` |
 | `azulejos` | azulejos para baño (1.000) · azulejos (720) · azulejos para cocina (720) | azulejo de pared, revestimiento de baño, subway, 20x30 | piso de baño → `ceramica-para-piso` · símil piedra → `piedra-laja` |
 | `piso-vinilico` | piso vinílico (880) · vinílicos adhesivos (720) · piso flotante (320) · piso spc (170) | vinílico en rollo, autoadhesivo, click, SPC, laminado flotante, 4/8 mm | las grafías extranjeras del §3.2 (piso flotante "easy", quito): **no se escriben** |
+| `piso-parquet` | piso parquet (480) · parquet | parqué, piso de parquet, parquet de madera, madera maciza, lijado y plastificado, damero, espina de pez | piso flotante y laminado → `piso-vinilico` · porcelanato símil madera → `porcelanato` · especies (curupay, lapacho) → `madera-dura`. Es **madera maciza**: el flotante ya es de `piso-vinilico` y no se persigue acá |
 | `piedra-laja` | piedra laja (320) · revestimiento de piedra (320) · piedra de revestimiento (320) · muros de piedra (170) | símil piedra, piedra para fachada, laja natural, piedra San Luis | porcelanato símil piedra → `porcelanato` |
 
 #### Aberturas
@@ -324,14 +326,26 @@ Columnas: **Posee** = términos de cabecera que esta página persigue (H1/intro/
 
 | Página | Posee | Teje | No es suya |
 |---|---|---|---|
-| `canos-y-plomeria` (categoría) | caños y plomería · accesorios de plomería · cañería | codos, tees, uniones, cupla, pegamento para PVC, teflón | tanque → `tanque-de-agua` · caño de desagüe → `cano-de-pvc` · caño de agua → `cano-de-agua` · caño conduit (480) → electricidad, sin página · canillas, inodoros y grifería: fuera del build (plan §1.14) |
+| `canos-y-plomeria` (categoría) | caños y plomería · accesorios de plomería · cañería | codos, tees, uniones, cupla, pegamento para PVC, teflón | tanque → `tanque-de-agua` · caño de desagüe → `cano-de-pvc` · caño de agua → `cano-de-agua` · caño conduit (480) → electricidad, sin página · canillas, inodoros y grifería → categoría `sanitarios-y-griferia` |
 | `tanque-de-agua` | tanque de agua (1.300) · tanque de agua 1000 litros (720) · tanque de agua 500 litros (210) · tanque de 1000 litros (110) | syopar (marca-genérico, §11.2), tanque tricapa, bicapa, tapa hermética, base de tanque, 400/500/1000/2000 l (tabla de medidas) | bomba de agua y presurizadora: sin página |
 | `cano-de-pvc` | caños pvc (210) · tubos pvc (140, 4 grafías) · caño de desagüe | caño de 110, caño de 100, cloacal, pluvial, junta elástica, caño amanco (marca-genérico) | caño de agua fría y caliente → `cano-de-agua` · caño conduit → electricidad |
 | `cano-de-agua` | caño (480) · cañería de agua · caño de agua | termofusión, PPR, caño roscado, agua fría y caliente, ½ y ¾, llave de paso | desagüe → `cano-de-pvc` · conduit eléctrico → electricidad. **Volumen de `termofusión`/`PPR` sin medir** (KEYWORDS §4.2 los lista como frases a chequear): la página se sostiene sobre `caño` (480, la puja más alta del clúster). Si el segundo pull vuelve vacío, se funde con `cano-de-pvc` (KNOWN-ISSUES) |
 
+#### Sanitarios y grifería
+
+Tabla abierta con G3 (improvement report #2). Las filas de las cinco páginas de lanzamiento del
+rubro (`inodoro`, `griferia-de-cocina`, `llave-de-ducha`, `canilla-de-lavatorio`,
+`ducha-electrica`) quedan pendientes de escribir.
+
+| Página | Posee | Teje | No es suya |
+|---|---|---|---|
+| `ducha-higienica` | ducha higiénica (590) | ducha higiénica para inodoro, ducha de mano para inodoro, kit de ducha higiénica, una sola agua / mezcladora, flexible, soporte, pulsador | ducha de mano del box y llave para ducha (480) → `llave-de-ducha` · inodoro y cisternas → `inodoro` · marcas de grifería (§3.4 del keyword research): **no se escriben** |
+
 Categorías que **no** se promueven en la fase 5 y por lo tanto no tienen fila: `pinturas` y
-`electricidad` (quedan `proxima`, plan §1.15). Los clústeres de sanitarios y grifería,
-herrajes y cerraduras, y herramientas están fuera del build (plan §1.14).
+`electricidad` (quedan `proxima`, plan §1.15). Herrajes y cerraduras y herramientas están
+fuera del build (plan §1.14). Sanitarios y grifería se sumó después como categoría activa
+(`sanitarios-y-griferia`); su tabla de arriba todavía sólo tiene la fila de `ducha-higienica`
+(improvement report #2, G3).
 
 ### 11.2 Marcas usadas como genérico — lista CERRADA
 
