@@ -38,6 +38,8 @@ $whatsapp = preg_replace('/\D+/', '', (string) ($site['whatsapp'] ?? ''));
         <a href="/calculadoras/">Calculadoras</a>
         <a href="/cotizar/">Pedir cotización</a>
         <a href="/proveedores/">Para proveedores</a>
+        <a href="/nosotros/">Nosotros</a>
+        <a href="/como-trabajamos/">Cómo trabajamos</a>
         <a href="/contacto/">Contacto</a>
         <a href="/politica-de-privacidad/">Política de privacidad</a>
       </nav>

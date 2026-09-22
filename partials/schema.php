@@ -133,6 +133,39 @@ function schema_item_list(string $name, string $canonical, array $items): array
     ];
 }
 
+/**
+ * Article para guías y calculadoras (S16): autor y editor = la organización (no hay todavía un
+ * revisor técnico con nombre — decisión D4). Fechas de 'published'/'updated', que salen de
+ * git (tools/sync-dates.php). Sin fechas no se emite: un Article sin fecha no suma nada.
+ */
+function schema_article(array $entry, string $path, string $headline, string $image = ''): array
+{
+    if (($entry['published'] ?? '') === '') {
+        return [];
+    }
+    $org = [
+        '@type' => 'Organization',
+        '@id'   => url('/') . '#organization',
+        'name'  => site('brand'),
+        'url'   => url('/'),
+    ];
+
+    return schema_prune([
+        '@context'         => 'https://schema.org',
+        '@type'            => 'Article',
+        'headline'         => mb_substr($headline, 0, 110),
+        'description'      => $entry['meta'] ?? '',
+        'url'              => url($path),
+        'mainEntityOfPage' => url($path),
+        'inLanguage'       => site('locale', 'es-PY'),
+        'datePublished'    => $entry['published'] ?? '',
+        'dateModified'     => $entry['updated'] ?? ($entry['published'] ?? ''),
+        'image'            => $image,
+        'author'           => $org,
+        'publisher'        => $org,
+    ]);
+}
+
 /** FAQPage. $faq = [['q' => ..., 'a' => ...], ...]. Devuelve [] si no hay preguntas. */
 function schema_faq(array $faq): array
 {

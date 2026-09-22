@@ -67,12 +67,25 @@
     return null;
   }
 
+  /* C3: formulario corto del héroe. Arranca con cantidad + WhatsApp; el primer foco o tecleo
+     despliega el resto (material, zona, nombre, mensaje y el consentimiento). Sin JS se ve
+     completo: la regla que lo pliega en site.css depende de html.js. */
+  function expand(form) {
+    var section = form.closest('.lead-form');
+    if (section && !section.classList.contains('is-expanded')) section.classList.add('is-expanded');
+  }
+
   Array.prototype.forEach.call(document.querySelectorAll('form[data-lead-form]'), function (form) {
+    if (form.hasAttribute('data-lead-compact')) {
+      form.addEventListener('focusin', function () { expand(form); });
+      form.addEventListener('input', function () { expand(form); });
+    }
     form.addEventListener('submit', function (event) {
       clear(form);
       var problem = check(form);
       if (!problem) return;
       event.preventDefault();
+      expand(form);
       var box = errorBox(form);
       box.textContent = problem.msg;
       box.hidden = false;

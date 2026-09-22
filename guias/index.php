@@ -82,7 +82,11 @@ page([
     'noindex'     => !is_published($guide),
     'h1'          => $guide['name'],
     'breadcrumbs' => $breadcrumbs,
-    'schema'      => [schema_breadcrumbs($breadcrumbs)],
+    'schema'      => [
+        schema_breadcrumbs($breadcrumbs),
+        schema_article($guide, '/guias/' . $slug . '/', $guide['name'],
+            ($ogImg = image_file_for_og((string) $heroImage)) !== '' ? url('/' . $ogImg) : ''),
+    ],
     'body_class'  => 'page-guia',
     'image'       => (string) $heroImage,
     'wa_subject'  => $ctaEntry !== null ? (string) $ctaEntry['name'] : '',
@@ -94,6 +98,7 @@ require PUBLIC_ROOT . '/partials/header.php';
   <div class="wrap<?= $heroImage !== null ? ' page-hero__grid page-hero__grid--split' : '' ?>">
     <div>
     <h1><?= e($guide['name']) ?></h1>
+    <?= updated_line($guide) ?>
     <?php // Fase 9: la guía no lleva formulario propio, así que el CTA va a /cotizar/ (C9: con
           // el material de la guía ya elegido). ?>
     <p><a class="btn btn--primary" href="<?= e($ctaHref) ?>" data-ev="cta_click" data-ev-loc="hero-guia-<?= e($slug) ?>">Pedí tu cotización</a></p>

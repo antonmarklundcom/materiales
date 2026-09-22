@@ -17,6 +17,12 @@ declare(strict_types=1);
 $formSlug   = isset($formSlug) ? (string) $formSlug : '';
 $formOrigen = lead_safe_path(isset($formOrigen) ? (string) $formOrigen : '/cotizar/');
 $formTitle  = isset($formTitle) ? (string) $formTitle : 'Pedí tu cotización';
+// C3: 'hero' = versión corta en el héroe de material/categoría. Arranca con cantidad y
+// WhatsApp y se despliega (forms.js) al resto de los campos, consentimiento incluido: MISMO
+// handler, MISMOS campos y MISMO texto de consentimiento que el formulario completo. Sin JS se
+// ve completa. Los errores del servidor se muestran sólo en el formulario completo (#cotizar).
+$formVariant = isset($formVariant) ? (string) $formVariant : 'full';
+$isHero      = $formVariant === 'hero';
 $maxProv    = (int) site('max_proveedores', 3);
 $stamp      = lead_form_stamp();
 
@@ -24,7 +30,7 @@ $stamp      = lead_form_stamp();
 // cantidad, ciudad). Nombre, teléfono y mensaje NO viajan en la URL a propósito: la URL
 // termina en el historial, en el Referer y en `page_location` de GA4, y ahí no van datos
 // personales. Retipear el teléfono es justamente lo que se le está pidiendo al visitante.
-$formError = (string) ($_GET['error'] ?? '');
+$formError = $isHero ? '' : (string) ($_GET['error'] ?? '');
 $formErrors = [
     'telefono'      => 'Revisá el teléfono: necesitamos un número paraguayo, por ejemplo 0981 123 456.',
     'consentimiento'=> 'Para poder pasarle tu pedido a los proveedores necesitamos que marques la casilla.',
@@ -40,12 +46,17 @@ if ($formSlug === '') {
 // Opciones del selector: categorías primero, y debajo sus materiales (namespace plano, §2).
 $formCategories = categories_ordered();
 ?>
-<section class="lead-form card card--accent" id="cotizar">
+<section class="lead-form card card--accent<?= $isHero ? ' lead-form--hero' : '' ?>" id="<?= $isHero ? 'cotizar-rapido' : 'cotizar' ?>">
+  <?php if ($isHero): ?>
+  <h2 class="lead-form__title"><?= e($formTitle) ?></h2>
+  <p class="lead-form__lead lead-form__benefits">Gratis · hasta <?= $maxProv ?> proveedores verificados · normalmente responden en el día</p>
+  <?php else: ?>
   <h2 class="lead-form__title"><?= e($formTitle) ?></h2>
   <p class="lead-form__lead">
     Hasta <?= $maxProv ?> proveedores verificados te escriben por WhatsApp con su precio.
     Es gratis y sin compromiso.
   </p>
+  <?php endif; ?>
 
   <?php if (isset($formErrors[$formError])): ?>
   <p class="lead-form__error" id="lead-form-error" role="alert"><?= e($formErrors[$formError]) ?></p>
@@ -53,8 +64,14 @@ $formCategories = categories_ordered();
 
   <?php /* novalidate: la validación la hace assets/js/forms.js (C5) con mensajes propios, y
          el servidor la repite siempre. */ ?>
-  <form class="lead-form__form" action="/cotizar/enviar.php" method="post" novalidate data-lead-form>
+  <form class="lead-form__form" action="/cotizar/enviar.php" method="post" novalidate data-lead-form<?= $isHero ? ' data-lead-compact' : '' ?>>
     <p class="lead-form__legend">Los campos con <span aria-hidden="true">*</span> son obligatorios.</p>
+<?php
+// Cada campo se arma una vez y se imprime en el orden de la variante: el completo sigue el
+// orden de siempre; el del héroe pone primero cantidad y WhatsApp y guarda el resto (con el
+// consentimiento) en el bloque que se despliega.
+$formFields = [];
+ob_start(); ?>
     <label class="lead-form__field">
       <span>¿Qué material necesitás?</span>
       <select name="material">
@@ -69,37 +86,43 @@ $formCategories = categories_ordered();
         <?php endforeach; ?>
       </select>
     </label>
-
+<?php $formFields['material'] = (string) ob_get_clean();
+ob_start(); ?>
     <label class="lead-form__field">
       <span>¿Qué cantidad?</span>
       <input name="cantidad" type="text" maxlength="200" autocomplete="off"
              value="<?= e($old('cantidad')) ?>" placeholder="Ej: 30 bolsas, 2 camiones, 500 kg">
     </label>
-
+<?php $formFields['cantidad'] = (string) ob_get_clean();
+ob_start(); ?>
     <label class="lead-form__field">
       <span>¿En qué ciudad o zona?</span>
       <input name="ciudad" type="text" maxlength="200" autocomplete="address-level2"
              value="<?= e($old('ciudad')) ?>" placeholder="Ej: Luque, Asunción, San Lorenzo">
     </label>
-
+<?php $formFields['ciudad'] = (string) ob_get_clean();
+ob_start(); ?>
     <label class="lead-form__field">
       <span>Tu nombre</span>
       <input name="nombre" type="text" maxlength="200" autocomplete="name"
              value="">
     </label>
-
+<?php $formFields['nombre'] = (string) ob_get_clean();
+ob_start(); ?>
     <label class="lead-form__field is-required">
       <span>Tu WhatsApp <em>(por acá te pasan el precio)</em></span>
       <input name="telefono" type="tel" inputmode="tel" maxlength="30" required autocomplete="tel"
              placeholder="0981 123 456"
              <?= $formError === 'telefono' ? ' aria-invalid="true" aria-describedby="lead-form-error" autofocus' : '' ?>>
     </label>
-
+<?php $formFields['telefono'] = (string) ob_get_clean();
+ob_start(); ?>
     <label class="lead-form__field">
       <span>¿Algo más que tengan que saber? <em>(opcional)</em></span>
       <textarea name="mensaje" rows="3" maxlength="5000"></textarea>
     </label>
-
+<?php $formFields['mensaje'] = (string) ob_get_clean();
+ob_start(); ?>
     <label class="lead-form__consent is-required">
       <input type="checkbox" name="consentimiento" value="1" required
              <?= $formError === 'consentimiento' ? ' aria-invalid="true" aria-describedby="lead-form-error"' : '' ?>>
@@ -108,6 +131,17 @@ $formCategories = categories_ordered();
         cotizaciones. Ver la <a href="/politica-de-privacidad/">Política de privacidad</a>.
       </span>
     </label>
+<?php $formFields['consent'] = (string) ob_get_clean();
+$formOrder = $isHero
+    ? [['cantidad', 'telefono'], ['material', 'ciudad', 'nombre', 'mensaje', 'consent']]
+    : [['material', 'cantidad', 'ciudad', 'nombre', 'telefono', 'mensaje', 'consent'], []];
+echo implode("\n\n", array_map(static fn (string $k): string => $formFields[$k], $formOrder[0])), "\n";
+if ($formOrder[1] !== []) {
+    echo '<div class="lead-form__more" data-lead-more>', "\n";
+    echo implode("\n\n", array_map(static fn (string $k): string => $formFields[$k], $formOrder[1])), "\n";
+    echo "</div>\n";
+}
+?>
 
     <?php /* Honeypot: los bots lo completan, las personas no lo ven nunca. */ ?>
     <input class="lead-form__honeypot" name="hp_extra" tabindex="-1" autocomplete="off" aria-hidden="true" value="">
@@ -117,7 +151,7 @@ $formCategories = categories_ordered();
     <input type="hidden" name="tsg" value="<?= e($stamp['sig']) ?>">
     <input type="hidden" name="origen" value="<?= e($formOrigen) ?>">
 
-    <button class="lead-form__submit btn btn--primary" type="submit" data-ev="form_submit_attempt" data-ev-loc="<?= e($formSlug !== '' ? $formSlug : 'cotizar') ?>">Pedir cotización</button>
+    <button class="lead-form__submit btn btn--primary" type="submit" data-ev="form_submit_attempt" data-ev-loc="<?= $isHero ? 'hero-' : '' ?><?= e($formSlug !== '' ? $formSlug : 'cotizar') ?>"><?= $isHero ? 'Pedir precio' : 'Pedir cotización' ?></button>
     <p class="lead-form__note">Sin costo. No publicamos tu teléfono en ningún lado.</p>
   </form>
 </section>

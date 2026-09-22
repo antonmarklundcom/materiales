@@ -90,7 +90,7 @@ $canonical   = '/calculadoras/' . $slug . '/';
 $contentFile = CONTENT_DIR . '/calculadoras/' . $slug . '.php';
 $breadcrumbs = [['Inicio', '/'], ['Calculadoras', '/calculadoras/'], [$calculator['name'], null]];
 
-$schema = [schema_breadcrumbs($breadcrumbs)];
+$schema = [schema_breadcrumbs($breadcrumbs), schema_article($calculator, $canonical, $calculator['name'])];
 if (($calculator['faq'] ?? []) !== []) {
     $schema[] = schema_faq($calculator['faq']);
 }
@@ -112,6 +112,7 @@ require PUBLIC_ROOT . '/partials/header.php';
 <div class="page-hero band--dark grain bleed">
   <div class="wrap">
     <h1><?= e($calculator['name']) ?></h1>
+    <?= updated_line($calculator) ?>
     <?php if (($calculator['intro'] ?? '') !== ''): ?>
     <p class="lead"><?= e($calculator['intro']) ?></p>
     <?php endif; ?>

@@ -34,6 +34,8 @@ return [
     'hierro' => [
         'name'   => 'Hierro',
         'status' => 'activa',
+        'published' => '2026-09-06',
+        'updated'   => '2026-09-15',
         'order'  => 1,
         'image'  => 'assets/img/hero-hierro',
         'title'  => 'Hierro para construcción en Paraguay | Cotizá gratis',
@@ -63,6 +65,8 @@ return [
     'cemento-y-cal' => [
         'name'   => 'Cemento y cal',
         'status' => 'activa',
+        'published' => '2026-09-06',
+        'updated'   => '2026-09-13',
         'order'  => 2,
         'image'  => 'assets/img/hero-cemento-y-cal',
         'title'  => 'Cemento y cal en Paraguay | Pedí tu cotización',
@@ -92,6 +96,8 @@ return [
     'aridos' => [
         'name'   => 'Áridos',
         'status' => 'activa',
+        'published' => '2026-09-06',
+        'updated'   => '2026-09-13',
         'order'  => 3,
         'image'  => 'assets/img/hero-aridos',
         'title'  => 'Áridos: arena, ripio y piedra en Paraguay',
@@ -123,6 +129,8 @@ return [
     'ladrillos-y-bloques' => [
         'name'   => 'Ladrillos y bloques',
         'status' => 'activa',
+        'published' => '2026-09-06',
+        'updated'   => '2026-09-13',
         'order'  => 4,
         'image'  => 'assets/img/hero-ladrillos-y-bloques',
         'title'  => 'Ladrillos y bloques en Paraguay | Cotizá por millar',
@@ -156,6 +164,8 @@ return [
     'chapas-y-techos' => [
         'name'   => 'Chapas y techos',
         'status' => 'activa',
+        'published' => '2026-09-06',
+        'updated'   => '2026-09-13',
         'order'  => 5,
         'image'  => 'assets/img/hero-chapas-y-techos',
         'title'  => 'Chapas y techos en Paraguay | Cotizá tu techo',
@@ -189,6 +199,8 @@ return [
     'madera' => [
         'name'   => 'Madera',
         'status' => 'activa',
+        'published' => '2026-09-06',
+        'updated'   => '2026-09-13',
         'order'  => 6,
         'image'  => 'assets/img/hero-madera',
         'title'  => 'Madera para construcción en Paraguay | Cotizá',
@@ -220,6 +232,8 @@ return [
     'aberturas' => [
         'name'   => 'Aberturas',
         'status' => 'activa',
+        'published' => '2026-09-06',
+        'updated'   => '2026-09-15',
         'order'  => 7,
         'image'  => 'assets/img/hero-aberturas',
         'title'  => 'Aberturas en Paraguay: puertas, ventanas y rejas',
@@ -249,6 +263,8 @@ return [
     'canos-y-plomeria' => [
         'name'   => 'Caños y plomería',
         'status' => 'activa',
+        'published' => '2026-09-06',
+        'updated'   => '2026-09-13',
         'order'  => 8,
         'image'  => 'assets/img/hero-canos-y-plomeria',
         'title'  => 'Caños y plomería en Paraguay | Pedí precio',
@@ -277,6 +293,8 @@ return [
     'pisos-y-revestimientos' => [
         'name'   => 'Pisos y revestimientos',
         'status' => 'activa',
+        'published' => '2026-09-06',
+        'updated'   => '2026-09-13',
         'order'  => 9,
         'image'  => 'assets/img/hero-pisos-y-revestimientos',
         'title'  => 'Pisos y revestimientos en Paraguay | Cotizá m²',
@@ -354,6 +372,8 @@ return [
     'yeso-y-durlock' => [
         'name'   => 'Yeso y durlock',
         'status' => 'activa',
+        'published' => '2026-09-06',
+        'updated'   => '2026-09-13',
         'order'  => 12,
         'image'  => 'assets/img/hero-yeso-y-durlock',
         'title'  => 'Yeso y durlock en Paraguay | Cotizá tu obra',
@@ -382,6 +402,8 @@ return [
     'impermeabilizantes' => [
         'name'   => 'Impermeabilizantes',
         'status' => 'activa',
+        'published' => '2026-09-06',
+        'updated'   => '2026-09-13',
         'order'  => 13,
         'image'  => 'assets/img/hero-impermeabilizantes',
         'title'  => 'Impermeabilizantes en Paraguay | Pedí precio',
@@ -410,6 +432,8 @@ return [
     'sanitarios-y-griferia' => [
         'name'   => 'Sanitarios y grifería',
         'status' => 'activa',
+        'published' => '2026-09-16',
+        'updated'   => '2026-09-16',
         'order'  => 14,
         'image'  => 'assets/img/hero-sanitarios-y-griferia',
         'title'  => 'Sanitarios y grifería en Paraguay | Cotizá',

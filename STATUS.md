@@ -36,7 +36,8 @@ detalle por fase en `docs/log/`)._
 | PR B — Ops/confiabilidad | R1, R3, R4, R5, R8, resumen diario de leads | ✅ #45 |
 | PR C — SEO técnico | S1–S10 | ✅ #46 |
 | PR D — Conversión | C1 (código), C2, C4–C10 | ✅ #47 |
-| PR E — Targeting on-page | S11–S15, G8 (CONTENT-SPEC §13) | ✅ este PR |
+| PR E — Targeting on-page | S11–S15, G8 (CONTENT-SPEC §13) | ✅ #48 |
+| PR F — Frescura, E-E-A-T, formulario del héroe | S16, C3 (CONTENT-SPEC §14) | ✅ este PR |
 
 Scripts de operación nuevos (todos CLI, ver `DEPLOY.md`): `tools/replay-leads.php` (con tope
 de reintentos y alerta), `tools/lead-digest.php` (resumen diario), `tools/maintenance.php`
@@ -85,8 +86,8 @@ Lo que falta es exclusivamente lo que ya estaba fuera del alcance de Claude (§7
    `docs/imagery-brief.md`.
 2. **Datos reales de NAP** (abajo).
 3. **`staging_noindex => false`** cuando el dominio esté apuntando.
-4. **Campo `updated` de cada entrada de categoría, material, guía o calculadora** para incluir `lastmod`
-   en el sitemap (fase 14, decisión §1.25) — ninguna lo tiene todavía.
+4. ~~**Campo `updated` de cada entrada**~~ — resuelto en la mejora post-lanzamiento (PR F):
+   `tools/sync-dates.php` lo escribe desde git.
 
 (El supuesto bug de header mobile de la primera pasada de QA de fase 8 se descartó — era un
 artefacto de la herramienta de captura, no un problema real. Ver KNOWN-ISSUES #23.)

@@ -88,11 +88,37 @@ absent "/materiales/"              'href="/materiales/electricidad/"'
 check "/materiales/cemento-y-cal/" 200 'fetchpriority="high"'
 check "/materiales/cemento-y-cal/" 200 'sizes="(min-width: 64rem) 40vw, 100vw"'
 # S6/S8: js-nav inline antes del primer render; CSS/JS con versión.
-check "/"                          200 "classList.add('js-nav')"
+check "/"                          200 "classList.add('js', 'js-nav')"
 check "/"                          200 'href="/assets/css/site.css?v='
 check "/calculadoras/hormigon-por-m3/" 200 'src="/assets/js/calc.js?v='
 # S7: robots.txt ya no bloquea /gracias/ (tiene que poder leer su noindex).
 absent "/robots.txt"               'Disallow: /gracias/'
+# ---- PR F (frescura, E-E-A-T, formulario del héroe) ----
+# S16: fechas visibles, lastmod en el sitemap, Article en guías y calculadoras.
+check "/materiales/cemento/"       200 'Actualizado: <time datetime="20'
+check "/sitemap.xml"               200 '<lastmod>20'
+check "/guias/como-elegir-un-corralon/" 200 '"@type":"Article"'
+check "/guias/como-elegir-un-corralon/" 200 '"datePublished":"20'
+check "/calculadoras/hormigon-por-m3/" 200 '"author":{"@type":"Organization"'
+check "/nosotros/"                 200 '<h1>Sobre Materiales.com.py</h1>'
+check "/como-trabajamos/"          200 'Cómo verificamos a los proveedores'
+check "/sitemap.xml"               200 '/como-trabajamos/'
+# C3: formulario corto en el héroe, mismo handler, mismo consentimiento, sin mostrar errores
+# del servidor (esos van en el formulario completo).
+check "/materiales/cemento/"       200 'id="cotizar-rapido"'
+check "/materiales/aridos/"        200 'data-lead-compact'
+check "/materiales/cemento/?error=telefono" 200 'id="lead-form-error"'
+if [ "$(curl -sS "${BASE}/materiales/cemento/" | grep -c 'Acepto que mis datos sean compartidos')" != "2" ]; then
+  echo "  FAIL /materiales/cemento/ no tiene el consentimiento en los dos formularios"; fail=1
+else
+  echo "  ok   /materiales/cemento/ con el mismo consentimiento en los dos formularios"
+fi
+if [ "$(curl -sS "${BASE}/materiales/cemento/?error=telefono" | grep -c 'role="alert"')" != "1" ]; then
+  echo "  FAIL el error del servidor aparece en más de un formulario"; fail=1
+else
+  echo "  ok   el error del servidor aparece sólo en el formulario completo"
+fi
+
 # ---- PR E (targeting on-page) ----
 # S11/S13: el H1 lleva el término medido o el país, no el nombre pelado.
 check "/materiales/tierra-gorda/"  200 '<h1>Tierra colorada (tierra gorda) en Paraguay</h1>'

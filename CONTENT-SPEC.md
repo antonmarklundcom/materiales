@@ -556,3 +556,27 @@ nuevos hacia `ladrillo-refractario`, `adoquines`, `mdf-fibrofacil`, `piedra-laja
 **G8 — hubs con intro propia**: `content/hubs/materiales.php`, `guias.php`,
 `calculadoras.php`. `/cotizar/` y `/contacto/` quedan cortas a propósito (páginas de trámite).
 
+## 14. Fechas, autoría y páginas institucionales (improvement report #2, PR F)
+
+**Fechas (S16).** Cada entrada activa con archivo de contenido lleva `published` y `updated`
+(YYYY-MM-DD). **Nunca se escriben a mano**: las pone `php tools/sync-dates.php` desde la
+historia de git del archivo `content/{tipo}/{slug}.php` (primer y último commit). Después de
+mergear un cambio de prosa, correrlo en un clone completo y commitear el resultado;
+`--check` avisa si quedó algo desactualizado. Smoke falla si falta una fecha, si está en el
+futuro o si `updated` < `published`. De `updated` salen el `<lastmod>` del sitemap, la línea
+visible "Actualizado: …" bajo el H1 y el `dateModified` del JSON-LD.
+
+**Autoría.** Guías y calculadoras emiten `Article` con autor y editor = la organización. No hay
+revisor técnico con nombre: si Anton suma uno (decisión D4), va en `/como-trabajamos/` y como
+`author` Person, nunca antes.
+
+**`/nosotros/` y `/como-trabajamos/`.** Sólo afirman lo que el sitio ya afirma en otra parte
+(flujo del pedido, verificación de proveedores, política de precios, origen de los números de
+§12.1, privacidad). Razón social, RUC, dirección y horarios aparecen solos cuando se cargan en
+`data/site.php`.
+
+**Formulario del héroe (C3).** Las páginas de material y categoría abren con la variante
+`hero` de `partials/form.php`: cantidad + WhatsApp, que se despliega al resto de los campos. Es
+el mismo formulario (mismos campos, mismo handler, mismo texto de consentimiento); el completo
+sigue al final de la página y es el único que muestra los errores del servidor.
+

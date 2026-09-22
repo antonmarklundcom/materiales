@@ -74,7 +74,7 @@ header('Cache-Control: no-cache');
 <meta name="theme-color" content="#17170f">
 <?php /* S6: la clase que colapsa el menú mobile se pone ANTES del primer render. Si la ponía
          sólo motion.js (defer), el menú se pintaba desplegado y saltaba al colapsarse (CLS). */ ?>
-<script>document.documentElement.classList.add('js-nav');</script>
+<script>document.documentElement.classList.add('js', 'js-nav');</script>
 <link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="<?= e(asset('/assets/css/site.css')) ?>">
