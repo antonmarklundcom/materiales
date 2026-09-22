@@ -676,10 +676,86 @@ if (!@mkdir($replayFixtureDir, 0770, true)) {
         $fail("replay-leads: un solo_log de 200h debería descartarse por antiguo, no reintentarse (salida: {$out4})");
     }
 
+    // R1: un 4xx permanente (422) no se reintenta nunca; un fallo transitorio sí, hasta el
+    // tope de intentos; un 429 cuenta como transitorio.
+    $fixture422 = 'smoke-' . bin2hex(random_bytes(4));
+    $fixtureRetry = 'smoke-' . bin2hex(random_bytes(4));
+    foreach ([$fixture422, $fixtureRetry] as $k) {
+        file_put_contents($fixtureLog, json_encode([
+            'ts' => gmdate('c'), 'outcome' => 'fallo_crm',
+            'payload' => ['idempotency_key' => $k, 'phone' => '0981123456', 'source' => 'site:materiales'],
+        ], JSON_UNESCAPED_UNICODE) . "\n", FILE_APPEND);
+    }
+    file_put_contents($fixtureReplayed, json_encode(['ts' => gmdate('c'), 'idempotency_key' => $fixture422, 'ok' => false, 'status' => 422, 'error' => ''])
+        . "\n" . json_encode(['ts' => gmdate('c'), 'idempotency_key' => $fixtureRetry, 'ok' => false, 'status' => 429, 'error' => '']) . "\n", FILE_APPEND);
+    $out5 = $runReplay();
+    if (!str_contains($out5, "ABANDONADO idempotency_key={$fixture422}") || str_contains($out5, "reenviaría idempotency_key={$fixture422}")) {
+        $fail("replay-leads: un 422 permanente no debería reintentarse (salida: {$out5})");
+    }
+    if (!str_contains($out5, "reenviaría idempotency_key={$fixtureRetry}")) {
+        $fail("replay-leads: un 429 es transitorio y debería reintentarse (salida: {$out5})");
+    }
+    $cmdCap = sprintf('%s %s --dry-run --max-attempts=1 --log=%s --replayed=%s 2>&1', escapeshellarg(PHP_BINARY),
+        escapeshellarg(dirname(__DIR__) . '/tools/replay-leads.php'), escapeshellarg($fixtureLog), escapeshellarg($fixtureReplayed));
+    $out6 = (string) shell_exec($cmdCap);
+    if (!str_contains($out6, "ABANDONADO idempotency_key={$fixtureRetry} (1 intentos)")) {
+        $fail("replay-leads: pasado --max-attempts el lead debería quedar abandonado (salida: {$out6})");
+    }
+
     @unlink($fixtureLog);
     @unlink($fixtureReplayed);
     @rmdir($replayFixtureDir);
 }
+
+// ---- R1/R5: tools/lead-digest.php y tools/maintenance.php sobre un storage temporal --------
+$opsDir = sys_get_temp_dir() . '/materiales-smoke-ops-' . bin2hex(random_bytes(4));
+@mkdir($opsDir . '/throttle', 0770, true);
+$opsLog = $opsDir . '/leads.log';
+$opsLines = [
+    ['ts' => gmdate('c'), 'outcome' => 'enviado', 'payload' => ['fields' => []]],
+    ['ts' => gmdate('c'), 'outcome' => 'solo_log', 'payload' => ['fields' => ['tipo' => 'proveedor']]],
+    ['ts' => gmdate('c'), 'outcome' => 'retenido', 'reason' => 'limite_ip', 'payload' => ['fields' => []]],
+    ['ts' => gmdate('c'), 'outcome' => 'descartado', 'reason' => 'honeypot'],
+    ['ts' => gmdate('c', time() - 30 * 3600), 'outcome' => 'enviado', 'payload' => ['fields' => []]],
+];
+file_put_contents($opsLog, implode("\n", array_map(static fn ($r) => json_encode($r), $opsLines)) . "\n");
+$digest = (string) shell_exec(sprintf('%s %s --dry-run --log=%s 2>&1', escapeshellarg(PHP_BINARY),
+    escapeshellarg($root . '/tools/lead-digest.php'), escapeshellarg($opsLog)));
+foreach (['Pedidos recibidos: 3 (2 cotizaciones, 1 altas de proveedor)', 'retenido (revisar a mano): 1',
+          'Motivos retenido: limite_ip 1', 'Motivos descartado: honeypot 1', 'enviado (ya en VenderCRM): 1'] as $needed) {
+    if (!str_contains($digest, $needed)) {
+        $fail("lead-digest: falta '{$needed}' en el resumen (salida: {$digest})");
+    }
+}
+
+// maintenance: con el reloj en el mes siguiente, rota leads.log, borra un rotado de hace
+// más de 12 meses y la huella de IP vencida, y deja la vigente.
+$opsNow = (int) strtotime('+1 month', (int) filemtime($opsLog));
+$oldRotated = $opsDir . '/leads-' . gmdate('Y-m', (int) strtotime('-14 months', $opsNow)) . '.log';
+file_put_contents($oldRotated, "{}\n");
+file_put_contents($opsDir . '/throttle/viejo', "x 1\n");
+touch($opsDir . '/throttle/viejo', $opsNow - 3600);
+file_put_contents($opsDir . '/throttle/vigente', "x 1\n");
+touch($opsDir . '/throttle/vigente', $opsNow - 10);
+$maint = (string) shell_exec(sprintf('%s %s --storage=%s --now=%d 2>&1', escapeshellarg(PHP_BINARY),
+    escapeshellarg($root . '/tools/maintenance.php'), escapeshellarg($opsDir), $opsNow));
+clearstatcache();
+if (is_file($opsLog) || count(glob($opsDir . '/leads-*.log') ?: []) !== 1) {
+    $fail("maintenance: no rotó leads.log a leads-AAAA-MM.log (salida: {$maint})");
+}
+if (is_file($oldRotated)) {
+    $fail("maintenance: no borró un log rotado de hace 14 meses (salida: {$maint})");
+}
+if (is_file($opsDir . '/throttle/viejo') || !is_file($opsDir . '/throttle/vigente')) {
+    $fail("maintenance: la limpieza de storage/throttle/ borró de más o de menos (salida: {$maint})");
+}
+// Correrlo otra vez el mismo mes no rota nada (no hay leads.log) y no rompe.
+$maint2 = (string) shell_exec(sprintf('%s %s --storage=%s --now=%d 2>&1', escapeshellarg(PHP_BINARY),
+    escapeshellarg($root . '/tools/maintenance.php'), escapeshellarg($opsDir), $opsNow));
+if (str_contains($maint2, 'rotado')) {
+    $fail("maintenance: rotó dos veces en el mismo mes (salida: {$maint2})");
+}
+exec('rm -rf ' . escapeshellarg($opsDir));
 
 // ---- aviso de lead: asunto sin datos personales, cuerpo con lo necesario para contestar
 $noticeRecord = ['ts' => gmdate('c'), 'outcome' => 'solo_log', 'phone_e164' => '+595981123456', 'payload' => $payload];

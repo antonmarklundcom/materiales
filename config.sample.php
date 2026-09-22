@@ -53,4 +53,8 @@ return [
     'telegram_chat_id'   => '',
     // 'todos' = aviso por cada lead; 'problemas' = sólo solo_log, fallo_crm y retenido.
     'notify_on'          => 'todos',
+
+    // Meses que se guardan los storage/leads-AAAA-MM.log rotados (tools/maintenance.php). Si
+    // lo cambiás, cambiá también la sección "Conservación" de /politica-de-privacidad/.
+    'leads_retention_months' => 12,
 ];

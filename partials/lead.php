@@ -37,6 +37,14 @@ const LEAD_IP_WINDOW_SECONDS = 600;
 const LEAD_IP_MAX_LEADS = 5;
 
 /**
+ * Retención por defecto de los storage/leads-AAAA-MM.log rotados (R5): pasado este plazo
+ * tools/maintenance.php los borra. El CRM es el registro comercial; el log es sólo el respaldo
+ * técnico. Ajustable con 'leads_retention_months' en config/vendercrm.php, y si se cambia hay
+ * que cambiar también la sección "Conservación" de /politica-de-privacidad/.
+ */
+const LEAD_LOG_RETENTION_MONTHS = 12;
+
+/**
  * config/vendercrm.php si existe. Nunca lanza: sin config el handler degrada a leads.log y
  * el visitante igual llega a /gracias/ (plan §4.5).
  */
@@ -58,6 +66,8 @@ function lead_config(): array
             'telegram_chat_id'   => (string) ($loaded['telegram_chat_id'] ?? ''),
             // 'todos' = cada lead; 'problemas' = sólo solo_log, fallo_crm y retenido.
             'notify_on'          => (string) ($loaded['notify_on'] ?? 'todos'),
+            // Meses que se guardan los leads-AAAA-MM.log rotados (tools/maintenance.php).
+            'leads_retention_months' => max(1, (int) ($loaded['leads_retention_months'] ?? LEAD_LOG_RETENTION_MONTHS)),
         ];
     }
     return $config;
@@ -494,7 +504,13 @@ function lead_log(array $record): bool
             error_log('lead_log: json_encode falló — lead perdido');
             return false;
         }
-        $written = @file_put_contents(STORAGE_DIR . '/leads.log', $line . "\n", FILE_APPEND | LOCK_EX);
+        $logFile = STORAGE_DIR . '/leads.log';
+        $isNew   = !is_file($logFile);
+        $written = @file_put_contents($logFile, $line . "\n", FILE_APPEND | LOCK_EX);
+        if ($isNew && $written !== false) {
+            // Datos personales: sólo el usuario del hosting los lee (antes quedaba 0644).
+            @chmod($logFile, 0640);
+        }
         if ($written === false) {
             error_log('lead_log: no se pudo escribir en ' . STORAGE_DIR . '/leads.log — lead perdido');
             return false;
@@ -612,23 +628,37 @@ function lead_conversion_token_valid(string $token): bool
 function lead_notify(array $record): void
 {
     try {
-        $config  = lead_config();
         $outcome = (string) ($record['outcome'] ?? '');
-        if ($config['notify_on'] === 'problemas' && $outcome === 'enviado') {
+        if (lead_config()['notify_on'] === 'problemas' && $outcome === 'enviado') {
             return;
         }
-        $text = lead_notify_text($record);
+        lead_alert(lead_notify_subject($record), lead_notify_text($record));
+    } catch (Throwable $e) {
+        error_log('lead_notify: ' . $e->getMessage());
+    }
+}
+
+/**
+ * Canal de aviso genérico (email y/o Telegram de config/vendercrm.php). Lo usan el aviso de
+ * cada lead, la alerta de tools/replay-leads.php y el resumen diario de tools/lead-digest.php.
+ * Devuelve true si al menos un canal estaba configurado (no garantiza la entrega). Nunca lanza.
+ */
+function lead_alert(string $subject, string $text): bool
+{
+    $sent = false;
+    try {
+        $config = lead_config();
 
         if ($config['notify_email'] !== '' && function_exists('mail')) {
             $from = $config['notify_from'] !== ''
                 ? $config['notify_from']
                 : 'no-reply@' . (parse_url((string) site('base_url'), PHP_URL_HOST) ?: 'localhost');
-            $subject = '=?UTF-8?B?' . base64_encode(lead_notify_subject($record)) . '?=';
-            @mail($config['notify_email'], $subject, $text, implode("\r\n", [
+            @mail($config['notify_email'], '=?UTF-8?B?' . base64_encode($subject) . '?=', $text, implode("\r\n", [
                 'From: ' . $from,
                 'Content-Type: text/plain; charset=UTF-8',
                 'Content-Transfer-Encoding: 8bit',
             ]));
+            $sent = true;
         }
 
         if ($config['telegram_bot_token'] !== '' && $config['telegram_chat_id'] !== ''
@@ -642,16 +672,18 @@ function lead_notify(array $record): void
                     CURLOPT_CONNECTTIMEOUT => 3,
                     CURLOPT_POSTFIELDS     => http_build_query([
                         'chat_id' => $config['telegram_chat_id'],
-                        'text'    => mb_substr(lead_notify_subject($record) . "\n\n" . $text, 0, 4000),
+                        'text'    => mb_substr($subject . "\n\n" . $text, 0, 4000),
                     ]),
                 ]);
                 curl_exec($ch);
                 curl_close($ch);
+                $sent = true;
             }
         }
     } catch (Throwable $e) {
-        error_log('lead_notify: ' . $e->getMessage());
+        error_log('lead_alert: ' . $e->getMessage());
     }
+    return $sent;
 }
 
 /** Asunto del aviso: qué pasó y de qué, sin datos personales. */

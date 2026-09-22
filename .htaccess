@@ -19,6 +19,10 @@ ErrorDocument 404 /404.php
   RewriteRule (^|/)\.(git|github|gitignore)(/|$) - [NC,F,L]
   RewriteRule \.md$ - [NC,F,L]
   RewriteRule ^config\.sample\.php$ - [NC,F,L]
+  # R4: copias de respaldo, scripts, logs y dumps en CUALQUIER ruta (un index.php.bak
+  # olvidado serviría el código fuente). Misma lista en el <FilesMatch> de abajo y en
+  # tools/router-cli.php; tools/check-rewrites.php (CI) verifica que coincidan.
+  RewriteRule (\.(bak|orig|sh|log|sql|swp)|~)$ - [NC,F,L]
 
   # Nunca servir directamente los includes del router ni los partials.
   RewriteRule ^materiales/_index\.php$ - [F,L]
@@ -41,6 +45,17 @@ ErrorDocument 404 /404.php
   RewriteRule ^guias/([a-z0-9-]+)/$ guias/index.php?slug=$1 [L,QSA]
   RewriteRule ^calculadoras/([a-z0-9-]+)/$ calculadoras/index.php?slug=$1 [L,QSA]
 </IfModule>
+
+# R4, segunda capa por si mod_rewrite no corre: la misma lista que la regla de arriba.
+<FilesMatch "(?i)(\.(bak|orig|sh|log|sql|swp)|~)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order deny,allow
+    Deny from all
+  </IfModule>
+</FilesMatch>
 
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"

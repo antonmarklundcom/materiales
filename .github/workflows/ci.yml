@@ -41,5 +41,8 @@ jobs:
       - name: Smoke de datos (slugs únicos, referencias, límites de title/meta)
         run: php tools/smoke.php
 
+      - name: Paridad de reglas .htaccess ↔ router-cli (R3)
+        run: php tools/check-rewrites.php
+
       - name: Render check (router, sitemap, 404)
         run: ./tools/render-check.sh

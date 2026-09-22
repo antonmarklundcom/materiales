@@ -15,6 +15,7 @@ declare(strict_types=1);
 
 require dirname(__DIR__) . '/partials/init.php';
 require PUBLIC_ROOT . '/partials/schema.php';
+require PUBLIC_ROOT . '/partials/lead.php';
 
 $site        = site();
 $maxProv     = (int) site('max_proveedores', 3);
@@ -134,6 +135,13 @@ require PUBLIC_ROOT . '/partials/header.php';
 <p>
   Conservamos los datos de cada pedido de cotización mientras sean útiles para la gestión
   comercial que los originó, y los eliminamos cuando nos lo pedís.
+</p>
+<p>
+  Además del sistema de gestión de contactos, el sitio guarda una copia técnica de cada pedido
+  como respaldo, por si falla el envío. Esa copia se archiva mes a mes y se borra
+  automáticamente a los <?= (int) lead_config()['leads_retention_months'] ?> meses. Los registros que usamos
+  para limitar envíos repetidos desde una misma conexión no guardan tu IP en claro y se borran
+  en el día.
 </p>
   </div>
 </div>
