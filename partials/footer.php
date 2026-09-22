@@ -24,7 +24,7 @@ $whatsapp = preg_replace('/\D+/', '', (string) ($site['whatsapp'] ?? ''));
       <?php elseif (($address['locality'] ?? '') !== ''): ?><p><?= e($address['locality']) ?>, Paraguay</p><?php endif; ?>
       <?php if (($site['horarios'] ?? '') !== ''): ?><p><?= e($site['horarios']) ?></p><?php endif; ?>
       <ul class="site-footer__contact">
-        <?php if ($whatsapp !== ''): ?><li><a href="https://wa.me/<?= e($whatsapp) ?>" data-ev="whatsapp_click" data-ev-loc="footer">WhatsApp</a></li><?php endif; ?>
+        <?php if ($whatsapp !== ''): ?><li><a href="<?= e(wa_url((string) (page()['wa_subject'] ?? ''))) ?>" data-ev="whatsapp_click" data-ev-loc="footer">WhatsApp</a></li><?php endif; ?>
         <?php if (($site['phone'] ?? '') !== ''): ?><li><a href="tel:<?= e($site['phone']) ?>" data-ev="call_click" data-ev-loc="footer"><?= e($site['phone']) ?></a></li><?php endif; ?>
         <?php if (($site['email'] ?? '') !== ''): ?><li><a href="mailto:<?= e($site['email']) ?>"><?= e($site['email']) ?></a></li><?php endif; ?>
       </ul>

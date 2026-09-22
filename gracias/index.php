@@ -21,7 +21,9 @@ $entry = data('categories')[$slug] ?? data('materials')[$slug] ?? null;
 // (lead_conversion_token). Sin token, o con uno tipeado a mano, no hay conversión que contar.
 require PUBLIC_ROOT . '/partials/lead.php';
 $token = (string) ($_GET['k'] ?? '');
+$reference = '';
 if (lead_conversion_token_valid($token)) {
+    $reference = lead_reference($token);
     $leadEvent = [
         'token'     => $token,
         'material'  => $entry !== null ? $slug : '',
@@ -69,12 +71,59 @@ require PUBLIC_ROOT . '/partials/header.php';
       </li>
     </ol>
 
-    <?php $whatsapp = preg_replace('/\D+/', '', (string) site('whatsapp')); ?>
+    <?php
+    // C8: la referencia del pedido va en el mensaje de WhatsApp, así el que atiende lo
+    // encuentra en el registro sin preguntar de nuevo nombre, material y cantidad.
+    $whatsapp = preg_replace('/\D+/', '', (string) site('whatsapp'));
+    $waText   = 'Hola, hice un pedido en ' . site('brand')
+        . ($reference !== '' ? ' (ref. ' . $reference . ')' : '')
+        . ' y quiero agregar o corregir algo: …';
+    ?>
+    <?php if ($reference !== ''): ?>
+    <p class="gracias__ref">Referencia de tu pedido: <strong><?= e($reference) ?></strong></p>
+    <?php endif; ?>
     <?php if ($whatsapp !== ''): ?>
     <p class="gracias__wa">
       ¿Te olvidaste de aclarar algo del pedido?
-      <a class="btn btn--wa" href="https://wa.me/<?= e($whatsapp) ?>" data-ev="whatsapp_click" data-ev-loc="gracias">Escribinos por WhatsApp</a>
+      <a class="btn btn--wa" href="https://wa.me/<?= e($whatsapp) ?>?text=<?= e(rawurlencode($waText)) ?>" data-ev="whatsapp_click" data-ev-loc="gracias">Escribinos por WhatsApp</a>
     </p>
+    <p class="gracias__save">
+      <strong>Guardá nuestro número</strong> para reconocer el mensaje:
+      <a href="tel:<?= e((string) site('whatsapp')) ?>" data-ev="call_click" data-ev-loc="gracias"><?= e((string) site('whatsapp')) ?></a>.
+      Los proveedores te escriben desde sus propios números.
+    </p>
+    <?php endif; ?>
+
+    <?php
+    // C8: lo que suele faltar en el mismo pedido. Los related[] del material (o los materiales
+    // del rubro, si se pidió un rubro entero), cada uno con el formulario ya preseleccionado.
+    $addOns = [];
+    if ($entry !== null) {
+        $candidates = isset(data('materials')[$slug])
+            ? ($entry['related'] ?? [])
+            : array_keys(materials_in($slug));
+        foreach ($candidates as $candidate) {
+            $candidateEntry = data('materials')[$candidate] ?? data('categories')[$candidate] ?? null;
+            if ($candidate !== $slug && $candidateEntry !== null && is_published($candidateEntry)) {
+                $addOns[$candidate] = $candidateEntry;
+            }
+        }
+        $addOns = array_slice($addOns, 0, 4, true);
+    }
+    ?>
+    <?php if ($addOns !== []): ?>
+    <h2>¿Te falta algo? Sumalo al pedido</h2>
+    <p>Mandá otro pedido corto y aclará en el mensaje que es para la misma obra: así te lo pueden cotizar junto con lo anterior.</p>
+    <ul class="tile-grid">
+      <?php foreach ($addOns as $addSlug => $addEntry): ?>
+      <li>
+        <a class="tile card--hair" href="/cotizar/?m=<?= e($addSlug) ?>" data-ev="cta_click" data-ev-loc="gracias-sumar-<?= e($addSlug) ?>">
+          <span>Sumá <?= e(mb_strtolower($addEntry['name'])) ?></span>
+          <span class="tile__arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+      <?php endforeach; ?>
+    </ul>
     <?php endif; ?>
 
     <h2>Mientras tanto</h2>

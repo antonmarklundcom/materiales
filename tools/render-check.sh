@@ -93,6 +93,25 @@ check "/"                          200 'href="/assets/css/site.css?v='
 check "/calculadoras/hormigon-por-m3/" 200 'src="/assets/js/calc.js?v='
 # S7: robots.txt ya no bloquea /gracias/ (tiene que poder leer su noindex).
 absent "/robots.txt"               'Disallow: /gracias/'
+# ---- PR D (conversión) ----
+# C2: botón bajo el resultado de la calculadora, y la barra pegajosa ancla al formulario de
+# la misma página (antes mandaba a un /cotizar/ en blanco).
+check "/calculadoras/bolsas-de-cemento-por-m2/" 200 'data-calc-cta-template="Cotizá estas {bolsas} bolsas →"'
+check "/calculadoras/bolsas-de-cemento-por-m2/" 200 'cta-bar__primary" href="#cotizar"'
+# C6: WhatsApp con el material ya escrito.
+check "/materiales/cemento/"       200 'wa.me/595992279599?text=Hola%2C%20quiero%20cotizar%20cemento'
+# C7: en /proveedores/ la barra es de proveedor y los rubros no llevan a páginas de comprador.
+check "/proveedores/"              200 'href="#sumate" data-ev="cta_click" data-ev-loc="sticky-proveedores">Sumate como proveedor'
+absent "/proveedores/"             'href="/materiales/hierro/"'
+# C9: la guía manda a /cotizar/ con su material preseleccionado.
+check "/guias/cuantas-bolsas-de-cemento-por-m2/" 200 'href="/cotizar/?m='
+check "/cotizar/?m=cemento"        200 '<option value="cemento" selected>'
+# C5/C10: validación en el navegador y marcas de obligatorio; el JS versionado.
+check "/materiales/hierro/"        200 'data-lead-form'
+check "/materiales/hierro/"        200 'class="lead-form__field is-required"'
+check "/materiales/hierro/"        200 'src="/assets/js/forms.js?v='
+# C4: banner compacto con Aceptar / Rechazar / Configurar.
+check "/"                          200 'data-consent-configure'
 check "/guias/"                    200 '<h1>'
 check "/cotizar/"                  200 '<h1>'
 check "/politica-de-privacidad/"   200 '<h1>'
@@ -277,6 +296,15 @@ if [ "$(lines)" != "$((before + 1))" ]; then
 else
   echo "  ok   el camino feliz escribió leads.log"
 fi
+# C8: la referencia que ve el visitante en /gracias/ (mitad del token k) queda en su línea.
+K="$(grep -i '^location:' /tmp/post-head | tr -d '\r' | sed -E 's/.*k=([0-9a-f]{16}).*/\1/')"
+REF="$(printf '%s' "${K:0:8}" | tr 'a-f' 'A-F')"
+if [ -n "${REF}" ] && tail -n 1 "${LOG}" | grep -q "\"ref\":\"${REF}\""; then
+  echo "  ok   leads.log guarda la referencia ${REF} del pedido"
+else
+  echo "  FAIL leads.log no guarda la referencia del pedido (k=${K})"
+  fail=1
+fi
 
 # 7. Doble envío = MISMA clave de idempotencia. Es lo que impide que un doble clic o un
 #    reintento por timeout cree un segundo contacto en el CRM.
@@ -373,6 +401,11 @@ fi
 #     tipeado a mano, no declara nada.
 TOKEN="$(php -r 'require "partials/init.php"; require "partials/lead.php"; echo lead_conversion_token();')"
 check "/gracias/?m=hierro&k=${TOKEN}" 200 'matLead'
+# C8: referencia visible, en el WhatsApp precargado, y materiales para sumar al pedido.
+check "/gracias/?m=hierro&k=${TOKEN}" 200 "Referencia de tu pedido: <strong>$(printf '%s' "${TOKEN:0:8}" | tr 'a-f' 'A-F')</strong>"
+check "/gracias/?m=hierro&k=${TOKEN}" 200 'ref.%20'
+check "/gracias/?m=hierro&k=${TOKEN}" 200 'href="/cotizar/?m=varilla-de-hierro"'
+check "/gracias/?m=hierro&k=${TOKEN}" 200 'Guardá nuestro número'
 if curl -sS "${BASE}/gracias/" | grep -q 'matLead'; then
   echo "  FAIL /gracias/ sin token declara una conversión"
   fail=1

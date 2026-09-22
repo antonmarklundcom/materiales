@@ -81,6 +81,7 @@ page([
     'schema'      => $schema,
     'body_class'  => 'page-' . $type,
     'image'       => (string) $heroImage,
+    'wa_subject'  => (string) $entry['name'],
 ]);
 
 require PUBLIC_ROOT . '/partials/header.php';

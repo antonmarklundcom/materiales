@@ -16,6 +16,8 @@
  *   faq[]                     3 a 5; la última es SIEMPRE la de precio (CONTENT-SPEC §11.3)
  *   cta_material              slug preseleccionado en el formulario
  *   cta_quantity_template     'texto con {id_de_salida}' para precargar `cantidad`
+ *   cta_button                (opcional) texto del botón bajo el resultado, con {id_de_salida}
+ *                             (C2); vacío = "Cotizá estas cantidades →"
  *
  * La FÓRMULA no vive acá: es el bloque `<script type="application/json" data-calc>` del
  * archivo de contenido, un árbol de expresiones que evalúa assets/js/calc.js sin `eval`
@@ -117,6 +119,7 @@ return [
 
         'cta_material'          => 'cemento',
         'cta_quantity_template' => '{bolsas} bolsas de cemento de 50 kg',
+        'cta_button'            => 'Cotizá estas {bolsas} bolsas →',
     ],
 
     'hormigon-por-m3' => [
@@ -200,6 +203,7 @@ return [
 
         'cta_material'          => 'hormigon-elaborado',
         'cta_quantity_template' => '{volumen} m³ de hormigón, o {bolsas} bolsas de cemento si lo mezclás en obra',
+        'cta_button'            => 'Cotizá estos {volumen} m³ de hormigón →',
     ],
 
     'ladrillos-por-m2' => [
@@ -290,6 +294,7 @@ return [
 
         'cta_material'          => 'ladrillo-comun',
         'cta_quantity_template' => '{piezas} piezas',
+        'cta_button'            => 'Cotizá estas {piezas} piezas →',
     ],
 
     'revoque-y-mortero' => [
@@ -368,5 +373,6 @@ return [
 
         'cta_material'          => 'cal-hidratada',
         'cta_quantity_template' => '{cal} kg de cal hidratada, {bolsas} bolsas de cemento y {arena} m³ de arena',
+        'cta_button'            => 'Cotizá estos materiales →',
     ],
 ];

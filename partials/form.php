@@ -51,7 +51,10 @@ $formCategories = categories_ordered();
   <p class="lead-form__error" id="lead-form-error" role="alert"><?= e($formErrors[$formError]) ?></p>
   <?php endif; ?>
 
-  <form class="lead-form__form" action="/cotizar/enviar.php" method="post" novalidate>
+  <?php /* novalidate: la validación la hace assets/js/forms.js (C5) con mensajes propios, y
+         el servidor la repite siempre. */ ?>
+  <form class="lead-form__form" action="/cotizar/enviar.php" method="post" novalidate data-lead-form>
+    <p class="lead-form__legend">Los campos con <span aria-hidden="true">*</span> son obligatorios.</p>
     <label class="lead-form__field">
       <span>¿Qué material necesitás?</span>
       <select name="material">
@@ -81,11 +84,11 @@ $formCategories = categories_ordered();
 
     <label class="lead-form__field">
       <span>Tu nombre</span>
-      <input name="nombre" type="text" maxlength="200" required autocomplete="name"
+      <input name="nombre" type="text" maxlength="200" autocomplete="name"
              value="">
     </label>
 
-    <label class="lead-form__field">
+    <label class="lead-form__field is-required">
       <span>Tu WhatsApp <em>(por acá te pasan el precio)</em></span>
       <input name="telefono" type="tel" inputmode="tel" maxlength="30" required autocomplete="tel"
              placeholder="0981 123 456"
@@ -97,7 +100,7 @@ $formCategories = categories_ordered();
       <textarea name="mensaje" rows="3" maxlength="5000"></textarea>
     </label>
 
-    <label class="lead-form__consent">
+    <label class="lead-form__consent is-required">
       <input type="checkbox" name="consentimiento" value="1" required
              <?= $formError === 'consentimiento' ? ' aria-invalid="true" aria-describedby="lead-form-error"' : '' ?>>
       <span>

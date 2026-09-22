@@ -224,9 +224,31 @@ function page(array $page = []): array
             'body_class'  => '',
             // Ruta relativa de la imagen de la página (fase 11). '' ⇒ og-default.jpg.
             'image'       => '',
+            // Material o rubro de la página, para el texto precargado de WhatsApp (C6).
+            'wa_subject'  => '',
         ];
     }
     return $current ?? page(['title' => site('brand')]);
+}
+
+/**
+ * Enlace wa.me con el mensaje precargado (C6), o '' si no hay número cargado en data/site.php.
+ * Con $subject (material o rubro de la página) el mensaje ya dice qué se cotiza y deja
+ * lugar para cantidad y zona, que es lo que un proveedor necesita para contestar con precio.
+ */
+function wa_url(string $subject = '', string $extra = ''): string
+{
+    $number = preg_replace('/\D+/', '', (string) site('whatsapp'));
+    if ($number === '') {
+        return '';
+    }
+    $text = $subject !== ''
+        ? 'Hola, quiero cotizar ' . mb_strtolower($subject) . '. Cantidad: … Zona de entrega: …'
+        : 'Hola, quiero cotizar materiales de construcción. Material: … Cantidad: … Zona de entrega: …';
+    if ($extra !== '') {
+        $text .= ' ' . $extra;
+    }
+    return 'https://wa.me/' . $number . '?text=' . rawurlencode($text);
 }
 
 /** Envía el status HTTP y termina la request sirviendo la página 404. */

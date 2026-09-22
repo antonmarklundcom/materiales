@@ -49,6 +49,14 @@
   if (form) {
     form.addEventListener('click', function (event) {
       var action = event.target && event.target.getAttribute('data-consent');
+      if (event.target && event.target.hasAttribute('data-consent-configure')) {
+        var options = document.getElementById('cookie-banner-options');
+        if (options) {
+          options.hidden = !options.hidden;
+          event.target.setAttribute('aria-expanded', options.hidden ? 'false' : 'true');
+        }
+        return;
+      }
       if (action === 'reject') {
         save({ necessary: true, analytics: false, marketing: false });
       } else if (action === 'accept-all') {

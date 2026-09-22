@@ -257,9 +257,15 @@ if (lead_crm_configured()) {
 // Es el respaldo ante caída del CRM (el replay manual del que habla el plan) y la pista de
 // auditoría del consentimiento. Se guarda el teléfono NORMALIZADO además del tipeado para
 // poder reconstruir la clave de idempotencia en un replay.
+// El token de /gracias/ se genera antes de registrar: su primera mitad es la REFERENCIA que
+// /gracias/ muestra y pone en el mensaje de WhatsApp (C8), y queda en la línea del log para
+// encontrar el pedido cuando el cliente escribe "ref. AB12CD34". No viaja al CRM: el
+// contrato del payload no cambia.
+$conversionToken = lead_conversion_token();
 enviar_log_and_notify([
     'ts'          => gmdate('c', $now),
     'outcome'     => lead_send_ok($crm) ? 'enviado' : (lead_crm_configured() ? 'fallo_crm' : 'solo_log'),
+    'ref'         => lead_reference($conversionToken),
     'phone_e164'  => $phone,
     'crm'         => ['status' => $crm['status'], 'ms' => $crm['ms'], 'error' => $crm['error'], 'body' => $crm['body']],
     'payload'     => $payload,
@@ -270,7 +276,7 @@ enviar_log_and_notify([
 // `k` es un token de un solo uso: /gracias/ dispara los eventos de analítica una vez por
 // token y los recuerda en sessionStorage, así refrescar la página no infla las conversiones.
 // Va firmado (lead_conversion_token): un /gracias/?k= tipeado a mano no cuenta.
-$query = ['k' => lead_conversion_token()];
+$query = ['k' => $conversionToken];
 if ($resolved['material'] !== '') {
     $query = ['m' => $resolved['material']] + $query;
 }

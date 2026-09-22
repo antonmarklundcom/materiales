@@ -84,6 +84,19 @@
     return rounded.toLocaleString('es-PY', { maximumFractionDigits: 2 });
   }
 
+  var ctaButton = widget.querySelector('[data-calc-cta]');
+  var ctaTemplate = ctaButton ? ctaButton.getAttribute('data-calc-cta-template') || '' : '';
+  var ctaDefault = ctaButton ? ctaButton.textContent : '';
+  var used = false;
+
+  /** calculator_use: una vez por página, al primer cambio real del visitante (C1). */
+  function trackUse() {
+    if (used) return;
+    used = true;
+    var slug = widget.getAttribute('data-calc-slug') || '';
+    if (window.matTrack) window.matTrack('calculator_use', { ev_loc: slug });
+  }
+
   var quantityField = document.querySelector('.lead-form__form [name="cantidad"]');
   var materialField = document.querySelector('.lead-form__form [name="material"]');
   var template = widget.getAttribute('data-calc-quantity') || '';
@@ -114,6 +127,17 @@
       quantityField.value = filled;
     }
     preselect();
+
+    // C2: "Cotizá estas 22 bolsas →" con el número de esta cuenta; si alguna salida no da un
+    // número válido, vuelve al texto genérico en vez de mostrar "Cotizá estas — bolsas".
+    if (ctaButton) {
+      var broken = false;
+      var label = ctaTemplate.replace(/\{([a-z0-9_]+)\}/gi, function (match, id) {
+        if (results[id] === undefined || !isFinite(results[id])) { broken = true; return ''; }
+        return format(results[id]);
+      });
+      ctaButton.textContent = ctaTemplate && !broken ? label : ctaDefault;
+    }
   }
 
   if (quantityField) {
@@ -122,6 +146,7 @@
   Array.prototype.forEach.call(nodes, function (el) {
     el.addEventListener('input', run);
     el.addEventListener('change', run);
+    el.addEventListener('change', trackUse);
   });
 
   widget.classList.add('calc--live');

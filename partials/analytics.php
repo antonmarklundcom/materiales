@@ -28,6 +28,20 @@ $analyticsConfig = array_filter([
     'pixel_id' => $pixelId,
 ]);
 ?>
+<?php if ($ga4Id !== ''): ?>
+<?php /* C1 — Consent Mode v2, modo básico: el stub de gtag nace con TODO en "denied" antes de
+       cualquier otro script, y analytics.js lo pasa a "granted" con gtag('consent','update')
+       cuando el visitante acepta. gtag.js recién se descarga después de aceptar Estadísticas
+       (lo que promete la política de privacidad: "hasta que las aceptes no descargamos ni
+       ejecutamos ninguno de esos scripts"). El modo avanzado (gtag.js siempre, pings sin
+       cookies para modelar conversiones) exige cambiar ese texto primero: decisión de Anton. */ ?>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', wait_for_update: 500});
+gtag('set', 'ads_data_redaction', true);
+</script>
+<?php endif; ?>
 <?php if ($analyticsConfig !== [] || $leadEvent !== null): ?>
 <script>
 <?php if ($analyticsConfig !== []): ?>
