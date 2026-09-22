@@ -148,6 +148,14 @@ else
   echo "  ok   el error del servidor aparece sólo en el formulario completo"
 fi
 
+# ---- G4 (guías comparativas) ----
+check "/guias/porcelanato-o-ceramica/"        200 '<h1>Porcelanato o cerámica: cuál conviene</h1>'
+check "/guias/durlock-o-ladrillo/"            200 '<h1>Placa de yeso o ladrillo para paredes interiores</h1>'
+check "/guias/cielorraso-de-pvc-o-durlock/"   200 '<h1>Cielorraso de PVC o de placa de yeso</h1>'
+check "/guias/piso-vinilico-o-porcelanato/"   200 '<h1>Piso vinílico o porcelanato</h1>'
+check "/guias/bloque-de-hormigon-o-ladrillo/" 200 '<h1>Bloque de hormigón o ladrillo</h1>'
+check "/guias/teja-espanola-o-francesa/"      200 '<h1>Teja española o francesa</h1>'
+
 # ---- PR E (targeting on-page) ----
 # S11/S13: el H1 lleva el término medido o el país, no el nombre pelado.
 check "/materiales/tierra-gorda/"  200 '<h1>Tierra colorada (tierra gorda) en Paraguay</h1>'

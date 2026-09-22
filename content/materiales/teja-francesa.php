@@ -39,5 +39,7 @@
   <a href="/materiales/tirantes/">tirantes</a> para la estructura de apoyo. Si todavía dudás
   entre teja y chapa, la guía
   <a href="/guias/chapa-o-teja-que-techo-conviene/">Chapa o teja: qué techo conviene</a>
-  compara ambas antes de que pidas presupuesto.
+  compara ambas antes de que pidas presupuesto; si ya elegiste teja, la guía
+  <a href="/guias/teja-espanola-o-francesa/">teja española o francesa</a> te ayuda a decidir
+  cuál.
 </p>

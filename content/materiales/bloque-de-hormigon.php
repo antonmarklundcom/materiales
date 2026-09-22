@@ -40,5 +40,8 @@
   <a href="/materiales/ladrillo-hueco/">ladrillo hueco</a>, o mirá la
   <a href="/materiales/varilla-de-hierro/">varilla de hierro</a> si tu pared va a llevar relleno
   estructural. Para estimar cuántas unidades o palets necesitás según tu metro cuadrado, mirá la
-  <a href="/calculadoras/ladrillos-por-m2/">calculadora de ladrillos o bloques por m²</a>.
+  <a href="/calculadoras/ladrillos-por-m2/">calculadora de ladrillos o bloques por m²</a>. Si
+  todavía no decidiste entre bloque y ladrillo, la guía
+  <a href="/guias/bloque-de-hormigon-o-ladrillo/">bloque de hormigón o ladrillo</a> compara
+  usos, avance de obra y muros armados.
 </p>

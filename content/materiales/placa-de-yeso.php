@@ -44,5 +44,7 @@
   que sostienen la placa. Si estás sumando este rubro al resto de la obra, la guía
   <a href="/guias/de-que-depende-el-costo-de-construir-en-paraguay/">De qué depende el costo
   de construir en Paraguay</a> ayuda a ubicar dónde entra el sistema en seco dentro del
-  presupuesto general.
+  presupuesto general. Y si estás decidiendo entre tabique en seco y pared de mampostería, la
+  guía <a href="/guias/durlock-o-ladrillo/">durlock o ladrillo para paredes interiores</a>
+  compara los dos sistemas.
 </p>

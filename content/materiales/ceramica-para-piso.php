@@ -60,4 +60,7 @@
   necesitás mayor resistencia, la <a href="/materiales/piedra-laja/">piedra laja</a> si es un
   patio o una galería con terminación rústica, o el
   <a href="/materiales/adhesivo-para-ceramica/">adhesivo y la pastina</a> para la colocación.
+  Si todavía dudás entre las dos piezas, la guía
+  <a href="/guias/porcelanato-o-ceramica/">porcelanato o cerámica: cuál conviene</a> las compara
+  ambiente por ambiente.
 </p>
