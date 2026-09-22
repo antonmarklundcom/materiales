@@ -181,4 +181,17 @@ return [
         'meta'   => 'Membrana asfáltica, líquida o hidrófugo: qué opción conviene para impermeabilizar una losa y en qué orden van los trabajos previos.',
         'related' => ['membrana-asfaltica', 'membrana-liquida', 'hidrofugo'],
     ],
+    // G6 (improvement report #2): glosario. Define y enlaza a la página dueña de cada término
+    // (CONTENT-SPEC §11.1); no persigue ningún término de cabecera de otra página.
+    'glosario-de-obra-paraguay' => [
+        'keyword' => 'glosario de obra',
+        'name'   => 'Glosario de obra: las palabras del corralón en Paraguay',
+        'status' => 'activa',
+        'published' => '2026-09-22',
+        'updated'   => '2026-09-22',
+        'order'  => 15,
+        'title'  => 'Glosario de obra en Paraguay: palabras del corralón',
+        'meta'   => 'Qué es un millar, una camionada, la piedra 6ta, el tejuelón o el hierro de 8: las palabras de obra y de corralón en Paraguay, cada una con su página.',
+        'related' => ['ladrillos-y-bloques', 'aridos', 'hierro', 'chapas-y-techos'],
+    ],
 ];

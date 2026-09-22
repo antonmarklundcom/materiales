@@ -524,6 +524,14 @@ section.wrap { padding-inline: var(--gutter); }
 .prose { max-width: var(--measure); }
 .prose h2:first-child { margin-top: 0; }
 
+/* ---- glosario (G6): índice de letras + <dl> por letra ---- */
+.glossary-index { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-4); font-weight: 600; }
+.glossary h2 { margin-top: var(--s-8); }
+.glossary dl { margin: 0; }
+.glossary dt { font-weight: 600; color: var(--paper-ink); margin-top: var(--s-4); scroll-margin-top: var(--s-8); }
+.glossary dt dfn { font-style: normal; }
+.glossary dd { margin: var(--s-1) 0 0; color: var(--paper-ink-70); max-width: var(--measure); }
+
 .faq { margin-top: var(--s-12); }
 .faq details {
   border-bottom: 1px solid var(--paper-hairline); padding: var(--s-4) 0;

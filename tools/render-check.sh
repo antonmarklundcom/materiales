@@ -85,8 +85,22 @@ check "/apple-touch-icon.png"      200 ''
 check "/materiales/"               200 '<h1>Catálogo de materiales de construcción</h1>'
 check "/materiales/"               200 'href="/materiales/ladrillo-refractario/"'
 # S9: los rubros "próxima" (noindex) no se enlazan desde la home ni desde el catálogo.
-absent "/"                         'href="/materiales/pinturas/"'
+absent "/"                         'href="/materiales/electricidad/"'
 absent "/materiales/"              'href="/materiales/electricidad/"'
+# G2: pinturas se promovió a activa — se enlaza desde el catálogo, lista sus materiales y
+# cada material nuevo sirve con su H1 "{Nombre} en Paraguay".
+check "/materiales/"               200 'href="/materiales/pinturas/"'
+check "/materiales/pinturas/"      200 '<h1>Pinturas en Paraguay</h1>'
+check "/materiales/pinturas/"      200 '<h2>Materiales de Pinturas</h2>'
+check "/materiales/pinturas/"      200 '"@type":"ItemList"'
+for pint in "pintura-para-pared|Pintura para pared" "pintura-para-piso|Pintura para piso" \
+            "barniz|Barniz para madera" "esmalte-sintetico|Esmalte sintético" \
+            "sellador-para-pared|Sellador para pared"; do
+  check "/materiales/pinturas/"    200 "href=\"/materiales/${pint%%|*}/\""
+  check "/materiales/${pint%%|*}/" 200 "<h1>${pint#*|} en Paraguay</h1>"
+done
+check "/materiales/pinturas/"      200 'href="/materiales/pintura-antihumedad/"'
+check "/sitemap.xml"               200 '/materiales/pinturas/'
 # S5: el héroe declara sizes y prioridad alta.
 check "/materiales/cemento-y-cal/" 200 'fetchpriority="high"'
 check "/materiales/cemento-y-cal/" 200 'sizes="(min-width: 64rem) 40vw, 100vw"'
@@ -111,6 +125,10 @@ check "/sitemap.xml"               200 '<lastmod>20'
 check "/guias/como-elegir-un-corralon/" 200 '"@type":"Article"'
 check "/guias/como-elegir-un-corralon/" 200 '"datePublished":"20'
 check "/calculadoras/hormigon-por-m3/" 200 '"author":{"@type":"Organization"'
+# G6: glosario de obra — un término visible con ancla, su enlace al dueño y el DefinedTermSet.
+check "/guias/glosario-de-obra-paraguay/" 200 '<dt id="millar"><dfn>millar</dfn></dt>'
+check "/guias/glosario-de-obra-paraguay/" 200 'href="/materiales/tejuelon/"'
+check "/guias/glosario-de-obra-paraguay/" 200 '"@type":"DefinedTermSet"'
 check "/nosotros/"                 200 '<h1>Sobre Materiales.com.py</h1>'
 check "/como-trabajamos/"          200 'Cómo verificamos a los proveedores'
 check "/sitemap.xml"               200 '/como-trabajamos/'

@@ -184,6 +184,35 @@ function schema_faq(array $faq): array
     ];
 }
 
+/**
+ * DefinedTermSet para un glosario (G6). $terms = [['id' => ancla, 'name' => ..., 'description'
+ * => texto plano], ...]. Cada término apunta a su ancla visible en la página: el schema nunca
+ * dice nada que el lector no vea. Devuelve [] si no hay términos.
+ */
+function schema_defined_term_set(string $name, string $path, array $terms): array
+{
+    if ($terms === []) {
+        return [];
+    }
+    $setId = url($path) . '#glosario';
+
+    return schema_prune([
+        '@context'       => 'https://schema.org',
+        '@type'          => 'DefinedTermSet',
+        '@id'            => $setId,
+        'name'           => $name,
+        'url'            => url($path),
+        'inLanguage'     => site('locale', 'es-PY'),
+        'hasDefinedTerm' => array_map(static fn(array $term): array => schema_prune([
+            '@type'            => 'DefinedTerm',
+            'name'             => $term['name'] ?? '',
+            'description'      => $term['description'] ?? '',
+            'url'              => url($path) . '#' . ($term['id'] ?? ''),
+            'inDefinedTermSet' => ['@id' => $setId],
+        ]), $terms),
+    ]);
+}
+
 /** Imprime cada bloque en su propio <script type="application/ld+json">. */
 function schema_render(array $blocks): void
 {
