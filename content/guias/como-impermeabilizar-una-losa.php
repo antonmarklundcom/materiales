@@ -49,7 +49,9 @@
   bajadas, encuentros con caños o remates contra parapetos, un rollo no entra cómodo en esos
   puntos, y ahí conviene la <a href="/materiales/membrana-liquida/">membrana líquida</a>, que se
   aplica con rodillo o pincel y se adapta a geometrías complicadas —incluso como complemento de
-  la membrana asfáltica en los remates puntuales que el rollo no cubre bien.
+  la membrana asfáltica en los remates puntuales que el rollo no cubre bien. Para saber cuántos
+  rollos pedir, la <a href="/calculadoras/membrana-por-m2/">calculadora de rollos de membrana
+  por m²</a> suma las subidas por los bordes y el solape entre paños a la superficie de la losa.
 </p>
 <p>
   El <a href="/materiales/hidrofugo/">hidrófugo</a>, ya sea como aditivo de la mezcla o como

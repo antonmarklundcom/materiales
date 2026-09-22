@@ -250,7 +250,7 @@ return [
         'name'       => 'Cemento',
         'status'     => 'activa',
         'published' => '2026-09-06',
-        'updated'   => '2026-09-15',
+        'updated'   => '2026-09-22',
         'title'      => 'Cemento en Paraguay | Cotizá por bolsa de 50 kg',
         'meta'       => 'Cemento en bolsa para obra, con entrega en tu zona. Decinos cuántas bolsas necesitás y hasta 3 proveedores verificados te pasan precio hoy.',
         'keyword'    => 'cemento',

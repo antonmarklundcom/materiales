@@ -21,8 +21,11 @@ BASE="http://127.0.0.1:${PORT}"
 # servidor embebido y los `php -r` de abajo la heredan.
 MATERIALES_STORAGE_DIR="$(mktemp -d)"
 export MATERIALES_STORAGE_DIR
+# Archivos de trabajo del propio check en el mismo dir temporal: con ${TMPD}/render-body fijo, dos
+# render-check en paralelo (otro puerto, otro worktree) se pisaban las respuestas.
+TMPD="${MATERIALES_STORAGE_DIR}"
 
-php -S "127.0.0.1:${PORT}" -t . tools/router-cli.php >/tmp/render-check.log 2>&1 &
+php -S "127.0.0.1:${PORT}" -t . tools/router-cli.php >${TMPD}/render-check.log 2>&1 &
 SERVER_PID=$!
 trap 'kill "${SERVER_PID}" 2>/dev/null || true; rm -rf "${MATERIALES_STORAGE_DIR}"' EXIT
 
@@ -36,14 +39,14 @@ fail=0
 check() { # ruta, status esperado, patrón que debe aparecer en el cuerpo
   local path="$1" expected="$2" pattern="${3:-}"
   local body status
-  body="$(curl -sS -o /tmp/render-body -w '%{http_code}' "${BASE}${path}")"
+  body="$(curl -sS -o ${TMPD}/render-body -w '%{http_code}' "${BASE}${path}")"
   status="${body}"
   if [ "${status}" != "${expected}" ]; then
     echo "  FAIL ${path}: status ${status}, esperaba ${expected}"
     fail=1
     return
   fi
-  if [ -n "${pattern}" ] && ! grep -q "${pattern}" /tmp/render-body; then
+  if [ -n "${pattern}" ] && ! grep -q "${pattern}" ${TMPD}/render-body; then
     echo "  FAIL ${path}: no encontré '${pattern}' en el cuerpo"
     fail=1
     return
@@ -53,8 +56,8 @@ check() { # ruta, status esperado, patrón que debe aparecer en el cuerpo
 
 absent() { # ruta, patrón que NO debe aparecer en el cuerpo (la ruta tiene que dar 200)
   local path="$1" pattern="$2" status
-  status="$(curl -sS -o /tmp/render-body -w '%{http_code}' "${BASE}${path}")"
-  if [ "${status}" != "200" ] || grep -q -- "${pattern}" /tmp/render-body; then
+  status="$(curl -sS -o ${TMPD}/render-body -w '%{http_code}' "${BASE}${path}")"
+  if [ "${status}" != "200" ] || grep -q -- "${pattern}" ${TMPD}/render-body; then
     echo "  FAIL ${path}: status ${status} o aparece '${pattern}' (no debería)"
     fail=1
     return
@@ -209,6 +212,20 @@ check "/calculadoras/"             200 'ItemList'
 check "/calculadoras/bolsas-de-cemento-por-m2/" 200 'data-calc'
 check "/calculadoras/bolsas-de-cemento-por-m2/" 200 'name="consentimiento"'
 check "/calculadoras/bolsas-de-cemento-por-m2/" 200 'Es una referencia'
+# G1 — calculadoras nuevas.
+check "/calculadoras/hierro-para-columnas/" 200 'data-calc'
+check "/calculadoras/hierro-para-columnas/" 200 '<title>Calculadora de hierro para columnas | Paraguay'
+check "/guias/cuanto-hierro-lleva-una-columna/" 200 'href="/calculadoras/hierro-para-columnas/"'
+check "/calculadoras/durlock-por-m2/" 200 'data-calc'
+check "/calculadoras/durlock-por-m2/" 200 '<title>Calculadora de placas de yeso y perfiles | Paraguay'
+check "/calculadoras/membrana-por-m2/" 200 'data-calc'
+check "/calculadoras/membrana-por-m2/" 200 '<title>Calculadora de rollos de membrana por m² | Paraguay'
+check "/calculadoras/ceramica-por-m2/" 200 'data-calc'
+check "/calculadoras/ceramica-por-m2/" 200 '<title>Calculadora de cajas de cerámica y porcelanato | Paraguay'
+check "/calculadoras/chapas-para-techo/" 200 'data-calc'
+check "/calculadoras/chapas-para-techo/" 200 '<title>Calculadora de chapas para techo: cuántas pedir | Paraguay</title>'
+check "/calculadoras/tanque-de-agua-litros/" 200 'data-calc'
+check "/calculadoras/tanque-de-agua-litros/" 200 '<title>Calculadora de litros del tanque de agua | Paraguay'
 check "/calculadoras/no-existe/"   404 'No encontramos'
 check "/materiales/cemento/"       200 'Calculadoras relacionadas'
 check "/guias/cuantas-bolsas-de-cemento-por-m2/" 200 'Calculadoras relacionadas'
@@ -233,9 +250,9 @@ stamp() { # antigüedad en segundos → "ts tsg"
 post() { # descripción, status esperado, patrón esperado en Location, campos de curl…
   local what="$1" expected="$2" pattern="$3"; shift 3
   local status location
-  status="$(curl -sS -o /tmp/post-body -D /tmp/post-head -w '%{http_code}' \
+  status="$(curl -sS -o ${TMPD}/post-body -D ${TMPD}/post-head -w '%{http_code}' \
               "${BASE}/cotizar/enviar.php" "$@")"
-  location="$(grep -i '^location:' /tmp/post-head | tr -d '\r' | sed 's/^[Ll]ocation: *//' || true)"
+  location="$(grep -i '^location:' ${TMPD}/post-head | tr -d '\r' | sed 's/^[Ll]ocation: *//' || true)"
   if [ "${status}" != "${expected}" ]; then
     echo "  FAIL ${what}: status ${status}, esperaba ${expected}"
     fail=1
@@ -320,7 +337,7 @@ fi
 # 4. Teléfono inválido: vuelve al formulario, y NO arrastra datos personales en la URL.
 post "teléfono inválido vuelve al formulario" 303 'error=telefono' \
   "${VALID[@]}" --data-urlencode "telefono=123" --data-urlencode "consentimiento=1"
-if grep -i '^location:' /tmp/post-head | grep -qi 'nombre\|telefono='; then
+if grep -i '^location:' ${TMPD}/post-head | grep -qi 'nombre\|telefono='; then
   echo "  FAIL el redirect de error arrastra datos personales en la URL"
   fail=1
 fi
@@ -340,7 +357,7 @@ else
   echo "  ok   el camino feliz escribió leads.log"
 fi
 # C8: la referencia que ve el visitante en /gracias/ (mitad del token k) queda en su línea.
-K="$(grep -i '^location:' /tmp/post-head | tr -d '\r' | sed -E 's/.*k=([0-9a-f]{16}).*/\1/')"
+K="$(grep -i '^location:' ${TMPD}/post-head | tr -d '\r' | sed -E 's/.*k=([0-9a-f]{16}).*/\1/')"
 REF="$(printf '%s' "${K:0:8}" | tr 'a-f' 'A-F')"
 if [ -n "${REF}" ] && tail -n 1 "${LOG}" | grep -q "\"ref\":\"${REF}\""; then
   echo "  ok   leads.log guarda la referencia ${REF} del pedido"
@@ -470,7 +487,7 @@ fi
 
 if [ "${fail}" -ne 0 ]; then
   echo "RENDER CHECK FAIL"
-  cat /tmp/render-check.log
+  cat ${TMPD}/render-check.log
   exit 1
 fi
 echo "RENDER CHECK OK"
