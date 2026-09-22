@@ -30,3 +30,31 @@
   <a href="/guias/que-piedra-usar-para-cimientos/">Qué piedra usar para cimientos</a> te ayuda
   a decidir antes de pedir la cotización.
 </p>
+
+<h2>Cómo elegir entre los áridos</h2>
+<p>
+  Casi todos se piden por m³, así que lo que cambia de uno a otro es para qué va y qué dato
+  extra necesita el proveedor. Esta tabla resume lo que dice la página de cada material.
+</p>
+<table>
+  <thead>
+    <tr><th>Material</th><th>Para qué va</th><th>Qué pedirle al proveedor</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><a href="/materiales/arena-lavada/">Arena lavada</a></td><td>Revoques, morteros de asentamiento y contrapisos finos</td><td>Los m³ y que venga lavada, sin barro ni arcilla</td></tr>
+    <tr><td><a href="/materiales/arena-gorda/">Arena gorda</a></td><td>Contrapisos de espesor normal, hormigón y bases</td><td>Los m³; si va en una losa o columna, que confirmen que es apta</td></tr>
+    <tr><td><a href="/materiales/ripio/">Canto rodado o ripio</a></td><td>Bases compactadas, drenajes y hormigón de menor exigencia</td><td>Los m³ y el uso, porque base y drenaje piden otro tamaño</td></tr>
+    <tr><td><a href="/materiales/piedra-triturada/">Piedra triturada</a></td><td>Hormigón estructural y bases de pavimento</td><td>Los m³ y la granulometría: 4ta, 5ta o 6ta</td></tr>
+    <tr><td><a href="/materiales/piedra-bruta/">Piedra bruta</a></td><td>Cimientos y muros de contención</td><td>Los m³, sacados del largo y la profundidad de la zanja</td></tr>
+    <tr><td><a href="/materiales/tierra-gorda/">Tierra colorada</a></td><td>Nivelar y rellenar antes de un contrapiso o una construcción</td><td>Los m³ según área y altura de relleno, sin raíces ni basura</td></tr>
+    <tr><td><a href="/materiales/escombro-relleno/">Escombro para relleno</a></td><td>Ganar cota o tapar pozos sin compactación fina</td><td>Los m³ y que sea escombro limpio</td></tr>
+  </tbody>
+</table>
+<p>
+  Un ejemplo con la <a href="/calculadoras/bolsas-de-cemento-por-m2/">calculadora de bolsas de
+  cemento por m²</a>: un contrapiso de <strong>40 m² con 10 cm de espesor</strong>, en la
+  proporción de manual 1:3:5 (cemento, arena y ripio) y con un 10 % de desperdicio, pide
+  <strong>2,2 m³ de arena</strong> y <strong>3,74 m³ de ripio</strong>, además de 22 bolsas de
+  cemento. Pasá esos dos volúmenes en la misma consulta y con la misma zona: el proveedor arma
+  la camionada y cotizás un solo flete. Si tu maestro usa otra proporción, la cuenta cambia.
+</p>

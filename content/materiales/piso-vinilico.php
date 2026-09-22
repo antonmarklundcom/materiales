@@ -16,9 +16,10 @@
 
 <h2>Cómo se vende, cómo pedirlo y de qué depende el precio</h2>
 <p>
-  Se vende por <strong>metro cuadrado o por caja</strong>, según el formato: rollo se cotiza
-  por m² lineal de ancho de rollo, mientras que placas adhesivas o piso click vienen en caja
-  cerrada como la cerámica. Para pedir bien necesitás la superficie total a cubrir, el sistema
+  Se vende por <strong>metro cuadrado o por caja</strong>, según el formato: el rollo se corta
+  por metro lineal, y los m² salen de multiplicar ese largo por el ancho del rollo, que te
+  confirma el proveedor; las placas adhesivas o el piso click vienen en caja cerrada como la
+  cerámica. Para pedir bien necesitás la superficie total a cubrir, el sistema
   que preferís —adhesivo, click o rollo— y el espesor de la pieza, porque un espesor mayor
   resiste mejor el tránsito diario pero también cuesta distinto. Si el piso base tiene
   desniveles marcados, puede hacer falta una <strong>base niveladora</strong> antes de colocar,
@@ -41,6 +42,16 @@
   guía <a href="/guias/de-que-depende-el-costo-de-construir-en-paraguay/">de qué depende el
   costo de construir en Paraguay</a> ayuda a poner esa decisión en contexto.
 </p>
+<table>
+  <thead>
+    <tr><th>Sistema</th><th>Cuándo conviene</th><th>Qué preguntar antes de pedir</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Placas adhesivas</td><td>Renovar pegando directo sobre el piso actual</td><td>Que la base esté limpia, seca y nivelada; si el modelo tolera humedad</td></tr>
+    <tr><td>Click o flotante (incluido el SPC)</td><td>Encastrar sin pegamento; el SPC, donde hay algo de agua</td><td>Espesor en mm y resistencia al agua de ese modelo puntual</td></tr>
+    <tr><td>Rollo</td><td>Superficies grandes en una sola pieza: locales, consultorios</td><td>Ancho del rollo, metros lineales y si hace falta base niveladora</td></tr>
+  </tbody>
+</table>
 
 <p class="closing">
   Volvé a <a href="/materiales/pisos-y-revestimientos/">pisos y revestimientos</a> para ver el

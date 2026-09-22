@@ -24,6 +24,16 @@
   final depende del espesor, del largo total, de la cantidad de m² y del flete hasta tu zona;
   por eso no hay una cifra única que sirva para toda obra.
 </p>
+<p>
+  Un ejemplo: un dormitorio nuevo con techo a <strong>1 agua</strong>, faldón de
+  <strong>5 m</strong> de cumbrera a alero y <strong>6 m</strong> a lo largo del alero. Con un
+  panel de <strong>1 m de ancho útil</strong> (valor de ejemplo: pedí el del panel que te
+  ofrecen), la <a href="/calculadoras/chapas-para-techo/">calculadora de chapas para techo</a>
+  da 6 paneles por faldón y, con el 5 % de margen que trae cargado, <strong>7 paneles de
+  5 m</strong> (35 metros lineales) para 30 m² de techo. Si el proveedor corta a medida y no
+  querés un panel de repuesto, con el margen en 0 quedan <strong>6 paneles</strong> y 30 metros
+  lineales: con piezas largas, esa diferencia pesa en el presupuesto.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

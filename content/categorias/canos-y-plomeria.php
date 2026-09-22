@@ -24,3 +24,28 @@
   <a href="/guias/como-hacer-un-computo-metrico/">cómo hacer un cómputo métrico</a> te ayuda a
   ordenar cantidades y metros antes de consultar.
 </p>
+
+<h2>Cómo elegir entre los materiales de plomería</h2>
+<p>
+  La pregunta que ordena todo es qué hace el agua en cada tramo: si se guarda, si llega con
+  presión a un artefacto o si se va por gravedad al desagüe.
+</p>
+<table>
+  <thead>
+    <tr><th>Material</th><th>Para qué va</th><th>Qué pedirle al proveedor</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><a href="/materiales/tanque-de-agua/">Tanque de agua</a></td><td>Guardar la reserva de toda la casa</td><td>Litraje, tricapa o bicapa, tapa hermética, y si suma base y flotante</td></tr>
+    <tr><td><a href="/materiales/cano-de-agua/">Caño de agua</a></td><td>Llevar agua fría y caliente con presión a cada artefacto</td><td>Termofusión o roscado, diámetro por tramo, accesorios del mismo sistema y llaves de paso</td></tr>
+    <tr><td><a href="/materiales/cano-de-pvc/">Caño de PVC</a></td><td>Desagüe cloacal y pluvial, por gravedad</td><td>Diámetro por tramo, largo de la barra, junta elástica o pegamento y accesorios</td></tr>
+  </tbody>
+</table>
+<p>
+  El litraje del tanque es lo primero que te van a preguntar. Un ejemplo con la
+  <a href="/calculadoras/tanque-de-agua-litros/">calculadora de litros del tanque de agua</a>:
+  3 personas, con los 150 litros por persona por día que trae cargados como referencia y un día
+  de reserva, son 450 litros; con el 10 % de margen de ejemplo, <strong>495 litros</strong>.
+  Entran en <strong>1 tanque de 1000 litros</strong> o en <strong>1 de 500</strong>, aunque
+  este último queda justo: si esperás más gente en la casa o cortes más largos, cargá más días
+  de reserva y rehacé la cuenta antes de pedir.
+</p>

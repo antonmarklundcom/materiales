@@ -23,6 +23,13 @@
   casos. Si además vas a comprar cemento o piedra triturada para la misma tarea, pedilo todo
   junto: se ahorra un viaje de flete.
 </p>
+<p>
+  Un ejemplo con la <a href="/calculadoras/revoque-y-mortero/">calculadora de cal, cemento y
+  arena por m² de revoque</a>: para revocar <strong>40 m² de pared con 2 cm de espesor</strong>,
+  en la mezcla de manual 1:1:6 y con un 10 % de desperdicio, salen <strong>0,92 m³ de arena
+  lavada</strong>, junto con 4 bolsas de cemento y 88 kg de cal hidratada. Ese 0,92 m³ es el dato
+  que le pasás al proveedor; si tu maestro usa otra proporción, la cuenta cambia.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

@@ -19,6 +19,14 @@
   mezcla y a veces conviene pedir junto con arena lavada para no hacer un viaje aparte. El precio depende
   de la cantidad de bolsas pedidas y del flete hasta tu zona, como con el resto de los aglomerantes.
 </p>
+<p>
+  Un ejemplo con la <a href="/calculadoras/revoque-y-mortero/">calculadora de cal, cemento y
+  arena por m² de revoque</a>: para <strong>25 m² de pared con 2 cm de revoque</strong>, en la
+  mezcla de manual 1:1:6 (cemento, cal y arena) y con un 10 % de desperdicio, salen
+  <strong>55 kg de cal hidratada</strong>, 3 bolsas de cemento y 0,58 m³ de arena lavada. La
+  calculadora da la cal en kilos porque el peso de la bolsa depende del proveedor: pasale esos
+  kilos y que te diga cuántas bolsas son. Si tu maestro usa otra proporción, la cuenta cambia.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

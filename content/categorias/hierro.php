@@ -32,3 +32,33 @@
   <a href="/guias/que-diametro-de-hierro-para-que-uso/">Qué diámetro de hierro para qué uso</a>
   te ayuda a orientarte antes de pedir.
 </p>
+
+<h2>Cómo elegir entre los materiales de hierro</h2>
+<p>
+  Lo que ordena el pedido es qué vas a hacer: armar hormigón, atar, fijar, levantar una
+  estructura de acero o cerrar un terreno. Esta tabla resume cada material y qué dato te pide
+  el proveedor.
+</p>
+<table>
+  <thead>
+    <tr><th>Material</th><th>Para qué va</th><th>Qué pedirle al proveedor</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><a href="/materiales/varilla-de-hierro/">Varilla de hierro</a></td><td>Armado de columnas, vigas, losas y zapatas</td><td>Diámetro y cantidad de barras de 12 m por diámetro; corte y doblado, aparte</td></tr>
+    <tr><td><a href="/materiales/malla-electrosoldada/">Malla electrosoldada</a></td><td>Contrapisos, veredas, patios y losas livianas</td><td>Los m² a cubrir y el uso; diámetro del alambre y separación de la cuadrícula</td></tr>
+    <tr><td><a href="/materiales/alambre-negro/">Alambre negro</a></td><td>Atar la armadura antes de hormigonar</td><td>Número de alambre y si va por rollo o por kilo</td></tr>
+    <tr><td><a href="/materiales/clavos/">Clavos</a></td><td>Encofrados y carpintería de obra</td><td>Medida del clavo y kilos; el espesor de la tabla si es para encofrado</td></tr>
+    <tr><td><a href="/materiales/perfiles-metalicos/">Perfiles metálicos</a></td><td>Estructuras de acero: techos, entrepisos, galpones</td><td>Tipo de perfil, medida, espesor y cantidad de barras o metros</td></tr>
+    <tr><td><a href="/materiales/metal-desplegado/">Metal desplegado</a></td><td>Agarre del revoque, cielorraso armado y cerramientos</td><td>El uso (liviano o pesado), los m² u hojas y si lo querés galvanizado</td></tr>
+    <tr><td><a href="/materiales/tejido-de-alambre/">Tejido de alambre</a></td><td>Cercos de lotes, patios y predios</td><td>Metros de perímetro y altura; postes, tensores y púas se cotizan aparte</td></tr>
+  </tbody>
+</table>
+<p>
+  Un ejemplo con la <a href="/calculadoras/hierro-para-columnas/">calculadora de hierro para
+  columnas</a>: con los datos que trae precargados —8 columnas de 3 m, sección de 20 × 30 cm,
+  4 barras de 12 mm, 0,50 m de empalme y estribos de 6 mm cada 15 cm, que son un ejemplo de
+  plano y no una recomendación— la cuenta da <strong>11 barras de 12 m</strong> de 12 mm para
+  el hierro longitudinal y <strong>14 barras de 12 m</strong> de 6 mm para los 168 estribos:
+  <strong>147 kg</strong> en total, con un 10 % extra por cortes. El alambre negro para atar
+  no entra en esa cuenta: sumalo en la misma consulta.
+</p>

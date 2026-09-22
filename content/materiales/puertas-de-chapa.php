@@ -31,8 +31,21 @@
   cerradura se cotiza aparte, porque en herrería eso varía mucho de un taller a otro. Las puertas
   de chapa suelen entregarse con fondo antióxido nada más, así que si la querés lista para usar
   aclará desde el pedido que la necesitás pintada, porque esa terminación no siempre está
-  incluida.
+  incluida. Si la pintás vos, sobre ese fondo va un
+  <a href="/materiales/esmalte-sintetico/">esmalte sintético</a>, que es la pintura para metal
+  que aguanta roce e intemperie.
 </p>
+<table>
+  <thead>
+    <tr><th>Qué confirmar en la oferta</th><th>Por qué</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Uso de la puerta</td><td>De ahí sale el espesor de chapa y el refuerzo que recomienda el taller</td></tr>
+    <tr><td>Marco</td><td>Puede venir incluido o cotizarse aparte</td></tr>
+    <tr><td>Cerradura</td><td>Varía de un taller a otro: confirmá si se cotiza aparte</td></tr>
+    <tr><td>Terminación</td><td>Sólo fondo antióxido o pintada y lista para usar</td></tr>
+  </tbody>
+</table>
 
 <p class="closing">
   Volvé a <a href="/materiales/aberturas/">aberturas</a> para ver otras opciones de puerta, o

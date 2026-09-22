@@ -35,6 +35,18 @@
   distinto tipo sin preguntar si son compatibles. Aplicá en capas finas y respetá el secado entre
   manos que indica el envase: una mano gruesa chorrea y tarda en endurecer.
 </p>
+<table>
+  <thead>
+    <tr><th>Estado de la pieza</th><th>Qué hacer antes del esmalte</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Hierro con óxido</td><td>Sacar el óxido suelto con lija o cepillo de alambre, limpiar la grasa y dar antióxido</td></tr>
+    <tr><td>Hierro nuevo</td><td>Limpiar la grasa y dar el fondo antióxido</td></tr>
+    <tr><td>Esmalte viejo en buen estado</td><td>Lijar para abrir poro</td></tr>
+    <tr><td>Esmalte descascarado</td><td>Sacarlo antes de volver a pintar</td></tr>
+    <tr><td>Madera que va pintada</td><td>Fondo para madera; si querés ver la veta, lo que va es barniz</td></tr>
+  </tbody>
+</table>
 
 <p class="closing">
   Volvé a <a href="/materiales/pinturas/">pinturas</a> para ver el resto de las opciones, mirá

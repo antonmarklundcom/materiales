@@ -26,6 +26,18 @@
   espesor de la pieza, con los metros cuadrados totales y con lo que incluya el trabajo en
   obra. Dos presupuestos por metro cuadrado sólo se comparan si cubren las mismas partidas.
 </p>
+<table>
+  <thead>
+    <tr><th>Partida</th><th>Qué tiene que aclarar la oferta</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Madera</td><td>Especie, formato y espesor de la pieza, estado de secado y m² por ambiente</td></tr>
+    <tr><td>Adhesivo o fijación</td><td>Si está incluido o se cotiza aparte</td></tr>
+    <tr><td>Colocación</td><td>El dibujo (damero, espina de pez, tablas corridas) y el margen por cortes que suma</td></tr>
+    <tr><td>Lijado y plastificado</td><td>Si van en el precio por m² o como trabajo aparte</td></tr>
+    <tr><td>Zócalo y flete</td><td>Se cotizan aparte: metros de zócalo y zona de entrega</td></tr>
+  </tbody>
+</table>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

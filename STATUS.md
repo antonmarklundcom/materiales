@@ -41,7 +41,8 @@ detalle por fase en `docs/log/`)._
 | G1 — Calculadoras | 6 nuevas (10 en total) | ✅ #50 |
 | G3 + A1 — Páginas nuevas + sello | ducha higiénica, piso parquet, metal desplegado; /proveedores/verificado/ | ✅ #51 |
 | G2 + G6 — Pinturas + glosario | rubro Pinturas activo con 5 materiales; guía glosario | ✅ #52 |
-| G4 — Guías comparativas | 6 guías "X o Y" | ✅ este PR |
+| G4 — Guías comparativas | 6 guías "X o Y" | ✅ #53 |
+| G5 — Profundidad | tablas + ejemplos resueltos en las 13 categorías y ~60 materiales; tablas de dosificación en guías | ✅ este PR |
 
 Scripts de operación nuevos (todos CLI, ver `DEPLOY.md`): `tools/replay-leads.php` (con tope
 de reintentos y alerta), `tools/lead-digest.php` (resumen diario), `tools/maintenance.php`

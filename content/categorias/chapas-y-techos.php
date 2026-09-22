@@ -19,6 +19,28 @@
   hacia la bajada.
 </p>
 
+<h2>Cómo elegir entre los materiales del techo</h2>
+<p>
+  Un resumen de lo que dice la página de cada material, para saber qué pedir antes de
+  consultar:
+</p>
+<table>
+  <thead>
+    <tr><th>Material</th><th>Para qué va</th><th>Qué pedirle al proveedor</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Chapa de zinc</td><td>Vivienda, cocheras y amplia&shy;ciones sin aislación especial</td><td>Largo de faldón, calibre (n° 25 o 26) y ancho útil</td></tr>
+    <tr><td>Chapa trape&shy;zoidal</td><td>Galpones y techos con mucha luz entre correas</td><td>Perfil y calibre que aguanten tu luz entre correas</td></tr>
+    <tr><td>Chapa termo&shy;acústica</td><td>Techo sobre un ambiente habitado</td><td>Espesor y tipo de núcleo, largo de faldón para el corte</td></tr>
+    <tr><td>Teja española</td><td>Techo colonial, galerías, restau&shy;raciones</td><td>Super&shy;ficie, pendiente y si es lisa o esmaltada</td></tr>
+    <tr><td>Teja francesa</td><td>Techos de líneas rectas y pendiente marcada</td><td>Piezas por m² según el encastre, y repuestos del mismo lote</td></tr>
+    <tr><td>Fibro&shy;cemento</td><td>Techos y cerra&shy;mientos que no se oxidan</td><td>Espesor según la luz entre correas, tornillos con arandela</td></tr>
+    <tr><td>Poli&shy;carbonato</td><td>Galerías, parri&shy;lleros y clara&shy;boyas con luz natural</td><td>Espesor, alveolar o compacto, cara con protec&shy;ción UV</td></tr>
+    <tr><td>Cielo&shy;rraso de PVC</td><td>Cierre interior bajo chapa o losa, y aleros</td><td>m² del ambiente, ancho de tablilla, perfiles de borde</td></tr>
+    <tr><td>Canaletas</td><td>Llevar el agua del alero a la bajada</td><td>Metros de alero, cantidad de bajadas, PVC o chapa</td></tr>
+  </tbody>
+</table>
+
 <h2>Cómo se cotiza en Paraguay</h2>
 <p>
   Cada material de esta categoría se cotiza distinto: chapa y fibrocemento por metro lineal o
@@ -31,4 +53,16 @@
   peso, aislación y mantenimiento de cada opción antes de pedir presupuesto. Pasanos las
   medidas del techo, la pendiente y el material que tenés en mente, y te armamos una
   cotización que cubra estructura y terminación juntas.
+</p>
+
+<h3>Un ejemplo con números</h3>
+<p>
+  Un techo a <strong>2 aguas</strong> con faldones de <strong>5 m</strong> de cumbrera a alero y
+  <strong>12 m</strong> a lo largo del alero, con una chapa de <strong>1 m de ancho útil</strong>
+  (un valor de ejemplo: el real te lo da el proveedor). La
+  <a href="/calculadoras/chapas-para-techo/">calculadora de chapas para techo</a> da
+  <strong>12 chapas por faldón</strong> y, con el 5 % de chapas de más, <strong>26 chapas de
+  5 m</strong>: 130 metros lineales para 120 m² de techo. Con las mismas medidas salen los
+  accesorios que conviene pedir junto: la cumbrera corre a lo largo de los 12 m, y si llevás
+  canaleta en los dos aleros son 24 metros lineales, más las bajadas que definas.
 </p>

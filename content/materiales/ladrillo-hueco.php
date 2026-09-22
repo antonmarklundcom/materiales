@@ -21,6 +21,12 @@
   la zona de entrega. El precio final varía según el espesor, la cantidad de millares y la
   distancia hasta tu obra, así que no hay una cifra fija que sirva para cualquier tabique.
 </p>
+<p>
+  Un ejemplo de cómo sacar ese metro cuadrado: un tabique de 3,5 m de largo y 2,6 m de alto son
+  3,5 × 2,6 = 9,1 m². Si lleva una puerta de 0,80 × 2 m, restá 1,6 m² y quedan
+  <strong>7,5 m²</strong>. Esos 7,5 m² de ladrillo de 12, por ejemplo, son el dato para el
+  proveedor; él los pasa a piezas con la medida de cara del ladrillo que vende.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>
@@ -47,6 +53,7 @@
   <a href="/materiales/ladrillo-comun/">ladrillo común</a>, o mirá el
   <a href="/materiales/bloque-de-hormigon/">bloque de hormigón</a> si buscás levantar pared más
   rápido con menos piezas. La
-  <a href="/calculadoras/ladrillos-por-m2/">calculadora de ladrillos o bloques por m²</a> te
-  ayuda a estimar el millar según el espesor y el metro cuadrado de tu tabique.
+  <a href="/calculadoras/ladrillos-por-m2/">calculadora de ladrillos o bloques por m²</a>
+  trabaja con ladrillo común y bloque, no con hueco: para el tabique, pasale al proveedor los m²
+  y el espesor, y que él calcule el millar con la medida de su pieza.
 </p>

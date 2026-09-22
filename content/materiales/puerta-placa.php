@@ -34,6 +34,18 @@
   mampostería— y pedí que te confirmen el sentido de apertura antes de fabricar, porque una vez
   hecha la puerta no se puede invertir sin cambiar el marco.
 </p>
+<table>
+  <thead>
+    <tr><th>Dato para el pedido</th><th>De dónde sale</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Ancho y alto del vano</td><td>Medidos en obra, no del plano</td></tr>
+    <tr><td>Espesor de la pared</td><td>Donde va a apoyar el marco</td></tr>
+    <tr><td>Apertura izquierda o derecha</td><td>Confirmada antes de fabricar</td></tr>
+    <tr><td>Marco de madera o de chapa</td><td>Según el tipo de tabique</td></tr>
+    <tr><td>Hoja sola o conjunto</td><td>Si el precio incluye marco, bisagras y cerradura</td></tr>
+  </tbody>
+</table>
 
 <p class="closing">
   Volvé a <a href="/materiales/aberturas/">aberturas</a> para ver el resto de puertas y

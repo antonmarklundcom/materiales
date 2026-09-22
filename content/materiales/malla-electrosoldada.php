@@ -23,6 +23,14 @@
   flete hasta tu zona se cotiza aparte del material. El precio final depende de la medida del
   paño, el diámetro del alambre, la separación de la cuadrícula y los metros cuadrados totales.
 </p>
+<p>
+  Un ejemplo: un patio de 6 × 4 m son 24 m². Pedí la malla por esos 24 m², aclarando que es
+  para patio, y el proveedor suma el solape entre paños. El hormigón que va encima lo resolvés
+  con la <a href="/calculadoras/bolsas-de-cemento-por-m2/">calculadora de bolsas de cemento por
+  m²</a>: para esos 24 m² de contrapiso con 8 cm de espesor (el tuyo lo define tu obra) da
+  <strong>11 bolsas de cemento</strong>, 1,06 m³ de arena y 1,8 m³ de ripio, con un 10 % de
+  desperdicio. Así cotizás malla y mezcla en la misma consulta.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

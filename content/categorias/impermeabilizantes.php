@@ -18,6 +18,24 @@
   a ninguno de los anteriores pero completan cualquier sistema de impermeabilización.
 </p>
 
+<h2>Cómo elegir entre un producto y otro</h2>
+<p>
+  La pregunta que ordena todo es dónde entra el agua. Este cuadro resume lo que dice la página
+  de cada producto:
+</p>
+<table>
+  <thead>
+    <tr><th>Producto</th><th>Dónde trabaja</th><th>Qué pedirle al proveedor</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Membrana asfáltica</td><td>Losas y azoteas grandes y regulares</td><td>Espesor, m² por rollo, ancho y solape reco&shy;mendado</td></tr>
+    <tr><td>Membrana líquida</td><td>Techos con encuen&shy;tros, bajadas y caños; mante&shy;nimiento</td><td>Rendi&shy;miento por mano, cuántas manos pide y si lleva malla de refuerzo</td></tr>
+    <tr><td>Pintura anti&shy;humedad</td><td>Pared con manchas, salitre o revoque que se levanta</td><td>Si es para interior o exterior, y rendi&shy;miento por mano</td></tr>
+    <tr><td>Hidrófugo</td><td>Dentro de la mezcla: capa aisla&shy;dora, revoques húmedos, hormigón contra tierra</td><td>La propor&shy;ción que indica el fabri&shy;cante para tu uso</td></tr>
+    <tr><td>Sella&shy;dores y siliconas</td><td>Juntas de vidrios, sani&shy;tarios y encuen&shy;tros con movi&shy;miento</td><td>Qué junta es, si se pinta encima y los metros de junta</td></tr>
+  </tbody>
+</table>
+
 <h2>Cómo se cotiza en Paraguay</h2>
 <p>
   Cada producto de esta categoría se pide distinto: la membrana asfáltica por rollo según los
@@ -32,4 +50,16 @@
   el punto a resolver es específicamente una losa, la guía
   <a href="/guias/como-impermeabilizar-una-losa/">cómo impermeabilizar una losa</a> repasa el
   paso a paso antes de que llegue la temporada de lluvias.
+</p>
+
+<h3>Un ejemplo con números</h3>
+<p>
+  Una azotea de <strong>5 × 12 m</strong> (60 m²) con parapeto en todo el contorno tiene 34 m de
+  perímetro. Cargada en la
+  <a href="/calculadoras/membrana-por-m2/">calculadora de rollos de membrana</a> con una subida
+  de 20 cm por el parapeto, un rollo de ejemplo de 10 m² y 1 m de ancho, 10 cm de solape y 5 %
+  por cortes y remates, da <strong>66,8 m² a cubrir</strong>, <strong>77,93 m² de
+  membrana</strong> y <strong>8 rollos</strong>. La cuenta rápida de 60 ÷ 10 habría dado 6: por
+  eso conviene pasarle al proveedor los m² con las subidas, no sólo los de la losa, y confirmar
+  con él los m² y el ancho reales del rollo que te ofrece.
 </p>

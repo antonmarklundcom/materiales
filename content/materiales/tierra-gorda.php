@@ -24,6 +24,12 @@
   compactar el relleno después, puede convenir pedir junto algo de
   <a href="/materiales/arena-gorda/">arena gorda</a> para las últimas capas.
 </p>
+<p>
+  Un ejemplo: un patio de 8 × 5 m que tiene que subir 20 cm son 8 × 5 × 0,20 =
+  <strong>8 m³</strong>. Ese es el volumen del hueco a llenar ya compactado; como la tierra
+  llega suelta y se compacta en capas, pasale al proveedor el área, la altura y ese volumen, y
+  que te diga cuánto conviene pedir para llegar al nivel.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

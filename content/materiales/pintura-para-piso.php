@@ -26,6 +26,12 @@
   diluyente. El precio depende del tipo de pintura, del color, del litraje, de la cantidad de
   manos, de los m² y del flete hasta tu zona.
 </p>
+<p>
+  Un ejemplo: un garaje de 3 × 6 m son 18 m² y una galería de 2,5 × 8 m, 20 m². Pasalos en dos
+  líneas y no como 38 m² juntos: por el garaje circulan autos y por la galería gente, y si una
+  está bajo techo y la otra a la intemperie, puede que no corresponda el mismo producto. Las
+  manos y el rendimiento de cada uno figuran en su envase.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

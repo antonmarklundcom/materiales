@@ -21,6 +21,34 @@
   vista, como en decks, aberturas y estructuras que no se van a tapar.
 </p>
 
+<h2>Cómo elegir entre madera de obra, placas y terminación</h2>
+<p>
+  Este cuadro resume lo que dice la página de cada material, para llegar a la consulta con los
+  datos que el proveedor te va a pedir:
+</p>
+<table>
+  <thead>
+    <tr><th>Material</th><th>Para qué va</th><th>Qué pedirle al proveedor</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Tirantes</td><td>Estruc&shy;tura de techo y entre&shy;pisos</td><td>Escua&shy;dría para tu luz y sepa&shy;ración, largo sin empalmes, trata&shy;miento si queda expuesto</td></tr>
+    <tr><td>Puntales</td><td>Sostener el enco&shy;frado mientras el hormigón fragua</td><td>Largo según la altura hasta el fondo del enco&shy;frado, y m² y espesor de la losa</td></tr>
+    <tr><td>Tabla de enco&shy;frado</td><td>Moldes de vigas, columnas y losas que no quedan vistos</td><td>m² de enco&shy;frado o escua&shy;dría y largo; nueva o usada</td></tr>
+    <tr><td>Terciada</td><td>Encofrado con cara lisa y losas vistas</td><td>Espesor (15, 18 o 25 mm) y fenólica o común</td></tr>
+    <tr><td>Machimbre</td><td>Cielo&shy;rrasos y techos a la vista</td><td>m² a cubrir, espesor y ancho de tabla; los listones van aparte</td></tr>
+    <tr><td>Listones</td><td>Clava&shy;dera, marcos y refuerzos menores</td><td>Escua&shy;dría, largo y si lo querés cepillado o en bruto</td></tr>
+    <tr><td>MDF y fibro&shy;fácil</td><td>Muebles, placares y revesti&shy;mientos en ambientes secos</td><td>Espesor según la pieza, crudo o laminado</td></tr>
+    <tr><td>Madera dura</td><td>Piezas al sol, a la lluvia o a la vista</td><td>Especie según la expo&shy;sición, escua&shy;dría, cepillada o en bruto</td></tr>
+  </tbody>
+</table>
+<p>
+  Un criterio vale para toda la madera maciza: preguntá si viene <strong>estacionada o recién
+  aserrada</strong>. Una pieza verde se tuerce y se abre al secar, y en un tirante de techo o en
+  una pieza de madera dura a la vista eso después se nota. En las placas, el criterio es el
+  ambiente: la terciada fenólica aguanta la humedad del hormigón, mientras que el MDF crudo se
+  hincha con la humedad y no vuelve a su forma.
+</p>
+
 <h2>Cómo se cotiza en Paraguay</h2>
 <p>
   La madera de obra —tirantes, puntales, tabla de encofrado, listones— se pide casi siempre

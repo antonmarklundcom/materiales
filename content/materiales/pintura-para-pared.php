@@ -26,6 +26,14 @@
   depende del tipo de látex, la terminación, el litraje del envase, la cantidad total, si el
   color se prepara a pedido y el flete hasta tu zona.
 </p>
+<p>
+  Un ejemplo de cómo sacar los m²: un living de 4 × 5 m con 2,70 m de alto tiene
+  (4 + 5) × 2 = 18 m de perímetro, y 18 × 2,70 = 48,6 m² de pared. Si las aberturas suman
+  5,6 m², quedan 43 m² de látex interior; el cielorraso, 4 × 5 = 20 m², va aparte si lo pintás
+  con otra terminación. Un frente se mide igual, pero se pide en otra línea, porque lleva látex
+  exterior. Con esos m² y las manos y el rendimiento que figuran en el envase del producto que
+  elijas, el proveedor te dice cuántas latas o baldes.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <table>

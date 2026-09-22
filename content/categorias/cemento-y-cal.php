@@ -27,3 +27,31 @@
   guía <a href="/guias/como-elegir-un-corralon/">Cómo elegir un corralón</a> repasa qué mirar
   antes de decidirte por un proveedor.
 </p>
+
+<h2>Cómo elegir entre los materiales de cemento y cal</h2>
+<p>
+  Lo que decide qué pedir es la etapa de la obra: estructura, revoque, terminación o
+  colocación de pisos. Esta tabla resume lo que dice la página de cada material y qué dato te
+  va a pedir el proveedor.
+</p>
+<table>
+  <thead>
+    <tr><th>Material</th><th>Para qué va</th><th>Qué pedirle al proveedor</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><a href="/materiales/cemento/">Cemento</a></td><td>Mampostería, contrapisos, revoque grueso, columnas y vigas</td><td>Cantidad de bolsas de 50 kg y el tipo: gris, blanco o de albañilería</td></tr>
+    <tr><td><a href="/materiales/cal-hidratada/">Cal hidratada</a></td><td>Revoque fino, pintura a la cal y morteros de asentado</td><td>Cantidad de bolsas y el uso: revoque, mano final o pintura; cal fina para la última mano</td></tr>
+    <tr><td><a href="/materiales/cal-viva/">Cal viva</a></td><td>Apagar la cal en obra</td><td>Cantidad de bolsas, aclarando que la vas a apagar vos</td></tr>
+    <tr><td><a href="/materiales/hormigon-elaborado/">Hormigón elaborado</a></td><td>Losas, contrapisos grandes, zapatas y columnas sin mezclar en obra</td><td>Los m³ a volcar, el elemento y si hace falta bombeado</td></tr>
+    <tr><td><a href="/materiales/adhesivo-para-ceramica/">Adhesivo para cerámica</a></td><td>Pegar cerámica y porcelanato y tomar juntas con pastina</td><td>Los m², si la pieza es cerámica o porcelanato, y el color de la pastina</td></tr>
+  </tbody>
+</table>
+<p>
+  Un ejemplo de pedido combinado con la
+  <a href="/calculadoras/revoque-y-mortero/">calculadora de cal, cemento y arena por m² de
+  revoque</a>: para <strong>60 m² de pared con 2 cm de revoque</strong>, con la mezcla 1:1:6
+  (cemento, cal y arena) de manual y un 10 % de desperdicio, da <strong>6 bolsas de
+  cemento</strong>, <strong>132 kg de cal hidratada</strong> y 1,39 m³ de arena. Cuántas bolsas
+  de cal son esos kilos depende de la bolsa que maneje tu proveedor: pedí los kilos. La
+  dosificación la define tu maestro; si usa otra, cambiá la proporción y rehacé la cuenta.
+</p>

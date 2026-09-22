@@ -26,6 +26,16 @@
   acabado elegido, de si la pieza es <strong>rectificada</strong> o no, y del volumen total en
   m² pedido.
 </p>
+<p>
+  Un ejemplo con la <a href="/calculadoras/ceramica-por-m2/">calculadora de cajas de
+  porcelanato</a>: un living-cocina de 6 × 4,5 m son 27 m². Con cajas de 1,44 m² —4 piezas de
+  60 × 60 cm, el valor de ejemplo de la calculadora; confirmá en la caja cuánto trae la tuya—
+  y colocación recta: 27 × 1,10 = 29,7 m², y 29,7 ÷ 1,44 = 20,63, que sube a
+  <strong>21 cajas</strong>. Colocado en diagonal, con el 15 % de extra, son 31,05 m² y
+  <strong>22 cajas</strong>. Las bolsas de adhesivo salen de los 27 m² del ambiente, sin el
+  extra, por el rendimiento que figura en la bolsa del reforzado; no uses el de un adhesivo
+  común para hacer la cuenta.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

@@ -22,12 +22,19 @@
 
 <h2>Cómo se vende, cómo pedirlo y de qué depende el precio</h2>
 <p>
-  Se vende por <strong>bolsa de 50 kg</strong>, por <strong>palet</strong> (un número fijo de bolsas) o por
-  <strong>camión</strong> cuando el consumo de la obra es alto y constante. Para pedirlo bien alcanza con
-  decir la cantidad de bolsas o palets y el tipo —gris estructural, blanco o de albañilería— porque cada
+  Se vende por <strong>bolsa de 50 kg</strong>, por <strong>palet</strong> (cuántas bolsas trae lo confirma el
+  proveedor) o por <strong>camión</strong> cuando el consumo de la obra es alto y constante. Para pedirlo
+  bien alcanza con decir la cantidad de bolsas y el tipo —gris estructural, blanco o de albañilería— porque cada
   uno rinde distinto según la mezcla que vayas a hacer. El precio depende del tipo de cemento, de si comprás
   por bolsa suelta o por volumen mayor, y del flete hasta tu zona, que pesa más cuanto más lejos esté el
   depósito de tu obra.
+</p>
+<p>
+  Un ejemplo con la <a href="/calculadoras/bolsas-de-cemento-por-m2/">calculadora de bolsas de
+  cemento por m²</a>: una carpeta de <strong>30 m² con 2 cm de espesor</strong>, en la
+  proporción de manual 1:3 y con un 10 % de desperdicio, da <strong>6 bolsas de 50 kg</strong> y
+  0,66 m³ de arena. Pasale al proveedor la cantidad en bolsas: si te conviene por palet, él te
+  dice a cuántos palets equivale.
 </p>
 
 <h2>Qué mirar antes de comprar</h2>

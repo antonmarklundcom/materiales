@@ -21,6 +21,14 @@
   resistencia requerida y de la distancia hasta tu obra, porque el hormigón tiene un tiempo de
   trabajabilidad limitado desde que sale de planta y eso condiciona la logística del viaje.
 </p>
+<p>
+  Un ejemplo para sacar el volumen: una losa de 6 × 5 m con el espesor de 12 cm que marque tu
+  plano son 6 × 5 × 0,12 = <strong>3,6 m³</strong>. La
+  <a href="/calculadoras/hormigon-por-m3/">calculadora de cemento, arena y ripio por m³</a> le
+  suma un 10 % de desperdicio y da <strong>3,96 m³</strong> a pedir. Si comparás contra mezclar
+  en obra, esa misma losa en proporción de manual 1:2:3 lleva 28 bolsas de cemento, 1,98 m³ de
+  arena, 2,97 m³ de ripio y 693 litros de agua. El volumen final confirmalo con la planta.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

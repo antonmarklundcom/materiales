@@ -23,6 +23,15 @@
   de barras, del ancho de perfil elegido (hay más de un ancho de montante según la altura y el
   uso del tabique) y del flete hasta la obra.
 </p>
+<p>
+  Un ejemplo: un tabique de <strong>3 m de largo por 2,70 m de alto</strong>, con barras de
+  2,60 m (largo de ejemplo: confirmá el de tu proveedor). Con montantes cada 40 cm, la
+  <a href="/calculadoras/durlock-por-m2/">calculadora de placas de yeso y perfiles</a> da
+  <strong>9 montantes</strong>; como el alto pasa el largo de la barra, cada uno lleva dos
+  barras empalmadas: <strong>18 barras de montante</strong>, más <strong>4 barras de
+  solera</strong> para arriba y abajo. Cada 60 cm quedan 6 montantes y 12 barras. Si tu
+  proveedor tiene una barra que alcance el alto, cada montante va de una pieza y son 9 barras.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

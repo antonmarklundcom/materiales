@@ -23,6 +23,14 @@
   precio final depende del número de alambre, de si comprás por kilo o por rollo, de la
   cantidad total y del flete hasta tu zona.
 </p>
+<p>
+  Un ejemplo para contar esos cruces: con los datos precargados de la
+  <a href="/calculadoras/hierro-para-columnas/">calculadora de hierro para columnas</a> —8
+  columnas de 3 m con 4 barras y estribos cada 15 cm, un ejemplo de plano— salen 168 estribos.
+  Cada estribo cruza las 4 barras de su columna, así que son 168 × 4 = <strong>672 cruces</strong>
+  para atar. La calculadora no incluye el alambre: ese conteo es el dato que le pasás al
+  proveedor para que te oriente en kilos o rollos.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

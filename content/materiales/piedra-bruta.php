@@ -23,6 +23,13 @@
   <a href="/materiales/arena-gorda/">arena</a> para el mortero de asiento, pedilo todo junto
   para ahorrar en flete.
 </p>
+<p>
+  Un ejemplo de ese cálculo: si tu plano marca 40 metros de zanja de 40 cm de ancho y 50 cm de
+  profundidad, el volumen es 40 × 0,40 × 0,50 = <strong>8 m³</strong>. Ese es el volumen de la
+  zanja, no sólo de piedra: una parte la ocupa el mortero de asiento, y cuánto depende de cómo
+  arme la hilada tu maestro. Pasale al proveedor las medidas y ese volumen, y que te confirme
+  cuántos m³ de piedra conviene pedir.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

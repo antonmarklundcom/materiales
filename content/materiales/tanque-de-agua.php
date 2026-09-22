@@ -61,6 +61,15 @@
     </tr>
   </tbody>
 </table>
+<p>
+  Un ejemplo con la <a href="/calculadoras/tanque-de-agua-litros/">calculadora de litros del
+  tanque de agua</a>: una casa de 6 personas, con los 150 litros por persona por día que trae
+  cargados como referencia, que quiere un día y medio de reserva: 6 × 150 × 1,5 = 1.350
+  litros, y con el 10 % de margen de ejemplo, <strong>1.485 litros</strong>. Eso se arma con
+  <strong>2 tanques de 1000 litros</strong> o con <strong>3 de 500</strong>. Y como mil litros
+  de agua pesan una tonelada, dos tanques de 1000 llenos son dos toneladas sobre la base: el
+  litraje y la base se definen juntos.
+</p>
 
 <p class="closing">
   Volvé a <a href="/materiales/canos-y-plomeria/">caños y plomería</a> para ver el resto de la

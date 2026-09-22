@@ -25,6 +25,13 @@
   <a href="/materiales/arena-lavada/">arena</a> para el mismo hormigón, conviene pedir todo
   junto y ahorrar en el flete.
 </p>
+<p>
+  Un ejemplo con la <a href="/calculadoras/bolsas-de-cemento-por-m2/">calculadora de bolsas de
+  cemento por m²</a>: un contrapiso de <strong>20 m² con 10 cm de espesor</strong>, en la
+  proporción de manual 1:3:5 (cemento, arena y ripio) y con un 10 % de desperdicio, pide
+  <strong>1,87 m³ de ripio</strong>, 1,1 m³ de arena y 11 bolsas de cemento. Con esos números
+  cotizás todo en una sola consulta; si tu maestro usa otra proporción, la cuenta cambia.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

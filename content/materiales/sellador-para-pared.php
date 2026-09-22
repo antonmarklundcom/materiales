@@ -38,6 +38,19 @@
   la dilución que indica el envase: un fijador demasiado cargado forma una película que
   después no deja agarrar al látex, y uno demasiado aguado no fija nada.
 </p>
+<table>
+  <thead>
+    <tr><th>Estado de la pared</th><th>Qué corresponde</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Al pasar la mano queda polvo o arena</td><td>Fijador antes del látex</td></tr>
+    <tr><td>Queda limpia y la pintura anterior está firme</td><td>Muchas veces alcanza con lijar y limpiar</td></tr>
+    <tr><td>Revoque fino nuevo</td><td>Esperar a que esté bien seco y después sellar</td></tr>
+    <tr><td>Pintura a la cal que se va a cubrir con látex</td><td>Fijador, para que el látex no se despegue con la cal vieja</td></tr>
+    <tr><td>Pasar de un color oscuro a uno claro</td><td>Fondo blanco, que además cubre</td></tr>
+    <tr><td>Manchas de humedad o salitre</td><td>Atacar el origen y usar pintura antihumedad: el sellador no lo resuelve</td></tr>
+  </tbody>
+</table>
 
 <p class="closing">
   Volvé a <a href="/materiales/pinturas/">pinturas</a> para ver qué va en cada superficie, o

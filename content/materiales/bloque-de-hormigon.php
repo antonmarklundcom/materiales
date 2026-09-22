@@ -23,6 +23,13 @@
   El flete se cotiza aparte y pesa bastante por el peso del material, así que la zona de entrega
   influye directo en el total.
 </p>
+<p>
+  Un ejemplo con la <a href="/calculadoras/ladrillos-por-m2/">calculadora de ladrillos o bloques
+  por m²</a>: un muro perimetral de 30 m de largo y 2 m de alto son 60 m². Con bloque de 39 × 19
+  cm de cara y junta de 1,5 cm, cada pieza puesta ocupa 0,405 × 0,205 m, y con un 5 % extra por
+  roturas y cortes salen <strong>759 bloques</strong>. Si el proveedor vende por palet, pasale
+  esa cantidad y que te diga cuántos palets son.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

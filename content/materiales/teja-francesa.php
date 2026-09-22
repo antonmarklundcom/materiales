@@ -21,6 +21,14 @@
   precio final depende de la cantidad de piezas, del acabado (natural o esmaltado) y del flete
   hasta tu zona.
 </p>
+<p>
+  Los m² que se pasan son los del techo sobre la pendiente, no los de la planta. Un ejemplo: un
+  techo a 2 aguas con faldones de <strong>4 m</strong> de cumbrera a alero y <strong>9 m</strong>
+  de largo son 4 × 9 × 2 = <strong>72 m²</strong>, la misma superficie que te da la
+  <a href="/calculadoras/chapas-para-techo/">calculadora de chapas para techo</a> con esas
+  medidas. Esos 72 m² multiplicados por las piezas por m² que indica el fabricante del modelo
+  que elijas dan las tejas del cuerpo; las de remate y cumbrera se cuentan aparte.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

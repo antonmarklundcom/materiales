@@ -35,6 +35,19 @@
   <a href="/guias/como-hacer-un-computo-metrico/">cómo hacer un cómputo métrico</a> te muestra
   cómo ordenar ese cálculo tramo por tramo.
 </p>
+<table>
+  <thead>
+    <tr><th>Sistema</th><th>Cómo se une</th><th>Cuándo se elige</th><th>Qué pedir junto</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Termofusión</td><td>Caño y accesorio se sueldan en una sola pieza, sin junta</td><td>Cuando se busca una unión que no pierda con el tiempo</td><td>Codos, tees y uniones del mismo sistema y las llaves de paso</td></tr>
+    <tr><td>Caño roscado</td><td>Se arma y se desarma con llave</td><td>Reparaciones y ampliaciones sobre una instalación que ya existe</td><td>Accesorios roscados, teflón y las llaves de paso</td></tr>
+  </tbody>
+</table>
+<p>
+  Los dos sistemas no se mezclan en el mismo tramo, y en los dos conviene confirmar con quien
+  instala que el caño elegido soporte el agua caliente donde corresponde.
+</p>
 
 <p class="closing">
   Volvé a <a href="/materiales/canos-y-plomeria/">caños y plomería</a> para ver el resto de la

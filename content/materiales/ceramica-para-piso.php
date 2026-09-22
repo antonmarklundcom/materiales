@@ -25,6 +25,16 @@
   del formato elegido, del diseño o la calidad del esmalte y del volumen total en m², así que
   no hay una cifra que sirva para cualquier ambiente.
 </p>
+<p>
+  Un ejemplo con la <a href="/calculadoras/ceramica-por-m2/">calculadora de cajas de
+  cerámica</a>: un dormitorio de 3,5 × 4 m tiene 14 m². Con cajas de 1,44 m² —el valor de
+  ejemplo de la calculadora; el real está impreso en tu caja— y colocación recta, se suma el
+  10 %: 14 × 1,10 = 15,4 m², y 15,4 ÷ 1,44 = 10,69, que sube a <strong>11 cajas</strong>. Si
+  el mismo piso va en diagonal, el extra pasa al 15 %: 16,1 m² y <strong>12 cajas</strong>.
+  Con un adhesivo que rinde 5 kg/m² en bolsas de 25 kg (también valores de ejemplo: usá los
+  de tu bolsa), 14 × 5 = 70 kg, que son <strong>3 bolsas</strong>, porque el adhesivo se
+  calcula sobre los m² del ambiente y no sobre el extra.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

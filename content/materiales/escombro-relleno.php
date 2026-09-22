@@ -23,6 +23,12 @@
   <a href="/materiales/arena-gorda/">arena</a> o <a href="/materiales/ripio/">ripio</a> encima,
   pedilo en la misma consulta para ahorrar en flete.
 </p>
+<p>
+  Un ejemplo: un sector de 4 × 3 m que tiene que subir 50 cm son 4 × 3 × 0,50 = 6 m³. Si lo
+  vas a tapar con una capa de 10 cm de tierra, esa capa son 4 × 3 × 0,10 = 1,2 m³, y el
+  escombro queda en 4,8 m³. Pasá los dos volúmenes en el mismo pedido, con las medidas, y que
+  el proveedor te confirme cuánto sumar por el asentamiento del relleno.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

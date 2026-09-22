@@ -21,6 +21,15 @@
   elegido, del marco y los herrajes, y de si el pedido incluye colocación o sólo la puerta: son
   variables que cambian bastante de un proveedor a otro.
 </p>
+<table>
+  <thead>
+    <tr><th>Tipo de pedido</th><th>Cómo se cotiza</th><th>Qué tener en cuenta</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Puerta de línea</td><td>Medidas estándar del proveedor</td><td>Sale más rápido, pero el vano tiene que coincidir con esa medida</td></tr>
+    <tr><td>Puerta a medida</td><td>Sobre el ancho y el alto real del vano</td><td>Lleva su propio plazo de fabricación: pedí el presupuesto con margen</td></tr>
+  </tbody>
+</table>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

@@ -24,6 +24,13 @@
   mayor resistencia al impacto, pero también más peso para la estructura. El precio final varía
   según la variante de placa, la cantidad de m², el espesor y el flete hasta tu zona.
 </p>
+<p>
+  Un ejemplo: un cielorraso durlock de <strong>4 × 3,5 m</strong> son 14 m². Con placas de
+  1,20 × 2,40 m (el largo es sólo de ejemplo) y 10 % de desperdicio, la
+  <a href="/calculadoras/durlock-por-m2/">calculadora de placas de yeso</a>, cargada con una
+  cara, da 15,4 m² ÷ 2,88 m² por placa: <strong>6 placas</strong>. La estructura del cielorraso
+  no sale de ahí: pasale al proveedor los m² y el perímetro del ambiente.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

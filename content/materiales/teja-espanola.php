@@ -18,8 +18,11 @@
   entran por m² según el solape) y la <strong>pendiente</strong> proyectada, porque una teja
   colonial necesita una pendiente mínima para que el agua no se filtre entre piezas. El
   tirantillo o clavaderas sobre los que se apoya la teja se cotizan aparte, igual que las
-  piezas especiales de remate y limahoya. El precio final depende de la cantidad de piezas, de
-  si son lisas o esmaltadas, y del flete hasta tu zona.
+  piezas especiales de remate y limahoya. La superficie se mide sobre la pendiente, faldón por
+  faldón (largo de cumbrera a alero por el ancho), y es la que te da la
+  <a href="/calculadoras/chapas-para-techo/">calculadora de chapas para techo</a> aunque cotices
+  teja; las piezas por m² las confirma el proveedor según el solape. El precio final depende de
+  la cantidad de piezas, de si son lisas o esmaltadas, y del flete hasta tu zona.
 </p>
 
 <h2>Qué mirar antes de comprar</h2>

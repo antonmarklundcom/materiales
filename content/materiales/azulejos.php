@@ -23,6 +23,15 @@
   diseño elegido, del formato y del volumen total de m² pedido, así que conviene tener la
   medida exacta de la pared antes de consultar.
 </p>
+<p>
+  Un ejemplo: las paredes de un baño suman 15 m² a revestir —el largo de cada pared por la
+  altura que vas a cubrir, ya descontadas la puerta y la ventana—. Con cajas que traen
+  1,5 m² (valor de ejemplo: el real figura en la caja) y colocación recta, la
+  <a href="/calculadoras/ceramica-por-m2/">calculadora de cajas de cerámica</a> suma el 10 %
+  por cortes: 16,5 m², y 16,5 ÷ 1,5 = <strong>11 cajas</strong> justas. Con un adhesivo que
+  rinde 5 kg/m² en bolsas de 25 kg (también ejemplos: usá los de tu bolsa), 15 × 5 = 75 kg,
+  que son <strong>3 bolsas</strong>.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

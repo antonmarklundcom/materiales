@@ -31,6 +31,20 @@
   defecto— y si el mosquitero y la colocación están incluidos en el presupuesto, porque son los
   puntos donde más difieren dos cotizaciones que a primera vista parecen iguales.
 </p>
+<table>
+  <thead>
+    <tr><th>Apertura</th><th>A favor</th><th>Cuándo conviene</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Corrediza</td><td>No invade el ambiente al abrirse</td><td>Cuando no querés perder espacio interior</td></tr>
+    <tr><td>De abrir</td><td>Cierra más hermético</td><td>Ambientes que necesitan mejor aislación o mejor cierre</td></tr>
+  </tbody>
+</table>
+<p>
+  Para la lista por ambiente, anotá en cada renglón el ancho y el alto del vano medidos en
+  obra, la apertura, el color y si lleva mosquitero; así cada presupuesto cubre lo mismo y la
+  comparación es directa.
+</p>
 
 <p class="closing">
   Volvé a <a href="/materiales/aberturas/">aberturas</a> para ver el resto de opciones, o mirá

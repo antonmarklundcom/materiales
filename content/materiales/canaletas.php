@@ -22,6 +22,13 @@
   final depende del material elegido, de la cantidad de metros y bajadas, y del flete hasta tu
   zona.
 </p>
+<p>
+  Un ejemplo: un techo a 2 aguas con <strong>10 m</strong> de alero en cada faldón, con
+  canaleta en los dos lados, pide <strong>20 metros lineales</strong> de canaleta. A eso se suma
+  un pecho paloma por cada bajada que definas, y las uniones, ángulos y tapas de extremo que
+  pida el recorrido: pasale al proveedor los metros y un croquis con la ubicación de las
+  bajadas, así te arma el pedido con las piezas del mismo sistema.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

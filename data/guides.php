@@ -43,7 +43,7 @@ return [
         'name'   => 'Qué piedra usar para cimientos',
         'status' => 'activa',
         'published' => '2026-09-06',
-        'updated'   => '2026-09-15',
+        'updated'   => '2026-09-22',
         'order'  => 2,
         'title'  => 'Qué piedra usar para cimientos en Paraguay | Guía',
         'meta'   => 'Piedra bruta o triturada para cimientos: cuál conviene según el suelo y el tipo de obra. Comparación clara y cotización en un paso.',

@@ -156,6 +156,23 @@ check "/guias/piso-vinilico-o-porcelanato/"   200 '<h1>Piso vinílico o porcelan
 check "/guias/bloque-de-hormigon-o-ladrillo/" 200 '<h1>Bloque de hormigón o ladrillo</h1>'
 check "/guias/teja-espanola-o-francesa/"      200 '<h1>Teja española o francesa</h1>'
 
+# ---- G5 (profundidad: tablas y ejemplos resueltos) — pisos, aberturas, plomería, sanitarios, pinturas ----
+check "/materiales/pisos-y-revestimientos/" 200 '<h2>Cómo elegir entre los distintos pisos y revestimientos</h2>'
+check "/materiales/pisos-y-revestimientos/" 200 'href="/calculadoras/ceramica-por-m2/"'
+check "/materiales/aberturas/"              200 '<h2>Cómo elegir entre las distintas aberturas</h2>'
+check "/materiales/canos-y-plomeria/"       200 '<h2>Cómo elegir entre los materiales de plomería</h2>'
+check "/materiales/canos-y-plomeria/"       200 'href="/calculadoras/tanque-de-agua-litros/"'
+check "/materiales/sanitarios-y-griferia/"  200 '<h2>Cómo elegir entre sanitarios y grifería</h2>'
+check "/materiales/pinturas/"               200 '<h2>Cómo elegir entre las pinturas</h2>'
+for g5 in ceramica-para-piso porcelanato azulejos; do
+  check "/materiales/${g5}/"                200 'href="/calculadoras/ceramica-por-m2/"'
+done
+check "/materiales/tanque-de-agua/"         200 'href="/calculadoras/tanque-de-agua-litros/"'
+# Pinturas: nunca un rendimiento con cifra (CONTENT-SPEC §15).
+for g5 in pinturas pintura-para-pared pintura-para-piso barniz esmalte-sintetico sellador-para-pared; do
+  absent "/materiales/${g5}/" 'm²/l\|m2/l\|m² por litro\|metros cuadrados por litro'
+done
+
 # ---- PR E (targeting on-page) ----
 # S11/S13: el H1 lleva el término medido o el país, no el nombre pelado.
 check "/materiales/tierra-gorda/"  200 '<h1>Tierra colorada (tierra gorda) en Paraguay</h1>'
@@ -176,6 +193,18 @@ check "/materiales/metal-desplegado/" 200 '<h1>Metal desplegado en Paraguay</h1>
 # G8: intros de los hubs.
 check "/guias/"                    200 'Estas guías responden'
 check "/calculadoras/"             200 'Cada calculadora resuelve'
+# G5 (depth pass: chapas y techos, impermeabilizantes, yeso y durlock, madera): tabla
+# cualitativa en cada categoría y ejemplos resueltos que enlazan a su calculadora.
+check "/materiales/chapas-y-techos/"    200 '<h2>Cómo elegir entre los materiales del techo</h2>'
+check "/materiales/chapas-y-techos/"    200 'href="/calculadoras/chapas-para-techo/"'
+check "/materiales/impermeabilizantes/" 200 '<h2>Cómo elegir entre un producto y otro</h2>'
+check "/materiales/impermeabilizantes/" 200 'href="/calculadoras/membrana-por-m2/"'
+check "/materiales/yeso-y-durlock/"     200 '<h2>Cómo elegir entre las piezas del sistema</h2>'
+check "/materiales/yeso-y-durlock/"     200 'href="/calculadoras/durlock-por-m2/"'
+check "/materiales/madera/"             200 '<h2>Cómo elegir entre madera de obra, placas y terminación</h2>'
+check "/materiales/chapa-de-zinc/"      200 '<strong>28 chapas de 4 m</strong>'
+check "/materiales/membrana-asfaltica/" 200 '<strong>7 rollos</strong>'
+check "/materiales/perfiles-para-durlock/" 200 '<strong>18 barras de montante</strong>'
 
 # ---- PR D (conversión) ----
 # C2: botón bajo el resultado de la calculadora, y la barra pegajosa ancla al formulario de
@@ -268,6 +297,18 @@ check "/calculadoras/no-existe/"   404 'No encontramos'
 check "/materiales/cemento/"       200 'Calculadoras relacionadas'
 check "/guias/cuantas-bolsas-de-cemento-por-m2/" 200 'Calculadoras relacionadas'
 check "/sitemap.xml"               200 '/calculadoras/bolsas-de-cemento-por-m2/'
+
+# G5 (profundidad): hierro, cemento y cal, áridos, ladrillos y bloques — tabla "Cómo elegir"
+# y ejemplo resuelto con su calculadora; cemento ya no promete "un número fijo" de bolsas.
+check "/materiales/hierro/"              200 'Cómo elegir entre los materiales de hierro'
+check "/materiales/hierro/"              200 '/calculadoras/hierro-para-columnas/'
+check "/materiales/cemento-y-cal/"       200 'Cómo elegir entre los materiales de cemento y cal'
+check "/materiales/aridos/"              200 'Cómo elegir entre los áridos'
+check "/materiales/ladrillos-y-bloques/" 200 'Cómo elegir entre ladrillos y bloques'
+check "/materiales/varilla-de-hierro/"   200 '/calculadoras/hierro-para-columnas/'
+check "/materiales/cemento/"             200 'cuántas bolsas trae lo confirma el'
+absent "/materiales/cemento/"            'número fijo de bolsas'
+absent "/materiales/ladrillo-hueco/"     'estimar el millar según el espesor'
 
 echo "LEAD HANDLER"
 

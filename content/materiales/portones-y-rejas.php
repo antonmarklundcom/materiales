@@ -32,6 +32,23 @@
   motorizar el portón, consultalo desde el principio: la automatización es otro rubro aparte y
   no todos los talleres la ofrecen.
 </p>
+<table>
+  <thead>
+    <tr><th>Tipo</th><th>Cómo abre</th><th>Qué medir además del vano</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Corredizo</td><td>La hoja corre a lo largo del frente</td><td>El tramo libre de muro o cerco hacia donde corre</td></tr>
+    <tr><td>Batiente</td><td>La hoja gira sobre sus bisagras</td><td>El espacio libre que necesita para abrir entera</td></tr>
+    <tr><td>Basculante</td><td>La hoja sube</td><td>El alto disponible sobre el vano</td></tr>
+    <tr><td>Reja fija</td><td>No abre</td><td>El ancho y el alto de la ventana o del frente</td></tr>
+  </tbody>
+</table>
+<p>
+  Cuando el taller cotiza por metro cuadrado, la cuenta es ancho por alto: una reja de
+  1,20 × 1,00 m son 1,2 m². Y si la terminación va por tu cuenta, sobre el fondo antióxido va
+  un <a href="/materiales/esmalte-sintetico/">esmalte sintético</a>, la pintura para rejas y
+  portones.
+</p>
 
 <p class="closing">
   Volvé a <a href="/materiales/aberturas/">aberturas</a> para ver el resto de la categoría, o

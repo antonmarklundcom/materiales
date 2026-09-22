@@ -12,7 +12,8 @@
 
 <h2>Cómo se vende, cómo pedirlo y de qué depende el precio</h2>
 <p>
-  Se vende <strong>por barra y por diámetro</strong>, con largos estándar de fábrica. El
+  Se vende <strong>por barra y por diámetro</strong>. El largo de la barra lo confirma el
+  proveedor, y con ese dato pasás los metros de cada tramo a barras enteras. El
   <strong>caño de 110</strong> es el que va en la cloaca principal y en las bajadas de mayor
   caudal, mientras que el <strong>caño de 100</strong> y los diámetros menores se usan en
   artefactos y ventilaciones. Para pedir bien conviene contar qué instalación estás haciendo
@@ -21,6 +22,18 @@
   codos, ramales, cuplas, reducciones y la <strong>junta elástica</strong> o el pegamento para
   PVC, todo en la misma consulta para que el flete no se fraccione en varios viajes.
 </p>
+<table>
+  <thead>
+    <tr><th>Dato para el pedido</th><th>Por qué lo piden</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Cloacal o pluvial</td><td>Cambia el diámetro y, en el pluvial, la pendiente que confirma quien instala</td></tr>
+    <tr><td>Artefactos que descargan en cada tramo</td><td>De ahí sale el diámetro de cada parte de la instalación</td></tr>
+    <tr><td>Metros de cada tramo</td><td>Con el largo de barra del proveedor se pasan a barras enteras</td></tr>
+    <tr><td>Junta elástica o pegamento para PVC de desagüe</td><td>No todos los pegamentos sirven para el mismo caño</td></tr>
+    <tr><td>Codos, ramales, cuplas y reducciones</td><td>Van en la misma consulta para no fraccionar el flete</td></tr>
+  </tbody>
+</table>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>

@@ -23,6 +23,14 @@
   <a href="/materiales/ripio/">ripio</a> o <a href="/materiales/tierra-gorda/">tierra</a> para
   otra etapa, pedilo en la misma consulta para ahorrar en flete.
 </p>
+<p>
+  Un ejemplo de ese dato exacto con la
+  <a href="/calculadoras/hormigon-por-m3/">calculadora de cemento, arena y ripio por m³</a>:
+  para <strong>2 m³ de hormigón</strong> de columnas o vigas, en la proporción de manual 1:2:3
+  y con un 10 % de desperdicio, salen <strong>1,1 m³ de arena</strong>, 1,65 m³ de ripio y
+  16 bolsas de cemento. Qué arena lleva esa mezcla lo decide tu maestro o tu calculista; si es
+  arena gorda, ese 1,1 m³ es lo que pedís.
+</p>
 
 <h2>Qué mirar antes de comprar</h2>
 <p>
