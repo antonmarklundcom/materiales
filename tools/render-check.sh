@@ -16,9 +16,15 @@ cd "$(dirname "$0")/.."
 PORT="${PORT:-8123}"
 BASE="http://127.0.0.1:${PORT}"
 
+# storage/ temporal: el repo ES el docroot, así que usar ./storage acá pisaba el leads.log
+# real si alguien corría este check en el servidor. partials/init.php lee esta variable; el
+# servidor embebido y los `php -r` de abajo la heredan.
+MATERIALES_STORAGE_DIR="$(mktemp -d)"
+export MATERIALES_STORAGE_DIR
+
 php -S "127.0.0.1:${PORT}" -t . tools/router-cli.php >/tmp/render-check.log 2>&1 &
 SERVER_PID=$!
-trap 'kill "${SERVER_PID}" 2>/dev/null || true' EXIT
+trap 'kill "${SERVER_PID}" 2>/dev/null || true; rm -rf "${MATERIALES_STORAGE_DIR}"' EXIT
 
 for _ in $(seq 1 40); do
   if curl -fsS -o /dev/null "${BASE}/" 2>/dev/null; then break; fi
@@ -67,6 +73,13 @@ check "/tests/mobile-overflow.mjs" 403 ''
 check "/.gitignore"                403 ''
 check "/cotizar/"                  200 'name="consentimiento"'
 check "/materiales/hierro/"        200 'action="/cotizar/enviar.php"'
+# El formulario de cada página de dinero vuelve a SU página ante un error y le dice al CRM
+# de qué página vino el lead (antes todas mandaban /cotizar/, header.php pisaba $canonical).
+check "/materiales/hierro/"        200 'name="origen" value="/materiales/hierro/"'
+check "/materiales/cemento/"       200 'name="origen" value="/materiales/cemento/"'
+check "/calculadoras/hormigon-por-m3/" 200 'name="origen" value="/calculadoras/hormigon-por-m3/"'
+# og:image apunta a un archivo real (antes era la ruta base sin extensión → 404).
+check "/materiales/cemento/"       200 'og:image" content="https://materiales.com.py/assets/img/hero-cemento-y-cal-og.jpg"'
 # Fase 9 — capa de conversión: la home explica el modelo y cierra en el formulario, y las
 # páginas de dinero tienen el CTA del hero anclado al formulario que ya está en la página.
 check "/"                          200 'Cómo funciona'
@@ -96,8 +109,7 @@ check "/sitemap.xml"               200 '/calculadoras/bolsas-de-cemento-por-m2/'
 
 echo "LEAD HANDLER"
 
-LOG="$(cd "$(dirname "$0")/.." && pwd)/storage/leads.log"
-mkdir -p "$(dirname "${LOG}")"
+LOG="${MATERIALES_STORAGE_DIR}/leads.log"
 : >"${LOG}"
 
 # El sello firmado se genera con las MISMAS funciones que usa el formulario: si un cambio
@@ -164,8 +176,37 @@ if [ "$(lines)" != "$((before + 3))" ]; then
 else
   echo "  ok   los 3 descartes quedaron registrados en leads.log"
 fi
-if grep -q '"outcome":"enviado"' "${LOG}" || grep -q '"payload"' "${LOG}"; then
-  echo "  FAIL un descarte de bot armó payload — no debe postearse nada al CRM"
+# Los 3 traen teléfono y consentimiento válidos: puede ser una persona (autocompletado en
+# el campo trampa, pestaña vieja), así que se RETIENEN con el payload — nunca se envían.
+if grep -q '"outcome":"enviado"' "${LOG}" || [ "$(grep -c '"outcome":"retenido"' "${LOG}")" != "3" ]; then
+  echo "  FAIL los descartes de bot con teléfono válido deberían quedar retenidos (y nunca enviados)"
+  fail=1
+else
+  echo "  ok   los descartes con teléfono válido quedaron retenidos con su payload, sin envío"
+fi
+
+# 3bis. Bot sin teléfono válido: descarte liso, sin payload.
+before="$(lines)"
+post "bot sin teléfono corta en silencio" 303 '^/gracias/$' \
+  --data-urlencode "ts=${TS}" --data-urlencode "tsg=firma-inventada" \
+  --data-urlencode "telefono=spam" --data-urlencode "consentimiento=1"
+if [ "$(lines)" != "$((before + 1))" ] || tail -n 1 "${LOG}" | grep -q '"payload"'; then
+  echo "  FAIL un bot sin teléfono válido debería registrarse como descarte sin payload"
+  fail=1
+else
+  echo "  ok   bot sin teléfono: descarte sin payload"
+fi
+
+# 3ter. Sello de hace 49 h (pestaña abierta de un día para el otro): se retiene, no se tira.
+read -r OLD_TS OLD_TSG <<<"$(stamp 176400)"
+post "sello vencido con teléfono válido se retiene" 303 '^/gracias/$' \
+  --data-urlencode "ts=${OLD_TS}" --data-urlencode "tsg=${OLD_TSG}" \
+  --data-urlencode "material=cemento" --data-urlencode "telefono=0981 555 444" \
+  --data-urlencode "consentimiento=1"
+if tail -n 1 "${LOG}" | grep -q '"outcome":"retenido","reason":"vencido"'; then
+  echo "  ok   sello vencido quedó retenido con motivo 'vencido'"
+else
+  echo "  FAIL sello vencido no quedó retenido"
   fail=1
 fi
 
@@ -196,12 +237,30 @@ fi
 #    reintento por timeout cree un segundo contacto en el CRM.
 post "envío duplicado" 303 '^/gracias/?m=hierro&k=' \
   "${VALID[@]}" --data-urlencode "telefono=0981 123 456" --data-urlencode "consentimiento=1"
-KEYS="$(grep -o '"idempotency_key":"[0-9a-f]*"' "${LOG}" | sort -u | wc -l)"
+KEYS="$(tail -n 2 "${LOG}" | grep -o '"idempotency_key":"[0-9a-f]*"' | sort -u | wc -l)"
 if [ "${KEYS}" != "1" ]; then
   echo "  FAIL dos envíos idénticos produjeron ${KEYS} claves de idempotencia distintas (esperaba 1)"
   fail=1
 else
   echo "  ok   dos envíos idénticos comparten la clave de idempotencia"
+fi
+
+# 7a. Mismo teléfono, OTRO material, misma hora: es otro pedido, no un duplicado.
+post "segundo pedido de otro material" 303 '^/gracias/?m=cemento&k=' \
+  "${VALID[@]}" --data-urlencode "material=cemento" \
+  --data-urlencode "telefono=0981 123 456" --data-urlencode "consentimiento=1"
+KEYS="$(tail -n 2 "${LOG}" | grep -o '"idempotency_key":"[0-9a-f]*"' | sort -u | wc -l)"
+if [ "${KEYS}" != "2" ]; then
+  echo "  FAIL dos pedidos de materiales distintos comparten la clave de idempotencia"
+  fail=1
+else
+  echo "  ok   dos materiales distintos producen dos claves"
+fi
+if tail -n 1 "${LOG}" | grep -q '"page_url":"https://materiales.com.py/materiales/hierro/"'; then
+  echo "  ok   el lead registra la página de origen real"
+else
+  echo "  FAIL el lead no registra la página de origen (origen=/materiales/hierro/)"
+  fail=1
 fi
 
 # 7bis. Alta de proveedor: mismo handler, otro camino. Vuelve a /proveedores/?ok=1 y la
@@ -265,13 +324,27 @@ else
   echo "  ok   el payload no incluye pipeline/stage/owner/tag"
 fi
 
-# 10. /gracias/ con token declara el evento de conversión; sin token no declara nada.
-check "/gracias/?m=hierro&k=0123456789abcdef" 200 'matLead'
+# 10. /gracias/ con token firmado declara el evento de conversión; sin token, o con uno
+#     tipeado a mano, no declara nada.
+TOKEN="$(php -r 'require "partials/init.php"; require "partials/lead.php"; echo lead_conversion_token();')"
+check "/gracias/?m=hierro&k=${TOKEN}" 200 'matLead'
 if curl -sS "${BASE}/gracias/" | grep -q 'matLead'; then
   echo "  FAIL /gracias/ sin token declara una conversión"
   fail=1
 else
   echo "  ok   /gracias/ sin token no declara conversión"
+fi
+if curl -sS "${BASE}/gracias/?k=0123456789abcdef" | grep -q 'matLead'; then
+  echo "  FAIL /gracias/ con un token inventado declara una conversión"
+  fail=1
+else
+  echo "  ok   /gracias/ con token inventado no declara conversión"
+fi
+
+# 11. El handler nunca tocó el storage/ del repo (el de producción, si esto corre allá).
+if [ -f storage/leads.log ] && grep -q 'Ana Benítez' storage/leads.log 2>/dev/null; then
+  echo "  FAIL render-check escribió en ./storage/leads.log"
+  fail=1
 fi
 
 if [ "${fail}" -ne 0 ]; then

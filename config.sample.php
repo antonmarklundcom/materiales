@@ -2,7 +2,8 @@
 /**
  * config.sample.php — plantilla de config/vendercrm.php.
  *
- * EN EL SERVIDOR: copiar a  <dominio>/config/vendercrm.php  (FUERA de public_html).
+ * EN EL SERVIDOR: copiar a  public_html/config/vendercrm.php  (el repo ES el docroot en este
+ * hosting; config/ queda bloqueada por .htaccess — ver DEPLOY.md).
  * NUNCA se commitea el archivo real: .gitignore ignora /config/ y /storage/.
  *
  *   cp config.sample.php config/vendercrm.php   &&   editar los valores
@@ -42,4 +43,14 @@ return [
     // o rotar el secreto vos mismo — una cadena aleatoria larga (p. ej. `openssl rand -hex
     // 32`). Cambiarlo invalida cualquier formulario ya renderizado en el momento del cambio.
     'form_secret' => '',
+
+    // AVISOS DE LEAD (recomendado): sin esto, un pedido que queda en modo sólo-log o que el
+    // CRM rechaza no le llega a nadie. Email vía mail() de PHP (Hostinger lo trae) y/o
+    // Telegram (crear un bot con @BotFather, y el chat_id del chat donde querés el aviso).
+    'notify_email'       => '',
+    'notify_from'        => '',      // vacío = no-reply@materiales.com.py
+    'telegram_bot_token' => '',
+    'telegram_chat_id'   => '',
+    // 'todos' = aviso por cada lead; 'problemas' = sólo solo_log, fallo_crm y retenido.
+    'notify_on'          => 'todos',
 ];

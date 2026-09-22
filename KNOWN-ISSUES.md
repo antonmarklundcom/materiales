@@ -227,3 +227,5 @@ la fase que la resuelve.
     real. Si VenderCRM alguna vez renderiza ese campo sin escapar, es un vector de XSS
     almacenado ahí (fuera de este repo). Cambiar el contrato del payload es decisión de plan,
     no de esta auditoría — Anton decide si vale la pena.
+    **Actualización (2026-09-22): resuelto.** `lead_phone_for_crm()` sigue mandando lo tipeado
+    (mismo contrato) pero sólo con dígitos, espacios y `+ ( ) - .`.

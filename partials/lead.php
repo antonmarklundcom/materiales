@@ -18,11 +18,23 @@ declare(strict_types=1);
 /** Segundos mínimos entre el render del formulario y el submit (trampa de tiempo, plan §3). */
 const LEAD_MIN_SECONDS = 3;
 
-/** Ventana máxima de validez del sello del formulario: 12 h. Más viejo = página fósil. */
-const LEAD_STAMP_TTL = 43200;
+/**
+ * Ventana máxima de validez del sello del formulario: 48 h. Más viejo = página fósil. Con
+ * 12 h se perdían pedidos reales de pestañas que quedaron abiertas de un día para el otro;
+ * y aun vencido, un pedido con teléfono y consentimiento válidos ya no se tira: se retiene
+ * (ver cotizar/enviar.php).
+ */
+const LEAD_STAMP_TTL = 172800;
 
-/** Ventana entre envíos de una misma IP. */
-const LEAD_IP_WINDOW_SECONDS = 60;
+/**
+ * Límite por IP: como mucho LEAD_IP_MAX_LEADS pedidos DISTINTOS dentro de
+ * LEAD_IP_WINDOW_SECONDS. En Paraguay muchas líneas móviles salen por la misma IP (CGNAT) y
+ * quien corrige un teléfono mal tipeado genera una clave nueva: un límite de 1 por minuto
+ * descartaba personas reales. Lo que pasa el límite tampoco se tira: se retiene con el
+ * payload completo para revisarlo a mano.
+ */
+const LEAD_IP_WINDOW_SECONDS = 600;
+const LEAD_IP_MAX_LEADS = 5;
 
 /**
  * config/vendercrm.php si existe. Nunca lanza: sin config el handler degrada a leads.log y
@@ -39,6 +51,13 @@ function lead_config(): array
             'api_key'     => (string) ($loaded['api_key'] ?? ''),
             'timeout'     => (int) ($loaded['timeout'] ?? 10),
             'form_secret' => (string) ($loaded['form_secret'] ?? ''),
+            // Avisos de lead nuevo (ver lead_notify()). Vacíos = sin aviso.
+            'notify_email'       => (string) ($loaded['notify_email'] ?? ''),
+            'notify_from'        => (string) ($loaded['notify_from'] ?? ''),
+            'telegram_bot_token' => (string) ($loaded['telegram_bot_token'] ?? ''),
+            'telegram_chat_id'   => (string) ($loaded['telegram_chat_id'] ?? ''),
+            // 'todos' = cada lead; 'problemas' = sólo solo_log, fallo_crm y retenido.
+            'notify_on'          => (string) ($loaded['notify_on'] ?? 'todos'),
         ];
     }
     return $config;
@@ -91,9 +110,15 @@ function lead_normalize_phone(string $raw): ?string
 }
 
 /**
- * Clave de idempotencia (plan §3): mismo teléfono dentro de la misma hora UTC = mismo envío.
- * Colapsa el doble clic y el reintento por timeout, pero deja consultar de nuevo mañana.
- * Se hashea el teléfono NORMALIZADO para que el formato tipeado no genere claves distintas.
+ * Clave de idempotencia (plan §3): mismo teléfono + mismo pedido dentro de la misma hora UTC =
+ * mismo envío. Colapsa el doble clic y el reintento por timeout, pero deja consultar de nuevo
+ * mañana. Se hashea el teléfono NORMALIZADO para que el formato tipeado no genere claves
+ * distintas.
+ *
+ * $scope distingue pedidos distintos de la misma persona en la misma hora (el material
+ * pedido, o 'proveedor' para un alta): sin él, pedir cemento y diez minutos después hierro
+ * producía la MISMA clave y el CRM trataba el segundo pedido como un duplicado del primero.
+ * Con $scope vacío la clave es la de siempre (compatible con los leads ya registrados).
  *
  * Firmado con HMAC y el mismo secreto de lead_form_secret() (nunca hash() a secas): sin
  * secreto, la clave era el hash público de "teléfono + hora", adivinable por cualquiera que
@@ -101,9 +126,31 @@ function lead_normalize_phone(string $raw): ?string
  * ajeno contra uno inventado, y para recuperar el teléfono probando el espacio de numeración
  * paraguayo. Con HMAC, sólo quien tiene el secreto puede calcular o invertir la clave.
  */
-function lead_idempotency_key(string $phoneE164, ?int $now = null): string
+function lead_idempotency_key(string $phoneE164, ?int $now = null, string $scope = ''): string
 {
-    return hash_hmac('sha256', $phoneE164 . '|' . gmdate('Y-m-d-H', $now ?? time()), lead_form_secret());
+    $message = $phoneE164 . '|' . gmdate('Y-m-d-H', $now ?? time());
+    if ($scope !== '') {
+        $message .= '|' . $scope;
+    }
+    return hash_hmac('sha256', $message, lead_form_secret());
+}
+
+/**
+ * Crea (si hace falta) un directorio de storage/ y le asegura su .htaccess de
+ * "Require all denied". Se llama en CADA escritura, no sólo al crear el directorio: el primer
+ * request del sitio crea storage/ desde lead_form_secret_auto() y antes esa ruta nunca le
+ * copiaba el .htaccess, así que storage/ quedaba protegido sólo por la regla [F] de la raíz.
+ */
+function lead_storage_ready(string $dir): bool
+{
+    if (!is_dir($dir) && !@mkdir($dir, 0770, true) && !is_dir($dir)) {
+        return false;
+    }
+    $htaccess = $dir . '/.htaccess';
+    if (!is_file($htaccess)) {
+        @copy(dirname(__DIR__) . '/tools/.htaccess', $htaccess);
+    }
+    return is_file($htaccess);
 }
 
 /**
@@ -142,9 +189,7 @@ function lead_form_secret_auto(): string
         return $cached = hash('sha256', uniqid('materiales-form-fallback', true));
     }
 
-    if (!is_dir(STORAGE_DIR)) {
-        @mkdir(STORAGE_DIR, 0770, true);
-    }
+    lead_storage_ready(STORAGE_DIR);
     // O_EXCL vía 'x': si dos requests concurrentes generan el archivo a la vez, sólo el
     // primero gana y el segundo lee lo que ya quedó escrito, evitando dos secretos distintos.
     $handle = @fopen($path, 'x');
@@ -185,9 +230,10 @@ function lead_form_stamp(?int $now = null): array
 }
 
 /**
- * Valida el sello. Devuelve '' si está bien, o el motivo del descarte: 'sello' (falta o está
- * falsificado o vencido) y 'rapido' (submit en menos de LEAD_MIN_SECONDS).
- * Ambos motivos se tratan como bot: se registra y no se manda nada al CRM.
+ * Valida el sello. Devuelve '' si está bien, o el motivo: 'sello' (falta o está falsificado),
+ * 'vencido' (firma válida pero más viejo que LEAD_STAMP_TTL: una pestaña que quedó abierta) y
+ * 'rapido' (submit en menos de LEAD_MIN_SECONDS). Ninguno se manda al CRM; si el pedido trae
+ * teléfono y consentimiento válidos se retiene completo para revisarlo (cotizar/enviar.php).
  */
 function lead_form_stamp_reason(string $ts, string $sig, ?int $now = null): string
 {
@@ -200,8 +246,11 @@ function lead_form_stamp_reason(string $ts, string $sig, ?int $now = null): stri
     }
 
     $age = $now - (int) $ts;
-    if ($age > LEAD_STAMP_TTL || $age < -60) {
+    if ($age < -60) {
         return 'sello';
+    }
+    if ($age > LEAD_STAMP_TTL) {
+        return 'vencido';
     }
     if ($age < LEAD_MIN_SECONDS) {
         return 'rapido';
@@ -246,6 +295,18 @@ function lead_attribution(array $post, array $cookies): array
 }
 
 /**
+ * El teléfono tal cual lo tipeó el visitante (plan §4.4: el CRM recibe lo tipeado, no el
+ * E.164), pero sólo con caracteres de teléfono. lead_normalize_phone() valida la secuencia
+ * de dígitos y aceptaba cualquier otra cosa alrededor, así que hasta ~30 caracteres
+ * arbitrarios (p. ej. marcado HTML) podían viajar al CRM en `phone` (KNOWN-ISSUES #28).
+ */
+function lead_phone_for_crm(string $raw): string
+{
+    $clean = preg_replace('/[^0-9+()\-. ]+/', '', $raw) ?? '';
+    return mb_substr(trim((string) preg_replace('/\s+/', ' ', $clean)), 0, 30);
+}
+
+/**
  * Arma el payload de POST {CRM_URL}/api/v1/leads exactamente como lo fija el plan §3.
  *
  * $input: phone_raw, phone_e164, nombre, mensaje, material, categoria, material_name,
@@ -269,7 +330,7 @@ function lead_build_payload(array $input): array
     ];
 
     $payload = [
-        'phone'           => mb_substr(trim((string) ($input['phone_raw'] ?? '')), 0, 30),
+        'phone'           => lead_phone_for_crm((string) ($input['phone_raw'] ?? '')),
         'idempotency_key' => (string) ($input['idempotency_key'] ?? ''),
         'name'            => mb_substr(trim((string) ($input['nombre'] ?? '')), 0, 200),
         'message'         => mb_substr(trim((string) ($input['mensaje'] ?? '')), 0, 5000),
@@ -321,7 +382,7 @@ function lead_build_supplier_payload(array $input): array
     ];
 
     $payload = [
-        'phone'           => mb_substr(trim((string) ($input['phone_raw'] ?? '')), 0, 30),
+        'phone'           => lead_phone_for_crm((string) ($input['phone_raw'] ?? '')),
         'idempotency_key' => (string) ($input['idempotency_key'] ?? ''),
         'name'            => mb_substr(trim((string) ($input['nombre'] ?? '')), 0, 200),
         'message'         => mb_substr(trim((string) ($input['mensaje'] ?? '')), 0, 5000),
@@ -421,18 +482,12 @@ function lead_send_ok(array $result): bool
 function lead_log(array $record): bool
 {
     try {
-        $storageIsNew = !is_dir(STORAGE_DIR);
-        if ($storageIsNew && !@mkdir(STORAGE_DIR, 0770, true) && !is_dir(STORAGE_DIR)) {
+        // Defensa en profundidad además de las reglas [F] de la raíz: si esas reglas fallan
+        // alguna vez, el Require all denied de storage/.htaccess sigue protegiendo (plan §2).
+        lead_storage_ready(STORAGE_DIR);
+        if (!is_dir(STORAGE_DIR)) {
             error_log('lead_log: no se pudo crear ' . STORAGE_DIR . ' — lead perdido');
             return false;
-        }
-        if ($storageIsNew) {
-            // Defensa en profundidad además de las reglas [F] de la raíz: si esas reglas
-            // fallan alguna vez, este Require all denied sigue protegiendo storage/ (plan §2).
-            $htaccess = STORAGE_DIR . '/.htaccess';
-            if (!is_file($htaccess)) {
-                @copy(dirname(__DIR__) . '/tools/.htaccess', $htaccess);
-            }
         }
         $line = json_encode($record, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         if ($line === false) {
@@ -461,7 +516,13 @@ function lead_ip_fingerprint(string $ip): string
     return $ip === '' ? '' : substr(hash_hmac('sha256', $ip, lead_form_secret()), 0, 16);
 }
 
-/** Limita leads distintos por huella; permite reintentos. Ante fallos deja pasar el lead. */
+/**
+ * Limita pedidos distintos por huella de IP: true si esta IP ya mandó LEAD_IP_MAX_LEADS
+ * claves DISTINTAS dentro de LEAD_IP_WINDOW_SECONDS. Reenviar la misma clave (doble clic,
+ * reintento) nunca cuenta. Ante cualquier fallo de disco deja pasar el lead.
+ *
+ * El archivo guarda una línea "clave timestamp" por pedido aceptado dentro de la ventana.
+ */
 function lead_ip_throttled(string $ip, string $idempotencyKey, ?int $now = null): bool
 {
     try {
@@ -470,15 +531,8 @@ function lead_ip_throttled(string $ip, string $idempotencyKey, ?int $now = null)
         }
         $now = $now ?? time();
         $dir = STORAGE_DIR . '/throttle';
-        $storageIsNew = !is_dir($dir);
-        if ($storageIsNew && !@mkdir($dir, 0770, true) && !is_dir($dir)) {
+        if (!lead_storage_ready($dir)) {
             return false;
-        }
-        if ($storageIsNew) {
-            $htaccess = $dir . '/.htaccess';
-            if (!is_file($htaccess) && !@copy(dirname(__DIR__) . '/tools/.htaccess', $htaccess)) {
-                return false;
-            }
         }
         $handle = @fopen($dir . '/' . lead_ip_fingerprint($ip), 'c+');
         if ($handle === false) {
@@ -488,22 +542,31 @@ function lead_ip_throttled(string $ip, string $idempotencyKey, ?int $now = null)
             if (!@flock($handle, LOCK_EX)) {
                 return false;
             }
-            $last = @stream_get_contents($handle);
-            if ($last === false) {
+            $raw = @stream_get_contents($handle);
+            if ($raw === false) {
                 return false;
             }
-            if (preg_match('/\A([0-9a-fA-F]+)\n([0-9]+)\z/', $last, $record) === 1) {
-                if ($record[1] === $idempotencyKey) {
-                    return false;
-                }
-                if ($now - (int) $record[2] < LEAD_IP_WINDOW_SECONDS) {
-                    return true;
+            // Sólo las entradas vigentes; una línea corrupta se descarta y el archivo se repara.
+            $recent = [];
+            foreach (preg_split('/\n+/', trim($raw)) ?: [] as $line) {
+                if (preg_match('/\A([0-9a-fA-F]+) ([0-9]+)\z/', $line, $m) === 1
+                    && $now - (int) $m[2] < LEAD_IP_WINDOW_SECONDS && (int) $m[2] <= $now + 60) {
+                    $recent[$m[1]] = (int) $m[2];
                 }
             }
-            // Un registro vacío o corrupto se reemplaza para recuperar el límite.
-            $timestamp = $idempotencyKey . "\n" . (string) $now;
+            if (isset($recent[$idempotencyKey])) {
+                return false;
+            }
+            if (count($recent) >= LEAD_IP_MAX_LEADS) {
+                return true;
+            }
+            $recent[$idempotencyKey] = $now;
+            $out = '';
+            foreach ($recent as $key => $ts) {
+                $out .= $key . ' ' . $ts . "\n";
+            }
             if (!@rewind($handle) || !@ftruncate($handle, 0)
-                || @fwrite($handle, $timestamp) !== strlen($timestamp) || !@fflush($handle)) {
+                || @fwrite($handle, $out) !== strlen($out) || !@fflush($handle)) {
                 return false;
             }
             return false;
@@ -514,6 +577,131 @@ function lead_ip_throttled(string $ip, string $idempotencyKey, ?int $now = null)
     } catch (Throwable $e) {
         return false;
     }
+}
+
+/**
+ * Token de conversión para /gracias/?k=: 8 hex aleatorios + 8 hex de HMAC. /gracias/ sólo
+ * declara el evento de conversión si la firma valida, así que tipear /gracias/?k=<16 hex>
+ * a mano ya no infla las conversiones de GA4/Meta.
+ */
+function lead_conversion_token(): string
+{
+    $nonce = bin2hex(random_bytes(4));
+    return $nonce . substr(hash_hmac('sha256', 'gracias|' . $nonce, lead_form_secret()), 0, 8);
+}
+
+function lead_conversion_token_valid(string $token): bool
+{
+    if (preg_match('/\A([0-9a-f]{8})([0-9a-f]{8})\z/', $token, $m) !== 1) {
+        return false;
+    }
+    return hash_equals(substr(hash_hmac('sha256', 'gracias|' . $m[1], lead_form_secret()), 0, 8), $m[2]);
+}
+
+/**
+ * Aviso inmediato de un lead a Anton por email y/o Telegram (config/vendercrm.php:
+ * notify_email, telegram_bot_token + telegram_chat_id). Sin estos valores no hace nada.
+ *
+ * Por qué existe: sin CRM configurado (solo_log), o con el CRM caído (fallo_crm), un pedido
+ * quedaba sólo en storage/leads.log y nadie se enteraba, mientras /gracias/ le promete al
+ * visitante una respuesta "dentro del día". Nunca lanza y nunca bloquea más de unos segundos:
+ * el visitante tiene que llegar a /gracias/ pase lo que pase.
+ *
+ * $record es la misma línea que va a leads.log (outcome, payload, reason…).
+ */
+function lead_notify(array $record): void
+{
+    try {
+        $config  = lead_config();
+        $outcome = (string) ($record['outcome'] ?? '');
+        if ($config['notify_on'] === 'problemas' && $outcome === 'enviado') {
+            return;
+        }
+        $text = lead_notify_text($record);
+
+        if ($config['notify_email'] !== '' && function_exists('mail')) {
+            $from = $config['notify_from'] !== ''
+                ? $config['notify_from']
+                : 'no-reply@' . (parse_url((string) site('base_url'), PHP_URL_HOST) ?: 'localhost');
+            $subject = '=?UTF-8?B?' . base64_encode(lead_notify_subject($record)) . '?=';
+            @mail($config['notify_email'], $subject, $text, implode("\r\n", [
+                'From: ' . $from,
+                'Content-Type: text/plain; charset=UTF-8',
+                'Content-Transfer-Encoding: 8bit',
+            ]));
+        }
+
+        if ($config['telegram_bot_token'] !== '' && $config['telegram_chat_id'] !== ''
+            && function_exists('curl_init')) {
+            $ch = curl_init('https://api.telegram.org/bot' . $config['telegram_bot_token'] . '/sendMessage');
+            if ($ch !== false) {
+                curl_setopt_array($ch, [
+                    CURLOPT_POST           => true,
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_TIMEOUT        => 4,
+                    CURLOPT_CONNECTTIMEOUT => 3,
+                    CURLOPT_POSTFIELDS     => http_build_query([
+                        'chat_id' => $config['telegram_chat_id'],
+                        'text'    => mb_substr(lead_notify_subject($record) . "\n\n" . $text, 0, 4000),
+                    ]),
+                ]);
+                curl_exec($ch);
+                curl_close($ch);
+            }
+        }
+    } catch (Throwable $e) {
+        error_log('lead_notify: ' . $e->getMessage());
+    }
+}
+
+/** Asunto del aviso: qué pasó y de qué, sin datos personales. */
+function lead_notify_subject(array $record): string
+{
+    $labels = [
+        'enviado'   => 'Lead nuevo (ya en VenderCRM)',
+        'solo_log'  => 'Lead nuevo SIN CRM — cargalo a mano',
+        'fallo_crm' => 'Lead nuevo — FALLÓ el envío al CRM',
+        'retenido'  => 'Lead retenido para revisar',
+    ];
+    $outcome = (string) ($record['outcome'] ?? '');
+    $fields  = (array) ($record['payload']['fields'] ?? []);
+    $what    = (string) ($fields['tipo'] ?? '') === 'proveedor'
+        ? 'alta de proveedor'
+        : (string) ($fields['material_nombre'] ?? 'sin material');
+    return '[materiales.com.py] ' . ($labels[$outcome] ?? $outcome) . ': ' . $what;
+}
+
+/** Cuerpo del aviso: lo mínimo para contestar el pedido sin abrir el log. */
+function lead_notify_text(array $record): string
+{
+    $payload = (array) ($record['payload'] ?? []);
+    $fields  = (array) ($payload['fields'] ?? []);
+    $lines   = [
+        'Resultado: ' . (string) ($record['outcome'] ?? '')
+            . (isset($record['reason']) ? ' (' . (string) $record['reason'] . ')' : ''),
+        'Nombre: ' . (string) ($payload['name'] ?? ''),
+        'Teléfono: ' . (string) ($record['phone_e164'] ?? ($payload['phone'] ?? '')),
+    ];
+    foreach (['material_nombre' => 'Material', 'cantidad' => 'Cantidad', 'ciudad' => 'Ciudad',
+              'empresa' => 'Empresa', 'rubros' => 'Rubros'] as $key => $label) {
+        if (($fields[$key] ?? '') !== '') {
+            $lines[] = $label . ': ' . (string) $fields[$key];
+        }
+    }
+    if (($payload['message'] ?? '') !== '') {
+        $lines[] = 'Mensaje: ' . (string) $payload['message'];
+    }
+    $lines[] = 'Página: ' . (string) ($payload['page_url'] ?? '');
+    if (($record['crm']['error'] ?? '') !== '' && ($record['outcome'] ?? '') === 'fallo_crm') {
+        $lines[] = 'Error CRM: ' . (string) $record['crm']['error'] . ' (HTTP ' . (int) ($record['crm']['status'] ?? 0) . ')';
+    }
+    $phone = preg_replace('/\D+/', '', (string) ($record['phone_e164'] ?? ''));
+    if ($phone !== '') {
+        $lines[] = 'WhatsApp: https://wa.me/' . $phone;
+    }
+    $lines[] = '';
+    $lines[] = 'Queda también en storage/leads.log (' . (string) ($record['ts'] ?? '') . ').';
+    return implode("\n", $lines);
 }
 
 /**

@@ -135,7 +135,7 @@ function schema_product(string $slug, array $material): array
         'description' => $material['meta'] ?? '',
         'url'         => url('/materiales/' . $slug . '/'),
         // URL ABSOLUTA y sólo si el archivo existe (image_for aplica la herencia §1.20).
-        'image'       => ($img = image_for($material, 'material')) !== null ? url('/' . $img) : '',
+        'image'       => ($img = image_file_for_og((string) image_for($material, 'material'))) !== '' ? url('/' . $img) : '',
         'category'    => data('categories')[$material['category']]['name'] ?? '',
     ]);
 }

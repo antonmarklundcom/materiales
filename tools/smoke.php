@@ -336,8 +336,29 @@ foreach (['categorias' => $categories, 'materiales' => $materials, 'guias' => $g
 // PIPELINE DE LEADS (fase 2) — unidades sobre partials/lead.php
 // ====================================================================================
 
+// storage/ temporal: smoke NUNCA escribe en el storage/ real (el repo es el docroot, así que
+// correr esto en el servidor le agregaba líneas de prueba al leads.log de producción).
+$smokeStorage = getenv('MATERIALES_STORAGE_DIR');
+$smokeOwnsStorage = $smokeStorage === false || $smokeStorage === '';
+if ($smokeOwnsStorage) {
+    $smokeStorage = sys_get_temp_dir() . '/materiales-smoke-storage-' . bin2hex(random_bytes(4));
+    putenv('MATERIALES_STORAGE_DIR=' . $smokeStorage);
+}
+register_shutdown_function(static function () use ($smokeStorage, $smokeOwnsStorage): void {
+    if ($smokeOwnsStorage && is_dir((string) $smokeStorage)) {
+        exec('rm -rf ' . escapeshellarg((string) $smokeStorage));
+    }
+});
+
 require $root . '/partials/init.php';
 require $root . '/partials/lead.php';
+
+// storage/ recién creado SIEMPRE queda con su .htaccess, venga por donde venga la escritura
+// (antes el primer request lo creaba desde el secreto del formulario, sin .htaccess).
+lead_form_secret_auto();
+if (!is_file(STORAGE_DIR . '/.htaccess')) {
+    $fail('lead: storage/ se creó sin su .htaccess de Require all denied');
+}
 
 $is = static function (string $what, $actual, $expected) use ($fail): void {
     if ($actual !== $expected) {
@@ -396,7 +417,26 @@ $is('sello a 1s = bot', lead_form_stamp_reason($stamp['ts'], $stamp['sig'], $t0 
 $is('sello falsificado', lead_form_stamp_reason($stamp['ts'], 'firma-inventada', $t0 + 10), 'sello');
 $is('sello ausente', lead_form_stamp_reason('', '', $t0 + 10), 'sello');
 $is('sello no numérico', lead_form_stamp_reason('ayer', $stamp['sig'], $t0 + 10), 'sello');
-$is('sello vencido', lead_form_stamp_reason($stamp['ts'], $stamp['sig'], $t0 + LEAD_STAMP_TTL + 60), 'sello');
+$is('sello vencido', lead_form_stamp_reason($stamp['ts'], $stamp['sig'], $t0 + LEAD_STAMP_TTL + 60), 'vencido');
+$is('sello de 24 h sigue válido', lead_form_stamp_reason($stamp['ts'], $stamp['sig'], $t0 + 86400), '');
+
+// ---- idempotencia por pedido: dos materiales en la misma hora son dos leads ----------
+if (lead_idempotency_key('+595981123456', $t0, 'cemento') === lead_idempotency_key('+595981123456', $t0, 'hierro')) {
+    $fail('lead: idempotency_key igual para dos materiales distintos en la misma hora — el segundo pedido se pierde como duplicado');
+}
+$is('idempotency_key con scope estable en la hora',
+    lead_idempotency_key('+595981123456', $t0, 'cemento'),
+    lead_idempotency_key('+595981123456', $t0 + 900, 'cemento'));
+
+// ---- teléfono hacia el CRM: lo tipeado, pero sólo caracteres de teléfono (KNOWN-ISSUES #28)
+$is('phone_for_crm conserva el formato tipeado', lead_phone_for_crm('0981 123-456'), '0981 123-456');
+$is('phone_for_crm quita marcado', lead_phone_for_crm('<b>0981123456</b>'), '0981123456');
+$is('phone_for_crm conserva +595 y paréntesis', lead_phone_for_crm('+595 (981) 123.456'), '+595 (981) 123.456');
+
+// ---- token de conversión de /gracias/: firmado, uno tipeado a mano no cuenta ----------
+$is('token de conversión válido', lead_conversion_token_valid(lead_conversion_token()), true);
+$is('token de conversión inventado', lead_conversion_token_valid('0123456789abcdef'), false);
+$is('token de conversión con otra forma', lead_conversion_token_valid('xyz'), false);
 // Un sello robado de otra página sigue chocando con el mínimo: es firma Y tiempo, no una sola cosa.
 $is('sello del futuro', lead_form_stamp_reason((string) ($t0 + 3600), lead_form_stamp($t0 + 3600)['sig'], $t0), 'sello');
 
@@ -424,23 +464,24 @@ $is('IP vacía pasa', lead_ip_throttled('', $keyA, $t0), false);
 $is('IP vacía no crea directorio', is_dir(STORAGE_DIR . '/throttle'), false);
 $is('primera IP pasa', lead_ip_throttled('192.0.2.1', $keyA, $t0), false);
 $path = STORAGE_DIR . '/throttle/' . lead_ip_fingerprint('192.0.2.1');
-$is('archivo contiene clave y timestamp', @file_get_contents($path), $keyA . "\n" . $t0);
+$is('archivo contiene clave y timestamp', @file_get_contents($path), $keyA . ' ' . $t0 . "\n");
 $is('throttle protegido', @file_get_contents(STORAGE_DIR . '/throttle/.htaccess'), file_get_contents($argv[2] . '/tools/.htaccess'));
 $is('misma IP y clave pasa', lead_ip_throttled('192.0.2.1', $keyA, $t0 + 1), false);
-$is('reintento no reescribe', @file_get_contents($path), $keyA . "\n" . $t0);
-$is('misma IP con otra clave limitada', lead_ip_throttled('192.0.2.1', $keyB, $t0 + 1), true);
+$is('reintento no reescribe', @file_get_contents($path), $keyA . ' ' . $t0 . "\n");
+// Una IP compartida (CGNAT) puede mandar varios pedidos distintos: el límite es por cantidad.
+for ($i = 1; $i < LEAD_IP_MAX_LEADS; $i++) {
+    $is("pedido distinto #{$i} de la misma IP pasa", lead_ip_throttled('192.0.2.1', str_repeat(dechex($i + 1), 64), $t0 + $i), false);
+}
+$is('pasado el máximo, otra clave queda limitada', lead_ip_throttled('192.0.2.1', $keyB, $t0 + 10), true);
+$is('una clave ya aceptada sigue pasando', lead_ip_throttled('192.0.2.1', $keyA, $t0 + 11), false);
 $is('otra IP pasa', lead_ip_throttled('192.0.2.2', $keyB, $t0 + 1), false);
 $is('antes del límite sigue bloqueada', lead_ip_throttled('192.0.2.1', $keyB, $t0 + LEAD_IP_WINDOW_SECONDS - 1), true);
-$is('expira en el límite', lead_ip_throttled('192.0.2.1', $keyB, $t0 + LEAD_IP_WINDOW_SECONDS), false);
-$is('expiración guarda nuevo registro', @file_get_contents($path), $keyB . "\n" . ($t0 + LEAD_IP_WINDOW_SECONDS));
-$is('nuevo envío reinicia ventana', lead_ip_throttled('192.0.2.1', $keyA, $t0 + LEAD_IP_WINDOW_SECONDS + 1), true);
-$is('misma clave pasa aun vencida', lead_ip_throttled('192.0.2.1', $keyB, $t0 + 2 * LEAD_IP_WINDOW_SECONDS), false);
-$is('reintento vencido no reescribe', @file_get_contents($path), $keyB . "\n" . ($t0 + LEAD_IP_WINDOW_SECONDS));
-foreach (['timestamp-invalido', (string) $t0, $keyA . "\nayer", "no-hex\n" . $t0, $keyA . "\n" . $t0 . "\nextra"] as $corrupt) {
+$is('vencida la ventana vuelve a pasar', lead_ip_throttled('192.0.2.1', $keyB, $t0 + LEAD_IP_WINDOW_SECONDS + LEAD_IP_MAX_LEADS), false);
+$is('vencida la ventana sólo queda el registro nuevo', @file_get_contents($path), $keyB . ' ' . ($t0 + LEAD_IP_WINDOW_SECONDS + LEAD_IP_MAX_LEADS) . "\n");
+foreach (['timestamp-invalido', (string) $t0, $keyA . " ayer", "no-hex " . $t0] as $corrupt) {
     file_put_contents($path, $corrupt);
     $is('contenido inválido deja pasar', lead_ip_throttled('192.0.2.1', $keyA, $t0), false);
-    $is('contenido inválido se repara', @file_get_contents($path), $keyA . "\n" . $t0);
-    $is('registro reparado limita otra clave', lead_ip_throttled('192.0.2.1', $keyB, $t0 + 1), true);
+    $is('contenido inválido se repara', @file_get_contents($path), $keyA . ' ' . $t0 . "\n");
 }
 unlink($path);
 mkdir($path);
@@ -640,6 +681,26 @@ if (!@mkdir($replayFixtureDir, 0770, true)) {
     @rmdir($replayFixtureDir);
 }
 
+// ---- aviso de lead: asunto sin datos personales, cuerpo con lo necesario para contestar
+$noticeRecord = ['ts' => gmdate('c'), 'outcome' => 'solo_log', 'phone_e164' => '+595981123456', 'payload' => $payload];
+$noticeSubject = lead_notify_subject($noticeRecord);
+if (!str_contains($noticeSubject, 'SIN CRM') || str_contains($noticeSubject, '981')) {
+    $fail("lead: asunto del aviso inesperado o con el teléfono: {$noticeSubject}");
+}
+$noticeText = lead_notify_text($noticeRecord);
+foreach (['Ana Benítez', '+595981123456', 'https://wa.me/595981123456', 'Luque'] as $needed) {
+    if (!str_contains($noticeText, $needed)) {
+        $fail("lead: el aviso de lead no incluye '{$needed}'");
+    }
+}
+// Sin notify_email ni Telegram configurados, lead_notify() no hace nada y no lanza.
+lead_notify($noticeRecord);
+
+$sup = lead_notify_subject(['outcome' => 'retenido', 'payload' => ['fields' => ['tipo' => 'proveedor']]]);
+if (!str_contains($sup, 'retenido') || !str_contains($sup, 'proveedor')) {
+    $fail("lead: asunto del aviso de proveedor retenido inesperado: {$sup}");
+}
+
 // ---- sin config de CRM el sitio igual funciona (plan §4.5) ---------------------------
 if (!is_file(CONFIG_DIR . '/vendercrm.php') && lead_crm_configured()) {
     $fail('lead: crm_configured() dice true sin config/vendercrm.php');
@@ -653,7 +714,7 @@ $consentText = 'Acepto que mis datos sean compartidos con proveedores del rubro 
 if (!str_contains($formSource, $consentText)) {
     $fail('lead: cambió el texto de consentimiento de partials/form.php (plan §8.6 — es una parada §4.4)');
 }
-foreach (['name="website"', 'name="ts"', 'name="tsg"', 'name="consentimiento"', 'name="telefono"'] as $needed) {
+foreach (['name="hp_extra"', 'name="ts"', 'name="tsg"', 'name="consentimiento"', 'name="telefono"'] as $needed) {
     if (!str_contains($formSource, $needed)) {
         $fail("lead: partials/form.php ya no trae el campo {$needed}");
     }
@@ -724,7 +785,7 @@ $supplierConsentText = 'Acepto que Materiales.com.py guarde mis datos para conta
 if (!str_contains($supplierFormSource, $supplierConsentText)) {
     $fail('lead: cambió el texto de consentimiento de partials/form-proveedor.php (parada §4.4 — sincronizar con la política y con consent_version_proveedor)');
 }
-foreach (['name="website"', 'name="ts"', 'name="tsg"', 'name="consentimiento"', 'name="telefono"', 'name="empresa"', 'name="rubros[]"', 'name="tipo" value="proveedor"'] as $needed) {
+foreach (['name="hp_extra"', 'name="ts"', 'name="tsg"', 'name="consentimiento"', 'name="telefono"', 'name="empresa"', 'name="rubros[]"', 'name="tipo" value="proveedor"'] as $needed) {
     if (!str_contains($supplierFormSource, $needed)) {
         $fail("lead: partials/form-proveedor.php ya no trae el campo {$needed}");
     }

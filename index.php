@@ -53,7 +53,7 @@ require __DIR__ . '/partials/header.php';
         <?= $maxProv ?> proveedores verificados te pasan precio por WhatsApp,
         normalmente dentro del día.
       </p>
-      <p><a class="btn btn--primary" href="#cotizar" data-ev="form_submit" data-ev-loc="home-hero">Pedí tu cotización</a></p>
+      <p><a class="btn btn--primary" href="#cotizar" data-ev="cta_click" data-ev-loc="home-hero">Pedí tu cotización</a></p>
     </div>
     <div class="page-hero__aside">
     <?php require __DIR__ . '/partials/hero-image.php'; ?>
