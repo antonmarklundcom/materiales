@@ -51,6 +51,21 @@
   con los metros cuadrados exactos de cada ambiente antes de pedir el material evita comprar de
   más o quedarte a mitad de pared por falta de mezcla.
 </p>
+<table>
+  <thead><tr><th>Mezcla</th><th>Dosificación (volumen)</th><th>Por m³ de mezcla</th></tr></thead>
+  <tbody>
+    <tr><td>Revoque grueso con cemento</td><td>1 : 4 (cemento : arena)</td><td>350 kg de cemento (7 bolsas) y 1,05 m³ de arena</td></tr>
+    <tr><td>Mortero con cal</td><td>1 : 1 : 6 (cemento : cal : arena)</td><td>200 kg de cemento (4 bolsas), 100 kg de cal y 1,05 m³ de arena</td></tr>
+  </tbody>
+</table>
+<p>
+  <strong>Un ejemplo:</strong> 30 m² de pared con un revoque grueso de 1,5 cm son 30 × 0,015 =
+  0,45 m³ de mezcla; con un 10 % de desperdicio, 0,495 m³. En mortero con cal eso pide
+  0,495 × 4 = 1,98, o sea <strong>2 bolsas de cemento</strong>, unos 50 kg de cal y 0,52 m³ de
+  arena. La <a href="/calculadoras/revoque-y-mortero/">calculadora de revoque</a> hace la cuenta
+  con tus medidas. La dosificación de tu obra la define quien la calcula. Estas proporciones son
+  las de manual; si tu maestro o tu calculista usa otra, cambiá la proporción y rehacé la cuenta.
+</p>
 
 <h2>Qué pedirle al proveedor</h2>
 <p>

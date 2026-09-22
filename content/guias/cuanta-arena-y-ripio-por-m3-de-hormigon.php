@@ -23,6 +23,26 @@
   resistencia especificada: un árido de mala calidad obliga a compensar con más cemento, lo que
   encarece la mezcla sin necesidad.
 </p>
+<p>
+  Estas son las dos dosificaciones de manual con ripio que usan nuestras calculadoras, por cada
+  metro cúbico de mezcla:
+</p>
+<table>
+  <thead><tr><th>Uso</th><th>Dosificación (volumen)</th><th>Cemento</th><th>Arena</th><th>Ripio</th></tr></thead>
+  <tbody>
+    <tr><td>Hormigón estructural</td><td>1 : 2 : 3</td><td>350 kg — 7 bolsas</td><td>0,50 m³</td><td>0,75 m³ (más ~175 L de agua)</td></tr>
+    <tr><td>Contrapiso (hormigón pobre)</td><td>1 : 3 : 5</td><td>250 kg — 5 bolsas</td><td>0,50 m³</td><td>0,85 m³</td></tr>
+  </tbody>
+</table>
+<p>
+  <strong>Un ejemplo:</strong> una losa de 12 m² y 10 cm de espesor es 1,2 m³ de hormigón. Con un
+  10 % de desperdicio son 1,32 m³: a 1 : 2 : 3 pide 1,32 × 7 = 9,24, o sea
+  <strong>10 bolsas de cemento</strong>, 1,32 × 0,50 = 0,66 m³ de arena y 1,32 × 0,75 = 0,99 m³
+  de ripio. La <a href="/calculadoras/hormigon-por-m3/">calculadora de hormigón por m³</a> hace
+  esta misma cuenta con tus medidas. La dosificación de tu obra la define quien la calcula.
+  Estas proporciones son las de manual; si tu maestro o tu calculista usa otra, cambiá la
+  proporción y rehacé la cuenta.
+</p>
 
 <h2>Qué pedir de cada árido</h2>
 <p>

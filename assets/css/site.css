@@ -694,3 +694,14 @@ section.wrap { padding-inline: var(--gutter); }
 /* A1: sello de proveedor verificado. */
 .badge-preview { margin: 0 0 var(--s-6); }
 .badge-snippet textarea { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: var(--t--1); }
+
+/* G5: tablas (prosa y "cómo se vende"). Antes no había estilo: las 14 tablas de materiales
+   salían con el formato del navegador. En mobile la tabla scrollea dentro de su contenedor,
+   nunca la página. */
+.table-wrap { overflow-x: auto; margin: var(--s-4) 0; }
+.prose table, .sale-table { width: 100%; border-collapse: collapse; font-size: var(--t--1); background: var(--paper-raised); }
+.prose table { margin: var(--s-4) 0; display: block; overflow-x: auto; }
+.prose th, .prose td, .sale-table th, .sale-table td { text-align: left; vertical-align: top; padding: var(--s-2) var(--s-3); border-bottom: 1px solid var(--paper-hairline); }
+.prose thead th, .sale-table thead th { background: var(--base); color: var(--ink); font-weight: 600; }
+.sale-table tbody th { font-weight: 600; }
+.table-note { font-size: var(--t--1); color: var(--paper-ink-70); margin-top: 0; }

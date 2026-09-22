@@ -47,6 +47,14 @@
   ajuste sobre el volumen teórico para compensar esos huecos.
 </p>
 <p>
+  <strong>Un ejemplo de la cuenta geométrica:</strong> una casa con 40 metros lineales de zanja
+  de fundación, de 40 cm de ancho y 60 cm de profundidad, tiene 40 × 0,40 × 0,60 =
+  <strong>9,6 m³ de zanja</strong>. Ese es el volumen teórico a rellenar; sobre él se aplica el
+  coeficiente que defina quien dirige la obra para descontar el mortero de asiento, y el
+  resultado es lo que pedís en metros cúbicos o camionadas. Con el largo, el ancho y la
+  profundidad de tu plano, la misma multiplicación te da tu número.
+</p>
+<p>
   Si en cambio vas a usar piedra triturada como base compactada o como parte de una mezcla de
   hormigón para zapatas o platea, el cálculo cambia: ahí lo que importa es el volumen de la capa
   de asiento o la proporción que indique la dosificación del hormigón que te pase el calculista,
