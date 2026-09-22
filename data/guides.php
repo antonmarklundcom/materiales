@@ -98,7 +98,7 @@ return [
         'name'   => 'Cómo revocar una pared',
         'status' => 'activa',
         'published' => '2026-09-06',
-        'updated'   => '2026-09-06',
+        'updated'   => '2026-09-22',
         'order'  => 7,
         'title'  => 'Cómo revocar una pared en Paraguay | Materiales y pasos',
         'meta'   => 'Qué lleva el revoque grueso y el fino, en qué orden va cada capa y cómo calcular el material por m² en obra paraguaya. Después cotizá lo que falte.',

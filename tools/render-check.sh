@@ -96,6 +96,14 @@ check "/"                          200 'href="/assets/css/site.css?v='
 check "/calculadoras/hormigon-por-m3/" 200 'src="/assets/js/calc.js?v='
 # S7: robots.txt ya no bloquea /gracias/ (tiene que poder leer su noindex).
 absent "/robots.txt"               'Disallow: /gracias/'
+# A1: página del sello de proveedor verificado (carpeta anidada: router-cli la sirve igual que
+# el DirectoryIndex de Apache), con el código para copiar y la imagen servida.
+check "/proveedores/verificado/"   200 'data-badge-snippet'
+check "/proveedores/verificado/"   200 'sello-proveedor-verificado.svg'
+check "/assets/img/sello-proveedor-verificado.svg" 200 'Proveedor verificado'
+check "/proveedores/"              200 'href="/proveedores/verificado/"'
+check "/sitemap.xml"               200 '/proveedores/verificado/'
+
 # ---- PR F (frescura, E-E-A-T, formulario del héroe) ----
 # S16: fechas visibles, lastmod en el sitemap, Article en guías y calculadoras.
 check "/materiales/cemento/"       200 'Actualizado: <time datetime="20'
@@ -135,6 +143,10 @@ check "/guias/cuantas-bolsas-de-cemento-por-m2/" 200 'href="/calculadoras/bolsas
 # S15: páginas antes casi huérfanas reciben enlaces en prosa.
 check "/materiales/ladrillo-prensado/" 200 'href="/materiales/ladrillo-refractario/"'
 check "/materiales/piso-vinilico/" 200 'href="/materiales/mdf-fibrofacil/"'
+# G3: materiales nuevos con volumen medido (improvement report #2).
+check "/materiales/ducha-higienica/" 200 '<h1>Ducha higiénica en Paraguay</h1>'
+check "/materiales/piso-parquet/"    200 '<h1>Piso parquet en Paraguay</h1>'
+check "/materiales/metal-desplegado/" 200 '<h1>Metal desplegado en Paraguay</h1>'
 # G8: intros de los hubs.
 check "/guias/"                    200 'Estas guías responden'
 check "/calculadoras/"             200 'Cada calculadora resuelve'

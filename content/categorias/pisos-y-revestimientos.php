@@ -9,7 +9,9 @@
   están los <a href="/materiales/azulejos/">azulejos</a>, pensados para revestir y no para
   pisar. Si la idea es renovar un piso existente sin romper contrapiso, el
   <a href="/materiales/piso-vinilico/">piso vinílico</a> resuelve eso, sea en rollo, en placas
-  adhesivas o en el formato click tipo flotante. Y para fachadas, muros exteriores o un acento
+  adhesivas o en el formato click tipo flotante. Si lo que querés es madera de verdad, que se
+  lija y se plastifica en obra, el que corresponde es el
+  <a href="/materiales/piso-parquet/">piso parquet</a>. Y para fachadas, muros exteriores o un acento
   de pared interior con textura natural, está la
   <a href="/materiales/piedra-laja/">piedra laja</a>. Ningún revestimiento se coloca solo:
   siempre necesitás el <a href="/materiales/adhesivo-para-ceramica/">adhesivo y la pastina</a>

@@ -23,7 +23,10 @@
 <p>
   Antes de aplicar el grueso, la pared tiene que estar limpia, sin polvo suelto ni restos de
   mortero de asiento, y en muchos casos se moja previamente para que el ladrillo no le robe agua
-  a la mezcla fresca demasiado rápido. El grueso se tira con cuchara y se empareja con regla o
+  a la mezcla fresca demasiado rápido. Donde la pared se encuentra con una columna o una viga
+  de hormigón, o sobre una canaleta donde se embutieron caños, se suele fijar antes una tira de
+  <a href="/materiales/metal-desplegado/">metal desplegado</a> para que el revoque tenga de
+  dónde agarrarse sobre materiales distintos. El grueso se tira con cuchara y se empareja con regla o
   fratacho, dejando una superficie pareja pero todavía rugosa, que es justamente la que necesita
   el fino para agarrarse bien. Hay que dejar que el grueso fragüe y tome cierta firmeza antes de
   pasar a la siguiente capa; aplicar el fino demasiado pronto sobre un grueso todavía blando suele

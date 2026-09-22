@@ -3,7 +3,9 @@
   Los <strong>sanitarios y la grifería</strong> completan los puntos de uso del agua en el
   baño y la cocina. Para el baño, el <a href="/materiales/inodoro/">inodoro</a> se pide con
   su cisterna de baño o mochila: conviene definir el conjunto según el espacio disponible y
-  la salida del desagüe. La <a href="/materiales/canilla-de-lavatorio/">canilla de lavatorio</a>
+  la salida del desagüe; al lado, la <a href="/materiales/ducha-higienica/">ducha higiénica</a>
+  cumple la función del bidet cuando no hay lugar para otro artefacto. La
+  <a href="/materiales/canilla-de-lavatorio/">canilla de lavatorio</a>
   se elige según la altura de la bacha y las perforaciones donde se monta. Para la pileta,
   la <a href="/materiales/griferia-de-cocina/">grifería de cocina</a> necesita un pico con
   alcance cómodo para lavar y espacio para moverlo. En ambos ambientes podés pedir
