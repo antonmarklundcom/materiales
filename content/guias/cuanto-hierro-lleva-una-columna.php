@@ -1,3 +1,9 @@
+<p>
+  Si ya tenés la planilla de tu calculista y querés pasarla a barras de 12 m y kilos, usá la
+  <a href="/calculadoras/hierro-para-columnas/">calculadora de hierro para columnas</a>; esta guía
+  explica por qué esos números salen del plano y no de una regla general.
+</p>
+
 <h2>Quién define la cantidad</h2>
 <p>
   La cantidad de hierro que lleva una columna —cuántas barras, de qué diámetro y cada cuánto van

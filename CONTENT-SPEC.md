@@ -473,6 +473,46 @@ compactación de por medio). `ladrillo hueco` queda fuera del selector: sus medi
 están documentadas en ningún material de este sitio y no se inventa una — ver
 `docs/decisions-needed.md`.
 
+**Calculadoras G1 (mejora post-lanzamiento).** Ninguna fija un dato de producto: lo que
+depende del fabricante o del proveedor es un input del visitante con un valor de ejemplo
+declarado como tal. Lo que agregan a esta sección:
+
+- **Hierro para columnas (`hierro-para-columnas`).** Conversor de planilla, no cálculo
+  estructural: diámetros, cantidad de barras, separación de estribos, recubrimiento, ganchos y
+  empalme los copia el visitante de su plano (los precargados son ejemplo). Peso por metro =
+  geometría, densidad del acero 7.850 kg/m³ × π·d²/4 ≈ 0,00617 × d² (d en mm), redondeado a 3
+  decimales: 6 mm 0,222 · 8 mm 0,395 · 10 mm 0,617 · 12 mm 0,888 · 16 mm 1,578 · 20 mm
+  2,466 kg/m. Barra comercial de 12 m, ya publicada en `varilla-de-hierro`. Estribo = perímetro
+  interior (2A + 2B − 8 × recubrimiento) + ganchos; estribos por columna = ceil(alto ÷
+  separación) + 1. **10 % por cortes** (recortes de barras de 12 m), declarado. La guía
+  `cuanto-hierro-lleva-una-columna` pasa a explicar quién define el hierro y cómo leer la
+  planilla (S14: el "cuánto" es de la calculadora).
+- **Tabique en seco (`durlock-por-m2`).** Ancho de placa 1,20 m y separación de montantes 40 o
+  60 cm, ya publicados en `placa-de-yeso` y `perfiles-para-durlock`; largo de placa y de barra
+  de perfil son datos del visitante (2,40 y 2,60 m, sólo ejemplo). Montantes = espacios del
+  largo redondeados hacia arriba + 1 de cierre; cada montante lleva ceil(alto ÷ largo de barra)
+  barras; solera = 2 líneas del largo del tabique en barras enteras. **10 % de desperdicio de
+  placa** por cortes y encuentros, editable y declarado; no se aplica a perfiles. Tornillos,
+  masilla y cinta no se calculan.
+- **Membrana en rollo (`membrana-por-m2`).** m² por rollo, ancho del rollo y solape son datos
+  del visitante (10 m², 1 m, 10 cm de ejemplo) porque dependen del espesor y del fabricante.
+  Geometría: m² de losa + perímetro × altura de la subida, × ancho ÷ (ancho − solape). **5 %
+  por cortes, empalmes y remates**, editable y declarado. Rollos hacia arriba.
+- **Piezas en caja (`ceramica-por-m2`).** Venta por m² en caja cerrada, ya publicada. m² por
+  caja, rendimiento del adhesivo (kg/m²) y peso de la bolsa son inputs con ejemplo. Extra por
+  cortes: **10 % en recta, 15 % en diagonal o espiga**, declarados. El adhesivo va sobre los m²
+  del ambiente sin el extra. La pastina no se cuantifica.
+- **Chapas para techo (`chapas-para-techo`).** El ancho útil (con el solape lateral ya
+  descontado) es dato del proveedor (1 m sólo de ejemplo); el largo de cada chapa es el del
+  faldón de cumbrera a alero, sin empalmes, como ya publican `chapa-de-zinc` y
+  `chapa-trapezoidal`. Chapas por faldón hacia arriba y **5 % de chapas de más** por golpes y
+  cortes, editable y declarado.
+- **Reserva de agua (`tanque-de-agua-litros`).** Litrajes 500 y 1000 L, ya publicados en
+  `tanque-de-agua`. El consumo por persona por día es input con **150 L/persona/día** por
+  defecto, presentado como referencia de diseño de los manuales de instalaciones sanitarias
+  para vivienda (el valor bajo de las dotaciones habituales), no como dato del sitio; días de
+  reserva (1) y margen (10 %) son ejemplos declarados. Tanques hacia arriba.
+
 Frases obligatorias sobre dosificación, en la prosa de toda calculadora que use la tabla:
 
 > La dosificación de tu obra la define quien la calcula. Estas proporciones son las de manual;

@@ -10,9 +10,10 @@ declare(strict_types=1);
 <p>
   Cada calculadora resuelve una cuenta que se hace en toda obra: cuántas bolsas de cemento van
   por metro cuadrado de contrapiso o revoque, cuánto cemento, arena y ripio lleva un metro cúbico
-  de hormigón, cuántos ladrillos o bloques entran en un metro cuadrado de pared y cuánta cal,
-  cemento y arena necesita un revoque. Cargás tus medidas y el resultado se actualiza en el
-  momento.
+  de hormigón, cuántos ladrillos o bloques entran en una pared, cuánto hierro lleva una columna,
+  cuántas placas y perfiles pide un tabique en seco, cuántas cajas de cerámica o porcelanato,
+  cuántas chapas o rollos de membrana necesita un techo y de cuántos litros tiene que ser el
+  tanque de agua. Cargás tus medidas y el resultado se actualiza en el momento.
 </p>
 <p>
   Debajo de cada calculadora está la cuenta escrita en palabras, un ejemplo resuelto y los

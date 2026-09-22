@@ -16,3 +16,6 @@ Thumbs.db
 # `npm i -D playwright` en vez de correr contra la instalación global, no se commitea.
 /node_modules/
 /package-lock.json
+
+# Worktrees de subagentes de Claude Code (locales, nunca se commitean).
+/.claude/worktrees/

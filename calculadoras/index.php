@@ -32,7 +32,7 @@ if ($slug === '') {
 
     page([
         'title'       => 'Calculadoras de materiales de construcción | Paraguay',
-        'meta'        => 'Calculá bolsas de cemento por m², hormigón por m³, ladrillos y revoque. Con la cuenta explicada, los supuestos a la vista y cotización en un paso.',
+        'meta'        => 'Calculá cemento, hormigón, ladrillos, hierro, placas de yeso, cerámica, chapas, membrana y tanques. Con la cuenta explicada y cotización en un paso.',
         'canonical'   => '/calculadoras/',
         'h1'          => 'Calculadoras de materiales',
         'breadcrumbs' => $breadcrumbs,
