@@ -46,5 +46,7 @@
   Volvé a <a href="/materiales/pisos-y-revestimientos/">pisos y revestimientos</a> para ver el
   resto de la categoría, mirá el <a href="/materiales/porcelanato/">porcelanato</a> si la obra
   es nueva, o el <a href="/materiales/machimbre/">machimbre</a> si buscás una terminación de
-  madera para otro ambiente.
+  madera para otro ambiente. Si la duda es renovar o colocar piso nuevo, la guía
+  <a href="/guias/piso-vinilico-o-porcelanato/">piso vinílico o porcelanato</a> compara las dos
+  salidas.
 </p>

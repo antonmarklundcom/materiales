@@ -194,4 +194,82 @@ return [
         'meta'   => 'Qué es un millar, una camionada, la piedra 6ta, el tejuelón o el hierro de 8: las palabras de obra y de corralón en Paraguay, cada una con su página.',
         'related' => ['ladrillos-y-bloques', 'aridos', 'hierro', 'chapas-y-techos'],
     ],
+
+    'porcelanato-o-ceramica' => [
+        'keyword' => 'porcelanato o cerámica',
+        'name'   => 'Porcelanato o cerámica: cuál conviene',
+        'status' => 'activa',
+        'published' => '2026-09-22',
+        'updated'   => '2026-09-22',
+        'order'  => 16,
+        'title'  => 'Porcelanato o cerámica en Paraguay: cuál conviene',
+        'meta'   => 'Porcelanato o cerámica para piso: diferencias de absorción, tránsito y colocación, en qué ambiente va cada uno y qué pedirle al proveedor.',
+        'related' => ['porcelanato', 'ceramica-para-piso', 'pisos-y-revestimientos'],
+    ],
+
+
+    'durlock-o-ladrillo' => [
+        'keyword' => 'durlock o ladrillo',
+        'name'   => 'Placa de yeso o ladrillo para paredes interiores',
+        'status' => 'activa',
+        'published' => '2026-09-22',
+        'updated'   => '2026-09-22',
+        'order'  => 17,
+        'title'  => 'Placa de yeso o ladrillo en Paraguay: paredes interiores',
+        'meta'   => 'Tabique de placa de yeso o pared de ladrillo hueco: cómo se arma cada uno, cuándo conviene y qué resolver antes de cerrar la pared interior.',
+        'related' => ['placa-de-yeso', 'ladrillo-hueco', 'yeso-y-durlock'],
+    ],
+
+
+    'cielorraso-de-pvc-o-durlock' => [
+        'keyword' => 'cielorraso de pvc o durlock',
+        'name'   => 'Cielorraso de PVC o de placa de yeso',
+        'status' => 'activa',
+        'published' => '2026-09-22',
+        'updated'   => '2026-09-22',
+        'order'  => 18,
+        'title'  => 'Cielorraso de PVC o de placa de yeso en Paraguay',
+        'meta'   => 'Tablilla de PVC o placa de yeso para el cielorraso: terminación, humedad, estructura y en qué ambiente conviene cada una antes de pedir.',
+        'related' => ['cielorraso-de-pvc', 'placa-de-yeso', 'perfiles-para-durlock'],
+    ],
+
+
+    'piso-vinilico-o-porcelanato' => [
+        'keyword' => 'piso vinílico o porcelanato',
+        'name'   => 'Piso vinílico o porcelanato',
+        'status' => 'activa',
+        'published' => '2026-09-22',
+        'updated'   => '2026-09-22',
+        'order'  => 19,
+        'title'  => 'Piso vinílico o porcelanato en Paraguay: cuál conviene',
+        'meta'   => 'Renovar sin romper con piso vinílico o colocar porcelanato: qué pide cada uno de la base, cómo se comporta con el agua y cuándo conviene.',
+        'related' => ['piso-vinilico', 'porcelanato', 'ceramica-para-piso'],
+    ],
+
+
+    'bloque-de-hormigon-o-ladrillo' => [
+        'keyword' => 'bloque de hormigón o ladrillo',
+        'name'   => 'Bloque de hormigón o ladrillo',
+        'status' => 'activa',
+        'published' => '2026-09-22',
+        'updated'   => '2026-09-22',
+        'order'  => 20,
+        'title'  => 'Bloque de hormigón o ladrillo en Paraguay: cuál conviene',
+        'meta'   => 'Bloque de hormigón o ladrillo cerámico: avance de obra, muros armados, cercos y vivienda, y qué pedirle al proveedor de cada uno.',
+        'related' => ['bloque-de-hormigon', 'ladrillo-comun', 'ladrillos-y-bloques'],
+    ],
+
+
+    'teja-espanola-o-francesa' => [
+        'keyword' => 'teja española o francesa',
+        'name'   => 'Teja española o francesa',
+        'status' => 'activa',
+        'published' => '2026-09-22',
+        'updated'   => '2026-09-22',
+        'order'  => 21,
+        'title'  => 'Teja española o francesa en Paraguay: cuál conviene',
+        'meta'   => 'Teja colonial curva o teja francesa de encastre: aspecto, estructura, pendiente y piezas especiales para elegir la teja de tu techo.',
+        'related' => ['teja-espanola', 'teja-francesa', 'tirantes'],
+    ],
+
 ];

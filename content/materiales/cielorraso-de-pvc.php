@@ -41,5 +41,7 @@
   cielorraso cerrado, o la <a href="/materiales/chapa-termoacustica/">chapa termoacústica</a>
   si necesitás aislación además de terminación. Para no comprar de más ni de menos, la guía
   <a href="/guias/como-hacer-un-computo-metrico/">Cómo hacer un cómputo métrico</a> te muestra
-  cómo calcular la cantidad exacta de tablillas antes de pedir.
+  cómo calcular la cantidad exacta de tablillas antes de pedir. Si dudás entre tablilla y
+  placa, la guía <a href="/guias/cielorraso-de-pvc-o-durlock/">cielorraso de PVC o de
+  durlock</a> compara terminación, humedad y estructura.
 </p>

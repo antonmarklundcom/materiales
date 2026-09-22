@@ -40,7 +40,8 @@ detalle por fase en `docs/log/`)._
 | PR F — Frescura, E-E-A-T, formulario del héroe | S16, C3 (CONTENT-SPEC §14) | ✅ #49 |
 | G1 — Calculadoras | 6 nuevas (10 en total) | ✅ #50 |
 | G3 + A1 — Páginas nuevas + sello | ducha higiénica, piso parquet, metal desplegado; /proveedores/verificado/ | ✅ #51 |
-| G2 + G6 — Pinturas + glosario | rubro Pinturas activo con 5 materiales; guía glosario | ✅ este PR |
+| G2 + G6 — Pinturas + glosario | rubro Pinturas activo con 5 materiales; guía glosario | ✅ #52 |
+| G4 — Guías comparativas | 6 guías "X o Y" | ✅ este PR |
 
 Scripts de operación nuevos (todos CLI, ver `DEPLOY.md`): `tools/replay-leads.php` (con tope
 de reintentos y alerta), `tools/lead-digest.php` (resumen diario), `tools/maintenance.php`
