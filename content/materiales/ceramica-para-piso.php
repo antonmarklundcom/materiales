@@ -57,6 +57,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/pisos-y-revestimientos/">pisos y revestimientos</a> para ver el
   resto de la categoría, mirá el <a href="/materiales/porcelanato/">porcelanato</a> si
-  necesitás mayor resistencia, o el
+  necesitás mayor resistencia, la <a href="/materiales/piedra-laja/">piedra laja</a> si es un
+  patio o una galería con terminación rústica, o el
   <a href="/materiales/adhesivo-para-ceramica/">adhesivo y la pastina</a> para la colocación.
 </p>

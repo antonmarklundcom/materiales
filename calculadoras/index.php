@@ -31,8 +31,8 @@ if ($slug === '') {
     }
 
     page([
-        'title'       => 'Calculadoras de materiales para tu obra',
-        'meta'        => 'Calculá cuánto material lleva tu obra: bolsas de cemento por m² y más. Con la cuenta explicada, los supuestos a la vista y cotización en un paso.',
+        'title'       => 'Calculadoras de materiales de construcción | Paraguay',
+        'meta'        => 'Calculá bolsas de cemento por m², hormigón por m³, ladrillos y revoque. Con la cuenta explicada, los supuestos a la vista y cotización en un paso.',
         'canonical'   => '/calculadoras/',
         'h1'          => 'Calculadoras de materiales',
         'breadcrumbs' => $breadcrumbs,
@@ -56,6 +56,7 @@ if ($slug === '') {
 </div>
 <div class="field wrap">
   <div class="field__panel">
+    <?php require CONTENT_DIR . '/hubs/calculadoras.php'; /* G8 */ ?>
     <?php if ($published === []): ?>
     <p class="notice">Estamos publicando las primeras calculadoras. Mientras tanto, <a href="/cotizar/">pedí tu cotización</a>.</p>
     <?php else: ?>

@@ -41,16 +41,22 @@ prohíbe inventarlos.
 
 ## 2. Índice `/materiales/` (`public_html/materiales/_index.php`)
 
-`<title>`: `Materiales de construcción en Paraguay | Cotizá gratis` ·
-meta: `Hierro, cemento, áridos, ladrillos, chapas y más. Elegí el material y pedí cotización: hasta 3 proveedores verificados te escriben.` ·
-H1: `Materiales de construcción en Paraguay` ·
-bajada: `Elegí el rubro que necesitás y pedí tu cotización en un paso.`
+Reescrito en la mejora post-lanzamiento (improvement report #2, S4): antes compartía title y
+H1 con la home y competían por el mismo término.
+
+`<title>`: `Catálogo de materiales de construcción en Paraguay ({N})` (N = materiales activos) ·
+meta: `{N} materiales de obra en {R} rubros: hierro, cemento, áridos, ladrillos, chapas, pisos y más. Elegí y cotizá gratis con hasta 3 proveedores.` ·
+H1: `Catálogo de materiales de construcción` ·
+bajada: `{N} materiales en {R} rubros. Elegí el que necesitás y pedí tu cotización en un paso.` ·
+intro: `content/hubs/materiales.php` · después, la lista completa de materiales por rubro.
+Los rubros `proxima` se muestran sin enlace ("Próximamente"), acá y en la home (S9).
 
 ## 3. Plantilla de categoría y de material (`public_html/materiales/index.php`)
 
 Orden fijo, igual para los dos tipos:
 
-1. H1 = `name` del dato.
+1. H1 = `h1` del dato si existe; si no, `{name} en Paraguay` (S13, mejora post-lanzamiento).
+   `h1` se usa sólo cuando el término más buscado de la página no es su nombre (§13).
 2. Bajada = `intro` del dato.
 3. Sólo material: `Se vende por: {sale_unit}`.
 4. Prosa: `content/categorias/{slug}.php` o `content/materiales/{slug}.php` (§5). Si no
@@ -63,7 +69,9 @@ Orden fijo, igual para los dos tipos:
 8. Formulario, con el slug de la página preseleccionado.
 
 `title` y `meta` de cada categoría y material ya están escritos en `data/*.php` (fase 1,
-completados en fase 3). **No se reescriben** en fases posteriores.
+completados en fase 3). **No se reescriben** en fases posteriores — salvo la reapertura que
+Anton aprobó para la mejora post-lanzamiento (decisión D2 del improvement report #2), ya
+ejecutada y registrada en §13. Después de §13 vuelven a estar cerrados.
 
 Única excepción, ya ejecutada: la fase 5c reescribió `title`, `meta`, `intro`,
 `intro_keywords` y `faq` de las **seis categorías promovidas** (madera, pisos-y-revestimientos,
@@ -508,3 +516,43 @@ no está en esta lista de operaciones no se puede ejecutar.
   muestra como `—` y la prosa sigue siendo la respuesta. Nunca una excepción en pantalla.
 - `cta_quantity_template` de `data/calculators.php` arma la `cantidad` del formulario con los
   ids de salida entre llaves: `"{bolsas} bolsas de cemento de 50 kg"`.
+
+## 13. Mejora post-lanzamiento — reapertura de títulos (improvement report #2, PR E)
+
+Anton reabrió el cierre de títulos de §3/§10 (decisión D2) para S11–S14. Lo que cambió, y la
+regla que queda:
+
+**S11 — el título, el H1 y la frase de apertura van con el término medido** (volúmenes de
+`KEYWORDS-MATERIALES.md`), no con el nombre de la ficha. `keyword` pasa a ser ese término y el
+nombre anterior queda como sinónimo:
+
+| Página | Término | `title` | `h1` |
+|---|---|---|---|
+| `tierra-gorda` | tierra colorada (1.300) | `Tierra colorada (tierra gorda) en Paraguay \| Cotizá` | `Tierra colorada (tierra gorda) en Paraguay` |
+| `ripio` | canto rodado (1.000) | `Canto rodado y ripio en Paraguay \| Cotizá por m³` | `Canto rodado y ripio en Paraguay` |
+| `ladrillo-prensado` | ladrillo visto (1.300) | `Ladrillo visto (prensado) en Paraguay \| Cotizá por millar` | `Ladrillo visto (prensado) en Paraguay` |
+| `puertas-de-chapa` | puertas de metal (1.300) | `Puertas de metal y de chapa en Paraguay \| Cotizá` | `Puertas de metal y de chapa en Paraguay` |
+| `membrana-asfaltica` | membrana para techo (1.300) | `Membrana para techo (asfáltica) en Paraguay \| Cotizá` | `Membrana para techo: membrana asfáltica en Paraguay` |
+| `tanque-de-agua` | tanque de agua 1000 litros (720) | `Tanque de agua 500 y 1000 litros en Paraguay \| Cotizá` | `Tanque de agua de 500 y 1000 litros en Paraguay` |
+
+**S12 — ningún título promete un precio que la página no muestra.** "Precio por …" pasó a
+"Cotizá por …" en los 17 títulos que lo tenían. Regla: mientras siga la política de no publicar
+precios (D1), ningún `title` dice "Precio por".
+
+**S13 — H1 con país** (`{name} en Paraguay` por defecto, §3) y "Paraguay" en el título de cada
+guía y calculadora. Sin año en los títulos: sólo se agrega en páginas que se van a mantener al
+día (y con `updated` real, ver S16).
+
+**S14 — la calculadora es dueña del "cuántas/cuánto"; la guía, del "cómo / por qué".**
+`guias/cuantas-bolsas-de-cemento-por-m2` → H1 `Cómo calcular las bolsas de cemento por m²`;
+`guias/cuanta-arena-y-ripio-por-m3-de-hormigon` → H1 `Arena y ripio para hormigón: cómo
+dosificar un m³`. Las dos abren mandando a su calculadora para el número rápido. Los títulos de
+calculadora empiezan con "Calculadora de …". Los slugs no cambian (sin redirecciones).
+
+**S15 — ninguna página de dinero depende de un solo enlace.** Enlaces en prosa y `related[]`
+nuevos hacia `ladrillo-refractario`, `adoquines`, `mdf-fibrofacil`, `piedra-laja` y otras con
+≤ 2 enlaces entrantes; además `/materiales/` lista todos los materiales (S4).
+
+**G8 — hubs con intro propia**: `content/hubs/materiales.php`, `guias.php`,
+`calculadoras.php`. `/cotizar/` y `/contacto/` quedan cortas a propósito (páginas de trámite).
+

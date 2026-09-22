@@ -1,3 +1,9 @@
+<p>
+  ¿Buscás sólo el número? La <a href="/calculadoras/bolsas-de-cemento-por-m2/">calculadora de bolsas de cemento por m²</a> hace la
+  cuenta con tus medidas en segundos. Esta guía explica el porqué: de dónde sale ese número, qué
+  lo mueve y cómo pedírselo al proveedor para que la cotización sea comparable.
+</p>
+
 <h2>De qué depende el cálculo</h2>
 <p>
   No hay una cifra única de "bolsas por metro cuadrado" que sirva para toda obra, aunque es lo

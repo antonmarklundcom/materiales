@@ -1,3 +1,9 @@
+<p>
+  ¿Buscás sólo el número? La <a href="/calculadoras/hormigon-por-m3/">calculadora de hormigón por m³</a> hace la
+  cuenta con tus medidas en segundos. Esta guía explica el porqué: de dónde sale ese número, qué
+  lo mueve y cómo pedírselo al proveedor para que la cotización sea comparable.
+</p>
+
 <h2>Cómo se compone un metro cúbico</h2>
 <p>
   Un metro cúbico de hormigón se arma combinando cemento, agua y áridos —arena y ripio,

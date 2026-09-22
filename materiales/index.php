@@ -39,6 +39,10 @@ if (isset($categories[$slug])) {
 }
 
 $canonical  = '/materiales/' . $slug . '/';
+// S13: el H1 ya no es el nombre pelado ("Cemento"): lleva el país, y las páginas cuyo término
+// más buscado no es su nombre (tierra colorada, canto rodado, ladrillo visto…) lo declaran en
+// 'h1' (S11). El nombre corto sigue en migas, tiles y formulario.
+$h1 = (string) ($entry['h1'] ?? ($entry['name'] . ' en Paraguay'));
 $published  = is_published($entry);
 $contentFile = CONTENT_DIR . '/' . ($type === 'categoria' ? 'categorias' : 'materiales') . '/' . $slug . '.php';
 
@@ -76,7 +80,7 @@ page([
     'meta'        => $entry['meta'],
     'canonical'   => $canonical,
     'noindex'     => !$published,
-    'h1'          => $entry['name'],
+    'h1'          => $h1,
     'breadcrumbs' => $breadcrumbs,
     'schema'      => $schema,
     'body_class'  => 'page-' . $type,
@@ -89,7 +93,7 @@ require PUBLIC_ROOT . '/partials/header.php';
 <div class="page-hero band--dark grain bleed">
   <div class="wrap<?= $heroImage !== null ? ' page-hero__grid page-hero__grid--split' : '' ?>">
     <div>
-    <h1><?= e($entry['name']) ?></h1>
+    <h1><?= e($h1) ?></h1>
 
     <?php if (($entry['intro'] ?? '') !== ''): ?>
     <p class="lead"><?= e($entry['intro']) ?></p>

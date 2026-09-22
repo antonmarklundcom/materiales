@@ -7,7 +7,9 @@
   A diferencia del ladrillo común, acá la cara del ladrillo es parte del diseño, así que la
   prolijidad del asentado importa tanto como el material en sí. Se usa también en parrillas
   exteriores de baja exigencia y en detalles de jardín donde el ladrillo queda permanentemente a
-  la vista. Si lo que buscás es un ladrillo rústico para revocar, no para dejar expuesto, el
+  la vista; lo que toca el fuego directo, en cambio, va con
+  <a href="/materiales/ladrillo-refractario/">ladrillo refractario</a>. Para pisos exteriores con
+  la misma estética a la vista, mirá los <a href="/materiales/adoquines/">adoquines</a>. Si lo que buscás es un ladrillo rústico para revocar, no para dejar expuesto, el
   <a href="/materiales/ladrillo-comun/">ladrillo común</a> o de campo es la opción correcta, no
   el prensado.
 </p>

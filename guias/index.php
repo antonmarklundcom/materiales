@@ -21,7 +21,7 @@ if ($slug === '') {
 
     page([
         'title'       => 'Guías de obra y materiales en Paraguay',
-        'meta'        => 'Cálculos y comparativas para comprar bien: bolsas de cemento por m², qué piedra va en cimientos, qué chapa conviene y más. Con cotización en un paso.',
+        'meta'        => 'Comparativas, procesos y cálculos para comprar bien: ladrillo común o hueco, qué piedra va en cimientos, qué chapa conviene y más. Cotizá en un paso.',
         'canonical'   => '/guias/',
         'breadcrumbs' => $breadcrumbs,
         'schema'      => [
@@ -36,6 +36,8 @@ if ($slug === '') {
     echo "<h1>Guías de obra y materiales</h1>\n";
     echo "</div></div>\n";
     echo "<div class=\"field wrap\"><div class=\"field__panel\">\n";
+    // G8: el hub tenía 83 palabras; la intro dice qué tipo de guía hay y cómo se usa.
+    require CONTENT_DIR . '/hubs/guias.php';
     echo "<ul class=\"tile-grid\">\n";
     foreach ($guides as $guideSlug => $guide) {
         printf(

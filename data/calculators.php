@@ -35,7 +35,7 @@ return [
         'name'    => 'Cuántas bolsas de cemento por m²',
         'status'  => 'activa',
         'order'   => 1,
-        'title'   => 'Calculadora: bolsas de cemento por m²',
+        'title'   => 'Calculadora de bolsas de cemento por m² | Paraguay',
         'meta'    => 'Calculá cuántas bolsas de cemento de 50 kg y cuánta arena lleva tu contrapiso, revoque o carpeta por m². Con la cuenta explicada y cotización en un paso.',
         'intro'   => 'Cargá los metros cuadrados, el espesor y el tipo de trabajo, y mirá cuántas bolsas de cemento de 50 kg y cuánta arena necesitás.',
 
@@ -127,7 +127,7 @@ return [
         'name'    => 'Cuánto cemento, arena y ripio por m³ de hormigón',
         'status'  => 'activa',
         'order'   => 2,
-        'title'   => 'Calculadora: cemento, arena y ripio por m³',
+        'title'   => 'Calculadora de hormigón por m³ en Paraguay',
         'meta'    => 'Calculá cuántas bolsas de cemento, m³ de arena, m³ de ripio y litros de agua lleva tu hormigón por m³, para columnas, vigas, losas o contrapiso.',
         'intro'   => 'Cargá los m³ de hormigón que necesitás y el tipo de estructura, y mirá cuántas bolsas de cemento, arena, ripio y agua entran en la mezcla.',
 
@@ -211,7 +211,7 @@ return [
         'name'    => 'Cuántos ladrillos o bloques por m²',
         'status'  => 'activa',
         'order'   => 3,
-        'title'   => 'Calculadora: ladrillos o bloques por m²',
+        'title'   => 'Calculadora de ladrillos y bloques por m² | Paraguay',
         'meta'    => 'Calculá cuántos ladrillos comunes o bloques de hormigón necesitás por m² de pared, según la medida y la junta de mortero.',
         'intro'   => 'Elegí la medida del ladrillo o bloque, cargá la junta de mortero y los m² de pared, y mirá cuántas piezas necesitás.',
 
@@ -302,7 +302,7 @@ return [
         'name'    => 'Cuánta cal, cemento y arena por m² de revoque',
         'status'  => 'activa',
         'order'   => 4,
-        'title'   => 'Calculadora: cal, cemento y arena por m²',
+        'title'   => 'Calculadora de revoque: cal, cemento y arena | Paraguay',
         'meta'    => 'Calculá cuánta cal hidratada, cuántas bolsas de cemento y cuánta arena lleva tu revoque con mortero de cal, por m² y espesor.',
         'intro'   => 'Cargá los m² a revocar y el espesor, y mirá cuánta cal hidratada, cemento y arena necesitás para un mortero de cal.',
 
