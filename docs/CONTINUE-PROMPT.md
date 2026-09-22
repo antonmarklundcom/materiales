@@ -1,5 +1,8 @@
 # Prompt to continue the improvement build (paste into a new Claude Code session)
 
+> **Estado 2026-09-22: TERMINADO.** Todos los lotes (PR A–G+) están mergeados, #44–#54. Lo que
+> queda es humano: ver "Pendiente humano después de la mejora post-lanzamiento" en `STATUS.md`.
+
 Works in a **cloud session on the repo `antonmarklundcom/materiales`** (recommended — nothing
 to install) or **locally in a clone** (needs PHP 8.x + curl; Playwright/Chromium optional for
 visual checks). Model: Opus 5.5, effort **high** for PR D-E-F-G, medium is fine for PR B-C.

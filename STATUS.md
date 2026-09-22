@@ -42,7 +42,7 @@ detalle por fase en `docs/log/`)._
 | G3 + A1 — Páginas nuevas + sello | ducha higiénica, piso parquet, metal desplegado; /proveedores/verificado/ | ✅ #51 |
 | G2 + G6 — Pinturas + glosario | rubro Pinturas activo con 5 materiales; guía glosario | ✅ #52 |
 | G4 — Guías comparativas | 6 guías "X o Y" | ✅ #53 |
-| G5 — Profundidad | tablas + ejemplos resueltos en las 13 categorías y ~60 materiales; tablas de dosificación en guías | ✅ este PR |
+| G5 — Profundidad | tablas + ejemplos resueltos en las 13 categorías y ~60 materiales; tablas de dosificación en guías | ✅ #54 |
 
 Scripts de operación nuevos (todos CLI, ver `DEPLOY.md`): `tools/replay-leads.php` (con tope
 de reintentos y alerta), `tools/lead-digest.php` (resumen diario), `tools/maintenance.php`
@@ -109,6 +109,37 @@ Prosa real: ✅ completa. Las 12 categorías activas, 70 materiales y 14 guías 
 `content/categorias/`, `content/materiales/` y `content/guias/` — ninguna página activa
 muestra ya el aviso "estamos publicando el contenido", y las páginas de material y
 categoría llevan además un enlace editorial en prosa a una guía o calculadora (fase 15).
+
+## Pendiente humano después de la mejora post-lanzamiento (2026-09-22)
+
+Todo el código y el contenido del improvement report #2 está mergeado (#44–#54). Lo que sigue
+necesita a Anton — ver el detalle en `DEPLOY.md`:
+
+1. **Servidor (D5):** `config/vendercrm.php` con `url` + `api_key` + `notify_email`/Telegram;
+   el backlog `solo_log` desde el 2026-09-16 con `php tools/replay-leads.php --max-age-hours=0
+   --dry-run` y después en real; los tres crons (replay, resumen diario, mantenimiento);
+   UptimeRobot; y `bash tools/prod-check.sh` después del deploy (verifica los 301 https/www y
+   HSTS, que no se pudieron probar contra producción).
+2. **Medición (C1):** `ga4_id` (y `meta_pixel_id`) en `data/site.php`, Search Console por DNS
+   y envío del sitemap. Consent Mode está en modo básico; el avanzado exige cambiar antes la
+   política de privacidad.
+3. **NAP y confianza (D4):** razón social, RUC, IVA, dirección, horarios, email; opcional un
+   revisor técnico con nombre para guías y calculadoras (`/como-trabajamos/`).
+4. **Decisiones:** D1 (política de precios / índice mensual), G7 (segundo pull de Keyword
+   Planner), D3 (páginas de ciudad) y si se mantienen las marcas-genérico que ya estaban en
+   títulos viejos (`Placas de yeso (durlock)`, `Yeso y durlock`, isopanel, blindex) aunque
+   §11.2 no las permita en title/H1.
+5. **Confirmar supuestos:** 150 L/persona/día en la calculadora de tanque, retención de 12
+   meses de `leads-AAAA-MM.log`, `price_band` de ducha higiénica.
+6. **Datos para tablas futuras:** medidas de metal desplegado, especies/formatos de parquet,
+   medidas de cara del ladrillo hueco, bolsas por palet de cemento.
+7. **Off-site (A2–A4):** proveedores (incluido Pinturas, que ya está activa), enlaces (CAPACO,
+   FIUNA/UCA, blogs), video corto / canal de WhatsApp, ayudar a proveedores con su Google
+   Business Profile (no crear uno propio sin local), y repartir el sello de
+   `/proveedores/verificado/` a los proveedores verificados.
+8. **Fotos reales** para el héroe de Pinturas y para imágenes dentro de las páginas.
+9. **Mantenimiento de contenido:** después de mergear cambios de prosa, `php tools/sync-dates.php`
+   en un clone completo (CONTENT-SPEC §14).
 
 ## Lo que depende de Anton (nada de esto lo puede inventar Claude)
 
