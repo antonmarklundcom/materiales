@@ -5,7 +5,7 @@
  * Reglas duras:
  *  - Ningún campo se emite con dato vacío: NAP incompleto se omite, nunca se inventa.
  *  - NUNCA aggregateRating ni review mientras no haya reseñas reales visibles en la página.
- *  - Product en páginas de material va SIN offers (no publicamos precios).
+ *  - Sin Product en páginas de material: sin precios publicados sería un ítem inválido (S3).
  *  - FAQPage sólo si las preguntas están visibles en la página.
  *  - Teléfonos en E.164 (+595...).
  */
@@ -27,29 +27,36 @@ function schema_prune(array $node): array
     return $node;
 }
 
-/** LocalBusiness sitewide, patrón service-area. */
-function schema_local_business(): array
+/**
+ * Organization sitewide (S10). Antes era LocalBusiness, que pide dirección y horarios de un
+ * local al que se puede ir; esto es un intermediario online sin local abierto al público, así
+ * que Organization + contactPoint + areaServed es lo que describe la realidad. El @id lo
+ * referencian WebSite.publisher y Article.author/publisher.
+ */
+function schema_organization(): array
 {
-    $site    = site();
-    $address = $site['address'] ?? [];
+    $site = site();
+    $logo = is_file(PUBLIC_ROOT . '/apple-touch-icon.png') ? url('/apple-touch-icon.png') : '';
 
     return schema_prune([
-        '@context'    => 'https://schema.org',
-        '@type'       => 'LocalBusiness',
-        '@id'         => url('/') . '#business',
-        'name'        => $site['legal_name'] !== '' ? $site['legal_name'] : $site['brand'],
-        'url'         => url('/'),
-        'description' => $site['tagline'] ?? '',
-        'telephone'   => $site['phone'] ?? '',
-        'email'       => $site['email'] ?? '',
-        'address'     => schema_prune([
-            '@type'           => 'PostalAddress',
-            'streetAddress'   => $address['street'] ?? '',
-            'addressLocality' => $address['locality'] ?? '',
-            'addressRegion'   => $address['region'] ?? '',
-            'addressCountry'  => $address['country'] ?? '',
+        '@context'     => 'https://schema.org',
+        '@type'        => 'Organization',
+        '@id'          => url('/') . '#organization',
+        'name'         => $site['brand'],
+        'legalName'    => $site['legal_name'] ?? '',
+        'url'          => url('/'),
+        'logo'         => $logo,
+        'description'  => $site['tagline'] ?? '',
+        'email'        => $site['email'] ?? '',
+        'contactPoint' => schema_prune([
+            '@type'             => 'ContactPoint',
+            'contactType'       => 'customer service',
+            'telephone'         => $site['phone'] ?? '',
+            'email'             => $site['email'] ?? '',
+            'areaServed'        => 'PY',
+            'availableLanguage' => 'es',
         ]),
-        'areaServed'  => array_map(
+        'areaServed'   => array_map(
             static fn(string $city): array => ['@type' => 'City', 'name' => $city],
             $site['area_served'] ?? []
         ),
@@ -65,6 +72,7 @@ function schema_website(): array
         'name'       => site('brand'),
         'url'        => url('/'),
         'inLanguage' => site('locale', 'es-PY'),
+        'publisher'  => ['@id' => url('/') . '#organization'],
     ];
 
     if (site('has_search', false) === true) {
@@ -123,21 +131,6 @@ function schema_item_list(string $name, string $canonical, array $items): array
         'numberOfItems'   => count($items),
         'itemListElement' => $elements,
     ];
-}
-
-/** Product mínimo para páginas de material: sin offers (precios no publicados, plan §6). */
-function schema_product(string $slug, array $material): array
-{
-    return schema_prune([
-        '@context'    => 'https://schema.org',
-        '@type'       => 'Product',
-        'name'        => $material['name'] ?? '',
-        'description' => $material['meta'] ?? '',
-        'url'         => url('/materiales/' . $slug . '/'),
-        // URL ABSOLUTA y sólo si el archivo existe (image_for aplica la herencia §1.20).
-        'image'       => ($img = image_file_for_og((string) image_for($material, 'material'))) !== '' ? url('/' . $img) : '',
-        'category'    => data('categories')[$material['category']]['name'] ?? '',
-    ]);
 }
 
 /** FAQPage. $faq = [['q' => ..., 'a' => ...], ...]. Devuelve [] si no hay preguntas. */

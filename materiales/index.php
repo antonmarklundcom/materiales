@@ -63,9 +63,10 @@ if ($type === 'categoria') {
     if ($items !== []) {
         $schema[] = schema_item_list($entry['name'], $canonical, $items);
     }
-} else {
-    $schema[] = schema_product($slug, $entry);
 }
+// Sin Product en las páginas de material (S3): sin offers, review ni aggregateRating es un
+// ítem inválido en Search Console y no da ningún resultado enriquecido. Vuelve si algún día
+// hay precios publicables (AggregateOffer, decisión D1 del improvement report #2).
 if (($entry['faq'] ?? []) !== []) {
     $schema[] = schema_faq($entry['faq']);
 }

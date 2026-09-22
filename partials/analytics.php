@@ -42,7 +42,7 @@ window.matLead = <?= json_encode($leadEvent, JSON_UNESCAPED_SLASHES | JSON_UNESC
 </script>
 <?php endif; ?>
 <?php if ($analyticsConfig !== []): ?>
-<script src="/assets/js/analytics.js" defer></script>
+<script src="<?= e(asset('/assets/js/analytics.js')) ?>" defer></script>
 <?php endif; ?>
 <?php if ($attributionSrc !== ''): ?>
 <script src="<?= e($attributionSrc) ?>" defer></script>

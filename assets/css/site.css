@@ -53,10 +53,62 @@
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20AB, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
+/*
+ * S6 — fallbacks con métricas ajustadas: mientras llega el woff2 (font-display: swap) el texto
+ * se pinta con Arial/Roboto escalados para ocupar lo mismo que Inter/Bricolage, así el cambio
+ * de fuente no re-parte líneas ni mueve el layout (CLS mobile 0.15–0.18 antes de esto).
+ * size-adjust = ancho medido en Chromium de la fuente real / Liberation Sans (métricas
+ * idénticas a Arial) sobre títulos y bajadas reales del sitio, por peso: el 600 cae en la
+ * Arial Bold, que es más ancha, y necesita su propio factor. ascent/descent = métricas hhea
+ * de los woff2 de assets/fonts/ divididas por size-adjust. Roboto (Android no trae Arial, y
+ * en Paraguay la mayoría del tráfico mobile es Android) con el mismo factor corregido por el
+ * ancho medio publicado de Roboto vs Arial (911/904).
+ */
+@font-face {
+  font-family: 'Inter Fallback'; font-weight: 100 500;
+  src: local('Arial'), local('ArialMT'), local('Liberation Sans'), local('Helvetica');
+  size-adjust: 106.27%; ascent-override: 91.16%; descent-override: 22.7%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Inter Fallback'; font-weight: 600 900;
+  src: local('Arial Bold'), local('Arial-BoldMT'), local('Liberation Sans Bold'), local('Helvetica Bold');
+  size-adjust: 100.62%; ascent-override: 96.28%; descent-override: 23.97%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Inter Fallback Roboto'; font-weight: 100 500;
+  src: local('Roboto'), local('Roboto-Regular');
+  size-adjust: 105.45%; ascent-override: 91.87%; descent-override: 22.87%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Inter Fallback Roboto'; font-weight: 600 900;
+  src: local('Roboto Bold'), local('Roboto-Bold');
+  size-adjust: 99.85%; ascent-override: 97.02%; descent-override: 24.16%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Bricolage Fallback'; font-weight: 100 500;
+  src: local('Arial'), local('ArialMT'), local('Liberation Sans'), local('Helvetica');
+  size-adjust: 105.96%; ascent-override: 87.77%; descent-override: 25.48%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Bricolage Fallback'; font-weight: 600 900;
+  src: local('Arial Bold'), local('Arial-BoldMT'), local('Liberation Sans Bold'), local('Helvetica Bold');
+  size-adjust: 100.4%; ascent-override: 92.63%; descent-override: 26.89%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Bricolage Fallback Roboto'; font-weight: 100 500;
+  src: local('Roboto'), local('Roboto-Regular');
+  size-adjust: 105.14%; ascent-override: 88.45%; descent-override: 25.68%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Bricolage Fallback Roboto'; font-weight: 600 900;
+  src: local('Roboto Bold'), local('Roboto-Bold');
+  size-adjust: 99.63%; ascent-override: 93.35%; descent-override: 27.1%; line-gap-override: 0%;
+}
+
 :root {
   /* ---- track: INDUSTRIAL / CORRALÓN (dirección 1a) ---- */
-  --font-display: 'Bricolage Grotesque', 'Arial Black', sans-serif;
-  --font-text: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: 'Bricolage Grotesque', 'Bricolage Fallback', 'Bricolage Fallback Roboto', sans-serif;
+  --font-text: 'Inter', 'Inter Fallback', 'Inter Fallback Roboto', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --base: #17170f;      /* cáscara oscura: header, hero, pie */
   --ink: #f5f3f0;       /* texto sobre la cáscara oscura */
   /* Amarillo de seguridad (dirección 1a): sólo como fondo o como texto sobre --base —
@@ -327,6 +379,7 @@ section.wrap { padding-inline: var(--gutter); }
 .tile.is-proxima { color: var(--paper-ink-55); }
 .tile.is-proxima:hover { transform: none; box-shadow: none; }
 .tile.is-proxima .tile__arrow { color: var(--paper-hairline-strong); }
+.tile__soon { flex: none; font-size: var(--t--1); text-transform: uppercase; letter-spacing: .04em; }
 .tile--featured { background: var(--base); color: var(--ink); border-top: 3px solid var(--accent); }
 .tile--featured:hover { box-shadow: var(--shadow-2); }
 .tile--featured .tile__arrow { color: var(--accent); }
@@ -565,3 +618,14 @@ section.wrap { padding-inline: var(--gutter); }
 
 /* El aviso de "sin JavaScript" sólo se ve cuando calc.js NO tomó el control del widget. */
 .calc--live .calc__nojs { display: none; }
+
+/* /materiales/ (S4): lista completa de materiales agrupada por rubro. */
+.catalog { display: grid; gap: var(--s-6); margin: var(--s-6) 0; }
+@media (min-width: 40rem) { .catalog { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 64rem) { .catalog { grid-template-columns: repeat(3, 1fr); } }
+.catalog__group { padding-block: 0; }
+.catalog__group h3 { margin: 0 0 var(--s-2); font-size: var(--t-1); }
+.catalog__group h3 a { color: var(--paper-ink); text-decoration-color: var(--accent-ink); }
+.catalog__group ul { list-style: none; margin: 0; padding: 0; }
+.catalog__group li { padding: var(--s-1) 0; border-bottom: 1px solid var(--paper-hairline); }
+.catalog__group li a { color: var(--paper-ink); }

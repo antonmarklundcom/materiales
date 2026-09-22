@@ -24,11 +24,28 @@ expect() { # ruta, status esperado, patrón opcional en el cuerpo
   echo "  ok   ${path} (${status})"
 }
 
+redirect() { # URL completa, Location esperada
+  local from="$1" to="$2" out
+  out="$(curl -sS -o /dev/null -w '%{http_code} %{redirect_url}' --max-time 20 "${from}" 2>/dev/null || true)"
+  if [[ "${out}" == "301 ${to}" ]]; then echo "  ok   ${from} → ${to}"; else echo "  FAIL ${from} → '${out}' (esperado 301 ${to})"; fail=1; fi
+}
+
+HOST="${BASE#https://}"
+echo "REDIRECCIONES (S1)"
+redirect "http://${HOST}/"                   "https://${HOST}/"
+redirect "http://${HOST}/materiales/cemento/" "https://${HOST}/materiales/cemento/"
+redirect "https://www.${HOST}/guias/"        "https://${HOST}/guias/"
+redirect "http://www.${HOST}/"               "https://${HOST}/"
+redirect "https://${HOST}/materiales/hierro" "https://${HOST}/materiales/hierro/"
+
 echo "PÚBLICO (lo mismo que conviene vigilar con UptimeRobot, ver DEPLOY.md)"
 expect "/"                  200 '<title>'
 expect "/cotizar/"          200 'name="consentimiento"'
 expect "/sitemap.xml"       200 '<urlset'
 expect "/robots.txt"        200 'Sitemap:'
+expect "/favicon.ico"       200
+expect "/favicon.svg"       200 '<svg'
+expect "/apple-touch-icon.png" 200
 
 echo "INTERNO — tiene que ser 403 (bloque [F] de .htaccess y R4)"
 for path in \
@@ -42,7 +59,7 @@ done
 
 echo "CABECERAS"
 headers="$(curl -sSI --max-time 20 "${BASE}/" | tr -d '\r')"
-for h in X-Content-Type-Options Referrer-Policy X-Frame-Options Permissions-Policy; do
+for h in X-Content-Type-Options Referrer-Policy X-Frame-Options Permissions-Policy Strict-Transport-Security; do
   if grep -qi "^${h}:" <<<"${headers}"; then echo "  ok   ${h}"; else echo "  FAIL falta ${h}"; fail=1; fi
 done
 

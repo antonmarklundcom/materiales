@@ -51,11 +51,48 @@ check() { # ruta, status esperado, patrón que debe aparecer en el cuerpo
   echo "  ok   ${path} (${status})"
 }
 
+absent() { # ruta, patrón que NO debe aparecer en el cuerpo (la ruta tiene que dar 200)
+  local path="$1" pattern="$2" status
+  status="$(curl -sS -o /tmp/render-body -w '%{http_code}' "${BASE}${path}")"
+  if [ "${status}" != "200" ] || grep -q -- "${pattern}" /tmp/render-body; then
+    echo "  FAIL ${path}: status ${status} o aparece '${pattern}' (no debería)"
+    fail=1
+    return
+  fi
+  echo "  ok   ${path} sin '${pattern}'"
+}
+
 echo "RENDER CHECK"
 check "/"                          200 '<title>'
 check "/materiales/"               200 'ItemList'
 check "/materiales/hierro/"        200 'BreadcrumbList'
-check "/materiales/piedra-bruta/"  200 '"@type":"Product"'
+check "/materiales/piedra-bruta/"  200 '"@type":"FAQPage"'
+# S3: Product sin offers/review/aggregateRating es un ítem inválido en Search Console.
+absent "/materiales/piedra-bruta/" '"@type":"Product"'
+# S10: Organization (no LocalBusiness) y WebSite con publisher.
+check "/"                          200 '"@type":"Organization"'
+check "/"                          200 '"publisher":{"@id":"https://materiales.com.py/#organization"}'
+absent "/"                         'LocalBusiness'
+# S2: íconos declarados y servidos.
+check "/"                          200 'rel="icon" href="/favicon.svg"'
+check "/favicon.svg"               200 '<svg'
+check "/favicon.ico"               200 ''
+check "/apple-touch-icon.png"      200 ''
+# S4: /materiales/ tiene título y H1 propios (no los de la home) y lista cada material.
+check "/materiales/"               200 '<h1>Catálogo de materiales de construcción</h1>'
+check "/materiales/"               200 'href="/materiales/ladrillo-refractario/"'
+# S9: los rubros "próxima" (noindex) no se enlazan desde la home ni desde el catálogo.
+absent "/"                         'href="/materiales/pinturas/"'
+absent "/materiales/"              'href="/materiales/electricidad/"'
+# S5: el héroe declara sizes y prioridad alta.
+check "/materiales/cemento-y-cal/" 200 'fetchpriority="high"'
+check "/materiales/cemento-y-cal/" 200 'sizes="(min-width: 64rem) 40vw, 100vw"'
+# S6/S8: js-nav inline antes del primer render; CSS/JS con versión.
+check "/"                          200 "classList.add('js-nav')"
+check "/"                          200 'href="/assets/css/site.css?v='
+check "/calculadoras/hormigon-por-m3/" 200 'src="/assets/js/calc.js?v='
+# S7: robots.txt ya no bloquea /gracias/ (tiene que poder leer su noindex).
+absent "/robots.txt"               'Disallow: /gracias/'
 check "/guias/"                    200 '<h1>'
 check "/cotizar/"                  200 '<h1>'
 check "/politica-de-privacidad/"   200 '<h1>'
