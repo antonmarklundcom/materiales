@@ -108,6 +108,23 @@
     if (materialField && material && materialField.value === '') materialField.value = material;
   }
 
+  // C11 "Sumá todo el pedido" (calculadoras con `bundle` en data/calculators.php).
+  var bundleButton = widget.querySelector('[data-calc-bundle]');
+  var bundleItems = {};
+  var bundleOn = false;
+  if (bundleButton) {
+    try { bundleItems = JSON.parse(bundleButton.getAttribute('data-calc-bundle-items') || '{}') || {}; } catch (e) { bundleItems = {}; }
+  }
+
+  /** "22 bolsas de cemento de 50 kg + 1,1 m³ de arena + …", sin los ítems que dan 0. */
+  function bundleText(results) {
+    return Object.keys(bundleItems).filter(function (id) {
+      return isFinite(results[id]) && results[id] > 0;
+    }).map(function (id) {
+      return String(bundleItems[id]).replace('{n}', format(results[id]));
+    }).join(' + ').slice(0, 200);
+  }
+
   function run() {
     var results = {};
     spec.outputs.forEach(function (output) {
@@ -118,6 +135,11 @@
       if (target) target.textContent = format(n);
     });
 
+    // C11: con el paquete activo, la cantidad es el pedido completo (cemento + arena + ripio)
+    // y se sigue actualizando si el visitante cambia la cuenta después de sumarlo.
+    if (quantityField && bundleOn && !quantityField.dataset.touched) {
+      quantityField.value = bundleText(results);
+    } else
     // La cantidad del formulario se precarga desde el resultado, salvo que el visitante ya
     // haya escrito algo propio: lo tipeado a mano nunca se pisa.
     if (quantityField && template && !quantityField.dataset.touched) {
@@ -148,6 +170,28 @@
     el.addEventListener('change', run);
     el.addEventListener('change', trackUse);
   });
+
+  if (bundleButton && quantityField) {
+    var bundleWrap = widget.querySelector('[data-calc-bundle-wrap]');
+    var bundleStatus = widget.querySelector('[data-calc-bundle-status]');
+    if (bundleWrap) bundleWrap.hidden = false;
+    bundleButton.addEventListener('click', function () {
+      bundleOn = true;
+      delete quantityField.dataset.touched; // el clic es una orden explícita: se reescribe
+      var wanted = bundleButton.getAttribute('data-calc-bundle-material') || '';
+      if (materialField && wanted && materialField.querySelector('option[value="' + wanted + '"]')) {
+        materialField.value = wanted;
+      }
+      run();
+      if (bundleStatus) bundleStatus.textContent = 'Listo: sumamos todo al formulario de abajo.';
+      var form = quantityField.closest('.lead-form');
+      if (form && form.scrollIntoView) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      var phone = form ? form.querySelector('[name="telefono"]') : null;
+      if (phone && phone.value === '') {
+        try { phone.focus({ preventScroll: true }); } catch (e) { phone.focus(); }
+      }
+    });
+  }
 
   widget.classList.add('calc--live');
   run();

@@ -705,3 +705,11 @@ section.wrap { padding-inline: var(--gutter); }
 .prose thead th, .sale-table thead th { background: var(--base); color: var(--ink); font-weight: 600; }
 .sale-table tbody th { font-weight: 600; }
 .table-note { font-size: var(--t--1); color: var(--paper-ink-70); margin-top: 0; }
+
+/* C11 — "Sumá todo el pedido" (calculadoras) y "Pegá tu lista" (/cotizar/). */
+.calc__bundle { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-3); margin: 0 0 var(--s-4); }
+.calc__bundle[hidden] { display: none; }
+.calc__bundle-status { font-size: var(--t--1); font-weight: 600; }
+.lead-form__list-toggle { margin: 0; font-size: var(--t--1); }
+.lead-form__list-toggle a { font-weight: 600; }
+.lead-form--list textarea[name="mensaje"] { min-height: 12rem; }

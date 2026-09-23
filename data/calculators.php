@@ -122,6 +122,19 @@ return [
         'cta_material'          => 'cemento',
         'cta_quantity_template' => '{bolsas} bolsas de cemento de 50 kg',
         'cta_button'            => 'Cotizá estas {bolsas} bolsas →',
+
+        // C11 "Sumá todo el pedido": un botón que carga cemento + arena + ripio en UN pedido
+        // (mismo formulario, mismo handler, mismo consentimiento; sólo cambia lo precargado en
+        // `cantidad`). Los ítems nombran salidas; los que dan 0 (ripio en revoque) no se suman.
+        'bundle' => [
+            'material' => 'cemento',
+            'button'   => 'Sumá todo el pedido: cemento, arena y ripio',
+            'items'    => [
+                'bolsas' => '{n} bolsas de cemento de 50 kg',
+                'arena'  => '{n} m³ de arena',
+                'ripio'  => '{n} m³ de ripio',
+            ],
+        ],
     ],
 
     'hormigon-por-m3' => [
@@ -208,6 +221,19 @@ return [
         'cta_material'          => 'hormigon-elaborado',
         'cta_quantity_template' => '{volumen} m³ de hormigón, o {bolsas} bolsas de cemento si lo mezclás en obra',
         'cta_button'            => 'Cotizá estos {volumen} m³ de hormigón →',
+
+        // C11 "Sumá todo el pedido": un botón que carga cemento + arena + ripio en UN pedido
+        // (mismo formulario, mismo handler, mismo consentimiento; sólo cambia lo precargado en
+        // `cantidad`). Los ítems nombran salidas; los que dan 0 (ripio en revoque) no se suman.
+        'bundle' => [
+            'material' => 'cemento',
+            'button'   => 'Sumá todo el pedido: cemento, arena y ripio',
+            'items'    => [
+                'bolsas' => '{n} bolsas de cemento de 50 kg',
+                'arena'  => '{n} m³ de arena',
+                'ripio'  => '{n} m³ de ripio',
+            ],
+        ],
     ],
 
     'ladrillos-por-m2' => [

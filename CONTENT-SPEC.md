@@ -158,6 +158,18 @@ dosificación que uses / consultá al proveedor o al calculista".
 | Error teléfono | `Revisá el teléfono: necesitamos un número paraguayo, por ejemplo 0981 123 456.` |
 | Error consentimiento | `Para poder pasarle tu pedido a los proveedores necesitamos que marques la casilla.` |
 
+**C11 (improvement report #2, 2026-09-23) — dos modos más, mismo formulario y mismo payload:**
+
+| Elemento | Copy |
+|---|---|
+| Calculadora con `bundle` (`hormigon-por-m3`, `bolsas-de-cemento-por-m2`) | Botón `Sumá todo el pedido: cemento, arena y ripio` · al tocarlo: `Listo: sumamos todo al formulario de abajo.` · `cantidad` = `{n} bolsas de cemento de 50 kg + {n} m³ de arena + {n} m³ de ripio` (sin los ítems que dan 0), material `cemento` |
+| `/cotizar/` — enlace | `¿Tenés una lista de materiales? Pegala entera acá` → `/cotizar/?lista=1#cotizar` |
+| `/cotizar/?lista=1` — mensaje | `Pegá tu lista de materiales (una línea por material, con la cantidad)` · placeholder `Ej: / 30 bolsas de cemento / 2 m³ de arena lavada / 1 millar de ladrillo hueco de 12` (una línea cada uno) |
+
+La lista viaja en `mensaje` (`message` en el CRM) y el paquete en `cantidad`: el contrato del
+payload no cambia. Sin subida de archivos. Eventos: `calc_bundle`, `list_paste_open` y el
+`form_submit_attempt` de siempre con `ev_loc` `cotizar-lista`.
+
 **Frase de consentimiento — literal, no se toca** (plan §8.6; cambiarla es una parada §4.4 y
 además rompe el test que la fija en `tools/smoke.php`):
 
