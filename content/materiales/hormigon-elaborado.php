@@ -46,5 +46,7 @@
   mirá el <a href="/materiales/ripio/">ripio</a> y la <a href="/materiales/varilla-de-hierro/">varilla de
   hierro</a> si tu obra todavía necesita esos insumos. Si en cambio preferís dosificar en obra en
   vez de pedir mixer, la <a href="/calculadoras/hormigon-por-m3/">calculadora de cemento, arena y
-  ripio por m³</a> te da las proporciones para armar la mezcla vos mismo.
+  ripio por m³</a> te da las proporciones para armar la mezcla vos mismo, y la guía
+  <a href="/guias/cuanta-arena-y-ripio-por-m3-de-hormigon/">cómo dosificar un m³ de
+  hormigón</a> explica qué rol cumple cada componente.
 </p>

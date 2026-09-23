@@ -13,7 +13,9 @@
 <p>
   La cal hidratada cumple un rol importante en la mezcla: aporta plasticidad, hace que el mortero
   sea más fácil de aplicar con la llana y ayuda a que el revoque no se fisure tanto al secar,
-  comparado con una mezcla de cemento y arena sin cal. La proporción exacta de cada componente
+  comparado con una mezcla de cemento y arena sin cal. Hay obras que todavía apagan su propia
+  cal a partir de <a href="/materiales/cal-viva/">cal viva</a>, pero lo práctico es pedirla ya
+  apagada en bolsa. La proporción exacta de cada componente
   —cemento, cal y arena— depende de la dosificación que uses, y esa dosificación conviene
   consultarla con tu proveedor o con el calculista según el tipo de superficie, el ambiente
   (interior, exterior, zona húmeda) y la terminación final que busques.

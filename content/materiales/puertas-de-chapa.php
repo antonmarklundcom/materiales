@@ -7,7 +7,8 @@
   principal es dificultar una entrada forzada. Es trabajo de herrería hecho sobre el vano real,
   no un producto de catálogo con medidas fijas. Si en cambio buscás algo para el frente de la
   casa con otro criterio estético, la opción es una
-  <a href="/materiales/puertas-de-madera/">puerta de madera</a>; y si lo que necesitás es cerrar
+  <a href="/materiales/puertas-de-madera/">puerta de madera</a>; para una puerta interior
+  liviana, la <a href="/materiales/puerta-placa/">puerta placa</a>; y si lo que necesitás es cerrar
   un acceso vehicular o perimetral, ahí entrás en <a href="/materiales/portones-y-rejas/">portones y rejas</a>.
 </p>
 

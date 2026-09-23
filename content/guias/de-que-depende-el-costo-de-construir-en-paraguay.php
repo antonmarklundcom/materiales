@@ -42,7 +42,9 @@
   categoría del producto pesa tanto como la cantidad. Por eso, cuando compares presupuestos de
   distintos proveedores, fijate que estén cotizando la misma categoría de material y no sólo la
   misma cantidad: dos cotizaciones de "revestimiento de piso" pueden estar hablando de productos
-  con precios muy distintos.
+  con precios muy distintos. Lo demás que conviene comparar —flete, plazo de entrega y forma de
+  pago— lo repasa la guía <a href="/guias/como-elegir-un-corralon/">cómo elegir un
+  corralón</a>.
 </p>
 
 <h2>Cómo llegar a un número propio</h2>
