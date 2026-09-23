@@ -37,7 +37,7 @@ page([
 
 require PUBLIC_ROOT . '/partials/header.php';
 ?>
-<div class="page-hero band--dark grain bleed">
+<div class="page-hero page-hero--compact band--dark grain bleed">
   <div class="wrap">
     <h1>Catálogo de materiales de construcción</h1>
     <p class="lead"><?= count($materials) ?> materiales en <?= count($items) ?> rubros. Elegí el que necesitás y pedí tu cotización en un paso.</p>

@@ -43,6 +43,7 @@ require PUBLIC_ROOT . '/partials/header.php';
 ?>
 <div class="page-hero band--dark grain bleed">
   <div class="wrap">
+    <span class="done-badge" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24"><path d="M9.5 16.2 5.3 12l-1.4 1.4 5.6 5.6 11-11-1.4-1.4z" fill="currentColor"/></svg></span>
     <h1>Listo, recibimos tu pedido</h1>
     <p class="lead">
       Hasta <?= (int) site('max_proveedores', 3) ?> proveedores verificados te van a escribir por

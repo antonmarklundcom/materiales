@@ -45,7 +45,7 @@ if ($slug === '') {
 
     require PUBLIC_ROOT . '/partials/header.php';
     ?>
-<div class="page-hero band--dark grain bleed">
+<div class="page-hero page-hero--compact band--dark grain bleed">
   <div class="wrap">
     <h1>Calculadoras de materiales</h1>
     <p class="lead">
@@ -109,7 +109,7 @@ page([
 
 require PUBLIC_ROOT . '/partials/header.php';
 ?>
-<div class="page-hero band--dark grain bleed">
+<div class="page-hero page-hero--compact band--dark grain bleed">
   <div class="wrap">
     <h1><?= e($calculator['name']) ?></h1>
     <?= updated_line($calculator) ?>
@@ -161,6 +161,7 @@ require PUBLIC_ROOT . '/partials/header.php';
         <a class="btn btn--primary" href="#cotizar" data-calc-cta
            data-calc-cta-template="<?= e((string) ($calculator['cta_button'] ?? '')) ?>"
            data-ev="cta_click" data-ev-loc="calc-<?= e($slug) ?>">Cotizá estas cantidades →</a>
+        <span class="calc__cta-hint">La cantidad ya queda cargada en el formulario de pedido.</span>
       </p>
 
       <p class="calc__disclaimer">Es una referencia — confirmá con tu proveedor.</p>
@@ -182,6 +183,9 @@ require PUBLIC_ROOT . '/partials/header.php';
       <?php endif; ?>
     </section>
 
+    <?php // Rediseño: columna de lectura + tarjeta de pedido pegajosa en escritorio. ?>
+    <div class="page-cols">
+    <div class="page-cols__main">
     <?php if (is_file($contentFile)): ?>
     <div class="prose">
     <?php require $contentFile; ?>
@@ -228,6 +232,15 @@ require PUBLIC_ROOT . '/partials/header.php';
       <?php endforeach; ?>
     </ul>
     <?php endif; ?>
+
+    </div>
+    <?php
+    $asideTitle = 'Cotizá estas cantidades';
+    $asideHref  = '#cotizar';
+    $asideLoc   = 'aside-calc-' . $slug;
+    require PUBLIC_ROOT . '/partials/aside-cta.php';
+    ?>
+    </div>
 
     <?php
     // El formulario cierra la página con el material de la calculadora preseleccionado;

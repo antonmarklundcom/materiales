@@ -20,14 +20,17 @@ declare(strict_types=1);
 
 $heroImage = isset($heroImage) ? (string) $heroImage : '';
 $heroAlt   = isset($heroAlt) ? (string) $heroAlt : '';
+// Rediseño: la home usa la foto como fondo a todo el ancho del héroe, así que declara
+// '100vw'; el resto de las páginas sigue con la columna de 40vw en escritorio.
+$heroSizes = isset($heroSizes) ? (string) $heroSizes : '(min-width: 64rem) 40vw, 100vw';
 
 if ($heroImage === '') {
     return;
 }
 ?>
 <picture class="page-hero__media">
-  <source type="image/avif" sizes="(min-width: 64rem) 40vw, 100vw" srcset="<?= e('/' . ltrim($heroImage, '/') . '-640.avif 640w, /' . ltrim($heroImage, '/') . '-1280.avif 1280w, /' . ltrim($heroImage, '/') . '-1920.avif 1920w') ?>">
-  <source type="image/webp" sizes="(min-width: 64rem) 40vw, 100vw" srcset="<?= e('/' . ltrim($heroImage, '/') . '-640.webp 640w, /' . ltrim($heroImage, '/') . '-1280.webp 1280w, /' . ltrim($heroImage, '/') . '-1920.webp 1920w') ?>">
+  <source type="image/avif" sizes="<?= e($heroSizes) ?>" srcset="<?= e('/' . ltrim($heroImage, '/') . '-640.avif 640w, /' . ltrim($heroImage, '/') . '-1280.avif 1280w, /' . ltrim($heroImage, '/') . '-1920.avif 1920w') ?>">
+  <source type="image/webp" sizes="<?= e($heroSizes) ?>" srcset="<?= e('/' . ltrim($heroImage, '/') . '-640.webp 640w, /' . ltrim($heroImage, '/') . '-1280.webp 1280w, /' . ltrim($heroImage, '/') . '-1920.webp 1920w') ?>">
   <img src="/<?= e(ltrim($heroImage, '/') . '-1280.webp') ?>" alt="<?= e($heroAlt) ?>"
        width="1280" height="720" loading="eager" fetchpriority="high" decoding="async">
 </picture>

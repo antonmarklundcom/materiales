@@ -132,8 +132,12 @@ ob_start(); ?>
       </span>
     </label>
 <?php $formFields['consent'] = (string) ob_get_clean();
+// Rediseño: la home (sin material en la URL) abre el héroe con material + cantidad + WhatsApp
+// ($formLeadFields); las páginas de dinero ya saben el material y siguen con cantidad +
+// WhatsApp. Sólo cambia el ORDEN visual: el set de campos y sus nombres son siempre los mismos.
+$formLeadFields = $isHero && isset($formLeadFields) ? array_values(array_intersect((array) $formLeadFields, array_keys($formFields))) : ['cantidad', 'telefono'];
 $formOrder = $isHero
-    ? [['cantidad', 'telefono'], ['material', 'ciudad', 'nombre', 'mensaje', 'consent']]
+    ? [$formLeadFields, array_values(array_diff(['material', 'cantidad', 'ciudad', 'nombre', 'telefono', 'mensaje', 'consent'], $formLeadFields))]
     : [['material', 'cantidad', 'ciudad', 'nombre', 'telefono', 'mensaje', 'consent'], []];
 echo implode("\n\n", array_map(static fn (string $k): string => $formFields[$k], $formOrder[0])), "\n";
 if ($formOrder[1] !== []) {

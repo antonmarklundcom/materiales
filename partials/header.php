@@ -90,7 +90,7 @@ header('Cache-Control: no-cache');
 <?php require PUBLIC_ROOT . '/partials/cookie-banner.php'; ?>
 <header class="site-header band--dark grain" data-sticky-header>
   <div class="wrap site-header__row">
-    <a class="site-header__brand" href="/"><?= e($site['brand']) ?></a>
+    <a class="site-header__brand" href="/"><svg class="site-header__mark" width="28" height="28" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="12" fill="#f2c318"/><path d="M12 50V14h10l10 16 10-16h10v36h-9V29l-8 13h-6l-8-13v21z" fill="#17170f"/></svg><?= e($site['brand']) ?></a>
     <button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="site-nav">
       <span class="nav-toggle__box" aria-hidden="true"><span class="nav-toggle__bar"></span></span>
       <span class="sr-only">Abrir menú</span>
@@ -99,9 +99,9 @@ header('Cache-Control: no-cache');
       <a href="/materiales/">Materiales</a>
       <a href="/guias/">Guías</a>
       <a href="/calculadoras/">Calculadoras</a>
-      <a href="/cotizar/">Cotizar</a>
       <a href="/proveedores/">Para proveedores</a>
       <a href="/contacto/">Contacto</a>
+      <a class="site-nav__cta" href="/cotizar/" data-ev="cta_click" data-ev-loc="header">Cotizar gratis</a>
     </nav>
   </div>
 </header>
