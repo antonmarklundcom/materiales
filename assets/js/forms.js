@@ -75,6 +75,33 @@
     if (section && !section.classList.contains('is-expanded')) section.classList.add('is-expanded');
   }
 
+  /* C11 "Pegá tu lista" (/cotizar/): el enlace lleva a ?lista=1 (funciona sin JS); con JS
+     convierte en el lugar el campo `mensaje` en la lista, sin recargar ni perder lo tipeado.
+     Mismo campo, mismo payload: el texto de la lista llega al CRM como `message`. */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-lead-list-toggle]'), function (link) {
+    link.addEventListener('click', function (event) {
+      var section = link.closest('.lead-form');
+      var area = section ? section.querySelector('textarea[name="mensaje"]') : null;
+      if (!area) return;
+      event.preventDefault();
+      section.classList.add('lead-form--list');
+      var label = section.querySelector('[data-lead-list-label]');
+      if (label) label.innerHTML = 'Pegá tu lista de materiales <em>(una línea por material, con la cantidad)</em>';
+      area.rows = 10;
+      area.placeholder = 'Ej:\n30 bolsas de cemento\n2 m³ de arena lavada\n1 millar de ladrillo hueco de 12';
+      var submit = section.querySelector('[type="submit"][data-ev-loc]');
+      if (submit && !/-lista$/.test(submit.getAttribute('data-ev-loc'))) {
+        submit.setAttribute('data-ev-loc', submit.getAttribute('data-ev-loc') + '-lista');
+      }
+      // Igual que ?lista=1: la lista pasa a ser el primer campo, en el lugar del enlace.
+      var wrap = link.closest('.lead-form__list-toggle');
+      var field = area.closest('[data-lead-list-field]');
+      if (wrap && field) wrap.parentNode.insertBefore(field, wrap);
+      if (wrap) wrap.hidden = true;
+      area.focus();
+    });
+  });
+
   Array.prototype.forEach.call(document.querySelectorAll('form[data-lead-form]'), function (form) {
     if (form.hasAttribute('data-lead-compact')) {
       form.addEventListener('focusin', function () { expand(form); });

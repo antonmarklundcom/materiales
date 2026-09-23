@@ -43,6 +43,7 @@ detalle por fase en `docs/log/`)._
 | G2 + G6 — Pinturas + glosario | rubro Pinturas activo con 5 materiales; guía glosario | ✅ #52 |
 | G4 — Guías comparativas | 6 guías "X o Y" | ✅ #53 |
 | G5 — Profundidad | tablas + ejemplos resueltos en las 13 categorías y ~60 materiales; tablas de dosificación en guías | ✅ #54 |
+| C11 — Mecanismos de conversión | "Sumá todo el pedido" en las calculadoras de hormigón y de bolsas por m²; "Pegá tu lista de materiales" en /cotizar/ | ✅ (este PR) |
 
 Scripts de operación nuevos (todos CLI, ver `DEPLOY.md`): `tools/replay-leads.php` (con tope
 de reintentos y alerta), `tools/lead-digest.php` (resumen diario), `tools/maintenance.php`

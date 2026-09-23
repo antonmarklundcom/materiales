@@ -7,6 +7,9 @@
  *   $formSlug   slug de categoría o material a preseleccionar ('' = sin preselección)
  *   $formOrigen ruta interna a la que volver si el handler rechaza el envío
  *   $formTitle  encabezado del bloque
+ *   $formList   C11 "Pegá tu lista": 'off' (por defecto), 'toggle' (enlace que abre el modo
+ *               lista) u 'open' (el mensaje ya es la lista). Sólo lo usa /cotizar/. La lista
+ *               viaja en el MISMO campo `mensaje`: el payload del CRM no cambia.
  *
  * Los campos y el texto de consentimiento son FUNDACIONALES (plan §4.4 y §8.6): cambiarlos
  * después del lanzamiento invalida la constancia de consentimiento guardada en el CRM.
@@ -23,6 +26,7 @@ $formTitle  = isset($formTitle) ? (string) $formTitle : 'Pedí tu cotización';
 // ve completa. Los errores del servidor se muestran sólo en el formulario completo (#cotizar).
 $formVariant = isset($formVariant) ? (string) $formVariant : 'full';
 $isHero      = $formVariant === 'hero';
+$formList    = $isHero ? 'off' : (isset($formList) ? (string) $formList : 'off');
 $maxProv    = (int) site('max_proveedores', 3);
 $stamp      = lead_form_stamp();
 
@@ -46,7 +50,7 @@ if ($formSlug === '') {
 // Opciones del selector: categorías primero, y debajo sus materiales (namespace plano, §2).
 $formCategories = categories_ordered();
 ?>
-<section class="lead-form card card--accent<?= $isHero ? ' lead-form--hero' : '' ?>" id="<?= $isHero ? 'cotizar-rapido' : 'cotizar' ?>">
+<section class="lead-form card card--accent<?= $isHero ? ' lead-form--hero' : '' ?><?= $formList === 'open' ? ' lead-form--list' : '' ?>" id="<?= $isHero ? 'cotizar-rapido' : 'cotizar' ?>">
   <?php if ($isHero): ?>
   <h2 class="lead-form__title"><?= e($formTitle) ?></h2>
   <p class="lead-form__lead lead-form__benefits">Gratis · hasta <?= $maxProv ?> proveedores verificados · normalmente responden en el día</p>
@@ -117,9 +121,17 @@ ob_start(); ?>
     </label>
 <?php $formFields['telefono'] = (string) ob_get_clean();
 ob_start(); ?>
-    <label class="lead-form__field">
-      <span>¿Algo más que tengan que saber? <em>(opcional)</em></span>
+    <p class="lead-form__list-toggle"><a href="/cotizar/?lista=1#cotizar" data-lead-list-toggle data-ev="list_paste_open" data-ev-loc="cotizar">¿Tenés una lista de materiales? Pegala entera acá</a></p>
+<?php $formFields['listToggle'] = (string) ob_get_clean();
+ob_start(); ?>
+    <label class="lead-form__field" data-lead-list-field>
+      <?php if ($formList === 'open'): ?>
+      <span data-lead-list-label>Pegá tu lista de materiales <em>(una línea por material, con la cantidad)</em></span>
+      <textarea name="mensaje" rows="10" maxlength="5000" placeholder="Ej:&#10;30 bolsas de cemento&#10;2 m³ de arena lavada&#10;1 millar de ladrillo hueco de 12"></textarea>
+      <?php else: ?>
+      <span data-lead-list-label>¿Algo más que tengan que saber? <em>(opcional)</em></span>
       <textarea name="mensaje" rows="3" maxlength="5000"></textarea>
+      <?php endif; ?>
     </label>
 <?php $formFields['mensaje'] = (string) ob_get_clean();
 ob_start(); ?>
@@ -132,9 +144,14 @@ ob_start(); ?>
       </span>
     </label>
 <?php $formFields['consent'] = (string) ob_get_clean();
-$formOrder = $isHero
-    ? [['cantidad', 'telefono'], ['material', 'ciudad', 'nombre', 'mensaje', 'consent']]
-    : [['material', 'cantidad', 'ciudad', 'nombre', 'telefono', 'mensaje', 'consent'], []];
+// C11: en modo lista el mensaje (la lista) va primero; material y cantidad quedan opcionales
+// al final. En modo 'toggle' el enlace a la lista abre el formulario.
+$formOrder = match (true) {
+    $isHero              => [['cantidad', 'telefono'], ['material', 'ciudad', 'nombre', 'mensaje', 'consent']],
+    $formList === 'open' => [['mensaje', 'ciudad', 'nombre', 'telefono', 'material', 'cantidad', 'consent'], []],
+    $formList === 'toggle' => [['listToggle', 'material', 'cantidad', 'ciudad', 'nombre', 'telefono', 'mensaje', 'consent'], []],
+    default              => [['material', 'cantidad', 'ciudad', 'nombre', 'telefono', 'mensaje', 'consent'], []],
+};
 echo implode("\n\n", array_map(static fn (string $k): string => $formFields[$k], $formOrder[0])), "\n";
 if ($formOrder[1] !== []) {
     echo '<div class="lead-form__more" data-lead-more>', "\n";
@@ -151,7 +168,7 @@ if ($formOrder[1] !== []) {
     <input type="hidden" name="tsg" value="<?= e($stamp['sig']) ?>">
     <input type="hidden" name="origen" value="<?= e($formOrigen) ?>">
 
-    <button class="lead-form__submit btn btn--primary" type="submit" data-ev="form_submit_attempt" data-ev-loc="<?= $isHero ? 'hero-' : '' ?><?= e($formSlug !== '' ? $formSlug : 'cotizar') ?>"><?= $isHero ? 'Pedir precio' : 'Pedir cotización' ?></button>
+    <button class="lead-form__submit btn btn--primary" type="submit" data-ev="form_submit_attempt" data-ev-loc="<?= $isHero ? 'hero-' : '' ?><?= e($formSlug !== '' ? $formSlug : 'cotizar') ?><?= $formList === 'open' ? '-lista' : '' ?>"><?= $isHero ? 'Pedir precio' : 'Pedir cotización' ?></button>
     <p class="lead-form__note">Sin costo. No publicamos tu teléfono en ningún lado.</p>
   </form>
 </section>

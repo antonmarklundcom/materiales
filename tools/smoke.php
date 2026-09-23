@@ -195,6 +195,24 @@ foreach ($calculators as $slug => $calculator) {
         }
     }
 
+    // C11: el paquete "Sumá todo el pedido" sólo puede nombrar salidas y un material reales,
+    // y cada ítem lleva su {n}. Sin esto, el botón precargaría un pedido con huecos.
+    if (isset($calculator['bundle'])) {
+        $bundle = $calculator['bundle'];
+        $bundleMaterial = (string) ($bundle['material'] ?? '');
+        if (!isset($materials[$bundleMaterial]) && !isset($categories[$bundleMaterial])) {
+            $fail("{$where}: bundle.material '{$bundleMaterial}' no existe en materials.php ni en categories.php");
+        }
+        if (trim((string) ($bundle['button'] ?? '')) === '' || count($bundle['items'] ?? []) < 2) {
+            $fail("{$where}: bundle necesita 'button' y al menos 2 'items'");
+        }
+        foreach ($bundle['items'] ?? [] as $outputId => $text) {
+            if (!in_array((string) $outputId, $outputIds, true) || !str_contains((string) $text, '{n}')) {
+                $fail("{$where}: bundle.items['{$outputId}'] no es una salida o no lleva {n}");
+            }
+        }
+    }
+
     $ctaMaterial = (string) ($calculator['cta_material'] ?? '');
     if ($ctaMaterial !== '' && !isset($materials[$ctaMaterial]) && !isset($categories[$ctaMaterial])) {
         $fail("{$where}: cta_material '{$ctaMaterial}' no existe en materials.php ni en categories.php");
