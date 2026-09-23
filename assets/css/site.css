@@ -214,7 +214,7 @@ main { display: block; }
   outline: 3px solid var(--base); outline-offset: 2px;
   box-shadow: 0 0 0 2px var(--accent);
 }
-.band--dark :focus-visible, .cta-bar :focus-visible, .wa-float:focus-visible, .site-footer :focus-visible {
+.band--dark :focus-visible, .breadcrumbs :focus-visible, .cta-bar :focus-visible, .wa-float:focus-visible, .site-footer :focus-visible {
   outline-color: var(--accent); box-shadow: 0 0 0 2px var(--base);
 }
 .band--dark .lead-form :focus-visible { outline-color: var(--base); box-shadow: 0 0 0 2px var(--accent); }
@@ -409,7 +409,7 @@ main { display: block; }
 .card--hair { border: 1px solid var(--line); background: var(--paper-raised); }
 .card--accent { background: var(--paper-raised); border: 1px solid var(--line); border-top: 4px solid var(--accent); }
 .notice { border: 1px solid var(--line); border-left: 4px solid var(--accent-ink); padding: var(--s-4) var(--s-6); border-radius: var(--r-sm); background: var(--paper); }
-.closing-cta.card { background: none; border: 0; padding: 0; margin: var(--s-4) 0 0; }
+.closing-cta.card { background: none; border: 0; padding: 0; margin: var(--s-4) 0 var(--s-10); }
 .closing-cta a {
   display: inline-flex; align-items: center; gap: var(--s-2); min-height: var(--tap); padding: 0 var(--s-5);
   border: 1.5px solid var(--line-strong); border-radius: var(--r-sm);
@@ -494,7 +494,8 @@ a.cat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-1); bor
   background: var(--base) repeating-linear-gradient(135deg, transparent 0 14px, rgb(242 195 24 / .08) 14px 28px);
 }
 .cat-card__body { display: grid; gap: 2px; padding: var(--s-3) var(--s-4) var(--s-4); }
-.cat-card__name { font-family: var(--font-display); font-weight: 600; font-size: 1.0625rem; line-height: 1.2; letter-spacing: -.01em; }
+.cat-card__name { font-family: var(--font-display); font-weight: 600; font-size: 1rem; line-height: 1.2; letter-spacing: -.01em; overflow-wrap: anywhere; hyphens: auto; }
+@media (max-width: 39.99rem) { .cat-card__body { padding: var(--s-3); } .cat-card__name { font-size: .9375rem; } }
 .cat-card__meta { font-size: var(--t--1); color: var(--text-3); }
 .cat-card.is-proxima { background: var(--paper); }
 .cat-card.is-proxima .cat-card__media--ph { background: #e7e3da; color: var(--text-3); }
@@ -617,12 +618,8 @@ a.tile:hover .tile__arrow { background: var(--accent); color: var(--base); }
 .lead-form--hero .lead-form__submit { justify-self: stretch; min-width: 0; }
 .js .lead-form--hero:not(.is-expanded) .lead-form__more,
 .js .lead-form--hero:not(.is-expanded) .lead-form__legend { display: none; }
-@media (min-width: 40rem) {
-  .js .lead-form--hero:not(.is-expanded) .lead-form__form { grid-template-columns: 1fr 1fr; align-items: end; }
-  .js .lead-form--hero:not(.is-expanded) .lead-form__field:has(select),
-  .js .lead-form--hero:not(.is-expanded) .lead-form__submit,
-  .js .lead-form--hero:not(.is-expanded) .lead-form__note { grid-column: 1 / -1; }
-}
+/* Una sola columna también en escritorio: en dos columnas la etiqueta larga del WhatsApp
+   partía en dos renglones y desalineaba los campos. */
 
 /* ---- prosa larga: medida, ritmo, tablas ---- */
 .lead { font-size: var(--t-1); color: var(--text-2); }

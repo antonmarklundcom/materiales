@@ -51,10 +51,10 @@ require __DIR__ . '/partials/header.php';
 ?>
 <div class="page-hero page-hero--home band--dark grain bleed">
   <?php
-  // Rediseño: la foto es el fondo del héroe a todo el ancho (sizes 100vw) y el pedido empieza
+  // Rediseño: la foto es el fondo del héroe a todo el ancho y el pedido empieza
   // acá mismo con la variante corta del formulario (material + cantidad + WhatsApp). Antes el
   // único CTA del héroe mandaba a un formulario a ~5.000 px en mobile.
-  $heroSizes = '100vw';
+  $heroSizes = '(min-width: 64rem) 80vw, 100vw'; // detrás de un velo: la 1280 alcanza en escritorio
   require __DIR__ . '/partials/hero-image.php';
   ?>
   <div class="wrap page-hero__grid page-hero__grid--split">
