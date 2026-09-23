@@ -4,7 +4,7 @@
   distinto, y elegir mal es la forma más rápida de pintar dos veces. Para paredes de revoque,
   adentro y afuera, va la <a href="/materiales/pintura-para-pared/">pintura para pared</a>, el
   látex de siempre, en versión interior para los ambientes y exterior para frentes y muros que
-  reciben sol y lluvia. Antes de esa primera mano, sobre revoque nuevo, yeso o una pared que se
+  reciben sol y lluvia. Antes de esa primera mano, sobre revoque nuevo, <a href="/materiales/yeso-en-polvo/">yeso</a> o una pared que se
   desgrana, conviene dar el <a href="/materiales/sellador-para-pared/">sellador para pared</a>
   —fijador o fondo blanco—, que es lo que hace que el látex agarre y rinda parejo. Para garajes,
   galerías y patios de cemento está la

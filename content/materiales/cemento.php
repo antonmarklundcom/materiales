@@ -34,7 +34,9 @@
   cemento por m²</a>: una carpeta de <strong>30 m² con 2 cm de espesor</strong>, en la
   proporción de manual 1:3 y con un 10 % de desperdicio, da <strong>6 bolsas de 50 kg</strong> y
   0,66 m³ de arena. Pasale al proveedor la cantidad en bolsas: si te conviene por palet, él te
-  dice a cuántos palets equivale.
+  dice a cuántos palets equivale. Si después esa carpeta va pintada, la
+  <a href="/materiales/pintura-para-piso/">pintura para pisos de cemento</a> se cotiza aparte, y
+  la carpeta tiene que estar bien curada antes de pintarla.
 </p>
 
 <h2>Qué mirar antes de comprar</h2>

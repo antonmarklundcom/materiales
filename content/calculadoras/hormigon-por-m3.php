@@ -137,7 +137,10 @@ declare(strict_types=1);
   <a href="/materiales/hormigon-elaborado/">hormigón elaborado</a> con la resistencia que pida
   tu calculista: el "volumen a pedir" de esta calculadora es justo ese número. Si vas a mezclar
   en obra, pedí las bolsas de cemento, la arena y el ripio juntos, y aclará que es para
-  estructura (no para contrapiso), porque algunos proveedores cotizan distinto según el uso. El
+  estructura (no para contrapiso), porque algunos proveedores cotizan distinto según el uso. Qué
+  rol cumple cada componente de la mezcla lo explica la guía
+  <a href="/guias/cuanta-arena-y-ripio-por-m3-de-hormigon/">cómo dosificar un m³ de
+  hormigón</a>. El
   hierro de columnas, vigas y losas se calcula aparte: la guía
   <a href="/guias/cuanto-hierro-lleva-una-columna/">cuánto hierro lleva una columna</a> explica
   qué mirar antes de pedirlo.

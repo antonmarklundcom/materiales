@@ -73,7 +73,10 @@ declare(strict_types=1);
   en lugar de ladrillo común elegís bloque de hormigón de 39 × 19 cm con la misma junta de
   1,5 cm, el área de cara puesta crece a 0,405 × 0,205 = 0,083025 m², bastante más grande, así
   que para los mismos 20 m² alcanza con <strong>253 piezas</strong>. Menos de la mitad, porque
-  cada bloque cubre casi el triple de superficie que un ladrillo común.
+  cada bloque cubre casi el triple de superficie que un ladrillo común. La cantidad de piezas no
+  es lo único que cambia entre las dos: la guía
+  <a href="/guias/bloque-de-hormigon-o-ladrillo/">bloque de hormigón o ladrillo</a> compara el
+  resto.
 </p>
 
 <h2>Qué pedirle al proveedor</h2>

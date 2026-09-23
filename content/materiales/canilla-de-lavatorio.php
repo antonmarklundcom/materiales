@@ -6,7 +6,8 @@
   pared. Una bacha apoyada puede necesitar un pico más alto que otra embutida, pero la
   medida se confirma con el conjunto real. El <strong>monocomando de lavatorio</strong>
   mezcla agua fría y caliente mediante una palanca; una canilla para lavatorio de agua fría
-  cumple otra necesidad. Aunque algunos modelos se parezcan a los de cocina, el espacio
+  cumple otra necesidad. Aunque algunos modelos se parezcan a la
+  <a href="/materiales/griferia-de-cocina/">grifería de cocina</a>, el espacio
   de uso y el alcance del pico son distintos. Conviene definirlos pensando en el baño que
   estás armando, no solamente en el color de los accesorios.
 </p>

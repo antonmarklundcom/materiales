@@ -39,7 +39,9 @@
 <p class="closing">
   Volvé a <a href="/materiales/ladrillos-y-bloques/">ladrillos y bloques</a> para comparar con el
   <a href="/materiales/ladrillo-comun/">ladrillo común</a> o el
-  <a href="/materiales/ladrillo-hueco/">ladrillo hueco</a> si tu pared va revocada. La
+  <a href="/materiales/ladrillo-hueco/">ladrillo hueco</a> si tu pared va revocada; entre esos
+  dos, la guía <a href="/guias/ladrillo-comun-vs-hueco/">ladrillo común o hueco</a> te ayuda a
+  elegir. La
   <a href="/calculadoras/ladrillos-por-m2/">calculadora de ladrillos o bloques por m²</a>
   trabaja con las medidas de cara del ladrillo común: si tu ladrillo visto tiene una de esas
   medidas te sirve de estimación; si no, pasale al proveedor los m² de tu fachada o cerco.

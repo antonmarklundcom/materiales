@@ -9,7 +9,9 @@
   busca es evitar que el hormigón se fisure con el uso, más que resistir una carga estructural
   grande. Cuando la pieza sí es estructural —una columna, una viga, una losa que carga
   varios ambientes— eso se resuelve con <a href="/materiales/varilla-de-hierro/">varilla de
-  hierro</a> calculada, no con malla.
+  hierro</a> calculada, no con malla. Y la malla que se fija sobre la pared para que agarre el
+  revoque tampoco es ésta: es el <a href="/materiales/metal-desplegado/">metal desplegado</a>,
+  una sola chapa cortada y estirada, sin soldaduras.
 </p>
 
 <h2>Cómo se vende, cómo pedirlo y de qué depende el precio</h2>

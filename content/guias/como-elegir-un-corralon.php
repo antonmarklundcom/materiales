@@ -16,7 +16,10 @@
   de obra. Lo mismo aplica a materiales que parecen simples pero tienen variantes, como los
   distintos tipos dentro de <a href="/materiales/ladrillos-y-bloques/">ladrillos y bloques</a>:
   fijate que el corralón tenga justo la variante que pediste, no una parecida, porque a veces
-  ofrecen "algo similar" para no perder la venta.
+  ofrecen "algo similar" para no perder la venta. Pedir con la palabra que se usa en plaza
+  —ladrillo de 8, piedra 6ta, hierro de 8— ayuda a evitarlo, y el
+  <a href="/guias/glosario-de-obra-paraguay/">glosario de obra</a> junta esas palabras con su
+  definición.
 </p>
 
 <h2>El flete pesa más de lo que pensás</h2>

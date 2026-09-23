@@ -138,8 +138,8 @@ require PUBLIC_ROOT . '/partials/header.php';
 </p>
 <p>
   Además del sistema de gestión de contactos, el sitio guarda una copia técnica de cada pedido
-  como respaldo, por si falla el envío. Esa copia se archiva mes a mes y se borra
-  automáticamente a los <?= (int) lead_config()['leads_retention_months'] ?> meses. Los registros que usamos
+  como respaldo, por si falla el envío. Esa copia se archiva mes a mes y también la borramos
+  cuando nos pedís la supresión de tus datos. Los registros que usamos
   para limitar envíos repetidos desde una misma conexión no guardan tu IP en claro y se borran
   en el día.
 </p>

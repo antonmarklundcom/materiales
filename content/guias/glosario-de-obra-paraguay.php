@@ -171,7 +171,7 @@ declare(strict_types=1);
         'S' => [
             ['syopar', 'syopar',
                 'Así se pide en Paraguay al tanque de agua en general, tenga o no ese origen: una marca tan instalada que terminó nombrando al producto. Lo que importa al pedir es el litraje.',
-                'Mirá el <a href="/materiales/tanque-de-agua/">tanque de agua</a>.'],
+                'Mirá el <a href="/materiales/tanque-de-agua/">tanque de agua</a> y, para saber qué litraje pedir, calculá <a href="/calculadoras/tanque-de-agua-litros/">de cuántos litros tiene que ser el tanque de agua</a>.'],
         ],
         'T' => [
             ['tejuelon', 'tejuelón',

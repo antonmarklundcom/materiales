@@ -29,7 +29,7 @@
   Revisá que el ancho de tabla sea parejo entre piezas, porque las diferencias se notan en la
   cara del hormigón cuando se desencofra. Si el elemento va a quedar visto —una columna sin
   revoque, por ejemplo— evaluá si conviene la terciada en lugar de la tabla, ya que deja una
-  superficie más lisa y con menos marcas de junta. Y calculá siempre la cantidad de clavos que
+  superficie más lisa y con menos marcas de junta. Y calculá siempre la cantidad de <a href="/materiales/clavos/">clavos</a> que
   vas a necesitar junto con la tabla, para no tener que parar la obra por eso.
 </p>
 

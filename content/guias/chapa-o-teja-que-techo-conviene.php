@@ -65,7 +65,9 @@
 <p>
   Si ya tenés decidido que va chapa y lo que te falta es elegir cuál —zinc, trapezoidal o
   termoacústica según calor, ruido y luz entre apoyos— pasá por la guía sobre
-  <a href="/guias/que-chapa-conviene-para-techo/">qué chapa conviene para el techo</a>. Para
+  <a href="/guias/que-chapa-conviene-para-techo/">qué chapa conviene para el techo</a>; si va
+  teja, la guía <a href="/guias/teja-espanola-o-francesa/">teja española o francesa</a> te ayuda
+  a elegir entre las dos. Para
   volver a comparar todas las coberturas disponibles, incluida la teja, mirá
   <a href="/materiales/chapas-y-techos/">chapas y techos</a>. Contanos los m² de techo, la
   pendiente prevista y el estilo de la obra, y te ayudamos a definir qué cobertura conviene.

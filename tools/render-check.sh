@@ -118,6 +118,17 @@ check "/assets/img/sello-proveedor-verificado.svg" 200 'Proveedor verificado'
 check "/proveedores/"              200 'href="/proveedores/verificado/"'
 check "/sitemap.xml"               200 '/proveedores/verificado/'
 
+# ---- C11: "Sumá todo el pedido" (calculadoras) y "Pegá tu lista" (/cotizar/) ----
+check "/calculadoras/hormigon-por-m3/"          200 'data-calc-bundle-material="cemento"'
+check "/calculadoras/hormigon-por-m3/"          200 'data-ev="calc_bundle"'
+check "/calculadoras/bolsas-de-cemento-por-m2/" 200 'Sumá todo el pedido: cemento, arena y ripio'
+absent "/calculadoras/ladrillos-por-m2/"        'data-calc-bundle'
+check "/cotizar/"                  200 'data-lead-list-toggle'
+check "/cotizar/"                  200 'data-ev="list_paste_open"'
+check "/cotizar/?lista=1"          200 'Pegá tu lista de materiales'
+check "/cotizar/?lista=1"          200 'data-ev-loc="cotizar-lista"'
+absent "/materiales/cemento/"      'data-lead-list-toggle'
+
 # ---- PR F (frescura, E-E-A-T, formulario del héroe) ----
 # S16: fechas visibles, lastmod en el sitemap, Article en guías y calculadoras.
 check "/materiales/cemento/"       200 'Actualizado: <time datetime="20'
@@ -228,7 +239,8 @@ check "/"                          200 'data-consent-configure'
 check "/guias/"                    200 '<h1>'
 check "/cotizar/"                  200 '<h1>'
 check "/politica-de-privacidad/"   200 '<h1>'
-check "/politica-de-privacidad/"   200 'automáticamente a los 12 meses'
+check "/politica-de-privacidad/"   200 'cuando nos pedís la supresión de tus datos'
+absent "/politica-de-privacidad/"  'se borra automáticamente'
 check "/sitemap.xml"               200 '<urlset'
 check "/materiales/no-existe-esto/" 404 'No encontramos'
 check "/partials/header.php"       403 ''
@@ -472,6 +484,19 @@ if tail -n 1 "${LOG}" | grep -q '"page_url":"https://materiales.com.py/materiale
   echo "  ok   el lead registra la página de origen real"
 else
   echo "  FAIL el lead no registra la página de origen (origen=/materiales/hierro/)"
+  fail=1
+fi
+
+# 7b. C11 "Pegá tu lista": la lista viaja en el MISMO campo mensaje (payload congelado) y
+#     llega entera al log, saltos de línea incluidos, sin material elegido.
+post "lista de materiales pegada en /cotizar/" 303 '^/gracias/' \
+  --data-urlencode "ts=${TS}" --data-urlencode "tsg=${TSG}" --data-urlencode "origen=/cotizar/" \
+  --data-urlencode "telefono=0981 777 888" --data-urlencode "consentimiento=1" \
+  --data-urlencode "mensaje=$(printf '30 bolsas de cemento\n2 m3 de arena lavada\n1 millar de ladrillo hueco de 12')"
+if tail -n 1 "${LOG}" | grep -q '"message":"30 bolsas de cemento\\n2 m3 de arena lavada\\n1 millar de ladrillo hueco de 12"'; then
+  echo "  ok   la lista pegada llega entera en message"
+else
+  echo "  FAIL la lista pegada no llegó entera al campo message"
   fail=1
 fi
 

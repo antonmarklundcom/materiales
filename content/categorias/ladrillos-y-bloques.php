@@ -8,7 +8,9 @@
   <a href="/materiales/ladrillo-prensado/">ladrillo prensado</a> —el que la gente pide como
   "ladrillo visto"— va sin revoque, a la vista, en fachadas y cercos. El
   <a href="/materiales/bloque-de-hormigon/">bloque de hormigón</a> arma paredes más rápido con
-  menos piezas por metro cuadrado, y se usa mucho en obras que corren contra el tiempo. El
+  menos piezas por metro cuadrado, y se usa mucho en obras que corren contra el tiempo; si dudás
+  entre las dos piezas, la guía <a href="/guias/bloque-de-hormigon-o-ladrillo/">bloque de
+  hormigón o ladrillo</a> las compara. El
   <a href="/materiales/tejuelon/">tejuelón</a> es otra cosa: no es para pared, sino para armar
   losas junto con las viguetas. Y el <a href="/materiales/ladrillo-refractario/">ladrillo
   refractario</a> es específico para donde hay fuego directo, como parrillas y hornos, porque el

@@ -50,6 +50,9 @@ require PUBLIC_ROOT . '/partials/header.php';
   $formSlug   = $preselected;
   $formOrigen = '/cotizar/';
   $formTitle  = 'Contanos qué necesitás';
+  // C11: ?lista=1 abre el formulario con el mensaje como lista de materiales (sin JS
+  // también); sin el parámetro se ofrece el enlace, que forms.js abre en el lugar.
+  $formList   = ($_GET['lista'] ?? '') === '1' ? 'open' : 'toggle';
   require PUBLIC_ROOT . '/partials/form.php';
   ?>
   </div>

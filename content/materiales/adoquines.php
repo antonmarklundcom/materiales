@@ -21,7 +21,9 @@
   hormigón tradicional o ecológico con espacio para pasto— porque cambia tanto el rendimiento por
   metro cuadrado como la base que hay que preparar debajo. La arena y la piedra triturada para la
   base compactada se cotizan aparte del adoquín, y conviene pedirlas en la misma consulta para
-  no duplicar el flete. El precio final depende del tipo de adoquín, de la cantidad de metros
+  no duplicar el flete. Si antes hay que ganar cota en un terreno bajo, esa nivelación previa
+  del patio se puede hacer con <a href="/materiales/escombro-relleno/">escombro para
+  relleno</a>, que también se cotiza aparte. El precio final depende del tipo de adoquín, de la cantidad de metros
   cuadrados y de la distancia de entrega.
 </p>
 <p>

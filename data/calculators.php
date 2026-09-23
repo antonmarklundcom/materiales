@@ -122,6 +122,19 @@ return [
         'cta_material'          => 'cemento',
         'cta_quantity_template' => '{bolsas} bolsas de cemento de 50 kg',
         'cta_button'            => 'Cotizá estas {bolsas} bolsas →',
+
+        // C11 "Sumá todo el pedido": un botón que carga cemento + arena + ripio en UN pedido
+        // (mismo formulario, mismo handler, mismo consentimiento; sólo cambia lo precargado en
+        // `cantidad`). Los ítems nombran salidas; los que dan 0 (ripio en revoque) no se suman.
+        'bundle' => [
+            'material' => 'cemento',
+            'button'   => 'Sumá todo el pedido: cemento, arena y ripio',
+            'items'    => [
+                'bolsas' => '{n} bolsas de cemento de 50 kg',
+                'arena'  => '{n} m³ de arena',
+                'ripio'  => '{n} m³ de ripio',
+            ],
+        ],
     ],
 
     'hormigon-por-m3' => [
@@ -129,7 +142,7 @@ return [
         'name'    => 'Cuánto cemento, arena y ripio por m³ de hormigón',
         'status'  => 'activa',
         'published' => '2026-09-13',
-        'updated'   => '2026-09-13',
+        'updated'   => '2026-09-23',
         'order'   => 2,
         'title'   => 'Calculadora de hormigón por m³ en Paraguay',
         'meta'    => 'Calculá cuántas bolsas de cemento, m³ de arena, m³ de ripio y litros de agua lleva tu hormigón por m³, para columnas, vigas, losas o contrapiso.',
@@ -208,6 +221,19 @@ return [
         'cta_material'          => 'hormigon-elaborado',
         'cta_quantity_template' => '{volumen} m³ de hormigón, o {bolsas} bolsas de cemento si lo mezclás en obra',
         'cta_button'            => 'Cotizá estos {volumen} m³ de hormigón →',
+
+        // C11 "Sumá todo el pedido": un botón que carga cemento + arena + ripio en UN pedido
+        // (mismo formulario, mismo handler, mismo consentimiento; sólo cambia lo precargado en
+        // `cantidad`). Los ítems nombran salidas; los que dan 0 (ripio en revoque) no se suman.
+        'bundle' => [
+            'material' => 'cemento',
+            'button'   => 'Sumá todo el pedido: cemento, arena y ripio',
+            'items'    => [
+                'bolsas' => '{n} bolsas de cemento de 50 kg',
+                'arena'  => '{n} m³ de arena',
+                'ripio'  => '{n} m³ de ripio',
+            ],
+        ],
     ],
 
     'ladrillos-por-m2' => [
@@ -215,7 +241,7 @@ return [
         'name'    => 'Cuántos ladrillos o bloques por m²',
         'status'  => 'activa',
         'published' => '2026-09-13',
-        'updated'   => '2026-09-13',
+        'updated'   => '2026-09-23',
         'order'   => 3,
         'title'   => 'Calculadora de ladrillos y bloques por m² | Paraguay',
         'meta'    => 'Calculá cuántos ladrillos comunes o bloques de hormigón necesitás por m² de pared, según la medida y la junta de mortero.',

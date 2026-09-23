@@ -158,6 +158,18 @@ dosificación que uses / consultá al proveedor o al calculista".
 | Error teléfono | `Revisá el teléfono: necesitamos un número paraguayo, por ejemplo 0981 123 456.` |
 | Error consentimiento | `Para poder pasarle tu pedido a los proveedores necesitamos que marques la casilla.` |
 
+**C11 (improvement report #2, 2026-09-23) — dos modos más, mismo formulario y mismo payload:**
+
+| Elemento | Copy |
+|---|---|
+| Calculadora con `bundle` (`hormigon-por-m3`, `bolsas-de-cemento-por-m2`) | Botón `Sumá todo el pedido: cemento, arena y ripio` · al tocarlo: `Listo: sumamos todo al formulario de abajo.` · `cantidad` = `{n} bolsas de cemento de 50 kg + {n} m³ de arena + {n} m³ de ripio` (sin los ítems que dan 0), material `cemento` |
+| `/cotizar/` — enlace | `¿Tenés una lista de materiales? Pegala entera acá` → `/cotizar/?lista=1#cotizar` |
+| `/cotizar/?lista=1` — mensaje | `Pegá tu lista de materiales (una línea por material, con la cantidad)` · placeholder `Ej: / 30 bolsas de cemento / 2 m³ de arena lavada / 1 millar de ladrillo hueco de 12` (una línea cada uno) |
+
+La lista viaja en `mensaje` (`message` en el CRM) y el paquete en `cantidad`: el contrato del
+payload no cambia. Sin subida de archivos. Eventos: `calc_bundle`, `list_paste_open` y el
+`form_submit_attempt` de siempre con `ev_loc` `cotizar-lista`.
+
 **Frase de consentimiento — literal, no se toca** (plan §8.6; cambiarla es una parada §4.4 y
 además rompe el test que la fija en `tools/smoke.php`):
 
@@ -347,12 +359,20 @@ Columnas: **Posee** = términos de cabecera que esta página persigue (H1/intro/
 
 #### Sanitarios y grifería
 
-Tabla abierta con G3 (improvement report #2). Las filas de las cinco páginas de lanzamiento del
-rubro (`inodoro`, `griferia-de-cocina`, `llave-de-ducha`, `canilla-de-lavatorio`,
-`ducha-electrica`) quedan pendientes de escribir.
+Rubro sumado el 2026-09-16 (KEYWORDS-MATERIALES.md §1.2 fila "Sanitarios y grifería", ~9.000
+búsquedas; fila 25 de la tabla de prioridades). Filas de lanzamiento escritas el 2026-09-23 sobre
+los `synonyms` y la prosa ya publicados; `ducha-higienica` se sumó con G3. Casi sin pujas: es
+compra de salón, así que ninguna fila persigue marcas (deca, FV, las de §3.4 del keyword
+research), que siguen fuera de §11.2.
 
 | Página | Posee | Teje | No es suya |
 |---|---|---|---|
+| `sanitarios-y-griferia` (categoría) | sanitarios (880) · sanitarios y grifería · grifería (260) | artefactos de baño, baño completo, agua fría y caliente, flexible, una sola agua / mezcladora | inodoro y cisternas → `inodoro` · canilla de cocina → `griferia-de-cocina` · llave para ducha → `llave-de-ducha` · canilla de lavatorio → `canilla-de-lavatorio` · ducha eléctrica → `ducha-electrica` · ducha higiénica → `ducha-higienica` · caños y accesorios de plomería → `canos-y-plomeria` |
+| `inodoro` | inodoro (1.900) · cisternas de baño (1.000) · inodoro con mochila | cisterna de baño, tanque de inodoro, mochila, descarga, artefacto de loza | lavatorio y su canilla → `canilla-de-lavatorio` · ducha higiénica junto al inodoro → `ducha-higienica` · `inodoro deca` (260) e `inodoro inteligente` (90): marca y nicho, no se persiguen |
+| `griferia-de-cocina` | canillas para cocina (1.000) · grifería de cocina · canilla de cocina | canilla para pileta, monocomando de cocina, pileta, bacha de cocina, flexible | canilla de baño → `canilla-de-lavatorio` · `grifería` a secas → categoría |
+| `llave-de-ducha` | llave para ducha (480) · llave de ducha | monocomando de ducha, mezcladora de ducha, llave exterior / embutida | ducha eléctrica → `ducha-electrica` · ducha higiénica → `ducha-higienica` · caño de agua → `cano-de-agua` |
+| `canilla-de-lavatorio` | canilla para lavatorio (390) · canilla de lavatorio | grifería de lavatorio, monocomando de lavatorio, bacha, sifón, flexible | canilla de cocina → `griferia-de-cocina` · inodoro → `inodoro` |
+| `ducha-electrica` | ducha eléctrica · ducha eléctrica para baño | ducha con calentador eléctrico, cable, térmica, agua caliente | llave de ducha sin resistencia → `llave-de-ducha` · `canilla eléctrica` (170) sin página. **Volumen de `ducha eléctrica` sin medir** en el primer pull: va en el segundo (G7) |
 | `ducha-higienica` | ducha higiénica (590) | ducha higiénica para inodoro, ducha de mano para inodoro, kit de ducha higiénica, una sola agua / mezcladora, flexible, soporte, pulsador | ducha de mano del box y llave para ducha (480) → `llave-de-ducha` · inodoro y cisternas → `inodoro` · marcas de grifería (§3.4 del keyword research): **no se escriben** |
 
 #### Pinturas
@@ -378,7 +398,7 @@ KEYWORDS: se poseen porque son el vocabulario de mostrador, no por volumen.
 Categoría que **no** se promueve y por lo tanto no tiene fila: `electricidad` (queda
 `proxima`, plan §1.15). Herrajes y cerraduras y herramientas están fuera del build (plan
 §1.14). Sanitarios y grifería se sumó después como categoría activa (`sanitarios-y-griferia`);
-su tabla todavía sólo tiene la fila de `ducha-higienica` (improvement report #2, G3).
+su tabla está arriba.
 
 ### 11.2 Marcas usadas como genérico — lista CERRADA
 
@@ -398,6 +418,16 @@ minúscula y como sinónimo genérico ("las placas de yeso, que acá todos llama
 | sikaflex | sellador poliuretánico | `selladores-y-siliconas` |
 | canaleta tigre | canaleta de PVC | `canaletas` |
 | caño amanco | caño de PVC | `cano-de-pvc` |
+
+**Excepción de títulos (decisión de Anton, 2026-09-23).** Los cinco títulos que ya llevaban la
+marca antes de esta regla se quedan como están, porque la marca es lo que la gente escribe en
+Google (durlock 1.900, ventanas de blindex 880): `yeso-y-durlock` ("Yeso y durlock en
+Paraguay"), `placa-de-yeso` ("Placas de yeso (durlock) en Paraguay"), `perfiles-para-durlock`,
+`chapa-termoacustica` ("Chapa termoacústica (isopanel) en Paraguay") y `vidrio-templado`
+("Vidrio templado y blindex en Paraguay"), junto con lo que ya derivaba de ellos (los H1 de
+`yeso-y-durlock` y `perfiles-para-durlock`, que salen del `name`, y la meta de
+`chapa-termoacustica`). Es una lista cerrada: ninguna página nueva suma una marca a su título,
+H1 ni meta.
 
 Todo lo que no está en esta tabla sigue prohibido, incluidas las marcas locales de cemento
 (INC, Yguazú), las de pintura y todos los códigos de producto (sikadur 31, sika 1, sikacryl,
@@ -565,6 +595,7 @@ declarado como tal. Lo que agregan a esta sección:
   defecto, presentado como referencia de diseño de los manuales de instalaciones sanitarias
   para vivienda (el valor bajo de las dotaciones habituales), no como dato del sitio; días de
   reserva (1) y margen (10 %) son ejemplos declarados. Tanques hacia arriba.
+  Anton confirmó los 150 L/persona/día como valor por defecto el 2026-09-23.
 
 Frases obligatorias sobre dosificación, en la prosa de toda calculadora que use la tabla:
 

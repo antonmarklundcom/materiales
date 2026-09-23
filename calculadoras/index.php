@@ -164,6 +164,19 @@ require PUBLIC_ROOT . '/partials/header.php';
         <span class="calc__cta-hint">La cantidad ya queda cargada en el formulario de pedido.</span>
       </p>
 
+      <?php // C11 "Sumá todo el pedido": carga cemento + arena + ripio en el MISMO formulario de
+            // abajo (mismo handler, mismo consentimiento). Nace oculto: sin JS no hace nada, y la
+            // cantidad se puede escribir a mano igual. calc.js lo muestra y lo maneja. ?>
+      <?php if (isset($calculator['bundle'])): $bundle = $calculator['bundle']; ?>
+      <p class="calc__bundle" data-calc-bundle-wrap hidden>
+        <button class="btn btn--ghost" type="button" data-calc-bundle
+                data-calc-bundle-material="<?= e((string) $bundle['material']) ?>"
+                data-calc-bundle-items="<?= e((string) json_encode($bundle['items'], JSON_UNESCAPED_UNICODE)) ?>"
+                data-ev="calc_bundle" data-ev-loc="calc-<?= e($slug) ?>"><?= e((string) $bundle['button']) ?></button>
+        <span class="calc__bundle-status" data-calc-bundle-status aria-live="polite"></span>
+      </p>
+      <?php endif; ?>
+
       <p class="calc__disclaimer">Es una referencia — confirmá con tu proveedor.</p>
       <p class="calc__nojs">Si no ves los resultados, tu navegador tiene el JavaScript desactivado: la misma cuenta está explicada paso a paso más abajo, con un ejemplo resuelto.</p>
 

@@ -19,7 +19,8 @@
   cotización es qué trae ese kit. Indicá la cantidad, si la llave va embutida en la pared o
   aplicada por fuera, y si querés una sola agua o una mezcladora de fría y caliente. Para
   mezclar tiene que llegar agua caliente por cañería hasta el baño; si no llega, pedí un
-  modelo de una sola agua. Contá también de dónde sale el agua: si hay una toma libre cerca
+  modelo de una sola agua: es el mismo caso en que la ducha del box se resuelve con una
+  <a href="/materiales/ducha-electrica/">ducha eléctrica</a>. Contá también de dónde sale el agua: si hay una toma libre cerca
   del inodoro o si hay que derivar de la conexión de la mochila, porque eso cambia las
   piezas de unión que hacen falta. Los accesorios que no vengan en el kit, el flete hasta tu
   zona y la colocación se cotizan aparte. El precio depende del tipo de llave, del material

@@ -23,11 +23,14 @@ la fase que la resuelve.
    renderizan. Son input humano de la fase 3 (plan §7); nada se inventa mientras tanto.
 5. ~~Sin `og:image`~~ — **resuelto en la fase 8.** `assets/img/og-default.jpg` está versionado
    y `partials/header.php` lo usa como fallback sitewide. Fotografía por página: ver #22.
-6. **`staging_noindex` está en `true`.** Todo el sitio sale con `noindex, nofollow` hasta el
-   go-live. Apagarlo es parte del checklist de la fase 6 (`DEPLOY.md`).
+6. ~~`staging_noindex` está en `true`~~ — **resuelto en el go-live (2026-09-16):** `false`.
 7. **La política de privacidad necesita revisión legal antes del go-live.** El texto refleja
    las decisiones del plan (§3, §6, §8.6) pero le falta la identificación del responsable
-   (fase 3) y no pasó por abogado.
+   (fase 3) y no pasó por abogado. **Actualización (2026-09-23):** por decisión de Anton,
+   "Conservación" ya no promete borrar la copia técnica a los 12 meses (los
+   `leads-AAAA-MM.log` se guardan hasta que se borran a mano); mantiene el derecho a pedir la
+   supresión. Sigue pendiente la identificación del responsable (razón social, RUC) y la
+   revisión legal.
 8. **CI corre en todos los PR, sin `paths-ignore`.** La forma estándar del skill
    `budgeted-runner-deploy` incluye `paths-ignore`, pero acá el job es el check requerido de
    la protección de rama: un run salteado no reporta status y dejaría bloqueado para siempre
@@ -57,12 +60,17 @@ la fase que la resuelve.
 12. **`data/site.php` no tiene todavía `ga4_id`, `meta_pixel_id` ni `vc_attribution`.** Son
     input humano de la fase 2 (plan §7) que Anton aún no pasó. Sin ellos no se emite ni una
     línea de script de analítica y el sitio funciona igual; `partials/analytics.php` los toma
-    apenas se completen, sin más cambios de código.
+    apenas se completen, sin más cambios de código. **Sigue abierto (2026-09-23).** El CRM de
+    Anton es `https://crm.clientes.com.py`; `vc_attribution` se carga como
+    `https://crm.clientes.com.py/vc-attribution.js` cuando Anton confirme que esa URL sirve el
+    script (no se pudo probar desde el sandbox: el proxy bloquea el dominio).
 13. **Sin `config/vendercrm.php` el handler corre en modo sólo-log.** Es el degradado del plan
     §4.5, no un fallo: escribe el lead completo en `storage/leads.log` y el visitante llega a
     `/gracias/` igual. CI corre siempre en ese modo, así que el camino sin CRM está probado en
     cada PR; el camino CON CRM se verifica con un envío real recién cuando exista la config en
-    el servidor (criterio de salida de la fase 2).
+    el servidor (criterio de salida de la fase 2). **Sigue abierto (2026-09-23):** el sitio
+    está en sólo-log desde el go-live; Anton conecta VenderCRM al final (pasos en `DEPLOY.md`,
+    "El día que se configura el CRM por primera vez").
 
 ## Fase 4 — Design & pages
 
@@ -229,3 +237,24 @@ la fase que la resuelve.
     no de esta auditoría — Anton decide si vale la pena.
     **Actualización (2026-09-22): resuelto.** `lead_phone_for_crm()` sigue mandando lo tipeado
     (mismo contrato) pero sólo con dígitos, espacios y `+ ( ) - .`.
+
+## Mejora post-lanzamiento (improvement report #2, cierre 2026-09-23)
+
+29. **Enlaces entrantes en prosa: quedan páginas viejas con menos de 3.** El pase de la
+    mejora (PR A, 2026-09-23) llevó a ≥ 3 enlaces en prosa a las 23 páginas nuevas de #50–#53
+    (medido con un crawl local de `<div class="prose">`, sin hubs, nav, pie ni tarjetas de
+    `related[]`). Siguen con 1: `cal-viva`, `fibrocemento`, `griferia-de-cocina`, las guías
+    `cuantas-bolsas-de-cemento-por-m2` y `cuanta-arena-y-ripio-por-m3-de-hormigon`; con 2:
+    `clavos`, `escombro-relleno`, `ladrillo-sapo`, `ladrillo-refractario`, `policarbonato`,
+    `listones`, `azulejos`, `piedra-laja`, `puerta-placa`, `ventanas-de-aluminio`,
+    `yeso-en-polvo`, `cano-de-pvc`, `ducha-electrica`, `ladrillo-comun-vs-hueco`,
+    `como-elegir-un-corralon`. Todas tienen además enlaces de plantilla (hub, categoría,
+    `related[]`), así que no están huérfanas; es la misma regla S15 aplicada al resto.
+    **Actualización (mismo PR): resuelto.** Un segundo pase llevó esas 20 a 3 enlaces en prosa
+    cada una; sólo los hubs y las páginas institucionales quedan por debajo. Varias están
+    justo en 3: si se borra una frase con enlace, volver a medir.
+30. **La calculadora de tanque usa 150 L/persona/día.** Confirmado por Anton (2026-09-23);
+    sigue siendo un valor de referencia de manual, declarado como tal en la página.
+31. **Volúmenes sin medir del rubro sanitarios.** `ducha eléctrica` no figura en el primer pull
+    de Keyword Planner; la fila de CONTENT-SPEC §11.1 la marca para el segundo pull (G7).
+
