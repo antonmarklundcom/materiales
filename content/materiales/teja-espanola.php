@@ -8,7 +8,8 @@
   <strong>teja cerámica española</strong> hecha de barro cocido, además de la estética aporta
   buena inercia térmica: el techo tarda más en calentarse durante el día. Si en cambio buscás
   una línea recta y moderna, con encastre plano en vez de la superposición curva, la
-  <a href="/materiales/teja-francesa/">teja francesa</a> es la que corresponde.
+  <a href="/materiales/teja-francesa/">teja francesa</a> es la que corresponde, y la guía
+  <a href="/guias/teja-espanola-o-francesa/">teja española o francesa</a> compara las dos.
 </p>
 
 <h2>Cómo se vende, cómo pedirlo y de qué depende el precio</h2>

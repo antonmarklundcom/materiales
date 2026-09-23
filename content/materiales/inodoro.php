@@ -49,5 +49,5 @@
 </p>
 
 <p class="closing">
-  Volvé a <a href="/materiales/sanitarios-y-griferia/">sanitarios y grifería</a> o completá el baño con una <a href="/materiales/canilla-de-lavatorio/">canilla de lavatorio</a>.
+  Volvé a <a href="/materiales/sanitarios-y-griferia/">sanitarios y grifería</a> o completá el baño con una <a href="/materiales/canilla-de-lavatorio/">canilla de lavatorio</a> y la <a href="/materiales/ducha-higienica/">ducha higiénica</a>, que conviene cotizar junto con el inodoro para que el instalador ubique las dos cosas de una vez.
 </p>

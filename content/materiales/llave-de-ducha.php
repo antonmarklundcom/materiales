@@ -6,7 +6,9 @@
   de ducha concentra ese manejo en una palanca, mientras que otros conjuntos tienen mandos
   separados. La llave para ducha puede formar parte de una instalación empotrada o de un
   conjunto exterior, y esa elección cambia qué queda dentro de la pared. La ducha de mano
-  se puede sumar como accesorio para dirigir el agua, con su manguera y soporte. Conviene
+  se puede sumar como accesorio para dirigir el agua, con su manguera y soporte; la que se
+  instala al lado del inodoro es otra pieza, la <a href="/materiales/ducha-higienica/">ducha
+  higiénica</a>. Conviene
   pedirla junto con la grifería para que las salidas y el sistema que desvía el agua
   correspondan al uso que querés darle.
 </p>
