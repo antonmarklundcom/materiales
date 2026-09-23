@@ -4,7 +4,7 @@ Documento vivo: qué está hecho, qué falta y qué depende de Anton. Se actuali
 fase. El plan está en `plan.md`; las instrucciones por fase, en `prompts/`; el copy cerrado,
 en `CONTENT-SPEC.md`; los desvíos menores, en `KNOWN-ISSUES.md`.
 
-_Última actualización: 2026-09-22 (mejora post-lanzamiento en curso: `docs/IMPROVEMENT-REPORT-2.md`
+_Última actualización: 2026-09-23 (decisiones de go-live #55, A #56, C11 #57 y rediseño; antes: mejora post-lanzamiento en curso: `docs/IMPROVEMENT-REPORT-2.md`
 por lotes de PR — ver "Mejora post-lanzamiento" abajo. Build original: 15 fases mergeadas,
 detalle por fase en `docs/log/`)._
 
@@ -43,7 +43,8 @@ detalle por fase en `docs/log/`)._
 | G2 + G6 — Pinturas + glosario | rubro Pinturas activo con 5 materiales; guía glosario | ✅ #52 |
 | G4 — Guías comparativas | 6 guías "X o Y" | ✅ #53 |
 | G5 — Profundidad | tablas + ejemplos resueltos en las 13 categorías y ~60 materiales; tablas de dosificación en guías | ✅ #54 |
-| C11 — Mecanismos de conversión | "Sumá todo el pedido" en las calculadoras de hormigón y de bolsas por m²; "Pegá tu lista de materiales" en /cotizar/ | ✅ (este PR) |
+| C11 — Mecanismos de conversión | "Sumá todo el pedido" en las calculadoras de hormigón y de bolsas por m²; "Pegá tu lista de materiales" en /cotizar/ | ✅ #57 |
+| D — Rediseño "Obra clara" | Diseño, UX/UI y CRO: formulario en el héroe también en la home, tarjeta de pedido fija en escritorio, "Cotizar gratis" en el header, cómo funciona + garantías en cada página de dinero, catálogo con fotos, controles de 48–56 px, contraste AA. Detalle y capturas antes/después en `docs/design/` | ✅ (este PR) |
 
 Scripts de operación nuevos (todos CLI, ver `DEPLOY.md`): `tools/replay-leads.php` (con tope
 de reintentos y alerta), `tools/lead-digest.php` (resumen diario), `tools/maintenance.php`

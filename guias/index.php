@@ -32,7 +32,7 @@ if ($slug === '') {
     ]);
 
     require PUBLIC_ROOT . '/partials/header.php';
-    echo "<div class=\"page-hero band--dark grain bleed\"><div class=\"wrap\">\n";
+    echo "<div class=\"page-hero page-hero--compact band--dark grain bleed\"><div class=\"wrap\">\n";
     echo "<h1>Guías de obra y materiales</h1>\n";
     echo "</div></div>\n";
     echo "<div class=\"field wrap\"><div class=\"field__panel\">\n";
@@ -94,7 +94,7 @@ page([
 
 require PUBLIC_ROOT . '/partials/header.php';
 ?>
-<div class="page-hero band--dark grain bleed">
+<div class="page-hero page-hero--guide band--dark grain bleed">
   <div class="wrap<?= $heroImage !== null ? ' page-hero__grid page-hero__grid--split' : '' ?>">
     <div>
     <h1><?= e($guide['name']) ?></h1>
@@ -108,6 +108,8 @@ require PUBLIC_ROOT . '/partials/header.php';
 </div>
 <div class="field wrap">
   <div class="field__panel">
+  <div class="page-cols">
+  <div class="page-cols__main">
   <?php if (is_file($contentFile)): ?>
   <div class="prose">
   <?php require $contentFile; ?>
@@ -145,6 +147,14 @@ require PUBLIC_ROOT . '/partials/header.php';
   $relatedBlocks   = ['calculadoras'];
   require PUBLIC_ROOT . '/partials/related.php';
   ?>
+  </div>
+  <?php
+  $asideTitle = $ctaEntry !== null ? 'Cotizá ' . mb_strtolower($ctaEntry['name']) : 'Pedí tu cotización';
+  $asideHref  = $ctaHref;
+  $asideLoc   = 'aside-guia-' . $slug;
+  require PUBLIC_ROOT . '/partials/aside-cta.php';
+  ?>
+  </div>
   </div>
 </div>
 <?php require PUBLIC_ROOT . '/partials/footer.php'; ?>

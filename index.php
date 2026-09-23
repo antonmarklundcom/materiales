@@ -26,6 +26,11 @@ $guides = array_filter(data('guides'), 'is_published');
 uasort($guides, static fn(array $a, array $b): int => ($a['order'] ?? 99) <=> ($b['order'] ?? 99));
 $guidesTeaser = array_slice($guides, 0, 3, true);
 
+// Rediseño: teaser de calculadoras (la calculadora precarga la cantidad del formulario, C2).
+$calcs = array_filter(data('calculators'), 'is_published');
+uasort($calcs, static fn(array $a, array $b): int => ($a['order'] ?? 99) <=> ($b['order'] ?? 99));
+$calcsTeaser = array_slice($calcs, 0, 3, true);
+
 // Foto del héroe de la home (fase 11, decisión §1.20): data/site.php → hero_image. Si la
 // clave está vacía o el archivo no está subido todavía, la home queda exactamente como hoy.
 $homeImage = image_for(['image' => (string) site('hero_image')], 'home');
@@ -44,24 +49,39 @@ page([
 
 require __DIR__ . '/partials/header.php';
 ?>
-<div class="page-hero band--dark grain bleed">
+<div class="page-hero page-hero--home band--dark grain bleed">
+  <?php
+  // Rediseño: la foto es el fondo del héroe a todo el ancho y el pedido empieza
+  // acá mismo con la variante corta del formulario (material + cantidad + WhatsApp). Antes el
+  // único CTA del héroe mandaba a un formulario a ~5.000 px en mobile.
+  $heroSizes = '(min-width: 64rem) 80vw, 100vw'; // detrás de un velo: la 1280 alcanza en escritorio
+  require __DIR__ . '/partials/hero-image.php';
+  ?>
   <div class="wrap page-hero__grid page-hero__grid--split">
-    <div>
+    <div class="page-hero__copy">
       <h1>Cotizá materiales de construcción en Paraguay</h1>
       <p class="lead">
         Decinos qué material necesitás, cuánto y para qué zona. Hasta
         <?= $maxProv ?> proveedores verificados te pasan precio por WhatsApp,
         normalmente dentro del día.
       </p>
-      <p><a class="btn btn--primary" href="#cotizar" data-ev="cta_click" data-ev-loc="home-hero">Pedí tu cotización</a></p>
+      <ul class="page-hero__facts">
+        <li class="page-hero__fact"><strong><?= count($activeMaterials) ?></strong> <span>materiales para cotizar</span></li>
+        <li class="page-hero__fact"><strong><?= count($activeCategories) ?></strong> <span>rubros de obra</span></li>
+        <li class="page-hero__fact"><strong>hasta&nbsp;<?= $maxProv ?></strong> <span>cotizaciones por pedido</span></li>
+      </ul>
     </div>
     <div class="page-hero__aside">
-    <?php require __DIR__ . '/partials/hero-image.php'; ?>
-    <ul class="page-hero__facts">
-      <li class="page-hero__fact"><strong><?= count($activeMaterials) ?></strong> <span>materiales para cotizar, del hierro a las aberturas</span></li>
-      <li class="page-hero__fact"><strong><?= count($activeCategories) ?></strong> <span>rubros de obra, con su vocabulario de plaza</span></li>
-      <li class="page-hero__fact"><strong>hasta&nbsp;<?= $maxProv ?></strong> <span>cotizaciones por pedido, gratis y sin compromiso</span></li>
-    </ul>
+    <?php
+    $formSlug       = '';
+    $formOrigen     = '/';
+    $formTitle      = 'Pedí tu cotización';
+    $formVariant    = 'hero';
+    $formLeadFields = ['material', 'cantidad', 'telefono'];
+    require __DIR__ . '/partials/form.php';
+    $formVariant    = 'full';
+    unset($formLeadFields);
+    ?>
     </div>
   </div>
 </div>
@@ -69,24 +89,7 @@ require __DIR__ . '/partials/header.php';
 <div class="field wrap">
   <div class="field__panel">
 
-    <h2>Cómo funciona</h2>
-    <ol class="steps">
-      <li class="steps__item card card--hair">
-        <span class="steps__n" aria-hidden="true">1</span>
-        <h3>Contás qué necesitás</h3>
-        <p>Material, cantidad y la zona donde lo querés. Un minuto, sin registrarte.</p>
-      </li>
-      <li class="steps__item card card--hair">
-        <span class="steps__n" aria-hidden="true">2</span>
-        <h3>Hasta <?= $maxProv ?> proveedores verificados te escriben</h3>
-        <p>Les llega tu pedido con los datos que necesitan para cotizar, así que te contestan con un precio, no con una pregunta.</p>
-      </li>
-      <li class="steps__item card card--hair">
-        <span class="steps__n" aria-hidden="true">3</span>
-        <h3>Elegís el mejor precio</h3>
-        <p>Comparás sobre la misma cantidad y la misma entrega, y cerrás directo con el proveedor.</p>
-      </li>
-    </ol>
+    <?php $howVariant = 'full'; require __DIR__ . '/partials/how-it-works.php'; ?>
 
     <h2>Rubros</h2>
     <?php require __DIR__ . '/partials/category-tiles.php'; ?>
@@ -112,6 +115,24 @@ require __DIR__ . '/partials/header.php';
     </ul>
     <p class="card card--accent closing-cta">
       <a href="/guias/">Ver todas las guías</a>
+    </p>
+    <?php endif; ?>
+
+    <?php if ($calcsTeaser !== []): ?>
+    <h2>¿No sabés cuánto pedir?</h2>
+    <p>Hacé la cuenta con una calculadora y la cantidad pasa sola al pedido.</p>
+    <ul class="tile-grid tile-grid--3">
+      <?php foreach ($calcsTeaser as $calcSlug => $calc): ?>
+      <li>
+        <a class="tile card--hair" href="/calculadoras/<?= e($calcSlug) ?>/">
+          <span><?= e($calc['name']) ?></span>
+          <span class="tile__arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+      <?php endforeach; ?>
+    </ul>
+    <p class="card card--accent closing-cta">
+      <a href="/calculadoras/">Ver todas las calculadoras</a>
     </p>
     <?php endif; ?>
 

@@ -146,8 +146,12 @@ ob_start(); ?>
 <?php $formFields['consent'] = (string) ob_get_clean();
 // C11: en modo lista el mensaje (la lista) va primero; material y cantidad quedan opcionales
 // al final. En modo 'toggle' el enlace a la lista abre el formulario.
+// Rediseño: la home (sin material en la URL) abre el héroe con material + cantidad + WhatsApp
+// ($formLeadFields); las páginas de dinero ya saben el material y siguen con cantidad +
+// WhatsApp. Sólo cambia el ORDEN visual: el set de campos y sus nombres son siempre los mismos.
+$formLeadFields = $isHero && isset($formLeadFields) ? array_values(array_intersect((array) $formLeadFields, array_keys($formFields))) : ['cantidad', 'telefono'];
 $formOrder = match (true) {
-    $isHero              => [['cantidad', 'telefono'], ['material', 'ciudad', 'nombre', 'mensaje', 'consent']],
+    $isHero              => [$formLeadFields, array_values(array_diff(['material', 'cantidad', 'ciudad', 'nombre', 'telefono', 'mensaje', 'consent'], $formLeadFields))],
     $formList === 'open' => [['mensaje', 'ciudad', 'nombre', 'telefono', 'material', 'cantidad', 'consent'], []],
     $formList === 'toggle' => [['listToggle', 'material', 'cantidad', 'ciudad', 'nombre', 'telefono', 'mensaje', 'consent'], []],
     default              => [['material', 'cantidad', 'ciudad', 'nombre', 'telefono', 'mensaje', 'consent'], []],

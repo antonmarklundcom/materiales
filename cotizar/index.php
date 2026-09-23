@@ -27,20 +27,25 @@ page([
 
 require PUBLIC_ROOT . '/partials/header.php';
 ?>
-<div class="page-hero band--dark grain bleed">
+<?php // Rediseño: héroe corto — la bajada larga repetía palabra por palabra la del formulario
+      // y empujaba el primer campo fuera de la pantalla del celular. ?>
+<div class="page-hero page-hero--compact band--dark grain bleed">
   <div class="wrap">
     <h1>Pedí tu cotización</h1>
     <?php if ($entry !== null): ?>
     <p class="lead">Estás pidiendo cotización de <strong><?= e($entry['name']) ?></strong>.</p>
     <?php endif; ?>
-    <p class="lead">
-      Contanos qué necesitás y hasta <?= (int) site('max_proveedores', 3) ?> proveedores
-      verificados te escriben por WhatsApp con su precio. Es gratis y sin compromiso.
-    </p>
+    <ul class="trust-list trust-list--dark">
+      <li>Gratis y sin compromiso</li>
+      <li>Hasta <?= (int) site('max_proveedores', 3) ?> proveedores verificados</li>
+      <li>Te escriben por WhatsApp</li>
+    </ul>
   </div>
 </div>
 <div class="field wrap">
   <div class="field__panel">
+  <div class="page-cols page-cols--form">
+  <div class="page-cols__main">
   <?php
   $formSlug   = $preselected;
   $formOrigen = '/cotizar/';
@@ -50,6 +55,11 @@ require PUBLIC_ROOT . '/partials/header.php';
   $formList   = ($_GET['lista'] ?? '') === '1' ? 'open' : 'toggle';
   require PUBLIC_ROOT . '/partials/form.php';
   ?>
+  </div>
+  <div class="page-cols__aside page-cols__aside--static">
+    <?php $howVariant = 'compact'; require PUBLIC_ROOT . '/partials/how-it-works.php'; ?>
+  </div>
+  </div>
   </div>
 </div>
 <?php require PUBLIC_ROOT . '/partials/footer.php'; ?>

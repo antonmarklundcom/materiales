@@ -90,7 +90,7 @@ page([
 
 require PUBLIC_ROOT . '/partials/header.php';
 ?>
-<div class="page-hero band--dark grain bleed">
+<div class="page-hero page-hero--money band--dark grain bleed">
   <div class="wrap<?= $heroImage !== null ? ' page-hero__grid page-hero__grid--split' : '' ?>">
     <div>
     <h1><?= e($h1) ?></h1>
@@ -123,6 +123,12 @@ require PUBLIC_ROOT . '/partials/header.php';
 <div class="field wrap">
   <div class="field__panel">
 
+  <?php $howVariant = 'compact'; require PUBLIC_ROOT . '/partials/how-it-works.php'; ?>
+
+  <?php // Rediseño: columna de lectura + tarjeta de pedido pegajosa en escritorio. ?>
+  <div class="page-cols">
+  <div class="page-cols__main">
+
   <?php if (is_file($contentFile)): ?>
   <div class="prose">
   <?php require $contentFile; ?>
@@ -149,7 +155,10 @@ require PUBLIC_ROOT . '/partials/header.php';
     <li>
       <a class="tile card--hair<?= is_published($material) ? '' : ' is-proxima' ?>"
          href="/materiales/<?= e($materialSlug) ?>/">
-        <span><?= e($material['name']) ?></span>
+        <span class="tile__body">
+          <span class="tile__name"><?= e($material['name']) ?></span>
+          <?php if (($material['sale_unit'] ?? '') !== ''): ?><span class="tile__meta">Se vende por <?= e($material['sale_unit']) ?></span><?php endif; ?>
+        </span>
         <span class="tile__arrow" aria-hidden="true">→</span>
       </a>
     </li>
@@ -233,6 +242,14 @@ require PUBLIC_ROOT . '/partials/header.php';
   $relatedBlocks   = ['guias', 'calculadoras'];
   require PUBLIC_ROOT . '/partials/related.php';
   ?>
+  </div>
+  <?php
+  $asideTitle = 'Cotizá ' . mb_strtolower($entry['name']);
+  $asideHref  = '#cotizar';
+  $asideLoc   = 'aside-' . $slug;
+  require PUBLIC_ROOT . '/partials/aside-cta.php';
+  ?>
+  </div>
 
   <?php
   // El formulario va en TODA página de categoría y de material, con el slug ya preseleccionado
