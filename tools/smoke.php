@@ -756,8 +756,9 @@ foreach (['Pedidos recibidos: 3 (2 cotizaciones, 1 altas de proveedor)', 'reteni
     }
 }
 
-// maintenance: con el reloj en el mes siguiente, rota leads.log, borra un rotado de hace
-// más de 12 meses y la huella de IP vencida, y deja la vigente.
+// maintenance: con el reloj en el mes siguiente, rota leads.log, NO borra un rotado viejo
+// (retención por defecto 0 = se guarda hasta que se borre a mano), borra la huella de IP
+// vencida y deja la vigente. Con --retention-months=12 sí borra el rotado de hace 14 meses.
 $opsNow = (int) strtotime('+1 month', (int) filemtime($opsLog));
 $oldRotated = $opsDir . '/leads-' . gmdate('Y-m', (int) strtotime('-14 months', $opsNow)) . '.log';
 file_put_contents($oldRotated, "{}\n");
@@ -768,11 +769,17 @@ touch($opsDir . '/throttle/vigente', $opsNow - 10);
 $maint = (string) shell_exec(sprintf('%s %s --storage=%s --now=%d 2>&1', escapeshellarg(PHP_BINARY),
     escapeshellarg($root . '/tools/maintenance.php'), escapeshellarg($opsDir), $opsNow));
 clearstatcache();
-if (is_file($opsLog) || count(glob($opsDir . '/leads-*.log') ?: []) !== 1) {
+if (is_file($opsLog) || count(glob($opsDir . '/leads-*.log') ?: []) !== 2) {
     $fail("maintenance: no rotó leads.log a leads-AAAA-MM.log (salida: {$maint})");
 }
-if (is_file($oldRotated)) {
-    $fail("maintenance: no borró un log rotado de hace 14 meses (salida: {$maint})");
+if (!is_file($oldRotated)) {
+    $fail("maintenance: borró un log rotado sin plazo de retención configurado (salida: {$maint})");
+}
+$maintRet = (string) shell_exec(sprintf('%s %s --storage=%s --now=%d --retention-months=12 2>&1', escapeshellarg(PHP_BINARY),
+    escapeshellarg($root . '/tools/maintenance.php'), escapeshellarg($opsDir), $opsNow));
+clearstatcache();
+if (is_file($oldRotated) || count(glob($opsDir . '/leads-*.log') ?: []) !== 1) {
+    $fail("maintenance: con 12 meses de retención no borró sólo el rotado de hace 14 meses (salida: {$maintRet})");
 }
 if (is_file($opsDir . '/throttle/viejo') || !is_file($opsDir . '/throttle/vigente')) {
     $fail("maintenance: la limpieza de storage/throttle/ borró de más o de menos (salida: {$maint})");

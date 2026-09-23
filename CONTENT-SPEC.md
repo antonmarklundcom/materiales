@@ -399,6 +399,16 @@ minúscula y como sinónimo genérico ("las placas de yeso, que acá todos llama
 | canaleta tigre | canaleta de PVC | `canaletas` |
 | caño amanco | caño de PVC | `cano-de-pvc` |
 
+**Excepción de títulos (decisión de Anton, 2026-09-23).** Los cinco títulos que ya llevaban la
+marca antes de esta regla se quedan como están, porque la marca es lo que la gente escribe en
+Google (durlock 1.900, ventanas de blindex 880): `yeso-y-durlock` ("Yeso y durlock en
+Paraguay"), `placa-de-yeso` ("Placas de yeso (durlock) en Paraguay"), `perfiles-para-durlock`,
+`chapa-termoacustica` ("Chapa termoacústica (isopanel) en Paraguay") y `vidrio-templado`
+("Vidrio templado y blindex en Paraguay"), junto con lo que ya derivaba de ellos (los H1 de
+`yeso-y-durlock` y `perfiles-para-durlock`, que salen del `name`, y la meta de
+`chapa-termoacustica`). Es una lista cerrada: ninguna página nueva suma una marca a su título,
+H1 ni meta.
+
 Todo lo que no está en esta tabla sigue prohibido, incluidas las marcas locales de cemento
 (INC, Yguazú), las de pintura y todos los códigos de producto (sikadur 31, sika 1, sikacryl,
 recuplast, internit, superboard, uralita, pizarreño…). Ampliar la lista es decisión de plan,
@@ -565,6 +575,7 @@ declarado como tal. Lo que agregan a esta sección:
   defecto, presentado como referencia de diseño de los manuales de instalaciones sanitarias
   para vivienda (el valor bajo de las dotaciones habituales), no como dato del sitio; días de
   reserva (1) y margen (10 %) son ejemplos declarados. Tanques hacia arriba.
+  Anton confirmó los 150 L/persona/día como valor por defecto el 2026-09-23.
 
 Frases obligatorias sobre dosificación, en la prosa de toda calculadora que use la tabla:
 

@@ -54,7 +54,8 @@ return [
     // 'todos' = aviso por cada lead; 'problemas' = sólo solo_log, fallo_crm y retenido.
     'notify_on'          => 'todos',
 
-    // Meses que se guardan los storage/leads-AAAA-MM.log rotados (tools/maintenance.php). Si
-    // lo cambiás, cambiá también la sección "Conservación" de /politica-de-privacidad/.
-    'leads_retention_months' => 12,
+    // Meses que se guardan los storage/leads-AAAA-MM.log rotados (tools/maintenance.php).
+    // 0 = no se borran nunca solos (se borran a mano). Si ponés un plazo, agregalo también a la
+    // sección "Conservación" de /politica-de-privacidad/.
+    'leads_retention_months' => 0,
 ];
