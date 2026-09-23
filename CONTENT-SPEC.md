@@ -347,12 +347,20 @@ Columnas: **Posee** = términos de cabecera que esta página persigue (H1/intro/
 
 #### Sanitarios y grifería
 
-Tabla abierta con G3 (improvement report #2). Las filas de las cinco páginas de lanzamiento del
-rubro (`inodoro`, `griferia-de-cocina`, `llave-de-ducha`, `canilla-de-lavatorio`,
-`ducha-electrica`) quedan pendientes de escribir.
+Rubro sumado el 2026-09-16 (KEYWORDS-MATERIALES.md §1.2 fila "Sanitarios y grifería", ~9.000
+búsquedas; fila 25 de la tabla de prioridades). Filas de lanzamiento escritas el 2026-09-23 sobre
+los `synonyms` y la prosa ya publicados; `ducha-higienica` se sumó con G3. Casi sin pujas: es
+compra de salón, así que ninguna fila persigue marcas (deca, FV, las de §3.4 del keyword
+research), que siguen fuera de §11.2.
 
 | Página | Posee | Teje | No es suya |
 |---|---|---|---|
+| `sanitarios-y-griferia` (categoría) | sanitarios (880) · sanitarios y grifería · grifería (260) | artefactos de baño, baño completo, agua fría y caliente, flexible, una sola agua / mezcladora | inodoro y cisternas → `inodoro` · canilla de cocina → `griferia-de-cocina` · llave para ducha → `llave-de-ducha` · canilla de lavatorio → `canilla-de-lavatorio` · ducha eléctrica → `ducha-electrica` · ducha higiénica → `ducha-higienica` · caños y accesorios de plomería → `canos-y-plomeria` |
+| `inodoro` | inodoro (1.900) · cisternas de baño (1.000) · inodoro con mochila | cisterna de baño, tanque de inodoro, mochila, descarga, artefacto de loza | lavatorio y su canilla → `canilla-de-lavatorio` · ducha higiénica junto al inodoro → `ducha-higienica` · `inodoro deca` (260) e `inodoro inteligente` (90): marca y nicho, no se persiguen |
+| `griferia-de-cocina` | canillas para cocina (1.000) · grifería de cocina · canilla de cocina | canilla para pileta, monocomando de cocina, pileta, bacha de cocina, flexible | canilla de baño → `canilla-de-lavatorio` · `grifería` a secas → categoría |
+| `llave-de-ducha` | llave para ducha (480) · llave de ducha | monocomando de ducha, mezcladora de ducha, llave exterior / embutida | ducha eléctrica → `ducha-electrica` · ducha higiénica → `ducha-higienica` · caño de agua → `cano-de-agua` |
+| `canilla-de-lavatorio` | canilla para lavatorio (390) · canilla de lavatorio | grifería de lavatorio, monocomando de lavatorio, bacha, sifón, flexible | canilla de cocina → `griferia-de-cocina` · inodoro → `inodoro` |
+| `ducha-electrica` | ducha eléctrica · ducha eléctrica para baño | ducha con calentador eléctrico, cable, térmica, agua caliente | llave de ducha sin resistencia → `llave-de-ducha` · `canilla eléctrica` (170) sin página. **Volumen de `ducha eléctrica` sin medir** en el primer pull: va en el segundo (G7) |
 | `ducha-higienica` | ducha higiénica (590) | ducha higiénica para inodoro, ducha de mano para inodoro, kit de ducha higiénica, una sola agua / mezcladora, flexible, soporte, pulsador | ducha de mano del box y llave para ducha (480) → `llave-de-ducha` · inodoro y cisternas → `inodoro` · marcas de grifería (§3.4 del keyword research): **no se escriben** |
 
 #### Pinturas
@@ -378,7 +386,7 @@ KEYWORDS: se poseen porque son el vocabulario de mostrador, no por volumen.
 Categoría que **no** se promueve y por lo tanto no tiene fila: `electricidad` (queda
 `proxima`, plan §1.15). Herrajes y cerraduras y herramientas están fuera del build (plan
 §1.14). Sanitarios y grifería se sumó después como categoría activa (`sanitarios-y-griferia`);
-su tabla todavía sólo tiene la fila de `ducha-higienica` (improvement report #2, G3).
+su tabla está arriba.
 
 ### 11.2 Marcas usadas como genérico — lista CERRADA
 
