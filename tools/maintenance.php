@@ -8,14 +8,15 @@
  *    El rename se hace con el mismo flock que usa lead_log(), así que un pedido que llega en
  *    ese instante cae en el archivo rotado o en el nuevo, nunca se pierde. Correrlo todos los
  *    días es inofensivo: sólo rota una vez por mes.
- * 2. Retención: borra los leads-AAAA-MM.log de más de 'leads_retention_months' meses
- *    (config/vendercrm.php; por defecto LEAD_LOG_RETENTION_MONTHS = 12). Es lo que promete la
- *    sección "Conservación" de /politica-de-privacidad/: si cambiás el plazo, cambiá ese texto.
+ * 2. Retención: con 'leads_retention_months' = N > 0 (config/vendercrm.php) borra los
+ *    leads-AAAA-MM.log de más de N meses. Por defecto es 0 (LEAD_LOG_RETENTION_MONTHS): no se
+ *    borra nada solo, los rotados se guardan hasta que se borran a mano. Si activás un plazo,
+ *    ponelo también en la sección "Conservación" de /politica-de-privacidad/.
  * 3. storage/throttle/: borra las huellas de IP más viejas que la ventana del límite por IP
  *    (LEAD_IP_WINDOW_SECONDS) — ya no limitan nada y antes quedaban para siempre.
  *
- * Uso: php tools/maintenance.php [--dry-run] [--storage=DIR]
- *   --storage= sólo para el fixture de CI (tools/smoke.php).
+ * Uso: php tools/maintenance.php [--dry-run] [--storage=DIR] [--retention-months=N]
+ *   --storage= y --retention-months= sólo para el fixture de CI (tools/smoke.php).
  *
  * Cron sugerido (hPanel), una vez por día — ver DEPLOY.md:
  *   30 4 * * * /usr/bin/php /home/USUARIO/domains/materiales.com.py/public_html/tools/maintenance.php >> /home/USUARIO/logs/maintenance.log 2>&1
@@ -34,12 +35,16 @@ require __DIR__ . '/../partials/lead.php';
 $dryRun  = in_array('--dry-run', $argv, true);
 $storage = STORAGE_DIR;
 $now     = time();
+$months  = lead_config()['leads_retention_months'];
 foreach ($argv as $arg) {
     if (str_starts_with($arg, '--storage=')) {
         $storage = substr($arg, 10);
     } elseif (str_starts_with($arg, '--now=')) {
         // Reloj inyectado, sólo para el fixture de CI.
         $now = (int) substr($arg, 6);
+    } elseif (str_starts_with($arg, '--retention-months=')) {
+        // Plazo inyectado, sólo para el fixture de CI (en producción manda la config).
+        $months = max(0, (int) substr($arg, 19));
     }
 }
 $say = static function (string $msg) use ($dryRun): void {
@@ -78,9 +83,11 @@ if (is_file($log)) {
 }
 
 // ---- 2. retención -------------------------------------------------------------------------
-$months = lead_config()['leads_retention_months'];
+if ($months === 0) {
+    $say('retención: sin plazo configurado, no se borra ningún log (se borran a mano).');
+}
 $cutoff = gmdate('Y-m', (int) strtotime('-' . $months . ' months', $now));
-foreach (glob($storage . '/leads-[0-9][0-9][0-9][0-9]-[0-9][0-9]*.log') ?: [] as $rotated) {
+foreach ($months > 0 ? (glob($storage . '/leads-[0-9][0-9][0-9][0-9]-[0-9][0-9]*.log') ?: []) : [] as $rotated) {
     if (preg_match('/leads-(\d{4}-\d{2})/', basename($rotated), $m) === 1 && $m[1] < $cutoff) {
         if (!$dryRun) {
             @unlink($rotated);

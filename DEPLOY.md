@@ -89,7 +89,7 @@ nadie. Van en `config/vendercrm.php` (plantilla en `config.sample.php`):
 | `telegram_bot_token` | Token del bot (crearlo con @BotFather). |
 | `telegram_chat_id` | Chat donde llega el aviso (escribirle al bot y leer el id en `https://api.telegram.org/bot<TOKEN>/getUpdates`). |
 | `notify_on` | `todos` = aviso por cada lead; `problemas` = sólo `solo_log`, `fallo_crm` y `retenido`. |
-| `leads_retention_months` | Meses que se guardan los `storage/leads-AAAA-MM.log` rotados (por defecto 12). Si se cambia, cambiar el texto de "Conservación" en la política de privacidad (la página ya muestra el valor de la config). |
+| `leads_retention_months` | Meses que se guardan los `storage/leads-AAAA-MM.log` rotados. Por defecto `0` = no se borran nunca solos, se borran a mano (decisión de Anton, 2026-09-23). Si se pone un plazo, agregarlo al texto de "Conservación" de la política de privacidad. |
 
 Email y Telegram pueden ir juntos. Los mismos canales los usan la alerta de
 `tools/replay-leads.php` y el resumen diario de `tools/lead-digest.php`.
@@ -164,8 +164,9 @@ email/Telegram. Se manda aunque sean 0: así también confirma que cron y avisos
 - `storage/leads.log` se rota el primer día del mes (la primera corrida después de que cambió
   el mes) a `storage/leads-AAAA-MM.log`, con permisos 0640. Correrlo todos los días es
   inofensivo.
-- Los rotados de más de `leads_retention_months` (12 por defecto) se borran. Es lo que dice
-  la sección "Conservación" de la política de privacidad.
+- Retención: con `leads_retention_months` en 0 (por defecto) no se borra ningún rotado; se
+  guardan hasta que se borran a mano. Con un valor N > 0 se borran los de más de N meses (y
+  hay que sumar ese plazo a "Conservación" en la política de privacidad).
 - Borra las huellas de IP de `storage/throttle/` más viejas que la ventana del límite por IP
   (10 minutos): antes quedaba un archivo por IP para siempre.
 - Un pedido de supresión (Ley 7593) se atiende a mano: borrar la persona en VenderCRM y sus

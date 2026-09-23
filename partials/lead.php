@@ -37,12 +37,13 @@ const LEAD_IP_WINDOW_SECONDS = 600;
 const LEAD_IP_MAX_LEADS = 5;
 
 /**
- * Retención por defecto de los storage/leads-AAAA-MM.log rotados (R5): pasado este plazo
- * tools/maintenance.php los borra. El CRM es el registro comercial; el log es sólo el respaldo
- * técnico. Ajustable con 'leads_retention_months' en config/vendercrm.php, y si se cambia hay
- * que cambiar también la sección "Conservación" de /politica-de-privacidad/.
+ * Retención por defecto de los storage/leads-AAAA-MM.log rotados (R5). 0 = no se borran nunca
+ * solos: se guardan hasta que Anton los borra a mano (decisión de Anton, 2026-09-23). Con un
+ * valor N > 0 en 'leads_retention_months' de config/vendercrm.php, tools/maintenance.php borra
+ * los de más de N meses; si se activa, hay que volver a poner el plazo en la sección
+ * "Conservación" de /politica-de-privacidad/.
  */
-const LEAD_LOG_RETENTION_MONTHS = 12;
+const LEAD_LOG_RETENTION_MONTHS = 0;
 
 /**
  * config/vendercrm.php si existe. Nunca lanza: sin config el handler degrada a leads.log y
@@ -66,8 +67,8 @@ function lead_config(): array
             'telegram_chat_id'   => (string) ($loaded['telegram_chat_id'] ?? ''),
             // 'todos' = cada lead; 'problemas' = sólo solo_log, fallo_crm y retenido.
             'notify_on'          => (string) ($loaded['notify_on'] ?? 'todos'),
-            // Meses que se guardan los leads-AAAA-MM.log rotados (tools/maintenance.php).
-            'leads_retention_months' => max(1, (int) ($loaded['leads_retention_months'] ?? LEAD_LOG_RETENTION_MONTHS)),
+            // Meses que se guardan los leads-AAAA-MM.log rotados (tools/maintenance.php); 0 = siempre.
+            'leads_retention_months' => max(0, (int) ($loaded['leads_retention_months'] ?? LEAD_LOG_RETENTION_MONTHS)),
         ];
     }
     return $config;

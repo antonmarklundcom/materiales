@@ -46,7 +46,7 @@ detalle por fase en `docs/log/`)._
 
 Scripts de operación nuevos (todos CLI, ver `DEPLOY.md`): `tools/replay-leads.php` (con tope
 de reintentos y alerta), `tools/lead-digest.php` (resumen diario), `tools/maintenance.php`
-(rotación mensual de `leads.log`, retención 12 meses, limpieza de `storage/throttle/`),
+(rotación mensual de `leads.log`, retención configurable —por defecto sin borrado automático—, limpieza de `storage/throttle/`),
 `tools/check-rewrites.php` (CI: `.htaccess` ↔ `router-cli.php`) y `tools/prod-check.sh`
 (manual, contra producción). `plan.md` y `prompts/` se quedan: README, STATUS, `.htaccess`,
 `render-check.sh` y los comentarios del código (`plan §…`) los referencian.
@@ -126,11 +126,12 @@ necesita a Anton — ver el detalle en `DEPLOY.md`:
 3. **NAP y confianza (D4):** razón social, RUC, IVA, dirección, horarios, email; opcional un
    revisor técnico con nombre para guías y calculadoras (`/como-trabajamos/`).
 4. **Decisiones:** D1 (política de precios / índice mensual), G7 (segundo pull de Keyword
-   Planner), D3 (páginas de ciudad) y si se mantienen las marcas-genérico que ya estaban en
-   títulos viejos (`Placas de yeso (durlock)`, `Yeso y durlock`, isopanel, blindex) aunque
-   §11.2 no las permita en title/H1.
-5. **Confirmar supuestos:** 150 L/persona/día en la calculadora de tanque, retención de 12
-   meses de `leads-AAAA-MM.log`, `price_band` de ducha higiénica.
+   Planner) y D3 (páginas de ciudad). ~~Marcas en títulos viejos~~ — resuelto 2026-09-23: se
+   quedan (excepción cerrada en CONTENT-SPEC §11.2).
+5. ~~**Confirmar supuestos**~~ — resuelto 2026-09-23: 150 L/persona/día confirmado; los
+   `leads-AAAA-MM.log` ya no se borran solos (se guardan hasta que Anton los borra, política de
+   privacidad actualizada); `price_band` de ducha higiénica queda `medio`. Aviso de leads por
+   WhatsApp: se decide al conectar VenderCRM (hoy el sitio avisa por email/Telegram).
 6. **Datos para tablas futuras:** medidas de metal desplegado, especies/formatos de parquet,
    medidas de cara del ladrillo hueco, bolsas por palet de cemento.
 7. **Off-site (A2–A4):** proveedores (incluido Pinturas, que ya está activa), enlaces (CAPACO,
