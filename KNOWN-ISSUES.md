@@ -250,6 +250,9 @@ la fase que la resuelve.
     `yeso-en-polvo`, `cano-de-pvc`, `ducha-electrica`, `ladrillo-comun-vs-hueco`,
     `como-elegir-un-corralon`. Todas tienen además enlaces de plantilla (hub, categoría,
     `related[]`), así que no están huérfanas; es la misma regla S15 aplicada al resto.
+    **Actualización (mismo PR): resuelto.** Un segundo pase llevó esas 20 a 3 enlaces en prosa
+    cada una; sólo los hubs y las páginas institucionales quedan por debajo. Varias están
+    justo en 3: si se borra una frase con enlace, volver a medir.
 30. **La calculadora de tanque usa 150 L/persona/día.** Confirmado por Anton (2026-09-23);
     sigue siendo un valor de referencia de manual, declarado como tal en la página.
 31. **Volúmenes sin medir del rubro sanitarios.** `ducha eléctrica` no figura en el primer pull
