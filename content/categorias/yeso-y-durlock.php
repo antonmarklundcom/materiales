@@ -1,7 +1,10 @@
 <h2>Qué incluye esta categoría</h2>
 <p>
   La construcción en seco reemplaza el ladrillo y el revoque húmedo por un sistema de capas
-  atornilladas, y en esta categoría están todas las piezas de ese sistema. La
+  atornilladas, y en esta categoría están todas las piezas de ese sistema. Si todavía estás
+  eligiendo el sistema, las guías <a href="/guias/durlock-o-ladrillo/">durlock o ladrillo</a>,
+  para paredes interiores, y <a href="/guias/cielorraso-de-pvc-o-durlock/">cielorraso de pvc o
+  durlock</a>, para el techo, comparan cada opción con su alternativa. La
   <a href="/materiales/placa-de-yeso/">placa de yeso</a> es la cara visible: arma tabiques
   interiores y cielorrasos suspendidos, con
   variantes para zonas húmedas y para donde se exige resistencia al fuego. Esa placa no se

@@ -30,7 +30,9 @@
   cemento por m²</a>: un contrapiso de <strong>20 m² con 10 cm de espesor</strong>, en la
   proporción de manual 1:3:5 (cemento, arena y ripio) y con un 10 % de desperdicio, pide
   <strong>1,87 m³ de ripio</strong>, 1,1 m³ de arena y 11 bolsas de cemento. Con esos números
-  cotizás todo en una sola consulta; si tu maestro usa otra proporción, la cuenta cambia.
+  cotizás todo en una sola consulta; si tu maestro usa otra proporción, la cuenta cambia, y la
+  guía <a href="/guias/cuantas-bolsas-de-cemento-por-m2/">cómo calcular las bolsas de cemento por
+  m²</a> explica por qué.
 </p>
 
 <h2>Qué mirar antes de comprar</h2>

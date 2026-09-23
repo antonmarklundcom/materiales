@@ -10,7 +10,8 @@
   completa el grupo para refuerzos y piezas de unión. Cuando la estructura de techo va a llevar
   chapa, estos perfiles se combinan directamente con la <a href="/materiales/chapa-trapezoidal/">
   chapa trapezoidal</a> o la <a href="/materiales/chapa-de-zinc/">chapa de zinc</a> según el uso
-  del ambiente de abajo.
+  del ambiente de abajo. Los perfiles de aluminio son otra cosa: son la carpintería de las
+  <a href="/materiales/ventanas-de-aluminio/">ventanas de aluminio</a>.
 </p>
 
 <h2>Cómo se vende, cómo pedirlo y de qué depende el precio</h2>

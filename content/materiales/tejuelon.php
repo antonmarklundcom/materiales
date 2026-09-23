@@ -9,7 +9,9 @@
   reduciendo el peso propio de la estructura sin perder la resistencia que da el conjunto vigueta
   más tejuelón. Se usa tanto en losas de piso entre plantas como en techos que después llevan
   contrapiso e impermeabilización. No hay que confundirlo con el
-  <a href="/materiales/ladrillo-hueco/">ladrillo hueco</a>, que es para pared y no para losa.
+  <a href="/materiales/ladrillo-hueco/">ladrillo hueco</a>, que es para pared y no para losa,
+  ni con el <a href="/materiales/ladrillo-sapo/">ladrillo sapo</a>, el bloque de relleno para
+  losa alivianada: son productos distintos.
 </p>
 
 <h2>Cómo se vende, cómo pedirlo y de qué depende el precio</h2>

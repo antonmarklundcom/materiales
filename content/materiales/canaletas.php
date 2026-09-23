@@ -4,7 +4,8 @@
   hacia la bajada, en vez de dejar que caiga directo sobre la vereda, el patio o la pared.
   Cumplen la función de <strong>desagüe pluvial</strong>: la canaleta corre a lo largo del
   alero y entrega el agua a un <strong>caño de bajada</strong>, que la lleva hasta el desagüe o
-  el patio. Se usan tanto en <strong>canaletas de PVC</strong> —livianas, fáciles de cortar y
+  el patio; ese desagüe pluvial se arma con <a href="/materiales/cano-de-pvc/">caño de
+  desagüe</a> de PVC. Se usan tanto en <strong>canaletas de PVC</strong> —livianas, fáciles de cortar y
   las más difundidas en obra nueva —lo que acá se conoce como canaleta tigre— como en
   <strong>canaleta de chapa galvanizada</strong>, más resistente al sol directo y usada sobre
   todo en canaleta embutida o en techos con mucha exposición. También forman parte del sistema

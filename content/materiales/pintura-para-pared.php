@@ -73,5 +73,6 @@
   Volvé a <a href="/materiales/pinturas/">pinturas</a> para ver qué va en cada superficie, o
   mirá el <a href="/materiales/sellador-para-pared/">sellador para pared</a> si vas a pintar
   sobre revoque nuevo y la <a href="/materiales/cal-hidratada/">cal hidratada</a> si preferís
-  la pintura a la cal de siempre.
+  la pintura a la cal de siempre. Y si también renovás el garaje o la galería, lo que va ahí es
+  la <a href="/materiales/pintura-para-piso/">pintura para piso</a>.
 </p>

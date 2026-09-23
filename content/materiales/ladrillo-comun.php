@@ -6,7 +6,9 @@
   se van a revocar. Es el material más usado en obra en Paraguay porque rinde bien en resistencia
   y se adapta a cualquier tipo de pared, desde una vivienda de un piso hasta un muro perimetral.
   Se usa también en tabiques internos donde no hace falta un ladrillo liviano, y en fundaciones
-  de poca altura cuando la obra no lleva bloque ni piedra. Si en cambio buscás algo más liviano
+  de poca altura cuando la obra no lleva bloque ni piedra; donde hay fuego directo, como en
+  parrillas y hornos, no va: ahí corresponde el
+  <a href="/materiales/ladrillo-refractario/">ladrillo refractario</a>. Si en cambio buscás algo más liviano
   para un tabique divisorio, el <a href="/materiales/ladrillo-hueco/">ladrillo hueco</a> suele
   convenir más; y si el ladrillo va a quedar a la vista sin revoque, ahí entra el
   <a href="/materiales/ladrillo-prensado/">ladrillo prensado</a>, no el común.

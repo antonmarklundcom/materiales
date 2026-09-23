@@ -64,7 +64,9 @@
 <h2>De metros a cantidades: usá las calculadoras</h2>
 <p>
   Una vez que tenés los metros cuadrados o metros cúbicos de cada rubro, el paso que sigue es
-  convertir esa medida en unidades de compra: bolsas, ladrillos, metros cúbicos de hormigón. Ahí
+  convertir esa medida en unidades de compra: bolsas, ladrillos, metros cúbicos de hormigón (si
+  alguna unidad no te suena, el <a href="/guias/glosario-de-obra-paraguay/">glosario de obra</a>
+  la define). Ahí
   es donde entran las calculadoras del sitio: cargá los metros cúbicos que vas a hormigonar en la
   <a href="/calculadoras/hormigon-por-m3/">calculadora de hormigón por m³</a> y los metros
   cuadrados de pared en la <a href="/calculadoras/ladrillos-por-m2/">calculadora de ladrillos por

@@ -4,8 +4,9 @@
   otras especies nativas, agrupadas muchas veces bajo <strong>madera nativa</strong>— se eligen
   para piezas que quedan expuestas al sol y a la lluvia, o simplemente a la vista, donde una
   madera blanda se deterioraría rápido o no daría la terminación buscada. Se usan en
-  estructuras de techo que van a quedar sin revestir, en decks exteriores, en aberturas y en
-  muebles de obra. El <strong>eucalipto</strong> aparece en la misma familia para usos más
+  estructuras de techo que van a quedar sin revestir, en decks exteriores, en aberturas, en
+  muebles de obra y en el <a href="/materiales/piso-parquet/">piso parquet</a>, que es madera
+  maciza en todo su espesor. El <strong>eucalipto</strong> aparece en la misma familia para usos más
   utilitarios y de menor exigencia, como estructuras que van a quedar cubiertas.
 </p>
 

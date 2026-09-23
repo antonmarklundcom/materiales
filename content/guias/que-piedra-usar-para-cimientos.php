@@ -8,7 +8,9 @@
   <a href="/materiales/piedra-triturada/">piedra triturada</a>, en cambio, tiene un tamaño más
   parejo y se usa más para bases compactadas, capas de asiento o como parte de mezclas de
   hormigón, donde la uniformidad del grano importa más que el volumen bruto. Entender esta
-  diferencia te ahorra pedir el material equivocado y tener que reemplazarlo a mitad de obra.
+  diferencia te ahorra pedir el material equivocado y tener que reemplazarlo a mitad de obra, y
+  si en el corralón te hablan de piedra 4ta, 5ta o 6ta, el
+  <a href="/guias/glosario-de-obra-paraguay/">glosario de obra</a> te dice qué es cada una.
 </p>
 <p>
   En general, cuando se habla de <a href="/materiales/aridos/">áridos</a> para cimentación se

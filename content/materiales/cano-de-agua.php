@@ -52,5 +52,7 @@
 <p class="closing">
   Volvé a <a href="/materiales/canos-y-plomeria/">caños y plomería</a> para ver el resto de la
   instalación, o mirá el <a href="/materiales/cano-de-pvc/">caño de PVC</a> si lo que necesitás
-  armar es el desagüe.
+  armar es el desagüe. La canilla donde termina cada tramo, como la
+  <a href="/materiales/griferia-de-cocina/">grifería de cocina</a>, es una compra aparte, de
+  sanitarios y grifería.
 </p>

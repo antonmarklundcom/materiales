@@ -10,6 +10,9 @@
   la <a href="/materiales/chapa-termoacustica/">chapa termoacústica</a>; si la luz entre
   correas es grande, como en un galpón industrial, la
   <a href="/materiales/chapa-trapezoidal/">chapa trapezoidal</a> resiste mejor esa distancia.
+  Y si lo que molesta es el óxido o el ruido de la lluvia, el
+  <a href="/materiales/fibrocemento/">fibrocemento</a> no se oxida ni resuena tanto, aunque pesa
+  más.
 </p>
 
 <h2>Cómo se vende, cómo pedirlo y de qué depende el precio</h2>

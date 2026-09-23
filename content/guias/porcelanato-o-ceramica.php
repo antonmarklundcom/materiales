@@ -93,7 +93,8 @@
   medición antes de pedir.
 </p>
 <p>
-  Para ver el resto de las opciones, incluidos azulejos y piedra de revestimiento, pasá por
+  Para ver el resto de las opciones, incluidos <a href="/materiales/azulejos/">azulejos</a> y
+  <a href="/materiales/piedra-laja/">piedra de revestimiento</a>, pasá por
   <a href="/materiales/pisos-y-revestimientos/">pisos y revestimientos</a>. Contanos los m² de
   cada ambiente, el uso y el formato que buscás, y los proveedores verificados te pasan su
   propuesta de cerámica o de porcelanato. <a href="/cotizar/">Pedí tu cotización</a>.

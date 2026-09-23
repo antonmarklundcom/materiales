@@ -34,7 +34,7 @@
   que absorbió humedad en depósito pierde parte de su capacidad de unión y da un revoque que fisura más
   fácil. Si buscás la mano final de un revoque visto, fijate que te vendan cal fina y no la de uso general,
   porque la diferencia de grano se nota en la terminación. Un error común es usar cal hidratada pensando
-  que rinde igual que la cal viva apagada en obra: al ser un producto ya procesado, la proporción de mezcla
+  que rinde igual que la <a href="/materiales/cal-viva/">cal viva</a> apagada en obra: al ser un producto ya procesado, la proporción de mezcla
   cambia, así que conviene confirmar la dosificación con quien te vende antes de calcular cuánta bolsa
   necesitás.
 </p>

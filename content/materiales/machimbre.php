@@ -36,7 +36,7 @@
   Preguntá si conviene sumar una manta o film aislante bajo la cubierta antes de instalar el
   machimbre, en particular si el techo es de chapa: eso mejora el confort y no se puede agregar
   después sin desarmar. Si el machimbre va a quedar expuesto al exterior o a un ambiente
-  húmedo, consultá qué tratamiento o barniz recomiendan, porque la madera sin proteger se
+  húmedo, consultá qué tratamiento o <a href="/materiales/barniz/">barniz</a> recomiendan, porque la madera sin proteger se
   reseca y se abre con el sol paraguayo. Y calculá la cantidad de clavaderas —listones— que vas
   a necesitar para fijarlo, porque van aparte del machimbre mismo.
 </p>

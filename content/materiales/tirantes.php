@@ -8,7 +8,8 @@
   galería con poca luz, mientras que un techo con luces largas o cargas mayores pide una
   escuadría mayor. También se los conoce como <strong>tirante de techo</strong> cuando el
   pedido es puntualmente para esa función, aunque el mismo tipo de pieza sirve para otras
-  estructuras de obra.
+  estructuras de obra. Para las piezas auxiliares de escuadría chica, como clavaderas y
+  refuerzos menores, lo que se pide son <a href="/materiales/listones/">listones</a>.
 </p>
 
 <h2>Cómo se vende, cómo pedirlo y de qué depende el precio</h2>

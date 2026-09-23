@@ -15,7 +15,10 @@
   techos simples, aunque transmite calor y ruido de lluvia sin filtro. La
   <a href="/materiales/chapa-trapezoidal/">chapa trapezoidal</a>, con su perfil de ondas más
   altas y rectas, da mayor rigidez estructural y permite salvar luces más grandes entre apoyos, lo
-  que la hace común en galpones y techos de mayor superficie.
+  que la hace común en galpones y techos de mayor superficie. Fuera de la chapa metálica, el
+  <a href="/materiales/fibrocemento/">fibrocemento</a> pesa más pero no se oxida ni resuena
+  tanto con la lluvia, y el <a href="/materiales/policarbonato/">policarbonato</a> suma luz
+  donde la chapa da sombra total.
 </p>
 
 <h2>Luz a cubrir y estructura</h2>

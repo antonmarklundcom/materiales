@@ -53,5 +53,8 @@
   (cemento, cal y arena) de manual y un 10 % de desperdicio, da <strong>6 bolsas de
   cemento</strong>, <strong>132 kg de cal hidratada</strong> y 1,39 m³ de arena. Cuántas bolsas
   de cal son esos kilos depende de la bolsa que maneje tu proveedor: pedí los kilos. La
-  dosificación la define tu maestro; si usa otra, cambiá la proporción y rehacé la cuenta.
+  dosificación la define tu maestro; si usa otra, cambiá la proporción y rehacé la cuenta. Para
+  contrapisos y carpetas, la guía
+  <a href="/guias/cuantas-bolsas-de-cemento-por-m2/">cómo calcular las bolsas de cemento por
+  m²</a> explica de dónde sale el número.
 </p>

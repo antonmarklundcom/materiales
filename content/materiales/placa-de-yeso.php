@@ -53,5 +53,7 @@
   de construir en Paraguay</a> ayuda a ubicar dónde entra el sistema en seco dentro del
   presupuesto general. Y si estás decidiendo entre tabique en seco y pared de mampostería, la
   guía <a href="/guias/durlock-o-ladrillo/">durlock o ladrillo para paredes interiores</a>
-  compara los dos sistemas.
+  compara los dos sistemas, y para el techo la guía
+  <a href="/guias/cielorraso-de-pvc-o-durlock/">cielorraso de pvc o durlock</a> hace lo mismo
+  con el cielorraso.
 </p>

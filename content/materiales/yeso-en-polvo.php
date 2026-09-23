@@ -30,7 +30,9 @@
   cantidad por vez, y un yeso de fragüe muy acelerado deja menos margen para trabajarlo parejo.
   Si el <strong>enlucido de yeso</strong> va a quedar visto antes de pintar, pedí que te
   confirmen que es apto para terminación fina y no una variante pensada solo para relleno
-  grueso. Y calculá con margen: quedarte corto a mitad de una pared genera una junta de fragüe
+  grueso. Para pintarlo, sobre el enlucido va primero el
+  <a href="/materiales/sellador-para-pared/">sellador para pared</a>, que fija el polvo y empareja
+  la absorción. Y calculá con margen: quedarte corto a mitad de una pared genera una junta de fragüe
   distinto que después se nota con la pintura.
 </p>
 

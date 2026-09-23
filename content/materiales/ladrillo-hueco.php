@@ -3,7 +3,9 @@
   El ladrillo hueco —también pedido como <strong>ladrillo de 8</strong>,
   <strong>ladrillo de 12</strong> o <strong>ladrillo cerámico hueco</strong> según el espesor
   que necesites— se usa sobre todo en tabiques divisorios y paredes internas que no cumplen
-  función estructural. Al tener perforaciones pesa menos que el ladrillo macizo, así que se
+  función estructural; para ese mismo tabique, la guía
+  <a href="/guias/durlock-o-ladrillo/">durlock o ladrillo</a> lo compara con la construcción en
+  seco. Al tener perforaciones pesa menos que el ladrillo macizo, así que se
   levanta más rápido y carga menos peso sobre la losa o la fundación, algo que se agradece en
   ampliaciones o pisos superiores. También se usa en cerramientos exteriores de poca exigencia
   estructural cuando el diseño no requiere un muro portante. Si la pared va a llevar carga
