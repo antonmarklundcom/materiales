@@ -769,7 +769,10 @@ El resto de la ampliación son secciones dentro de páginas existentes: `chapa-d
 (perfil omega, hierro T), `adoquines` (adopasto), `tejuelon` (viga reticulada) y `cemento`
 (portland).
 
-**Páginas cuyo término exacto no tiene número medido todavía** (se mantienen hasta el próximo
-pull): `ducha-electrica`, `cano-de-agua`, `puntales`, `escombro-relleno`, `alambre-negro`,
-`cal-viva`, `hidrofugo`, `perfiles-para-durlock`, `madera-dura`, `arena-gorda`, `piedra-bruta`,
-`tabla-de-encofrado`.
+**Páginas cuyo término exacto no tenía número medido** — resultado del pull del 2026-10-01 en
+`docs/keyword-data/pull-2026-10-01-title-check.md`: medidos `ducha-electrica` (1.000), `hidrofugo`
+(390), `arena-gorda` (260), `piedra-bruta` (260), `escombro-relleno` (escombro, 260), `cal-viva`
+(210), `puntales` (140). Débiles: `cano-de-agua`, `perfiles-para-durlock`, `madera-dura` (la
+palabra que mide es *curupay*, 480). Sin dato todavía: `alambre-negro`, `tabla-de-encofrado`.
+Las claves `keyword` de `hidrofugo` (hidrófugo), `escombro-relleno` (escombro) y `madera-dura`
+(curupay) pasaron al término medido, como en §13.
