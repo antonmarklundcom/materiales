@@ -5,7 +5,9 @@
   mampostería de todos los días: paredes portantes, muros divisorios, cerramientos que después
   se van a revocar. Es el material más usado en obra en Paraguay porque rinde bien en resistencia
   y se adapta a cualquier tipo de pared, desde una vivienda de un piso hasta un muro perimetral.
-  Se usa también en tabiques internos donde no hace falta un ladrillo liviano, y en fundaciones
+  También se pide como <strong>ladrillo rústico</strong>, sobre todo cuando va a quedar
+  a la vista: si querés un tono determinado, aclará al pedir si buscás <strong>rústico rojo</strong> o
+  <strong>rústico blanco</strong>. Se usa también en tabiques internos donde no hace falta un ladrillo liviano, y en fundaciones
   de poca altura cuando la obra no lleva bloque ni piedra; donde hay fuego directo, como en
   parrillas y hornos, no va: ahí corresponde el
   <a href="/materiales/ladrillo-refractario/">ladrillo refractario</a>. Si en cambio buscás algo más liviano

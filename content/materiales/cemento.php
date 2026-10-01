@@ -11,6 +11,13 @@
   es raro que una obra no lleve al menos una bolsa.
 </p>
 
+<p>
+  El nombre formal de la bolsa común es <strong>cemento portland</strong> (o
+  <strong>cemento de portland</strong>, como también se escribe): es el mismo cemento gris que se
+  vende en cualquier corralón. Si el proveedor te pregunta qué tipo buscás, decile el uso —estructura,
+  contrapiso, revoque— y él te indica el que corresponde.
+</p>
+
 <h2>Mortero premezclado</h2>
 <p>
   Cuando lo que buscás no es cemento suelto sino la mezcla ya lista para aplicar con pala, el pedido es

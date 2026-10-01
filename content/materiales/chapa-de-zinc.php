@@ -1,8 +1,9 @@
 <h2>Para qué se usa</h2>
 <p>
-  La chapa de zinc —también pedida como <strong>chapa acanalada</strong>,
-  <strong>chapa galvanizada</strong> u <strong>chapa ondulada</strong>, según la zona del país
-  y la costumbre del proveedor— es la chapa de techo más difundida en Paraguay. Se usa en
+  La <strong>chapa ondulada</strong> —la <strong>chapa de zinc</strong> de toda la vida, también
+  pedida como <strong>chapa zinc ondulada</strong>, <strong>chapa de zinc ondulada</strong>,
+  <strong>chapa acanalada</strong> o <strong>chapa ondulada galvanizada</strong>, según la zona
+  del país y la costumbre del proveedor— es la chapa de techo más difundida en Paraguay. Se usa en
   techos de vivienda, galpones, depósitos, cocheras y ampliaciones, en cualquier obra donde no
   hace falta aislación térmica ni acústica especial. También aparece como cerramiento lateral
   en galpones y como cobertura provisoria en obras en construcción, por su bajo peso y
@@ -17,8 +18,8 @@
 
 <h2>Cómo se vende, cómo pedirlo y de qué depende el precio</h2>
 <p>
-  Se cotiza por <strong>chapa o por metro lineal</strong>, según cómo trabaje cada proveedor.
-  Para pedir bien necesitás el <strong>largo de faldón</strong> (de cumbrera a alero), la
+  Se cotiza por <strong>chapa o por metro lineal</strong>, según cómo trabaje cada proveedor, y
+  las chapas onduladas para techos vienen en largos como el de 6 metros, entre otros. Para pedir bien necesitás el <strong>largo de faldón</strong> (de cumbrera a alero), la
   <strong>cantidad de chapas o de metros cuadrados</strong> a cubrir y el
   <strong>calibre o número</strong> que buscás, porque no todas las chapas tienen el mismo
   espesor de metal. Los accesorios —cumbreras, tornillos autoperforantes, babetas— se cotizan
@@ -37,7 +38,7 @@
     <tr><th>Calibre</th><th>Uso típico</th></tr>
   </thead>
   <tbody>
-    <tr><td>N° 26</td><td>Techos de vivienda con estructura liviana, ampliaciones, cocheras</td></tr>
+    <tr><td>N° 26 (calibre 26)</td><td>Techos de vivienda con estructura liviana, ampliaciones, cocheras</td></tr>
     <tr><td>N° 25</td><td>Galpones, depósitos y techos con mayor luz entre correas</td></tr>
   </tbody>
 </table>
@@ -57,6 +58,15 @@
   lineales). Con un perfil de <strong>1 m</strong> útil, el mismo techo de 80 m² pide 10 por
   faldón y <strong>21 chapas</strong> (84 metros lineales). Los dos anchos son sólo de ejemplo:
   pedí el real antes de comparar cotizaciones, porque es el dato que más mueve la cantidad.
+</p>
+
+<h2>Chapa prepintada</h2>
+<p>
+  Si querés color, pedí la <strong>chapa prepintada</strong> en vez de pintar el techo después:
+  se consigue en blanca, negra o gris. Aclarale al proveedor el color, el calibre y el largo. Los
+  cortes dejan el metal al descubierto en los bordes, así que preguntale cómo protegerlos para
+  que no se oxiden. Si te ofrecen <strong>chapa aluzinc</strong>, pedí que te aclare en qué
+  se diferencia del galvanizado antes de comparar cotizaciones.
 </p>
 
 <p class="closing">

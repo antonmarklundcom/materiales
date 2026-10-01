@@ -257,4 +257,18 @@ la fase que la resuelve.
     sigue siendo un valor de referencia de manual, declarado como tal en la página.
 31. **Volúmenes sin medir del rubro sanitarios.** `ducha eléctrica` no figura en el primer pull
     de Keyword Planner; la fila de CONTENT-SPEC §11.1 la marca para el segundo pull (G7).
-
+32. **Páginas con término de título débil o sin número (actualizado 2026-10-01, ver
+    `docs/keyword-data/pull-2026-10-01-title-check.md`).** Medidos ahora: `ducha-electrica` 1.000,
+    `hidrofugo` 390, `arena-gorda` 260, `piedra-bruta` 260, `escombro` 260, `cal-viva` 210,
+    `puntales` 140. Siguen débiles: `cano-de-agua` (caño de agua 90), `perfiles-para-durlock`
+    (perfiles durlock 10, montante 30, solera 20; soleras 90 en el pull anterior) y `madera-dura`
+    ("madera dura" 20; curupay 480; "lapacho" 3.600 casi todo no es madera). Faltan en el pegado:
+    `alambre negro` y `tabla encofrado`. Candidatas a fundirse en otra página cuando haya más
+    datos: `perfiles-para-durlock` → `placa-de-yeso`; `cano-de-agua` → una sección de
+    `cano-de-pvc`. No se tocan las URL antes de decidirlo.
+33. **`cable-electrico` tiene un término de cabecera chico (70/mes).** La página se sostiene
+    en las secciones (4, 6 y 10 mm: 170, 110 y 70) y el cordón 2x1 (110); si el siguiente pull
+    no sube el término, reconsiderar si es una página o una sección de `cano-conduit`.
+34. **Un término del pull puede significar otra cosa.** "Babeta" (moto) y "resinas epóxicas"
+    (manualidades) se escribieron sólo con el significado de obra (techo y pisos). Revisar la
+    primera página de resultados cuando haya medición de Search Console o similar.

@@ -13,7 +13,9 @@
   lija y se plastifica en obra, el que corresponde es el
   <a href="/materiales/piso-parquet/">piso parquet</a>. Y para fachadas, muros exteriores o un acento
   de pared interior con textura natural, está la
-  <a href="/materiales/piedra-laja/">piedra laja</a>. Ningún revestimiento se coloca solo:
+  <a href="/materiales/piedra-laja/">piedra laja</a>. Si preferís una superficie continua, sin
+  juntas, para piso y pared con un mismo acabado, se pide
+  <a href="/materiales/microcemento/">microcemento</a>. Ningún revestimiento se coloca solo:
   siempre necesitás el <a href="/materiales/adhesivo-para-ceramica/">adhesivo y la pastina</a>
   correspondientes a la pieza elegida, y conviene pedirlos en la misma consulta.
 </p>
@@ -53,6 +55,7 @@
     <tr><td><a href="/materiales/azulejos/">Azulejos</a></td><td>Pared de baño y de cocina, nunca para pisar</td><td>Que sea pieza de pared y que toda la cantidad salga del mismo lote</td></tr>
     <tr><td><a href="/materiales/piso-vinilico/">Piso vinílico</a></td><td>Renovar sin romper el piso actual</td><td>Sistema (adhesivo, click o rollo), espesor y resistencia al agua</td></tr>
     <tr><td><a href="/materiales/piso-parquet/">Piso parquet</a></td><td>Madera maciza que se lija y se plastifica en obra</td><td>Especie, estado de secado y qué partidas incluye el precio</td></tr>
+    <tr><td><a href="/materiales/microcemento/">Microcemento</a></td><td>Piso y pared continuos, sin juntas, con acabado tipo cemento alisado</td><td>Sobre qué superficie va, quién lo aplica y qué sellador lleva por encima</td></tr>
     <tr><td><a href="/materiales/piedra-laja/">Piedra laja</a></td><td>Fachadas, muros y acentos de pared con textura natural</td><td>Tipo de piedra, espesor parejo y adhesivo apto para su peso</td></tr>
   </tbody>
 </table>

@@ -1,11 +1,11 @@
 <h2>Para qué se usa</h2>
 <p>
-  La membrana líquida —muchos la conocen como <strong>membrana en pasta</strong> o
-  <strong>impermeabilizante acrílico</strong>— se aplica con rodillo o pincel, y por eso se
+  La <strong>membrana líquida para techos</strong> —muchos la conocen como
+  <strong>membrana en pasta</strong> o <strong>impermeabilizante acrílico</strong>— se aplica con rodillo o pincel, y por eso se
   adapta a techos con muchos encuentros, bajadas, caños y detalles donde un rollo de membrana
   asfáltica no entra cómodo. También funciona como <strong>pintura impermeabilizante</strong>
   de mantenimiento sobre una superficie que ya estuvo tratada antes. Es la
-  <strong>membrana líquida para techos</strong> más elegida cuando la geometría es
+  opción más elegida cuando la geometría es
   complicada o cuando se busca renovar una impermeabilización existente sin levantar nada. Para
   superficies grandes y regulares, en cambio, suele salir más práctico cubrir con
   <a href="/materiales/membrana-asfaltica/">membrana asfáltica</a> en rollo de una sola pasada.
@@ -42,6 +42,17 @@
   una solución que se coloca una vez y se olvida. Y si la humedad que te preocupa es de pared
   interior y no de techo, lo que corresponde es
   <a href="/materiales/pintura-antihumedad/">pintura antihumedad</a>, no membrana líquida.
+</p>
+
+<h2>Pintura para techo de chapa, losa y tejas</h2>
+<p>
+  Mucha gente pide <strong>pintura para techo</strong> cuando en realidad necesita impermeabilizar.
+  La membrana líquida forma una capa gruesa y flexible que cubre fisuras y encuentros; la pintura
+  común sólo da color y una protección liviana. La <strong>pintura engomada para techos</strong>
+  y la <strong>pintura impermeabilizante para techos</strong> quedan en el medio: sirven para
+  renovar una losa ya tratada. Para <strong>pintura para techo de chapa</strong> o
+  <strong>pintura para tejas</strong>, aclará el soporte al pedirla. Si el objetivo es bajar el calor,
+  preguntá por la <strong>pintura aislante de calor</strong> y qué espera lograr cada producto.
 </p>
 
 <p class="closing">

@@ -1,14 +1,14 @@
 <h2>Para qué se usa</h2>
 <p>
-  Los adoquines —también llamados <strong>adoquines de cemento</strong>, <strong>adoquín de
-  hormigón</strong>, o <strong>adopasto</strong> cuando llevan aberturas para pasto entre pieza y
-  pieza— se usan para
+  Los adoquines —también llamados <strong>pavers</strong> o <strong>paver</strong>,
+  <strong>adoquines de cemento</strong> o <strong>adoquín de hormigón</strong>— se usan para
   pisos exteriores que van a recibir tránsito de personas o vehículos sin necesitar una losa de
   hormigón continua. Se usan en veredas, patios, entradas de vehículos, estacionamientos y
   playones, formando lo que en obra se conoce como <strong>adoquinado</strong>. Una de sus
   ventajas frente al contrapiso tradicional es que el <strong>adoquín ecológico</strong> permite
   que el agua de lluvia se filtre entre las juntas en vez de escurrir toda hacia la calle, algo
-  valorado en patios y accesos donde se busca reducir el agua acumulada en superficie. No se
+  valorado en patios y accesos donde se busca reducir el agua acumulada en superficie. Por eso los
+  <strong>pisos pavers</strong> son tan pedidos para patios y accesos. No se
   confunde con el <a href="/materiales/bloque-de-hormigon/">bloque de hormigón</a>, que es para
   pared y no para piso.
 </p>
@@ -31,6 +31,15 @@
   que queda con pasto, restá 2 m² y quedan <strong>34 m²</strong> de adoquín. Para la base,
   multiplicá esos 34 m² por el espesor de cada capa que te marque quien hace la obra: así tenés
   los m³ de arena y de piedra triturada para pedir en la misma consulta.
+</p>
+
+<h2>Pavers y adopasto</h2>
+<p>
+  El <strong>adopasto</strong> es el paver con aberturas por donde crece el pasto. Sirve para
+  estacionamientos y accesos donde querés piso firme para el auto pero también superficie verde
+  y que el agua se filtre. Al pedirlo aclarale al proveedor que buscás adopasto y no paver
+  macizo, porque la base y la colocación no son iguales. Sumá el uso que va a tener, de peatones
+  o de vehículos, y que el proveedor te confirme si la pieza sirve para ese tránsito.
 </p>
 
 <h2>Qué mirar antes de comprar</h2>

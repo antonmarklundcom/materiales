@@ -8,7 +8,10 @@
   desgrana, conviene dar el <a href="/materiales/sellador-para-pared/">sellador para pared</a>
   —fijador o fondo blanco—, que es lo que hace que el látex agarre y rinda parejo. Para garajes,
   galerías y patios de cemento está la
-  <a href="/materiales/pintura-para-piso/">pintura para piso</a>, hecha para aguantar tránsito.
+  <a href="/materiales/pintura-para-piso/">pintura para piso</a>, hecha para aguantar tránsito;
+  cuando el piso o una pieza de metal va a recibir golpes, químicos o lavados frecuentes, se
+  pide <a href="/materiales/pintura-epoxi/">pintura epoxi</a>, que se usa tanto en pisos como
+  en metal.
   La madera a la vista —puertas, aberturas, machimbre, muebles— se protege con
   <a href="/materiales/barniz/">barniz para madera</a>, que deja ver la veta. Y para rejas,
   portones, puertas de chapa y cualquier pieza de metal está el
@@ -47,6 +50,7 @@
     <tr><td><a href="/materiales/pintura-para-pared/">Pintura para pared</a></td><td>Revoque, yeso o placa ya masillada, adentro o afuera</td><td>Látex interior o exterior, mate o satinado, y todo el color de una vez</td></tr>
     <tr><td><a href="/materiales/sellador-para-pared/">Sellador para pared</a></td><td>La mano previa sobre revoque nuevo, yeso o pared que se desgrana</td><td>Fijador transparente o fondo blanco, y si viene concentrado</td></tr>
     <tr><td><a href="/materiales/pintura-para-piso/">Pintura para piso</a></td><td>Garajes, galerías y patios de cemento</td><td>Qué va a circular, si es bajo techo y si la epoxi trae sus dos componentes</td></tr>
+    <tr><td><a href="/materiales/pintura-epoxi/">Pintura epoxi</a></td><td>Pisos de mucho uso y piezas de metal que necesitan una capa más dura; ver también la <a href="/materiales/pintura-para-piso/">pintura para piso</a></td><td>Si va sobre piso o metal, cuántos componentes trae y qué preparación pide la superficie</td></tr>
     <tr><td><a href="/materiales/barniz/">Barniz para madera</a></td><td>Madera a la vista: puertas, machimbre, muebles, pérgolas</td><td>Interior o exterior, transparente o con color, y el diluyente</td></tr>
     <tr><td><a href="/materiales/esmalte-sintetico/">Esmalte sintético</a></td><td>Rejas, portones, puertas de chapa y madera que va pintada</td><td>Fondo antióxido, color, terminación y con qué se diluye</td></tr>
     <tr><td><a href="/materiales/pintura-antihumedad/">Pintura antihumedad</a></td><td>Manchas de humedad o salitre</td><td>Qué tratamiento corresponde antes de volver a pintar</td></tr>

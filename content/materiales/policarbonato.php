@@ -2,7 +2,7 @@
 <p>
   El policarbonato se usa para techos donde se busca <strong>techo translúcido</strong>: dejar
   pasar luz natural sin dejar pasar agua ni perder resistencia. Se instala en galerías,
-  parrilleros, estacionamientos, patios y como <strong>claraboya</strong> puntual dentro de un
+  parrilleros, estacionamientos, patios y como <a href="/materiales/claraboyas/"><strong>claraboya</strong></a> puntual dentro de un
   techo de chapa, para iluminar un sector sin depender de luz artificial durante el día. Hay dos
   familias bien distintas: el <strong>policarbonato alveolar</strong>, con cámaras de aire
   internas que aíslan más y pesan menos, y el <strong>policarbonato compacto</strong>, macizo,
