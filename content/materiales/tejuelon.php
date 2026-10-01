@@ -1,14 +1,17 @@
 <h2>Para qué se usa</h2>
 <p>
-  El tejuelón —también conocido como <strong>tejuela</strong> o
-  <strong>ladrillo para losa</strong>— no es un ladrillo de pared, sino la pieza cerámica que se
-  apoya entre viguetas para armar una losa de piso o de techo. Se usa junto con las viguetas
+  Los <strong>tejuelones</strong> —en singular, el tejuelón, también conocido como
+  <strong>tejuela</strong> o <strong>ladrillo para losa</strong>— no son ladrillos de pared, sino
+  las piezas cerámicas que se apoyan entre viguetas para armar una losa de piso o de techo. Se usan junto con las viguetas
   premoldeadas y el hormigón de la capa de compresión, formando lo que en obra se conoce como
   <strong>losa de tejuelón</strong> o bovedilla cerámica. Es una de las formas más comunes de
   hacer entrepiso en Paraguay porque aligera la losa respecto de una placa maciza de hormigón,
   reduciendo el peso propio de la estructura sin perder la resistencia que da el conjunto vigueta
   más tejuelón. Se usa tanto en losas de piso entre plantas como en techos que después llevan
-  contrapiso e impermeabilización. No hay que confundirlo con el
+  contrapiso e impermeabilización. Como alternativa a las viguetas, algunas losas alivianadas se
+  arman con <strong>viga reticulada</strong>, una viga de armadura soldada que se hormigona en
+  obra y recibe el mismo relleno entre vigas; cuál conviene depende del cálculo, así que
+  confirmalo con quien calcula la losa. No hay que confundirlo con el
   <a href="/materiales/ladrillo-hueco/">ladrillo hueco</a>, que es para pared y no para losa,
   ni con el <a href="/materiales/ladrillo-sapo/">ladrillo sapo</a>, el bloque de relleno para
   losa alivianada: son productos distintos.

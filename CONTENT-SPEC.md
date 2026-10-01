@@ -287,7 +287,7 @@ Columnas: **Posee** = términos de cabecera que esta página persigue (H1/intro/
 | `teja-francesa` | teja francesa (320) | teja marsellesa, teja plana, teja de encastre | teja colonial y romana → `teja-espanola` |
 | `fibrocemento` | fibrocemento (140) · eternit (140) · placas de fibrocemento (30) · placa cementicia (40) | chapa de fibrocemento, placa ondulada de fibrocemento, teja de fibrocemento | las 38 marcas extranjeras del §3.4 (internit, superboard, uralita, cedral, pizarreño): **no se escriben** |
 | `cielorraso-de-pvc` | pvc para techos (1.300) · cielorraso de pvc (1.000) · cielo raso pvc (390) · cielorrasos (320) · pvc techo (210) · techo de pvc (170) | machimbre de pvc, tablilla de pvc, cielorraso plástico, perfil U de arranque | cielorraso de durlock → `placa-de-yeso` · machimbre de madera → `machimbre` |
-| `policarbonato` | techos de policarbonato (590) · policarbonato techo (390) · claraboyas (170) | policarbonato alveolar, policarbonato compacto, 4/6/8/10 mm, techo translúcido, media sombra rígida (tabla de espesores) | chapa translúcida de PVC → `cielorraso-de-pvc` |
+| `policarbonato` | techos de policarbonato (590) · policarbonato techo (390) | policarbonato alveolar, policarbonato compacto, 4/6/8/10 mm, techo translúcido, media sombra rígida (tabla de espesores) | chapa translúcida de PVC → `cielorraso-de-pvc` |
 | `canaletas` | canaletas (590) · canaleta embutida (590) · canaletas de pvc (260) · canaletas para techos (110) | canaleta para techo, desagüe pluvial, bajada, caño de bajada, canaleta de chapa galvanizada, canaleta tigre, pecho paloma, limahoya | **canaleta a secas y canaleta para cable → electricidad** (sin página): esta página nunca persigue `canaleta` sola |
 
 #### Madera
@@ -720,3 +720,56 @@ de secado. `pintura-antihumedad` sigue en `impermeabilizantes`: las páginas de 
 enlazan, no la persiguen. Ninguna marca de pintura entra en la lista de §11.2. Pendiente: foto
 de héroe (`image`) de la categoría y proveedores del rubro.
 
+## 16. Ampliación con datos de Keyword Planner (2026-10-01)
+
+Segundo pull (15.088 frases, Paraguay) y regla de Anton: **toda palabra y toda página del sitio
+tiene un número medido detrás**. Lo que entró, con el término que posee cada página (búsquedas
+por mes del archivo del pull; las variantes de 10 son piso de Keyword Planner y no se usan para
+decidir). Ninguna marca entra (Tramontina, Recuplast, FV, Pedrollo, Lorenzetti, Sinteplast y
+demás siguen fuera de la lista de §11.2); el vocabulario de España y Argentina de ese pull
+(tejado, bricomart, velux, heki, uralita) se ignora.
+
+**Páginas nuevas (15)**
+
+| Página | Posee | Teje | No es suya |
+|---|---|---|---|
+| `bomba-de-agua` | bomba de agua (1.600) · motobomba (320) | bomba sumergible, periférica, centrífuga, electrobomba, motor de agua para pozo | presurizador → `presurizador-de-agua` |
+| `presurizador-de-agua` | presurizador de agua (1.000) | bomba presurizadora (260), presurizador para bomba | bombas en general → `bomba-de-agua` |
+| `llave-de-paso` | llave de paso (390) | llave de paso de agua (320), con campana, esférica, de 1/2 y 3/4, termofusión | llave de ducha → `llave-de-ducha` |
+| `camara-septica` | cámara séptica (720) | para baño, pozo ciego, de ladrillos | caños → `cano-de-pvc` |
+| `bacha-de-cocina` | bacha de cocina / pileta para cocina (880) | pileta inox, bacha doble, mesada con pileta, bacha de lavadero | grifería → `griferia-de-cocina` |
+| `termotanque-y-calefon` | termotanque (390) · calefón eléctrico (390) | termo calefón 20/50/80 litros | ducha eléctrica → `ducha-electrica` |
+| `pintura-epoxi` | pintura epoxi (390) · epóxica para piso (480) | epoxi para pisos, pisos epoxi, epoxi para metal | pintura de látex para piso → `pintura-para-piso` |
+| `cable-electrico` | cable eléctrico y secciones (4, 6, 10 mm) | cordón 2x1, trifásico, preensamblado | tableros → `tablero-electrico` |
+| `tablero-electrico` | tablero eléctrico (480) | domiciliario, trifásico, seccional | |
+| `cano-conduit` | caño conduit (480) · canaleta para cable (390) | caño corrugado, cable canal | canaleta de techo → `canaletas` |
+| `microcemento` | microcemento (390) | para pisos, cemento alisado, alisado de cemento | pintura epoxi → `pintura-epoxi` |
+| `cano-galvanizado` | caño galvanizado (480) | de 2 pulgadas, caño redondo, para pilar de luz | perfiles → `perfiles-metalicos` |
+| `tornillos-para-chapa` | tornillo para chapa (210) | autoperforante, autorroscante, tirafondo | chapas → páginas de chapa |
+| `claraboyas` | claraboya (170) · tragaluz · lucernario | claraboya de techo, de policarbonato, de acrílico | `policarbonato` ya no la posee |
+| `babeta-y-limahoya` | babeta (320) · limahoya (110) | babeta de chimenea, limahoya de zinc | canaletas → `canaletas` |
+
+`electricidad` pasa de `proxima` a `activa` con `cable-electrico`, `tablero-electrico` y
+`cano-conduit`, igual que en §15 (se reescribieron intro, FAQ y meta de la categoría).
+
+**Reapertura de títulos (como §13)**
+
+| Página | Término | `title` |
+|---|---|---|
+| `tejuelon` | tejuelones (480) | `Tejuelones en Paraguay \| Cotizá por m² de losa` |
+| `adoquines` | adoquines + paver (590) | `Adoquines y pavers en Paraguay \| Cotizá por m²` |
+| `chapa-de-zinc` | chapa ondulada (320) | `Chapa ondulada y de zinc en Paraguay \| Cotizá por metro` |
+| `membrana-liquida` | membrana líquida para techos (260) | `Membrana líquida para techos en Paraguay \| Cotizá` |
+| `metal-desplegado` | chapa perforada (170) | `Metal desplegado y chapa perforada \| Cotizá por hoja` |
+| `terciada` | terciado (1.000) | `Terciado (fenólico) en Paraguay \| Cotizá por placa` |
+
+El resto de la ampliación son secciones dentro de páginas existentes: `chapa-de-zinc` (prepintada),
+`membrana-liquida` (pintura para techo, tejas), `ladrillo-refractario` (parrilla de ladrillo),
+`metal-desplegado` (chapa perforada), `chapa-termoacustica` (manta térmica), `perfiles-metalicos`
+(perfil omega, hierro T), `adoquines` (adopasto), `tejuelon` (viga reticulada) y `cemento`
+(portland).
+
+**Páginas cuyo término exacto no tiene número medido todavía** (se mantienen hasta el próximo
+pull): `ducha-electrica`, `cano-de-agua`, `puntales`, `escombro-relleno`, `alambre-negro`,
+`cal-viva`, `hidrofugo`, `perfiles-para-durlock`, `madera-dura`, `arena-gorda`, `piedra-bruta`,
+`tabla-de-encofrado`.

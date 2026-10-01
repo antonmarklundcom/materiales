@@ -4,8 +4,8 @@
   techos, entrepisos, galpones y correas de galpón que sostienen la chapa. Entran acá el
   <strong>perfil C</strong> y el <strong>perfil U</strong>, más usados como correas y montantes
   livianos; los <strong>perfiles IPN</strong> y <strong>UPN</strong>, de mayor sección, que hacen de
-  <strong>viga de hierro</strong> y columna en estructuras más exigentes; el <strong>ángulo de hierro</strong>, para
-  refuerzos, marcos y uniones; y el <strong>caño estructural</strong> o <strong>tubo
+  <strong>viga de hierro</strong> y columna en estructuras más exigentes; el <strong>ángulo de hierro</strong> y el <strong>hierro T</strong>, para
+  refuerzos, marcos y uniones; el <strong>perfil omega</strong>, para soportar chapa o cielorraso; y el <strong>caño estructural</strong> o <strong>tubo
   cuadrado</strong>, que arma columnas y pórticos livianos. La <strong>planchuela</strong>
   completa el grupo para refuerzos y piezas de unión. Cuando la estructura de techo va a llevar
   chapa, estos perfiles se combinan directamente con la <a href="/materiales/chapa-trapezoidal/">
@@ -46,6 +46,8 @@
     <tr><td>Perfil U</td><td>Montantes y refuerzos de estructuras livianas</td></tr>
     <tr><td>Ángulo de hierro</td><td>Marcos, refuerzos y uniones entre piezas</td></tr>
     <tr><td>Caño estructural / tubo cuadrado</td><td>Columnas y pórticos de estructuras livianas</td></tr>
+    <tr><td>Perfil omega</td><td>Soporte y correa liviana para fijar chapa o cielorraso; pedí la medida y el espesor del perfil</td></tr>
+    <tr><td>Hierro T</td><td>Marcos, aberturas y estructuras livianas de herrería; pedí la medida de las alas y el largo de barra</td></tr>
     <tr><td>IPN / UPN</td><td>Vigas y columnas de estructuras con mayor carga</td></tr>
   </tbody>
 </table>

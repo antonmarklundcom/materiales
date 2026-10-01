@@ -42,6 +42,19 @@
   alambre</a>, que es el cerco más común para lotes y predios.
 </p>
 
+<h2>Chapa perforada</h2>
+<p>
+  La <strong>chapa perforada</strong> no es lo mismo que el metal desplegado: es una chapa a la
+  que se le hacen agujeros por punzonado, sin estirarla, y queda con la superficie plana. Se usa
+  en cerramientos, fachadas decorativas y protecciones; la <strong>chapa perforada
+  decorativa</strong> se elige por el dibujo de los agujeros, y la <strong>chapa
+  microperforada</strong>, con agujeros muy chicos, para pantallas y paneles. Al pedirla, indicá
+  el uso, el espesor y el tipo y tamaño de agujero, y pedí el catálogo de dibujos disponibles. Si
+  la vas a fijar, sumá la estructura: mirá los
+  <a href="/materiales/perfiles-metalicos/">perfiles metálicos</a>, o el
+  <a href="/materiales/tejido-de-alambre/">tejido de alambre</a> si buscás un cerco más abierto.
+</p>
+
 <p class="closing">
   Volvé a <a href="/materiales/hierro/">hierro</a> para ver el resto del rubro, o mirá los
   <a href="/materiales/perfiles-metalicos/">perfiles metálicos</a> si necesitás armar la

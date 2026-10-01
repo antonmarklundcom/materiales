@@ -84,9 +84,16 @@ check "/apple-touch-icon.png"      200 ''
 # S4: /materiales/ tiene título y H1 propios (no los de la home) y lista cada material.
 check "/materiales/"               200 '<h1>Catálogo de materiales de construcción</h1>'
 check "/materiales/"               200 'href="/materiales/ladrillo-refractario/"'
-# S9: los rubros "próxima" (noindex) no se enlazan desde la home ni desde el catálogo.
-absent "/"                         'href="/materiales/electricidad/"'
-absent "/materiales/"              'href="/materiales/electricidad/"'
+# S9: los rubros "próxima" (noindex) no se enlazan desde la home ni desde el catálogo. Hoy no
+# queda ninguno (electricidad se promovió a activa con la ampliación de CONTENT-SPEC §16): si
+# se vuelve a agregar un rubro próxima, poner acá su `absent`.
+# §16: electricidad ya es activa — se enlaza desde el catálogo y lista sus tres materiales.
+check "/materiales/"               200 'href="/materiales/electricidad/"'
+check "/materiales/electricidad/"  200 '<h1>Electricidad en Paraguay</h1>'
+for elec in cable-electrico tablero-electrico cano-conduit; do
+  check "/materiales/electricidad/" 200 "href=\"/materiales/${elec}/\""
+  check "/materiales/${elec}/"      200 '<h1'
+done
 # G2: pinturas se promovió a activa — se enlaza desde el catálogo, lista sus materiales y
 # cada material nuevo sirve con su H1 "{Nombre} en Paraguay".
 check "/materiales/"               200 'href="/materiales/pinturas/"'
@@ -200,7 +207,7 @@ check "/materiales/piso-vinilico/" 200 'href="/materiales/mdf-fibrofacil/"'
 # G3: materiales nuevos con volumen medido (improvement report #2).
 check "/materiales/ducha-higienica/" 200 '<h1>Ducha higiénica en Paraguay</h1>'
 check "/materiales/piso-parquet/"    200 '<h1>Piso parquet en Paraguay</h1>'
-check "/materiales/metal-desplegado/" 200 '<h1>Metal desplegado en Paraguay</h1>'
+check "/materiales/metal-desplegado/" 200 '<h1>Metal desplegado y chapa perforada en Paraguay</h1>'
 # G8: intros de los hubs.
 check "/guias/"                    200 'Estas guías responden'
 check "/calculadoras/"             200 'Cada calculadora resuelve'

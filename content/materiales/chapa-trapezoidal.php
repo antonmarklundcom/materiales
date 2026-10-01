@@ -45,6 +45,11 @@
   innecesarios en el faldón, porque cada empalme es un punto más de filtración a futuro.
 </p>
 <p>
+  Si querés color, pedí la <strong>chapa prepintada</strong>; la <strong>T101 prepintada
+  negra</strong> es una de las más buscadas para galpones y fachadas. Aclarale al proveedor el
+  color y el calibre, y preguntale cómo proteger los bordes de corte para que no se oxiden.
+</p>
+<p>
   Un ejemplo: un galpón a 2 aguas con faldones de <strong>7,5 m</strong> de cumbrera a alero y
   <strong>20 m</strong> de largo. Con una chapa de <strong>1 m de ancho útil</strong> (valor de
   ejemplo: el de tu perfil te lo da el proveedor), la

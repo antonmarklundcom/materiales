@@ -45,6 +45,7 @@ detalle por fase en `docs/log/`)._
 | G5 — Profundidad | tablas + ejemplos resueltos en las 13 categorías y ~60 materiales; tablas de dosificación en guías | ✅ #54 |
 | C11 — Mecanismos de conversión | "Sumá todo el pedido" en las calculadoras de hormigón y de bolsas por m²; "Pegá tu lista de materiales" en /cotizar/ | ✅ #57 |
 | D — Rediseño "Obra clara" | Diseño, UX/UI y CRO: formulario en el héroe también en la home, tarjeta de pedido fija en escritorio, "Cotizar gratis" en el header, cómo funciona + garantías en cada página de dinero, catálogo con fotos, controles de 48–56 px, contraste AA. Detalle y capturas antes/después en `docs/design/` | ✅ (este PR) |
+| H — Ampliación con el pull de Keyword Planner (2026-10-01) | 15 páginas nuevas (bombas, presurizador, llave de paso, cámara séptica, bacha, termotanque, epoxi, cable, tablero, conduit, microcemento, caño galvanizado, tornillos para chapa, claraboyas, babeta y limahoya), `electricidad` promovida a activa, 6 títulos reabiertos y 11 secciones nuevas en páginas existentes (CONTENT-SPEC §16) | ✅ (este PR) |
 
 Scripts de operación nuevos (todos CLI, ver `DEPLOY.md`): `tools/replay-leads.php` (con tope
 de reintentos y alerta), `tools/lead-digest.php` (resumen diario), `tools/maintenance.php`

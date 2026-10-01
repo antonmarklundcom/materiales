@@ -257,4 +257,15 @@ la fase que la resuelve.
     sigue siendo un valor de referencia de manual, declarado como tal en la página.
 31. **Volúmenes sin medir del rubro sanitarios.** `ducha eléctrica` no figura en el primer pull
     de Keyword Planner; la fila de CONTENT-SPEC §11.1 la marca para el segundo pull (G7).
-
+32. **Doce páginas sin número medido para el término exacto del título** (regla de Anton,
+    2026-10-01: toda palabra y toda página con datos detrás). Lista y qué hay medido de cada una
+    en CONTENT-SPEC §16: `ducha-electrica`, `cano-de-agua`, `puntales`, `escombro-relleno`,
+    `alambre-negro`, `cal-viva`, `hidrofugo`, `perfiles-para-durlock`, `madera-dura`,
+    `arena-gorda`, `piedra-bruta`, `tabla-de-encofrado`. Se mantienen hasta el próximo pull de
+    Keyword Planner; después, o se confirma el término o se renombra la página.
+33. **`cable-electrico` tiene un término de cabecera chico (70/mes).** La página se sostiene
+    en las secciones (4, 6 y 10 mm: 170, 110 y 70) y el cordón 2x1 (110); si el siguiente pull
+    no sube el término, reconsiderar si es una página o una sección de `cano-conduit`.
+34. **Un término del pull puede significar otra cosa.** "Babeta" (moto) y "resinas epóxicas"
+    (manualidades) se escribieron sólo con el significado de obra (techo y pisos). Revisar la
+    primera página de resultados cuando haya medición de Search Console o similar.

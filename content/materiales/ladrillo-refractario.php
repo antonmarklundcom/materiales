@@ -33,6 +33,19 @@
   así, y la diferencia se nota apenas se prende el primer fuego fuerte.
 </p>
 
+<h2>Parrilla de ladrillo</h2>
+<p>
+  En una <strong>parrilla de ladrillo</strong> cada material va en su lugar: el refractario en la
+  zona del fuego —el hogar y las paredes que reciben la llama— y el
+  <a href="/materiales/ladrillo-comun/">ladrillo común</a> o el
+  <a href="/materiales/ladrillo-prensado/">ladrillo visto</a> para el exterior, el frente y la
+  estructura que no toca el fuego. Es la forma habitual de armar una <strong>parrilla de
+  ladrillo rústico</strong> o de ladrillo visto sin que se raje. En el pedido, aclará si es sólo
+  parrilla o también <strong>horno y parrilla de ladrillo</strong>, y listá cada tipo de ladrillo
+  por separado. Si pensás usar ladrillos comunes en toda la parrilla, consultá antes con quien la
+  construye.
+</p>
+
 <p class="closing">
   Volvé a <a href="/materiales/ladrillos-y-bloques/">ladrillos y bloques</a> para comparar con el
   <a href="/materiales/ladrillo-comun/">ladrillo común</a> o el

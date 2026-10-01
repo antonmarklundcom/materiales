@@ -16,7 +16,11 @@
   ideal para galerías y claraboyas, y para cielorrasos interiores el
   <a href="/materiales/cielorraso-de-pvc/">cielorraso de PVC</a>. Completan el techo las
   <a href="/materiales/canaletas/">canaletas para techo</a>, que evacuan el agua de lluvia
-  hacia la bajada.
+  hacia la bajada. Para dejar entrar luz al ambiente de abajo, las
+  <a href="/materiales/claraboyas/">claraboyas</a> reemplazan una parte de la cobertura, y para
+  fijar y terminar todo están los <a href="/materiales/tornillos-para-chapa/">tornillos para
+  chapa</a> y la <a href="/materiales/babeta-y-limahoya/">babeta y limahoya</a>, las piezas que
+  cierran los encuentros con la pared y llevan el agua de los valles del techo.
 </p>
 
 <h2>Cómo elegir entre los materiales del techo</h2>
@@ -38,6 +42,9 @@
     <tr><td>Poli&shy;carbonato</td><td>Galerías, parri&shy;lleros y clara&shy;boyas con luz natural</td><td>Espesor, alveolar o compacto, cara con protec&shy;ción UV</td></tr>
     <tr><td>Cielo&shy;rraso de PVC</td><td>Cierre interior bajo chapa o losa, y aleros</td><td>m² del ambiente, ancho de tablilla, perfiles de borde</td></tr>
     <tr><td>Canaletas</td><td>Llevar el agua del alero a la bajada</td><td>Metros de alero, cantidad de bajadas, PVC o chapa</td></tr>
+    <tr><td><a href="/materiales/tornillos-para-chapa/">Tornillos para chapa</a></td><td>Fijar chapas a las correas sin que entre el agua</td><td>Largo según lo que atraviesan, tipo de punta y arandela de sellado</td></tr>
+    <tr><td><a href="/materiales/claraboyas/">Claraboyas</a></td><td>Luz natural en un ambiente bajo techo cerrado</td><td>Medida del hueco, tipo de chapa del techo y cómo se sella el contorno</td></tr>
+    <tr><td><a href="/materiales/babeta-y-limahoya/">Babeta y limahoya</a></td><td>Cerrar encuentros con muros y conducir el agua en los valles</td><td>Metros lineales, desarrollo de la pieza y tipo de chapa</td></tr>
   </tbody>
 </table>
 

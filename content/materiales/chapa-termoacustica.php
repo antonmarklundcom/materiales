@@ -35,6 +35,16 @@
   lineales: con piezas largas, esa diferencia pesa en el presupuesto.
 </p>
 
+<h2>Manta térmica para techo</h2>
+<p>
+  La <strong>manta térmica para techo</strong> es otro producto: una manta que se tiende debajo
+  de la chapa, no un panel con núcleo aislante. Es lo que se mira cuando ya tenés el techo de
+  <a href="/materiales/chapa-de-zinc/">chapa de zinc</a> o de
+  <a href="/materiales/chapa-trapezoidal/">chapa trapezoidal</a> y querés mejorar el calor
+  de abajo sin cambiar toda la cubierta. Si el techo es nuevo, comparalo con el panel antes de
+  decidir.
+</p>
+
 <h2>Qué mirar antes de comprar</h2>
 <p>
   Fijate en el <strong>espesor real del núcleo</strong> (no todos los "sándwich" del mercado

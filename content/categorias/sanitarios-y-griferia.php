@@ -6,14 +6,17 @@
   la salida del desagüe; al lado, la <a href="/materiales/ducha-higienica/">ducha higiénica</a>
   cumple la función del bidet cuando no hay lugar para otro artefacto. La
   <a href="/materiales/canilla-de-lavatorio/">canilla de lavatorio</a>
-  se elige según la altura de la bacha y las perforaciones donde se monta. Para la pileta,
-  la <a href="/materiales/griferia-de-cocina/">grifería de cocina</a> necesita un pico con
-  alcance cómodo para lavar y espacio para moverlo. En ambos ambientes podés pedir
+  se elige según la altura de la bacha y las perforaciones donde se monta. Para la cocina,
+  la <a href="/materiales/bacha-de-cocina/">bacha o pileta de cocina</a> es el artefacto donde
+  se lava, y la <a href="/materiales/griferia-de-cocina/">grifería de cocina</a> necesita un pico
+  con alcance cómodo para lavar y espacio para moverlo. En ambos ambientes podés pedir
   monocomando, siempre que las conexiones correspondan al modelo. La
   <a href="/materiales/llave-de-ducha/">llave de ducha</a> controla el paso del agua y, cuando
   es mezcladora, combina la fría con la caliente de la instalación; la ducha de mano puede
   sumarse como accesorio compatible. Si el calentamiento se resuelve en el propio equipo,
-  corresponde una <a href="/materiales/ducha-electrica/">ducha eléctrica</a>. Son productos
+  corresponde una <a href="/materiales/ducha-electrica/">ducha eléctrica</a>; si en cambio querés
+  agua caliente para varios puntos de la casa, se piensa en un
+  <a href="/materiales/termotanque-y-calefon/">termotanque o calefón</a>. Son productos
   distintos, así que contá cómo llega el agua al baño antes de elegir por apariencia.
 </p>
 
@@ -45,8 +48,10 @@
     <tr><td><a href="/materiales/ducha-higienica/">Ducha higiénica</a></td><td>La función del bidet, al lado del inodoro</td><td>Una sola agua o mezcladora, embutida o aplicada, y qué piezas trae el kit</td></tr>
     <tr><td><a href="/materiales/canilla-de-lavatorio/">Canilla de lavatorio</a></td><td>El agua de la bacha del baño</td><td>Montaje, altura y alcance del pico, flexibles y fijaciones</td></tr>
     <tr><td><a href="/materiales/griferia-de-cocina/">Grifería de cocina</a></td><td>El agua de la pileta de cocina</td><td>Montaje, recorrido del pico y adaptadores</td></tr>
+    <tr><td><a href="/materiales/bacha-de-cocina/">Bacha de cocina</a></td><td>La pileta donde se lava en la cocina</td><td>Cantidad de cubetas, material, medida del hueco de la mesada y si trae sifón y desagüe</td></tr>
     <tr><td><a href="/materiales/llave-de-ducha/">Llave de ducha</a></td><td>Abrir y mezclar el agua fría y caliente que ya llega por cañería</td><td>Cuerpo de empotrar, mandos, salida y condiciones de presión</td></tr>
     <tr><td><a href="/materiales/ducha-electrica/">Ducha eléctrica</a></td><td>Calentar el agua en el propio equipo</td><td>La ficha del modelo, para que un electricista revise la instalación</td></tr>
+    <tr><td><a href="/materiales/termotanque-y-calefon/">Termotanque y calefón</a></td><td>Agua caliente para uno o varios puntos de la casa</td><td>Eléctrico o a gas, cuántos puntos abastece y que un profesional revise la instalación</td></tr>
   </tbody>
 </table>
 <p>

@@ -12,7 +12,9 @@
   <a href="/materiales/perfiles-metalicos/">perfiles metálicos</a>: caños estructurales,
   ángulos y perfiles C o U. Para dar agarre al revoque en los encuentros entre ladrillo y
   hormigón, armar un cielorraso revocado o cerrar un vano con una chapa de rombos, está el
-  <a href="/materiales/metal-desplegado/">metal desplegado</a>. Y si lo que buscás es cerrar un perímetro y no levantar una
+  <a href="/materiales/metal-desplegado/">metal desplegado</a>. Para estructuras livianas de acero, como un pilar de luz,
+  una pérgola o una baranda, está el <a href="/materiales/cano-galvanizado/">caño galvanizado</a>.
+  Y si lo que buscás es cerrar un perímetro y no levantar una
   estructura, el <a href="/materiales/tejido-de-alambre/">tejido de alambre</a> es el material
   del rubro que corresponde, con su alambre de púas y su alambre galvanizado.
 </p>
@@ -49,6 +51,7 @@
     <tr><td><a href="/materiales/alambre-negro/">Alambre negro</a></td><td>Atar la armadura antes de hormigonar</td><td>Número de alambre y si va por rollo o por kilo</td></tr>
     <tr><td><a href="/materiales/clavos/">Clavos</a></td><td>Encofrados y carpintería de obra</td><td>Medida del clavo y kilos; el espesor de la tabla si es para encofrado</td></tr>
     <tr><td><a href="/materiales/perfiles-metalicos/">Perfiles metálicos</a></td><td>Estructuras de acero: techos, entrepisos, galpones</td><td>Tipo de perfil, medida, espesor y cantidad de barras o metros</td></tr>
+    <tr><td><a href="/materiales/cano-galvanizado/">Caño galvanizado</a></td><td>Estructuras livianas, pilar de luz, pérgolas y barandas</td><td>Diámetro o medida, largo de la barra y cantidad de piezas</td></tr>
     <tr><td><a href="/materiales/metal-desplegado/">Metal desplegado</a></td><td>Agarre del revoque, cielorraso armado y cerramientos</td><td>El uso (liviano o pesado), los m² u hojas y si lo querés galvanizado</td></tr>
     <tr><td><a href="/materiales/tejido-de-alambre/">Tejido de alambre</a></td><td>Cercos de lotes, patios y predios</td><td>Metros de perímetro y altura; postes, tensores y púas se cotizan aparte</td></tr>
   </tbody>
