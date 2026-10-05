@@ -27,12 +27,12 @@ $howMax     = (int) site('max_proveedores', 3);
   </li>
   <li class="steps__item card card--hair">
     <span class="steps__n" aria-hidden="true">2</span>
-    <h3>Hasta <?= $howMax ?> proveedores verificados te escriben</h3>
-    <p>Les llega tu pedido con los datos que necesitan para cotizar, así que te contestan con un precio, no con una pregunta.</p>
+    <h3>Coordinamos la consulta</h3>
+    <p>Materiales.com.py recibe el pedido. La posibilidad de cotizar depende del material, la zona y los proveedores disponibles.</p>
   </li>
   <li class="steps__item card card--hair">
     <span class="steps__n" aria-hidden="true">3</span>
-    <h3>Elegís el mejor precio</h3>
+    <h3>Comparás y decidís</h3>
     <p>Comparás sobre la misma cantidad y la misma entrega, y cerrás directo con el proveedor.</p>
   </li>
 </ol>
@@ -41,7 +41,7 @@ $howMax     = (int) site('max_proveedores', 3);
   <p class="how__label">Cómo funciona</p>
   <ol class="how__steps">
     <li><span class="how__n" aria-hidden="true">1</span> Contás qué material, cuánto y para qué zona.</li>
-    <li><span class="how__n" aria-hidden="true">2</span> Hasta <?= $howMax ?> proveedores verificados te escriben por WhatsApp.</li>
+    <li><span class="how__n" aria-hidden="true">2</span> Materiales.com.py recibe la consulta y coordina según disponibilidad.</li>
     <li><span class="how__n" aria-hidden="true">3</span> Comparás y cerrás directo con el que te sirva.</li>
   </ol>
   <ul class="trust-list">

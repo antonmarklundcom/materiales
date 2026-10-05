@@ -1,0 +1,39 @@
+{
+  "base": "http://127.0.0.1:8087",
+  "public_targets": 261,
+  "fragments": 409,
+  "private": {
+    "/data/site.php": 403,
+    "/content/home/intro.php": 403,
+    "/config/vendercrm.php": 403,
+    "/storage/leads.log": 403,
+    "/tools/smoke.php": 403,
+    "/tests/lead-mock.py": 403,
+    "/partials/init.php": 403,
+    "/materiales/_index.php": 403,
+    "/docs/review-2026-10-05/seo-live.json": 403,
+    "/.git/config": 403,
+    "/DEPLOY.md": 403,
+    "/config.sample.php": 403,
+    "/backup.sql": 403,
+    "/site.bak": 403
+  },
+  "redirects": [
+    {
+      "path": "/materiales/cemento",
+      "status": 301,
+      "location": "/materiales/cemento/"
+    },
+    {
+      "path": "/guias/como-elegir-un-corralon",
+      "status": 301,
+      "location": "/guias/como-elegir-un-corralon/"
+    },
+    {
+      "path": "/calculadoras/hormigon-por-m3",
+      "status": 301,
+      "location": "/calculadoras/hormigon-por-m3/"
+    }
+  ],
+  "failures": []
+}

@@ -21,7 +21,7 @@ $asideMax   = (int) site('max_proveedores', 3);
 <aside class="page-cols__aside" aria-label="Pedir cotización">
   <div class="aside-cta">
     <p class="aside-cta__title"><?= e($asideTitle) ?></p>
-    <p class="aside-cta__text">Hasta <?= $asideMax ?> proveedores verificados te pasan su precio por WhatsApp.</p>
+    <p class="aside-cta__text">Prepará material, cantidad y zona. La disponibilidad y el precio los confirma el proveedor.</p>
     <a class="btn btn--primary btn--block" href="<?= e($asideHref) ?>" data-ev="cta_click" data-ev-loc="<?= e($asideLoc) ?>">Pedir cotización</a>
     <?php if ($asideWa !== ''): ?>
     <a class="aside-cta__wa" href="<?= e($asideWa) ?>" data-ev="whatsapp_click" data-ev-loc="<?= e($asideLoc) ?>">o escribinos por WhatsApp</a>

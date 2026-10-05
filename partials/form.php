@@ -53,12 +53,12 @@ $formCategories = categories_ordered();
 <section class="lead-form card card--accent<?= $isHero ? ' lead-form--hero' : '' ?><?= $formList === 'open' ? ' lead-form--list' : '' ?>" id="<?= $isHero ? 'cotizar-rapido' : 'cotizar' ?>">
   <?php if ($isHero): ?>
   <h2 class="lead-form__title"><?= e($formTitle) ?></h2>
-  <p class="lead-form__lead lead-form__benefits">Gratis · hasta <?= $maxProv ?> proveedores verificados · normalmente responden en el día</p>
+  <p class="lead-form__lead lead-form__benefits">Consulta gratis · material, cantidad y zona de entrega</p>
   <?php else: ?>
   <h2 class="lead-form__title"><?= e($formTitle) ?></h2>
   <p class="lead-form__lead">
-    Hasta <?= $maxProv ?> proveedores verificados te escriben por WhatsApp con su precio.
-    Es gratis y sin compromiso.
+    Materiales.com.py recibe tu consulta. La cotización depende de que haya un proveedor
+    disponible para el material y la zona. Es gratis y sin compromiso.
   </p>
   <?php endif; ?>
 
@@ -84,7 +84,7 @@ ob_start(); ?>
         <optgroup label="<?= e($category['name']) ?>">
           <option value="<?= e($categorySlug) ?>"<?= $formSlug === $categorySlug ? ' selected' : '' ?>><?= e($category['name']) ?> (toda la categoría)</option>
           <?php foreach (materials_in($categorySlug) as $materialSlug => $material): ?>
-          <option value="<?= e($materialSlug) ?>"<?= $formSlug === $materialSlug ? ' selected' : '' ?>><?= e($material['name']) ?></option>
+          <option value="<?= e($materialSlug) ?>" data-sale-unit="<?= e((string) ($material['sale_unit'] ?? '')) ?>"<?= $formSlug === $materialSlug ? ' selected' : '' ?>><?= e($material['name']) ?></option>
           <?php endforeach; ?>
         </optgroup>
         <?php endforeach; ?>
@@ -96,6 +96,7 @@ ob_start(); ?>
       <span>¿Qué cantidad?</span>
       <input name="cantidad" type="text" maxlength="200" autocomplete="off"
              value="<?= e($old('cantidad')) ?>" placeholder="Ej: 30 bolsas, 2 camiones, 500 kg">
+      <small class="lead-form__unit" data-sale-unit-hint>Cargá cantidad y unidad: bolsas, unidades, m² o m³, según el material.</small>
     </label>
 <?php $formFields['cantidad'] = (string) ob_get_clean();
 ob_start(); ?>
@@ -174,5 +175,6 @@ if ($formOrder[1] !== []) {
 
     <button class="lead-form__submit btn btn--primary" type="submit" data-ev="form_submit_attempt" data-ev-loc="<?= $isHero ? 'hero-' : '' ?><?= e($formSlug !== '' ? $formSlug : 'cotizar') ?><?= $formList === 'open' ? '-lista' : '' ?>"><?= $isHero ? 'Pedir precio' : 'Pedir cotización' ?></button>
     <p class="lead-form__note">Sin costo. No publicamos tu teléfono en ningún lado.</p>
+    <p class="lead-form__scope">Recibir la consulta no confirma stock, envío a proveedores ni una compra. El precio y el flete los confirma quien cotiza.</p>
   </form>
 </section>

@@ -823,3 +823,55 @@ a.tile:hover .tile__arrow { background: var(--accent); color: var(--base); }
 }
 .lead-form__list-toggle a:hover { border-color: var(--text); border-style: solid; }
 .lead-form--list textarea[name="mensaje"] { min-height: 12rem; line-height: 1.5; }
+
+/* Material -> quantity -> request. Existing brand, fonts and image variants retained. */
+[hidden] { display: none !important; }
+.hero-kicker, .eyebrow { margin: 0 0 .75rem; font-size: .8125rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; }
+.hero-kicker { color: var(--accent); }
+.eyebrow { color: var(--accent-ink); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.5rem 0; }
+.hero-actions .btn { min-width: 0; }
+.hero-caption { color: var(--ink-subtle); font-size: .875rem; }
+.page-hero--finder .page-hero__copy { display: block; }
+.page-hero--finder .page-hero__grid { gap: 2rem; }
+.page-hero--finder .page-hero__facts { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--hairline-strong); }
+.page-hero--finder .page-hero__fact strong { font-size: 1.625rem; }
+.page-hero--finder .page-hero__facts { gap: 1.25rem; }
+.section-heading { display: grid; gap: 1rem; align-items: end; }
+.section-heading h2 { margin: 0; }
+.section-heading > p { color: var(--text-2); margin: 0; font-size: .9375rem; max-width: 38ch; }
+.project-paths { display: grid; gap: 1rem; margin: 2rem 0 3rem; }
+.project-paths > a { display: grid; gap: .5rem; border: 1px solid var(--line); border-left: 4px solid var(--accent); padding: 1.5rem; border-radius: var(--r-md); text-decoration: none; background: var(--paper); color: var(--text); }
+.project-paths strong { font: 600 1.5rem/1.2 var(--font-display); }
+.project-paths .eyebrow { margin: 0; }
+.project-paths > a > span:not(.eyebrow) { font-size: .9375rem; color: var(--text-2); }
+.project-paths > a:hover { border-color: var(--accent-ink); background: var(--tint); }
+.material-preparation { display: grid; gap: 1.5rem; padding: 1.5rem; margin-bottom: 2rem; border: 1px solid var(--tint-line); background: var(--tint); border-radius: var(--r-md); }
+.material-preparation h2 { font-size: 1.5rem; margin: 0 0 .75rem; }
+.material-preparation p { margin: 0 0 .75rem; }
+.material-preparation__tools { display: grid; gap: .5rem; }
+.material-preparation__tools > p { font-weight: 600; }
+.material-preparation__tools a { display: block; padding: .5rem 0; color: var(--text); font-weight: 600; line-height: 1.4; }
+.material-preparation small { font-size: .8125rem; line-height: 1.5; color: var(--text-3); }
+.catalog-filter { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-md); padding: 1.5rem; margin: 1.5rem 0; }
+.catalog-filter > label { display: block; font-weight: 600; margin-bottom: .75rem; }
+.catalog-filter__controls { display: flex; flex-wrap: wrap; gap: .75rem; }
+.catalog-filter input { flex: 1 1 12rem; width: 100%; min-width: 0; border: 1.5px solid var(--line-strong); border-radius: var(--r-sm); padding: .75rem 1rem; font: inherit; color: var(--text); background: white; min-height: var(--tap); }
+.catalog-filter p { font-size: .9375rem; margin: .75rem 0 0; }
+.catalog__unit { display: block; color: var(--text-3); font-size: .8125rem; padding-bottom: .625rem; }
+.catalog__group li a { min-height: 48px; color: var(--text); }
+.lead-form__unit { color: var(--text-3); font-size: .8125rem; line-height: 1.5; }
+.lead-form__scope { margin: 0; padding-top: .75rem; border-top: 1px solid var(--line); color: var(--text-3); font-size: .8125rem; line-height: 1.5; }
+.calc__validation { background: var(--tint); color: var(--text); border-left: 4px solid var(--error); padding: 1rem; }
+.calc [aria-disabled="true"], .calc button:disabled { opacity: .6; cursor: not-allowed; }
+@media (min-width: 52rem) {
+  .section-heading { grid-template-columns: 1fr auto; }
+  .project-paths { grid-template-columns: 1fr 1fr; }
+  .material-preparation { grid-template-columns: 1.2fr 1fr; }
+}
+@media (max-width: 39.99rem) {
+  .hero-actions .btn { width: 100%; }
+  .page-hero--finder { padding-top: 1.5rem; }
+  .page-hero--finder h1 { font-size: 2.125rem; }
+  .catalog-filter { padding: 1rem; }
+}

@@ -104,6 +104,11 @@ require PUBLIC_ROOT . '/partials/header.php';
     <p class="sale-unit">Se vende por: <strong><?= e($entry['sale_unit']) ?></strong></p>
     <?php endif; ?>
 
+    <nav class="hero-actions" aria-label="En esta página">
+      <?php if ($type === 'categoria'): ?><a class="btn btn--primary" href="#materiales-rubro">Elegí un material</a><?php endif; ?>
+      <a class="btn btn--ghost" href="#lectura-material">Usos y medidas</a>
+    </nav>
+
     <?php
     // C3: el pedido empieza en el héroe. Antes el formulario estaba a ~6.000 px en mobile y el
     // héroe sólo tenía un botón que anclaba ahí. Cantidad + WhatsApp, y al tocarlo se despliega
@@ -129,8 +134,32 @@ require PUBLIC_ROOT . '/partials/header.php';
   <div class="page-cols">
   <div class="page-cols__main">
 
+  <?php require PUBLIC_ROOT . '/partials/material-preparation.php'; ?>
+
+  <?php if ($type === 'categoria'): ?>
+  <?php $children = materials_in($slug); ?>
+  <?php if ($children !== []): ?>
+  <h2 id="materiales-rubro">Materiales de <?= e($entry['name']) ?></h2>
+  <ul class="tile-grid">
+    <?php foreach ($children as $materialSlug => $material): ?>
+    <li>
+      <a class="tile card--hair<?= is_published($material) ? '' : ' is-proxima' ?>"
+         href="/materiales/<?= e($materialSlug) ?>/">
+        <span class="tile__body">
+          <span class="tile__name"><?= e($material['name']) ?></span>
+          <?php if (($material['sale_unit'] ?? '') !== ''): ?><span class="tile__meta">Se vende por <?= e($material['sale_unit']) ?></span><?php endif; ?>
+        </span>
+        <span class="tile__arrow" aria-hidden="true">→</span>
+      </a>
+    </li>
+    <?php endforeach; ?>
+  </ul>
+
+  <?php endif; ?>
+  <?php endif; ?>
+
   <?php if (is_file($contentFile)): ?>
-  <div class="prose">
+  <div class="prose" id="lectura-material">
   <?php require $contentFile; ?>
   </div>
   <?php else: ?>
@@ -149,21 +178,6 @@ require PUBLIC_ROOT . '/partials/header.php';
   <?php if ($type === 'categoria'): ?>
   <?php $children = materials_in($slug); ?>
   <?php if ($children !== []): ?>
-  <h2>Materiales de <?= e($entry['name']) ?></h2>
-  <ul class="tile-grid">
-    <?php foreach ($children as $materialSlug => $material): ?>
-    <li>
-      <a class="tile card--hair<?= is_published($material) ? '' : ' is-proxima' ?>"
-         href="/materiales/<?= e($materialSlug) ?>/">
-        <span class="tile__body">
-          <span class="tile__name"><?= e($material['name']) ?></span>
-          <?php if (($material['sale_unit'] ?? '') !== ''): ?><span class="tile__meta">Se vende por <?= e($material['sale_unit']) ?></span><?php endif; ?>
-        </span>
-        <span class="tile__arrow" aria-hidden="true">→</span>
-      </a>
-    </li>
-    <?php endforeach; ?>
-  </ul>
 
   <?php
   // G5: la tabla "cómo se vende cada material" sale de sale_unit, el mismo dato que ya muestra

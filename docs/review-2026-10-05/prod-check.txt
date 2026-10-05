@@ -1,0 +1,44 @@
+REDIRECCIONES (S1)
+  ok   http://materiales.com.py/ → https://materiales.com.py/
+  ok   http://materiales.com.py/materiales/cemento/ → https://materiales.com.py/materiales/cemento/
+  ok   https://www.materiales.com.py/guias/ → https://materiales.com.py/guias/
+  FAIL http://www.materiales.com.py/ → '301 https://www.materiales.com.py/' (esperado 301 https://materiales.com.py/)
+  ok   https://materiales.com.py/materiales/hierro → https://materiales.com.py/materiales/hierro/
+PÚBLICO (lo mismo que conviene vigilar con UptimeRobot, ver DEPLOY.md)
+  ok   / (200)
+  ok   /cotizar/ (200)
+  ok   /sitemap.xml (200)
+  ok   /robots.txt (200)
+  ok   /favicon.ico (200)
+  ok   /favicon.svg (200)
+  ok   /apple-touch-icon.png (200)
+INTERNO — tiene que ser 403 (bloque [F] de .htaccess y R4)
+  ok   /data/site.php (403)
+  ok   /content/README.md (403)
+  ok   /config/vendercrm.php (403)
+  ok   /storage/leads.log (403)
+  ok   /storage/.form-secret (403)
+  ok   /tools/smoke.php (403)
+  ok   /tools/prod-check.sh (403)
+  ok   /tests/mobile-overflow.mjs (403)
+  ok   /prompts/opus-1-foundation.md (403)
+  ok   /docs/IMPROVEMENT-REPORT-2.md (403)
+  ok   /DEPLOY.md (403)
+  ok   /plan.md (403)
+  ok   /config.sample.php (403)
+  ok   /partials/header.php (403)
+  ok   /materiales/_index.php (403)
+  ok   /.git/HEAD (403)
+  ok   /.gitignore (403)
+  ok   /index.php.bak (403)
+  ok   /index.php~ (403)
+  ok   /backup.sql (403)
+  ok   /error.log (403)
+  ok   /deploy.sh (403)
+CABECERAS
+  ok   X-Content-Type-Options
+  ok   Referrer-Policy
+  ok   X-Frame-Options
+  ok   Permissions-Policy
+  ok   Strict-Transport-Security
+PROD CHECK FALLÓ

@@ -1,5 +1,24 @@
 # CONTENT-SPEC — materiales.com.py
 
+## Actualización autorizada 2026-10-05 — catálogo y claridad del pedido
+
+El encargo de Anton (`startprompter/07-materiales-sol61-high.txt`, más la instrucción de
+conservar todos los enlaces y datos SEO) autoriza este pase sobre las plantillas existentes.
+Se conservan los titles, metas, H1, canonical, JSON-LD, sitemap, robots, datos, fórmulas y
+prosa editorial. Se agregan navegación al material, filtro del catálogo y ayudas de unidad
+desde `sale_unit`; sin URL nueva, especificaciones inventadas ni precios.
+
+El copy visible de formularios/pasos/acuse distingue recepción de envío y cotización, sin
+plazo de respuesta asegurado. No cambia el consentimiento, su versión, el payload ni el
+handler. Los textos SEO heredados que dicen «verificados» o «en el día» quedan preservados
+por pedido del propietario; su veracidad y la conexión/operación del CRM requieren
+confirmación antes de publicar este PR. Ver `docs/review-2026-10-05/RAPPORT.md`.
+
+La validación de calculadoras respeta los rangos y pasos declarados; no genera resultados ni
+cantidades automáticas con entradas inválidas. Las cantidades escritas a mano se conservan.
+Los supuestos/dosificaciones de §12 no cambian. Esta actualización tiene prioridad sobre el
+orden visual y el copy de conversión anterior de §1/§3/§7/§8; las reglas de SEO siguen cerradas.
+
 Copy **cerrado** de la fase 3. Todo lo que está entre comillas acá va tal cual al sitio.
 Regla de esta fase: si una fase posterior tiene que *decidir* una redacción, esta fase
 falló — se corrige acá, no en la plantilla.

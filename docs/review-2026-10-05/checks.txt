@@ -1,0 +1,6 @@
+PHP lint: 191 files; 0 failures
+SMOKE OK — 14 categorías (14 activas), 93 materiales (93 activos), 21 guías, 10 calculadoras; 107 slugs únicos en /materiales/
+REWRITES OK — .htaccess y tools/router-cli.php bloquean lo mismo
+CALCULATOR PASS: 10 real calculators, 270 assertions
+LEAD MOCK PASS: buyer/list, supplier, identical retry; 201/200 success, 422/500 failure; loopback only
+SEO PASS: 149 sitemap URLs; 151 pages; all metadata, H1, canonical, JSON-LD and existing links preserved; 124 new links

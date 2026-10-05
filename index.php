@@ -49,7 +49,7 @@ page([
 
 require __DIR__ . '/partials/header.php';
 ?>
-<div class="page-hero page-hero--home band--dark grain bleed">
+<div class="page-hero page-hero--home page-hero--finder band--dark grain bleed">
   <?php
   // Rediseño: la foto es el fondo del héroe a todo el ancho y el pedido empieza
   // acá mismo con la variante corta del formulario (material + cantidad + WhatsApp). Antes el
@@ -59,12 +59,17 @@ require __DIR__ . '/partials/header.php';
   ?>
   <div class="wrap page-hero__grid page-hero__grid--split">
     <div class="page-hero__copy">
+      <p class="hero-kicker">Del material al pedido</p>
       <h1>Cotizá materiales de construcción en Paraguay</h1>
       <p class="lead">
-        Decinos qué material necesitás, cuánto y para qué zona. Hasta
-        <?= $maxProv ?> proveedores verificados te pasan precio por WhatsApp,
-        normalmente dentro del día.
+        Encontrá el material, calculá la cantidad y contanos dónde está tu obra.
+        Materiales.com.py recibe tu consulta y coordina el pedido de cotización.
       </p>
+      <div class="hero-actions">
+        <a class="btn btn--primary" href="/materiales/">Elegí tus materiales <span aria-hidden="true">→</span></a>
+        <a class="btn btn--ghost" href="/calculadoras/">Calculá cuánto pedir</a>
+      </div>
+      <p class="hero-caption">Orientación y cotizaciones · sin venta ni pago online</p>
       <ul class="page-hero__facts">
         <li class="page-hero__fact"><strong><?= count($activeMaterials) ?></strong> <span>materiales para cotizar</span></li>
         <li class="page-hero__fact"><strong><?= count($activeCategories) ?></strong> <span>rubros de obra</span></li>
@@ -89,13 +94,20 @@ require __DIR__ . '/partials/header.php';
 <div class="field wrap">
   <div class="field__panel">
 
-    <?php $howVariant = 'full'; require __DIR__ . '/partials/how-it-works.php'; ?>
-
-    <h2>Rubros</h2>
+    <div class="section-heading" id="rubros">
+      <div><p class="eyebrow">01 / Elegí el material</p><h2>Rubros</h2></div>
+      <p>Desde la estructura hasta la terminación. Cada material explica cómo se usa y por qué unidad se pide.</p>
+    </div>
     <?php require __DIR__ . '/partials/category-tiles.php'; ?>
     <p class="card card--accent closing-cta">
       <a href="/materiales/">Ver todos los materiales</a>
     </p>
+
+    <nav class="project-paths" aria-label="Prepará tu pedido">
+      <a href="/calculadoras/"><span class="eyebrow">02 / Calculá la cantidad</span><strong>¿Cuánto lleva tu obra?</strong><span>Usá las calculadoras y revisá los supuestos antes de pedir.</span><span aria-hidden="true">→</span></a>
+      <a href="/cotizar/?lista=1#cotizar"><span class="eyebrow">03 / Armá el pedido</span><strong>¿Ya tenés tu lista?</strong><span>Pegá los materiales con sus cantidades y la zona de entrega.</span><span aria-hidden="true">→</span></a>
+    </nav>
+    <?php $howVariant = 'full'; require __DIR__ . '/partials/how-it-works.php'; ?>
 
     <div class="prose">
       <?php require CONTENT_DIR . '/home/intro.php'; ?>

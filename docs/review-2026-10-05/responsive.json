@@ -1,0 +1,191 @@
+[
+  {
+    "route": "/",
+    "width": 320,
+    "client": 305,
+    "h1": 1,
+    "scroll": 305
+  },
+  {
+    "route": "/materiales/",
+    "width": 320,
+    "client": 305,
+    "h1": 1,
+    "scroll": 305
+  },
+  {
+    "route": "/materiales/cemento-y-cal/",
+    "width": 320,
+    "client": 305,
+    "h1": 1,
+    "scroll": 305
+  },
+  {
+    "route": "/materiales/cemento/",
+    "width": 320,
+    "client": 305,
+    "h1": 1,
+    "scroll": 305
+  },
+  {
+    "route": "/calculadoras/hormigon-por-m3/",
+    "width": 320,
+    "client": 305,
+    "h1": 1,
+    "scroll": 305
+  },
+  {
+    "route": "/cotizar/",
+    "width": 320,
+    "client": 305,
+    "h1": 1,
+    "scroll": 305
+  },
+  {
+    "route": "/guias/",
+    "width": 320,
+    "client": 305,
+    "h1": 1,
+    "scroll": 305
+  },
+  {
+    "route": "/proveedores/",
+    "width": 320,
+    "client": 305,
+    "h1": 1,
+    "scroll": 305
+  },
+  {
+    "route": "/contacto/",
+    "width": 320,
+    "client": 305,
+    "h1": 1,
+    "scroll": 305
+  },
+  {
+    "route": "/",
+    "width": 390,
+    "client": 375,
+    "h1": 1,
+    "scroll": 375
+  },
+  {
+    "route": "/materiales/",
+    "width": 390,
+    "client": 375,
+    "h1": 1,
+    "scroll": 375
+  },
+  {
+    "route": "/materiales/cemento-y-cal/",
+    "width": 390,
+    "client": 375,
+    "h1": 1,
+    "scroll": 375
+  },
+  {
+    "route": "/materiales/cemento/",
+    "width": 390,
+    "client": 375,
+    "h1": 1,
+    "scroll": 375
+  },
+  {
+    "route": "/calculadoras/hormigon-por-m3/",
+    "width": 390,
+    "client": 375,
+    "h1": 1,
+    "scroll": 375
+  },
+  {
+    "route": "/cotizar/",
+    "width": 390,
+    "client": 375,
+    "h1": 1,
+    "scroll": 375
+  },
+  {
+    "route": "/guias/",
+    "width": 390,
+    "client": 375,
+    "h1": 1,
+    "scroll": 375
+  },
+  {
+    "route": "/proveedores/",
+    "width": 390,
+    "client": 375,
+    "h1": 1,
+    "scroll": 375
+  },
+  {
+    "route": "/contacto/",
+    "width": 390,
+    "client": 375,
+    "h1": 1,
+    "scroll": 375
+  },
+  {
+    "route": "/",
+    "width": 1440,
+    "client": 1425,
+    "h1": 1,
+    "scroll": 1425
+  },
+  {
+    "route": "/materiales/",
+    "width": 1440,
+    "client": 1425,
+    "h1": 1,
+    "scroll": 1425
+  },
+  {
+    "route": "/materiales/cemento-y-cal/",
+    "width": 1440,
+    "client": 1425,
+    "h1": 1,
+    "scroll": 1425
+  },
+  {
+    "route": "/materiales/cemento/",
+    "width": 1440,
+    "client": 1425,
+    "h1": 1,
+    "scroll": 1425
+  },
+  {
+    "route": "/calculadoras/hormigon-por-m3/",
+    "width": 1440,
+    "client": 1425,
+    "h1": 1,
+    "scroll": 1425
+  },
+  {
+    "route": "/cotizar/",
+    "width": 1440,
+    "client": 1425,
+    "h1": 1,
+    "scroll": 1425
+  },
+  {
+    "route": "/guias/",
+    "width": 1440,
+    "client": 1425,
+    "h1": 1,
+    "scroll": 1425
+  },
+  {
+    "route": "/proveedores/",
+    "width": 1440,
+    "client": 1425,
+    "h1": 1,
+    "scroll": 1425
+  },
+  {
+    "route": "/contacto/",
+    "width": 1440,
+    "client": 1425,
+    "h1": 1,
+    "scroll": 1425
+  }
+]
