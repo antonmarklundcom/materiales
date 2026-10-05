@@ -37,6 +37,7 @@ page([
     'canonical'  => '/gracias/',
     'noindex'    => true,
     'body_class' => 'page-gracias',
+    'wa_subject' => (string) ($entry['name'] ?? ''),
 ]);
 
 require PUBLIC_ROOT . '/partials/header.php';
@@ -46,8 +47,8 @@ require PUBLIC_ROOT . '/partials/header.php';
     <span class="done-badge" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24"><path d="M9.5 16.2 5.3 12l-1.4 1.4 5.6 5.6 11-11-1.4-1.4z" fill="currentColor"/></svg></span>
     <h1>Listo, recibimos tu pedido</h1>
     <p class="lead">
-      Hasta <?= (int) site('max_proveedores', 3) ?> proveedores verificados te van a escribir por
-      WhatsApp, normalmente dentro del día.
+      Tu consulta pasa a revisión. Este acuse no confirma que ya fue enviada a proveedores,
+      ni garantiza stock, precio o un plazo de respuesta.
     </p>
   </div>
 </div>
@@ -60,11 +61,11 @@ require PUBLIC_ROOT . '/partials/header.php';
     <ol class="steps">
       <li class="steps__item card card--hair">
         <span class="steps__n" aria-hidden="true">1</span>
-        <p>Le pasamos tu pedido a proveedores que trabajan ese rubro y entregan en tu zona.</p>
+        <p>Revisamos el material, la cantidad y la zona para coordinar la consulta.</p>
       </li>
       <li class="steps__item card card--hair">
         <span class="steps__n" aria-hidden="true">2</span>
-        <p>Te escriben por WhatsApp al número que cargaste, hasta <?= (int) site('max_proveedores', 3) ?> en total.</p>
+        <p>Si hay proveedores disponibles, se puede compartir el pedido con hasta <?= (int) site('max_proveedores', 3) ?>. El contacto es por el WhatsApp que cargaste.</p>
       </li>
       <li class="steps__item card card--hair">
         <span class="steps__n" aria-hidden="true">3</span>
@@ -76,9 +77,8 @@ require PUBLIC_ROOT . '/partials/header.php';
     // C8: la referencia del pedido va en el mensaje de WhatsApp, así el que atiende lo
     // encuentra en el registro sin preguntar de nuevo nombre, material y cantidad.
     $whatsapp = preg_replace('/\D+/', '', (string) site('whatsapp'));
-    $waText   = 'Hola, hice un pedido en ' . site('brand')
-        . ($reference !== '' ? ' (ref. ' . $reference . ')' : '')
-        . ' y quiero agregar o corregir algo: …';
+    $waExtra = ($reference !== '' ? 'Pedido (ref. ' . $reference . '). ' : '')
+        . 'Quiero agregar o corregir algo: …';
     ?>
     <?php if ($reference !== ''): ?>
     <p class="gracias__ref">Referencia de tu pedido: <strong><?= e($reference) ?></strong></p>
@@ -86,7 +86,7 @@ require PUBLIC_ROOT . '/partials/header.php';
     <?php if ($whatsapp !== ''): ?>
     <p class="gracias__wa">
       ¿Te olvidaste de aclarar algo del pedido?
-      <a class="btn btn--wa" href="https://wa.me/<?= e($whatsapp) ?>?text=<?= e(rawurlencode($waText)) ?>" data-ev="whatsapp_click" data-ev-loc="gracias">Escribinos por WhatsApp</a>
+      <a class="btn btn--wa" href="<?= e(wa_url((string) ($entry['name'] ?? ''), $waExtra)) ?>" data-ev="whatsapp_click" data-ev-loc="gracias">Escribinos por WhatsApp</a>
     </p>
     <p class="gracias__save">
       <strong>Guardá nuestro número</strong> para reconocer el mensaje:

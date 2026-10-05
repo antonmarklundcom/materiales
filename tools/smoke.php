@@ -384,6 +384,25 @@ foreach (['categorias' => $categories, 'materiales' => $materials, 'guias' => $g
 
 // storage/ temporal: smoke NUNCA escribe en el storage/ real (el repo es el docroot, así que
 // correr esto en el servidor le agregaba líneas de prueba al leads.log de producción).
+function smoke_remove_temp_tree(string $path): void
+{
+    $resolved = realpath($path);
+    $temp = realpath(sys_get_temp_dir());
+    if ($resolved === false || $temp === false
+        || dirname($resolved) !== $temp
+        || !preg_match('/^materiales-smoke-(storage|ops)-[a-f0-9]+$/', basename($resolved))) {
+        throw new RuntimeException('Smoke cleanup refused a non-fixture directory');
+    }
+    $files = new RecursiveIteratorIterator(
+        new RecursiveDirectoryIterator($resolved, FilesystemIterator::SKIP_DOTS),
+        RecursiveIteratorIterator::CHILD_FIRST
+    );
+    foreach ($files as $file) {
+        $file->isDir() && !$file->isLink() ? rmdir($file->getPathname()) : unlink($file->getPathname());
+    }
+    rmdir($resolved);
+}
+
 $smokeStorage = getenv('MATERIALES_STORAGE_DIR');
 $smokeOwnsStorage = $smokeStorage === false || $smokeStorage === '';
 if ($smokeOwnsStorage) {
@@ -392,7 +411,7 @@ if ($smokeOwnsStorage) {
 }
 register_shutdown_function(static function () use ($smokeStorage, $smokeOwnsStorage): void {
     if ($smokeOwnsStorage && is_dir((string) $smokeStorage)) {
-        exec('rm -rf ' . escapeshellarg((string) $smokeStorage));
+        smoke_remove_temp_tree((string) $smokeStorage);
     }
 });
 
@@ -535,14 +554,19 @@ $is('fallo al abrir deja pasar', lead_ip_throttled('192.0.2.1', $keyA, $t0), fal
 rmdir($path);
 echo $errors === [] ? 'THROTTLE OK' : implode("\n", $errors);
 PHP;
-        $cmd = sprintf(
-            '%s -r %s %s %s 2>&1',
-            escapeshellarg(PHP_BINARY),
-            escapeshellarg($throttleCode),
-            escapeshellarg($throttleFixtureDir),
-            escapeshellarg($root)
-        );
-        $is('throttle aislado', trim((string) shell_exec($cmd)), 'THROTTLE OK');
+        // A file and argument vector avoid cmd.exe splitting multiline php -r on Windows.
+        $throttleScript = $throttleFixtureDir . '/check.php';
+        file_put_contents($throttleScript, "<?php\n" . $throttleCode);
+        $process = proc_open([PHP_BINARY, $throttleScript, $throttleFixtureDir, $root],
+            [1 => ['pipe', 'w'], 2 => ['pipe', 'w']], $pipes);
+        $output = is_resource($process) ? stream_get_contents($pipes[1]) . stream_get_contents($pipes[2]) : 'could not start throttle test';
+        if (is_resource($process)) {
+            fclose($pipes[1]);
+            fclose($pipes[2]);
+            proc_close($process);
+        }
+        @unlink($throttleScript);
+        $is('throttle aislado', trim($output), 'THROTTLE OK');
     } finally {
         foreach (glob($throttleFixtureDir . '/throttle/*') ?: [] as $file) {
             is_dir($file) ? @rmdir($file) : @unlink($file);
@@ -808,7 +832,7 @@ $maint2 = (string) shell_exec(sprintf('%s %s --storage=%s --now=%d 2>&1', escape
 if (str_contains($maint2, 'rotado')) {
     $fail("maintenance: rotó dos veces en el mismo mes (salida: {$maint2})");
 }
-exec('rm -rf ' . escapeshellarg($opsDir));
+smoke_remove_temp_tree($opsDir);
 
 // ---- aviso de lead: asunto sin datos personales, cuerpo con lo necesario para contestar
 $noticeRecord = ['ts' => gmdate('c'), 'outcome' => 'solo_log', 'phone_e164' => '+595981123456', 'payload' => $payload];

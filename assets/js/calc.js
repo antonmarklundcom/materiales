@@ -43,7 +43,13 @@
     var el = inputs[id];
     if (!el) return NaN;
     if (el.tagName === 'SELECT') return el.value;
-    var n = parseFloat(String(el.value).replace(',', '.'));
+    var raw = String(el.value).trim().replace(',', '.');
+    if (raw === '') return NaN;
+    var n = Number(raw);
+    if (el.validity && !el.validity.valid) return NaN;
+    var min = el.getAttribute('min');
+    var max = el.getAttribute('max');
+    if ((min !== null && n < Number(min)) || (max !== null && n > Number(max))) return NaN;
     return isFinite(n) ? n : NaN;
   }
 
@@ -112,6 +118,8 @@
   var bundleButton = widget.querySelector('[data-calc-bundle]');
   var bundleItems = {};
   var bundleOn = false;
+  var resultsValid = false;
+  var validation = widget.querySelector('[data-calc-validation]');
   if (bundleButton) {
     try { bundleItems = JSON.parse(bundleButton.getAttribute('data-calc-bundle-items') || '{}') || {}; } catch (e) { bundleItems = {}; }
   }
@@ -127,22 +135,40 @@
 
   function run() {
     var results = {};
+    var valid = Object.keys(inputs).every(function (id) {
+      return inputs[id].tagName === 'SELECT' || isFinite(value(id));
+    });
     spec.outputs.forEach(function (output) {
       if (!output || typeof output.id !== 'string') return;
-      var n = evaluate(output.expr);
+      var n = valid ? evaluate(output.expr) : NaN;
       results[output.id] = n;
       var target = widget.querySelector('[data-calc-output="' + output.id + '"]');
       if (target) target.textContent = format(n);
     });
+    resultsValid = valid && Object.keys(results).every(function (id) { return isFinite(results[id]) && results[id] >= 0; });
+    if (!resultsValid) {
+      Object.keys(results).forEach(function (id) {
+        results[id] = NaN;
+        var target = widget.querySelector('[data-calc-output="' + id + '"]');
+        if (target) target.textContent = '—';
+      });
+    }
+    if (validation) {
+      validation.hidden = resultsValid;
+      validation.textContent = resultsValid ? '' : 'Revisá los datos: completá cada campo con un valor dentro del rango indicado. No pasamos cantidades inválidas al pedido.';
+    }
+    if (ctaButton) ctaButton.setAttribute('aria-disabled', String(!resultsValid));
+    if (bundleButton) bundleButton.disabled = !resultsValid;
+    if (!resultsValid && quantityField && !quantityField.dataset.touched) quantityField.value = '';
 
     // C11: con el paquete activo, la cantidad es el pedido completo (cemento + arena + ripio)
     // y se sigue actualizando si el visitante cambia la cuenta después de sumarlo.
-    if (quantityField && bundleOn && !quantityField.dataset.touched) {
+    if (resultsValid && quantityField && bundleOn && !quantityField.dataset.touched) {
       quantityField.value = bundleText(results);
     } else
     // La cantidad del formulario se precarga desde el resultado, salvo que el visitante ya
     // haya escrito algo propio: lo tipeado a mano nunca se pisa.
-    if (quantityField && template && !quantityField.dataset.touched) {
+    if (resultsValid && quantityField && template && !quantityField.dataset.touched) {
       var filled = template.replace(/\{([a-z0-9_]+)\}/gi, function (match, id) {
         return results[id] !== undefined && isFinite(results[id]) ? format(results[id]) : '';
       }).trim();
@@ -161,6 +187,14 @@
       ctaButton.textContent = ctaTemplate && !broken ? label : ctaDefault;
     }
   }
+
+  if (ctaButton) ctaButton.addEventListener('click', function (event) {
+    if (!resultsValid) {
+      event.preventDefault();
+      var firstInvalid = Object.keys(inputs).find(function (id) { return inputs[id].tagName !== 'SELECT' && !isFinite(value(id)); });
+      if (firstInvalid) inputs[firstInvalid].focus();
+    }
+  });
 
   if (quantityField) {
     quantityField.addEventListener('input', function () { quantityField.dataset.touched = '1'; });

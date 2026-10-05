@@ -103,6 +103,16 @@
   });
 
   Array.prototype.forEach.call(document.querySelectorAll('form[data-lead-form]'), function (form) {
+    var materialSelect = form.querySelector('select[name="material"]');
+    var unitHint = form.querySelector('[data-sale-unit-hint]');
+    function showUnit() {
+      if (!materialSelect || !unitHint) return;
+      var option = materialSelect.options[materialSelect.selectedIndex];
+      var unit = option ? option.getAttribute('data-sale-unit') : '';
+      unitHint.textContent = unit ? 'Se pide por ' + unit + '. Aclará también la medida o el formato.' : 'Cargá cantidad y unidad: bolsas, unidades, m² o m³, según el material.';
+    }
+    if (materialSelect) materialSelect.addEventListener('change', showUnit);
+    showUnit();
     if (form.hasAttribute('data-lead-compact')) {
       form.addEventListener('focusin', function () { expand(form); });
       form.addEventListener('input', function () { expand(form); });

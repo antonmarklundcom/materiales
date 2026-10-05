@@ -8,6 +8,7 @@
 .DS_Store
 Thumbs.db
 *.log
+__pycache__/
 
 # Capturas locales de Playwright (fases 9+): nunca se commitean.
 /docs/screenshots/

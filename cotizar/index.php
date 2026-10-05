@@ -23,6 +23,7 @@ page([
     'breadcrumbs' => $breadcrumbs,
     'schema'      => [schema_breadcrumbs($breadcrumbs)],
     'body_class'  => 'page-cotizar',
+    'wa_subject'  => (string) ($entry['name'] ?? ''),
 ]);
 
 require PUBLIC_ROOT . '/partials/header.php';
@@ -37,8 +38,8 @@ require PUBLIC_ROOT . '/partials/header.php';
     <?php endif; ?>
     <ul class="trust-list trust-list--dark">
       <li>Gratis y sin compromiso</li>
-      <li>Hasta <?= (int) site('max_proveedores', 3) ?> proveedores verificados</li>
-      <li>Te escriben por WhatsApp</li>
+      <li>Material y cantidad en una consulta</li>
+      <li>Contacto por WhatsApp</li>
     </ul>
   </div>
 </div>

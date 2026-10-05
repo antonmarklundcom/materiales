@@ -41,6 +41,7 @@ require PUBLIC_ROOT . '/partials/header.php';
   <div class="wrap">
     <h1>Catálogo de materiales de construcción</h1>
     <p class="lead"><?= count($materials) ?> materiales en <?= count($items) ?> rubros. Elegí el que necesitás y pedí tu cotización en un paso.</p>
+    <div class="hero-actions"><a class="btn btn--primary" href="#todos-los-materiales">Buscá tu material</a><a class="btn btn--ghost" href="/cotizar/?lista=1#cotizar">Pegá tu lista de obra</a></div>
   </div>
 </div>
 <div class="field wrap">
@@ -52,8 +53,14 @@ require PUBLIC_ROOT . '/partials/header.php';
       <?php require CONTENT_DIR . '/hubs/materiales.php'; ?>
     </div>
 
-    <h2>Todos los materiales por rubro</h2>
-    <div class="catalog">
+    <h2 id="todos-los-materiales">Todos los materiales por rubro</h2>
+    <div class="catalog-filter" data-catalog-filter hidden>
+      <label for="catalog-query">Encontrá un material por nombre o uso</label>
+      <div class="catalog-filter__controls"><input id="catalog-query" type="search" placeholder="Ej: cemento, blindex, arena" autocomplete="off" aria-controls="catalog-results"><button class="btn btn--ghost" type="button" data-catalog-reset>Limpiar</button></div>
+      <p data-catalog-status role="status" aria-live="polite"></p>
+      <p data-catalog-empty hidden>No encontramos ese término. Probá con otro nombre o <a href="/cotizar/">contanos qué necesitás</a>.</p>
+    </div>
+    <div class="catalog" id="catalog-results" data-catalog>
       <?php foreach ($categories as $categorySlug => $category):
           if (!is_published($category)) {
               continue;
@@ -63,11 +70,11 @@ require PUBLIC_ROOT . '/partials/header.php';
               continue;
           }
       ?>
-      <section class="catalog__group">
+      <section class="catalog__group" data-catalog-group>
         <h3><a href="/materiales/<?= e($categorySlug) ?>/"><?= e($category['name']) ?></a></h3>
         <ul>
           <?php foreach ($children as $materialSlug => $material): ?>
-          <li><a href="/materiales/<?= e($materialSlug) ?>/"><?= e($material['name']) ?></a></li>
+          <li data-catalog-item data-catalog-terms="<?= e(implode(' ', array_merge([$material['name'], $category['name'], (string) ($material['sale_unit'] ?? '')], $material['synonyms'] ?? []))) ?>"><a href="/materiales/<?= e($materialSlug) ?>/"><?= e($material['name']) ?></a><span class="catalog__unit"><?= e((string) ($material['sale_unit'] ?? '')) ?></span></li>
           <?php endforeach; ?>
         </ul>
       </section>
@@ -75,4 +82,5 @@ require PUBLIC_ROOT . '/partials/header.php';
     </div>
   </div>
 </div>
+<script src="<?= e(asset('/assets/js/catalog.js')) ?>" defer></script>
 <?php require PUBLIC_ROOT . '/partials/footer.php'; ?>

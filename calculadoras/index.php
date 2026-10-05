@@ -141,11 +141,13 @@ require PUBLIC_ROOT . '/partials/header.php';
           <input type="number" inputmode="decimal" data-calc-input="<?= e($input['id']) ?>"
                  min="<?= e((string) ($input['min'] ?? 0)) ?>" max="<?= e((string) ($input['max'] ?? 100000)) ?>"
                  step="<?= e((string) ($input['step'] ?? 1)) ?>" value="<?= e((string) ($input['default'] ?? '')) ?>">
+          <small class="lead-form__unit">De <?= e((string) ($input['min'] ?? 0)) ?> a <?= e((string) ($input['max'] ?? 100000)) ?><?= ($input['unit'] ?? '') !== '' ? ' ' . e($input['unit']) : '' ?>.</small>
           <?php endif; ?>
         </label>
         <?php endforeach; ?>
       </div>
 
+      <p class="calc__validation" data-calc-validation role="status" aria-live="polite" hidden></p>
       <ul class="calc__outputs" aria-live="polite">
         <?php foreach ($calculator['outputs'] ?? [] as $output): ?>
         <li class="calc__output">

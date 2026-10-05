@@ -98,7 +98,7 @@ done
 # cada material nuevo sirve con su H1 "{Nombre} en Paraguay".
 check "/materiales/"               200 'href="/materiales/pinturas/"'
 check "/materiales/pinturas/"      200 '<h1>Pinturas en Paraguay</h1>'
-check "/materiales/pinturas/"      200 '<h2>Materiales de Pinturas</h2>'
+check "/materiales/pinturas/"      200 '<h2[^>]*>Materiales de Pinturas</h2>'
 check "/materiales/pinturas/"      200 '"@type":"ItemList"'
 for pint in "pintura-para-pared|Pintura para pared" "pintura-para-piso|Pintura para piso" \
             "barniz|Barniz para madera" "esmalte-sintetico|Esmalte sintético" \
@@ -230,13 +230,13 @@ check "/materiales/perfiles-para-durlock/" 200 '<strong>18 barras de montante</s
 check "/calculadoras/bolsas-de-cemento-por-m2/" 200 'data-calc-cta-template="Cotizá estas {bolsas} bolsas →"'
 check "/calculadoras/bolsas-de-cemento-por-m2/" 200 'cta-bar__primary" href="#cotizar"'
 # C6: WhatsApp con el material ya escrito.
-check "/materiales/cemento/"       200 'wa.me/595992279599?text=Hola%2C%20quiero%20cotizar%20cemento'
+check "/materiales/cemento/"       200 'wa.me/595992279599?text=Hola%2C%20vengo%20de%20Materiales.com.py'
 # C7: en /proveedores/ la barra es de proveedor y los rubros no llevan a páginas de comprador.
 check "/proveedores/"              200 'href="#sumate" data-ev="cta_click" data-ev-loc="sticky-proveedores">Sumate como proveedor'
 absent "/proveedores/"             'href="/materiales/hierro/"'
 # C9: la guía manda a /cotizar/ con su material preseleccionado.
 check "/guias/cuantas-bolsas-de-cemento-por-m2/" 200 'href="/cotizar/?m='
-check "/cotizar/?m=cemento"        200 '<option value="cemento" selected>'
+check "/cotizar/?m=cemento"        200 '<option value="cemento"[^>]* selected>'
 # C5/C10: validación en el navegador y marcas de obligatorio; el JS versionado.
 check "/materiales/hierro/"        200 'data-lead-form'
 check "/materiales/hierro/"        200 'class="lead-form__field is-required"'
@@ -348,7 +348,8 @@ stamp() { # antigüedad en segundos → "ts tsg"
 post() { # descripción, status esperado, patrón esperado en Location, campos de curl…
   local what="$1" expected="$2" pattern="$3"; shift 3
   local status location
-  status="$(curl -sS -o ${TMPD}/post-body -D ${TMPD}/post-head -w '%{http_code}' \
+  # Git Bash must not rewrite form value origen=/materiales/... into a Windows file path.
+  status="$(MSYS2_ARG_CONV_EXCL='origen=' curl -sS -o ${TMPD}/post-body -D ${TMPD}/post-head -w '%{http_code}' \
               "${BASE}/cotizar/enviar.php" "$@")"
   location="$(grep -i '^location:' ${TMPD}/post-head | tr -d '\r' | sed 's/^[Ll]ocation: *//' || true)"
   if [ "${status}" != "${expected}" ]; then

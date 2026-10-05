@@ -1,0 +1,75 @@
+HTTP/1.1 301 Moved Permanently
+Date: Mon, 05 Oct 2026 03:42:05 GMT
+Content-Type: text/html
+Content-Length: 795
+Connection: keep-alive
+Location: https://materiales.com.py/
+platform: hostinger
+panel: hpanel
+Content-Security-Policy: upgrade-insecure-requests
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+X-Frame-Options: SAMEORIGIN
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=31536000
+Server: hcdn
+alt-svc: h3=":443"; ma=86400
+x-hcdn-request-id: 8ae2a47aac63818223927025652569be-asc-edge13
+x-hcdn-cache-status: EXPIRED
+x-hcdn-upstream-rt: 0.000
+
+HTTP/1.1 301 Moved Permanently
+Date: Mon, 05 Oct 2026 03:42:06 GMT
+Content-Type: text/html
+Content-Length: 795
+Connection: keep-alive
+Location: https://www.materiales.com.py/
+platform: hostinger
+panel: hpanel
+Content-Security-Policy: upgrade-insecure-requests
+Age: 113
+Server: hcdn
+alt-svc: h3=":443"; ma=86400
+x-hcdn-request-id: 4da17b033e10190698f6199317e1ea37-asc-edge11
+x-hcdn-cache-status: HIT
+
+HTTP/1.1 301 Moved Permanently
+Date: Mon, 05 Oct 2026 03:42:06 GMT
+Content-Type: text/html
+Content-Length: 795
+Connection: keep-alive
+Location: https://materiales.com.py/
+platform: hostinger
+panel: hpanel
+Content-Security-Policy: upgrade-insecure-requests
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+X-Frame-Options: SAMEORIGIN
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=31536000
+Server: hcdn
+alt-svc: h3=":443"; ma=86400
+x-hcdn-request-id: 3637ff66b444777e70a6b71e651f1c42-asc-edge11
+x-hcdn-cache-status: EXPIRED
+x-hcdn-upstream-rt: 0.000
+
+HTTP/1.1 200 OK
+Date: Mon, 05 Oct 2026 03:42:06 GMT
+Content-Type: text/html; charset=utf-8
+Connection: keep-alive
+Vary: Accept-Encoding
+X-Powered-By: PHP/8.3.33
+Cache-Control: no-cache
+platform: hostinger
+panel: hpanel
+Content-Security-Policy: upgrade-insecure-requests
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+X-Frame-Options: SAMEORIGIN
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=31536000
+Server: hcdn
+alt-svc: h3=":443"; ma=86400
+x-hcdn-request-id: b43f83d4bbe6d67b25ae1d11d2868a03-asc-edge14
+x-hcdn-cache-status: DYNAMIC
+x-hcdn-upstream-rt: 0.028
