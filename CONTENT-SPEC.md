@@ -2,6 +2,13 @@
 
 ## Actualización autorizada 2026-10-05 — catálogo y claridad del pedido
 
+Seguimiento de Anton: número confirmado `+595 992 279599`. Todos los botones WhatsApp
+deben incluir Materiales.com.py, nombre y URL pública de la página, y material/servicio
+conocido. Se centraliza el texto en `wa_url()`; contacto y gracias lo reutilizan, con la
+referencia validada del pedido conservada. No se copian queries con datos o tokens. Este
+cambio autorizado afecta sólo el texto precargado de enlaces WhatsApp, no las URLs SEO ni
+metadatos. El PR permanece listo, no draft, sin merge.
+
 El encargo de Anton (`startprompter/07-materiales-sol61-high.txt`, más la instrucción de
 conservar todos los enlaces y datos SEO) autoriza este pase sobre las plantillas existentes.
 Se conservan los titles, metas, H1, canonical, JSON-LD, sitemap, robots, datos, fórmulas y

@@ -23,6 +23,7 @@ page([
     'breadcrumbs' => $breadcrumbs,
     'schema'      => [schema_breadcrumbs($breadcrumbs)],
     'body_class'  => 'page-cotizar',
+    'wa_subject'  => (string) ($entry['name'] ?? ''),
 ]);
 
 require PUBLIC_ROOT . '/partials/header.php';

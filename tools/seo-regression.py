@@ -89,7 +89,7 @@ def snapshot(base, output):
 
 def compare(before, after):
     old, new = [json.loads(Path(p).read_text(encoding='utf-8')) for p in (before, after)]
-    failures, added = [], 0
+    failures, added, whatsapp_updates = [], 0, 0
     for key in ('sitemap', 'urls', 'robots', 'robots_status'):
         # Git on Windows uses CRLF for static robots; directives/content must stay identical.
         before_value, after_value = old[key], new[key]
@@ -106,6 +106,25 @@ def compare(before, after):
             if page[key] != current[key]:
                 failures.append(f'{path}: {key} changed')
         missing = set(page['links']) - set(current['links'])
+        whatsapp_page_url = (current['canonical'][0] if current['canonical']
+                             else urllib.parse.urljoin(old['urls'][0], '/'))
+        # Owner-authorized 2026-10-05: WhatsApp text gains site/page context. The contact
+        # destination must stay identical; this exception never applies to SEO/internal URLs.
+        for old_link in list(missing):
+            old_url = urllib.parse.urlparse(old_link)
+            if old_url.scheme != 'https' or old_url.netloc != 'wa.me':
+                continue
+            for new_link in current['links']:
+                new_url = urllib.parse.urlparse(new_link)
+                text = urllib.parse.parse_qs(new_url.query).get('text', [''])[0]
+                if (new_url.scheme == 'https' and new_url.netloc == 'wa.me'
+                    and new_url.path == old_url.path
+                    and text.startswith('Hola, vengo de Materiales.com.py.')
+                    and '\nPágina: ' in text
+                    and '\nEnlace: ' + whatsapp_page_url in text):
+                    missing.remove(old_link)
+                    whatsapp_updates += 1
+                    break
         added += len(set(current['links']) - set(page['links']))
         if missing:
             failures.append(f'{path}: removed links: {sorted(missing)}')
@@ -114,7 +133,8 @@ def compare(before, after):
         print(f'SEO FAIL: {len(failures)} differences')
         return 1
     print(f'SEO PASS: {len(old["urls"])} sitemap URLs; {len(old["pages"])} pages; '
-          f'all metadata, H1, canonical, JSON-LD and existing links preserved; {added} new links')
+          f'all metadata, H1, canonical, JSON-LD and existing SEO links preserved; '
+          f'{whatsapp_updates} owner-authorized WhatsApp text updates; {added} link additions/replacements')
     return 0
 
 

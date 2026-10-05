@@ -52,3 +52,6 @@ jobs:
 
       - name: CRM adapter against a local mock (no external leads)
         run: python3 tests/lead-mock.py
+
+      - name: WhatsApp buttons (number, source, page and service context)
+        run: python3 tests/whatsapp-links.py

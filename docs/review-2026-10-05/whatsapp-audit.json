@@ -1,0 +1,772 @@
+[
+  {
+    "route": "/",
+    "buttons": 3,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar materiales de construcción. Material: … Cantidad: … Zona de entrega: …\nPágina: Materiales de construcción en Paraguay\nEnlace: https://materiales.com.py/"
+  },
+  {
+    "route": "/materiales/",
+    "buttons": 3,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar materiales de construcción. Material: … Cantidad: … Zona de entrega: …\nPágina: Materiales\nEnlace: https://materiales.com.py/materiales/"
+  },
+  {
+    "route": "/guias/",
+    "buttons": 3,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar materiales de construcción. Material: … Cantidad: … Zona de entrega: …\nPágina: Guías\nEnlace: https://materiales.com.py/guias/"
+  },
+  {
+    "route": "/calculadoras/",
+    "buttons": 3,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar materiales de construcción. Material: … Cantidad: … Zona de entrega: …\nPágina: Calculadoras de materiales\nEnlace: https://materiales.com.py/calculadoras/"
+  },
+  {
+    "route": "/cotizar/",
+    "buttons": 2,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar materiales de construcción. Material: … Cantidad: … Zona de entrega: …\nPágina: Pedir cotización\nEnlace: https://materiales.com.py/cotizar/"
+  },
+  {
+    "route": "/proveedores/",
+    "buttons": 2,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero consultar sobre sumarme como proveedor y recibir pedidos de mi rubro.\nPágina: Recibí pedidos de cotización de tu rubro\nEnlace: https://materiales.com.py/proveedores/"
+  },
+  {
+    "route": "/proveedores/verificado/",
+    "buttons": 3,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero consultar sobre sumarme como proveedor y recibir pedidos de mi rubro.\nPágina: Sello de proveedor verificado\nEnlace: https://materiales.com.py/proveedores/verificado/"
+  },
+  {
+    "route": "/contacto/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nTengo una consulta sobre materiales, cantidades o entregas.\nPágina: Contacto\nEnlace: https://materiales.com.py/contacto/"
+  },
+  {
+    "route": "/nosotros/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar materiales de construcción. Material: … Cantidad: … Zona de entrega: …\nPágina: Nosotros\nEnlace: https://materiales.com.py/nosotros/"
+  },
+  {
+    "route": "/como-trabajamos/",
+    "buttons": 3,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar materiales de construcción. Material: … Cantidad: … Zona de entrega: …\nPágina: Cómo trabajamos\nEnlace: https://materiales.com.py/como-trabajamos/"
+  },
+  {
+    "route": "/politica-de-privacidad/",
+    "buttons": 3,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar materiales de construcción. Material: … Cantidad: … Zona de entrega: …\nPágina: Política de privacidad\nEnlace: https://materiales.com.py/politica-de-privacidad/"
+  },
+  {
+    "route": "/materiales/hierro/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar hierro. Cantidad: … Zona de entrega: …\nPágina: Hierro en Paraguay\nEnlace: https://materiales.com.py/materiales/hierro/"
+  },
+  {
+    "route": "/materiales/cemento-y-cal/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar cemento y cal. Cantidad: … Zona de entrega: …\nPágina: Cemento y cal en Paraguay\nEnlace: https://materiales.com.py/materiales/cemento-y-cal/"
+  },
+  {
+    "route": "/materiales/aridos/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar áridos. Cantidad: … Zona de entrega: …\nPágina: Áridos en Paraguay\nEnlace: https://materiales.com.py/materiales/aridos/"
+  },
+  {
+    "route": "/materiales/ladrillos-y-bloques/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar ladrillos y bloques. Cantidad: … Zona de entrega: …\nPágina: Ladrillos y bloques en Paraguay\nEnlace: https://materiales.com.py/materiales/ladrillos-y-bloques/"
+  },
+  {
+    "route": "/materiales/chapas-y-techos/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar chapas y techos. Cantidad: … Zona de entrega: …\nPágina: Chapas y techos en Paraguay\nEnlace: https://materiales.com.py/materiales/chapas-y-techos/"
+  },
+  {
+    "route": "/materiales/madera/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar madera. Cantidad: … Zona de entrega: …\nPágina: Madera en Paraguay\nEnlace: https://materiales.com.py/materiales/madera/"
+  },
+  {
+    "route": "/materiales/aberturas/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar aberturas. Cantidad: … Zona de entrega: …\nPágina: Aberturas en Paraguay\nEnlace: https://materiales.com.py/materiales/aberturas/"
+  },
+  {
+    "route": "/materiales/canos-y-plomeria/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar caños y plomería. Cantidad: … Zona de entrega: …\nPágina: Caños y plomería en Paraguay\nEnlace: https://materiales.com.py/materiales/canos-y-plomeria/"
+  },
+  {
+    "route": "/materiales/pisos-y-revestimientos/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar pisos y revestimientos. Cantidad: … Zona de entrega: …\nPágina: Pisos y revestimientos en Paraguay\nEnlace: https://materiales.com.py/materiales/pisos-y-revestimientos/"
+  },
+  {
+    "route": "/materiales/electricidad/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar electricidad. Cantidad: … Zona de entrega: …\nPágina: Electricidad en Paraguay\nEnlace: https://materiales.com.py/materiales/electricidad/"
+  },
+  {
+    "route": "/materiales/pinturas/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar pinturas. Cantidad: … Zona de entrega: …\nPágina: Pinturas en Paraguay\nEnlace: https://materiales.com.py/materiales/pinturas/"
+  },
+  {
+    "route": "/materiales/yeso-y-durlock/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar yeso y durlock. Cantidad: … Zona de entrega: …\nPágina: Yeso y durlock en Paraguay\nEnlace: https://materiales.com.py/materiales/yeso-y-durlock/"
+  },
+  {
+    "route": "/materiales/impermeabilizantes/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar impermeabilizantes. Cantidad: … Zona de entrega: …\nPágina: Impermeabilizantes en Paraguay\nEnlace: https://materiales.com.py/materiales/impermeabilizantes/"
+  },
+  {
+    "route": "/materiales/sanitarios-y-griferia/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar sanitarios y grifería. Cantidad: … Zona de entrega: …\nPágina: Sanitarios y grifería en Paraguay\nEnlace: https://materiales.com.py/materiales/sanitarios-y-griferia/"
+  },
+  {
+    "route": "/materiales/varilla-de-hierro/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar varilla de hierro. Cantidad: … Zona de entrega: …\nPágina: Varilla de hierro en Paraguay\nEnlace: https://materiales.com.py/materiales/varilla-de-hierro/"
+  },
+  {
+    "route": "/materiales/malla-electrosoldada/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar malla electrosoldada. Cantidad: … Zona de entrega: …\nPágina: Malla electrosoldada en Paraguay\nEnlace: https://materiales.com.py/materiales/malla-electrosoldada/"
+  },
+  {
+    "route": "/materiales/alambre-negro/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar alambre negro. Cantidad: … Zona de entrega: …\nPágina: Alambre negro en Paraguay\nEnlace: https://materiales.com.py/materiales/alambre-negro/"
+  },
+  {
+    "route": "/materiales/clavos/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar clavos. Cantidad: … Zona de entrega: …\nPágina: Clavos en Paraguay\nEnlace: https://materiales.com.py/materiales/clavos/"
+  },
+  {
+    "route": "/materiales/perfiles-metalicos/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar perfiles metálicos. Cantidad: … Zona de entrega: …\nPágina: Perfiles metálicos en Paraguay\nEnlace: https://materiales.com.py/materiales/perfiles-metalicos/"
+  },
+  {
+    "route": "/materiales/tejido-de-alambre/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar tejido de alambre. Cantidad: … Zona de entrega: …\nPágina: Tejido de alambre en Paraguay\nEnlace: https://materiales.com.py/materiales/tejido-de-alambre/"
+  },
+  {
+    "route": "/materiales/metal-desplegado/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar metal desplegado. Cantidad: … Zona de entrega: …\nPágina: Metal desplegado y chapa perforada en Paraguay\nEnlace: https://materiales.com.py/materiales/metal-desplegado/"
+  },
+  {
+    "route": "/materiales/cemento/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar cemento. Cantidad: … Zona de entrega: …\nPágina: Cemento en Paraguay\nEnlace: https://materiales.com.py/materiales/cemento/"
+  },
+  {
+    "route": "/materiales/cal-viva/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar cal viva. Cantidad: … Zona de entrega: …\nPágina: Cal viva en Paraguay\nEnlace: https://materiales.com.py/materiales/cal-viva/"
+  },
+  {
+    "route": "/materiales/cal-hidratada/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar cal hidratada. Cantidad: … Zona de entrega: …\nPágina: Cal hidratada en Paraguay\nEnlace: https://materiales.com.py/materiales/cal-hidratada/"
+  },
+  {
+    "route": "/materiales/hormigon-elaborado/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar hormigón elaborado. Cantidad: … Zona de entrega: …\nPágina: Hormigón elaborado en Paraguay\nEnlace: https://materiales.com.py/materiales/hormigon-elaborado/"
+  },
+  {
+    "route": "/materiales/adhesivo-para-ceramica/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar adhesivo para cerámica. Cantidad: … Zona de entrega: …\nPágina: Adhesivo para cerámica en Paraguay\nEnlace: https://materiales.com.py/materiales/adhesivo-para-ceramica/"
+  },
+  {
+    "route": "/materiales/arena-lavada/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar arena lavada. Cantidad: … Zona de entrega: …\nPágina: Arena lavada en Paraguay\nEnlace: https://materiales.com.py/materiales/arena-lavada/"
+  },
+  {
+    "route": "/materiales/arena-gorda/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar arena gorda. Cantidad: … Zona de entrega: …\nPágina: Arena gorda en Paraguay\nEnlace: https://materiales.com.py/materiales/arena-gorda/"
+  },
+  {
+    "route": "/materiales/ripio/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar ripio. Cantidad: … Zona de entrega: …\nPágina: Canto rodado y ripio en Paraguay\nEnlace: https://materiales.com.py/materiales/ripio/"
+  },
+  {
+    "route": "/materiales/piedra-triturada/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar piedra triturada. Cantidad: … Zona de entrega: …\nPágina: Piedra triturada en Paraguay\nEnlace: https://materiales.com.py/materiales/piedra-triturada/"
+  },
+  {
+    "route": "/materiales/piedra-bruta/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar piedra bruta. Cantidad: … Zona de entrega: …\nPágina: Piedra bruta en Paraguay\nEnlace: https://materiales.com.py/materiales/piedra-bruta/"
+  },
+  {
+    "route": "/materiales/tierra-gorda/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar tierra gorda. Cantidad: … Zona de entrega: …\nPágina: Tierra colorada (tierra gorda) en Paraguay\nEnlace: https://materiales.com.py/materiales/tierra-gorda/"
+  },
+  {
+    "route": "/materiales/escombro-relleno/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar escombro para relleno. Cantidad: … Zona de entrega: …\nPágina: Escombro para relleno en Paraguay\nEnlace: https://materiales.com.py/materiales/escombro-relleno/"
+  },
+  {
+    "route": "/materiales/ladrillo-comun/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar ladrillo común. Cantidad: … Zona de entrega: …\nPágina: Ladrillo común en Paraguay\nEnlace: https://materiales.com.py/materiales/ladrillo-comun/"
+  },
+  {
+    "route": "/materiales/ladrillo-hueco/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar ladrillo hueco. Cantidad: … Zona de entrega: …\nPágina: Ladrillo hueco en Paraguay\nEnlace: https://materiales.com.py/materiales/ladrillo-hueco/"
+  },
+  {
+    "route": "/materiales/ladrillo-prensado/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar ladrillo prensado. Cantidad: … Zona de entrega: …\nPágina: Ladrillo visto (prensado) en Paraguay\nEnlace: https://materiales.com.py/materiales/ladrillo-prensado/"
+  },
+  {
+    "route": "/materiales/bloque-de-hormigon/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar bloque de hormigón. Cantidad: … Zona de entrega: …\nPágina: Bloque de hormigón en Paraguay\nEnlace: https://materiales.com.py/materiales/bloque-de-hormigon/"
+  },
+  {
+    "route": "/materiales/tejuelon/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar tejuelón. Cantidad: … Zona de entrega: …\nPágina: Tejuelones en Paraguay\nEnlace: https://materiales.com.py/materiales/tejuelon/"
+  },
+  {
+    "route": "/materiales/ladrillo-sapo/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar ladrillo sapo. Cantidad: … Zona de entrega: …\nPágina: Ladrillo sapo en Paraguay\nEnlace: https://materiales.com.py/materiales/ladrillo-sapo/"
+  },
+  {
+    "route": "/materiales/ladrillo-refractario/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar ladrillo refractario. Cantidad: … Zona de entrega: …\nPágina: Ladrillo refractario en Paraguay\nEnlace: https://materiales.com.py/materiales/ladrillo-refractario/"
+  },
+  {
+    "route": "/materiales/adoquines/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar adoquines. Cantidad: … Zona de entrega: …\nPágina: Adoquines y pavers en Paraguay\nEnlace: https://materiales.com.py/materiales/adoquines/"
+  },
+  {
+    "route": "/materiales/chapa-de-zinc/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar chapa de zinc. Cantidad: … Zona de entrega: …\nPágina: Chapa ondulada y chapa de zinc en Paraguay\nEnlace: https://materiales.com.py/materiales/chapa-de-zinc/"
+  },
+  {
+    "route": "/materiales/chapa-trapezoidal/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar chapa trapezoidal. Cantidad: … Zona de entrega: …\nPágina: Chapa trapezoidal en Paraguay\nEnlace: https://materiales.com.py/materiales/chapa-trapezoidal/"
+  },
+  {
+    "route": "/materiales/chapa-termoacustica/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar chapa termoacústica. Cantidad: … Zona de entrega: …\nPágina: Chapa termoacústica en Paraguay\nEnlace: https://materiales.com.py/materiales/chapa-termoacustica/"
+  },
+  {
+    "route": "/materiales/teja-espanola/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar teja española. Cantidad: … Zona de entrega: …\nPágina: Teja española en Paraguay\nEnlace: https://materiales.com.py/materiales/teja-espanola/"
+  },
+  {
+    "route": "/materiales/teja-francesa/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar teja francesa. Cantidad: … Zona de entrega: …\nPágina: Teja francesa en Paraguay\nEnlace: https://materiales.com.py/materiales/teja-francesa/"
+  },
+  {
+    "route": "/materiales/fibrocemento/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar chapa de fibrocemento. Cantidad: … Zona de entrega: …\nPágina: Chapa de fibrocemento en Paraguay\nEnlace: https://materiales.com.py/materiales/fibrocemento/"
+  },
+  {
+    "route": "/materiales/cielorraso-de-pvc/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar cielorraso de pvc. Cantidad: … Zona de entrega: …\nPágina: Cielorraso de PVC en Paraguay\nEnlace: https://materiales.com.py/materiales/cielorraso-de-pvc/"
+  },
+  {
+    "route": "/materiales/policarbonato/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar policarbonato. Cantidad: … Zona de entrega: …\nPágina: Policarbonato en Paraguay\nEnlace: https://materiales.com.py/materiales/policarbonato/"
+  },
+  {
+    "route": "/materiales/canaletas/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar canaletas para techo. Cantidad: … Zona de entrega: …\nPágina: Canaletas para techo en Paraguay\nEnlace: https://materiales.com.py/materiales/canaletas/"
+  },
+  {
+    "route": "/materiales/tirantes/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar tirantes. Cantidad: … Zona de entrega: …\nPágina: Tirantes en Paraguay\nEnlace: https://materiales.com.py/materiales/tirantes/"
+  },
+  {
+    "route": "/materiales/puntales/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar puntales. Cantidad: … Zona de entrega: …\nPágina: Puntales en Paraguay\nEnlace: https://materiales.com.py/materiales/puntales/"
+  },
+  {
+    "route": "/materiales/tabla-de-encofrado/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar tabla de encofrado. Cantidad: … Zona de entrega: …\nPágina: Tabla de encofrado en Paraguay\nEnlace: https://materiales.com.py/materiales/tabla-de-encofrado/"
+  },
+  {
+    "route": "/materiales/terciada/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar terciada. Cantidad: … Zona de entrega: …\nPágina: Terciado (terciada fenólica) en Paraguay\nEnlace: https://materiales.com.py/materiales/terciada/"
+  },
+  {
+    "route": "/materiales/machimbre/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar machimbre. Cantidad: … Zona de entrega: …\nPágina: Machimbre en Paraguay\nEnlace: https://materiales.com.py/materiales/machimbre/"
+  },
+  {
+    "route": "/materiales/listones/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar listones. Cantidad: … Zona de entrega: …\nPágina: Listones en Paraguay\nEnlace: https://materiales.com.py/materiales/listones/"
+  },
+  {
+    "route": "/materiales/mdf-fibrofacil/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar mdf y fibrofácil. Cantidad: … Zona de entrega: …\nPágina: MDF y fibrofácil en Paraguay\nEnlace: https://materiales.com.py/materiales/mdf-fibrofacil/"
+  },
+  {
+    "route": "/materiales/madera-dura/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar madera dura. Cantidad: … Zona de entrega: …\nPágina: Madera dura en Paraguay\nEnlace: https://materiales.com.py/materiales/madera-dura/"
+  },
+  {
+    "route": "/materiales/ceramica-para-piso/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar cerámica para piso. Cantidad: … Zona de entrega: …\nPágina: Cerámica para piso en Paraguay\nEnlace: https://materiales.com.py/materiales/ceramica-para-piso/"
+  },
+  {
+    "route": "/materiales/porcelanato/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar porcelanato. Cantidad: … Zona de entrega: …\nPágina: Porcelanato en Paraguay\nEnlace: https://materiales.com.py/materiales/porcelanato/"
+  },
+  {
+    "route": "/materiales/azulejos/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar azulejos. Cantidad: … Zona de entrega: …\nPágina: Azulejos en Paraguay\nEnlace: https://materiales.com.py/materiales/azulejos/"
+  },
+  {
+    "route": "/materiales/piso-vinilico/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar piso vinílico. Cantidad: … Zona de entrega: …\nPágina: Piso vinílico en Paraguay\nEnlace: https://materiales.com.py/materiales/piso-vinilico/"
+  },
+  {
+    "route": "/materiales/piedra-laja/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar piedra laja. Cantidad: … Zona de entrega: …\nPágina: Piedra laja en Paraguay\nEnlace: https://materiales.com.py/materiales/piedra-laja/"
+  },
+  {
+    "route": "/materiales/piso-parquet/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar piso parquet. Cantidad: … Zona de entrega: …\nPágina: Piso parquet en Paraguay\nEnlace: https://materiales.com.py/materiales/piso-parquet/"
+  },
+  {
+    "route": "/materiales/puerta-placa/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar puerta placa. Cantidad: … Zona de entrega: …\nPágina: Puerta placa en Paraguay\nEnlace: https://materiales.com.py/materiales/puerta-placa/"
+  },
+  {
+    "route": "/materiales/puertas-de-madera/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar puertas de madera. Cantidad: … Zona de entrega: …\nPágina: Puertas de madera en Paraguay\nEnlace: https://materiales.com.py/materiales/puertas-de-madera/"
+  },
+  {
+    "route": "/materiales/puertas-de-chapa/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar puertas de chapa. Cantidad: … Zona de entrega: …\nPágina: Puertas de metal y de chapa en Paraguay\nEnlace: https://materiales.com.py/materiales/puertas-de-chapa/"
+  },
+  {
+    "route": "/materiales/ventanas-de-aluminio/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar ventanas de aluminio. Cantidad: … Zona de entrega: …\nPágina: Ventanas de aluminio en Paraguay\nEnlace: https://materiales.com.py/materiales/ventanas-de-aluminio/"
+  },
+  {
+    "route": "/materiales/vidrio-templado/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar vidrio templado. Cantidad: … Zona de entrega: …\nPágina: Vidrio templado en Paraguay\nEnlace: https://materiales.com.py/materiales/vidrio-templado/"
+  },
+  {
+    "route": "/materiales/portones-y-rejas/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar portones y rejas. Cantidad: … Zona de entrega: …\nPágina: Portones y rejas en Paraguay\nEnlace: https://materiales.com.py/materiales/portones-y-rejas/"
+  },
+  {
+    "route": "/materiales/membrana-asfaltica/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar membrana asfáltica. Cantidad: … Zona de entrega: …\nPágina: Membrana para techo: membrana asfáltica en Paraguay\nEnlace: https://materiales.com.py/materiales/membrana-asfaltica/"
+  },
+  {
+    "route": "/materiales/membrana-liquida/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar membrana líquida. Cantidad: … Zona de entrega: …\nPágina: Membrana líquida para techos en Paraguay\nEnlace: https://materiales.com.py/materiales/membrana-liquida/"
+  },
+  {
+    "route": "/materiales/pintura-antihumedad/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar pintura antihumedad. Cantidad: … Zona de entrega: …\nPágina: Pintura antihumedad en Paraguay\nEnlace: https://materiales.com.py/materiales/pintura-antihumedad/"
+  },
+  {
+    "route": "/materiales/hidrofugo/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar hidrófugo. Cantidad: … Zona de entrega: …\nPágina: Hidrófugo en Paraguay\nEnlace: https://materiales.com.py/materiales/hidrofugo/"
+  },
+  {
+    "route": "/materiales/selladores-y-siliconas/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar selladores y siliconas. Cantidad: … Zona de entrega: …\nPágina: Selladores y siliconas en Paraguay\nEnlace: https://materiales.com.py/materiales/selladores-y-siliconas/"
+  },
+  {
+    "route": "/materiales/placa-de-yeso/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar placa de yeso. Cantidad: … Zona de entrega: …\nPágina: Placa de yeso en Paraguay\nEnlace: https://materiales.com.py/materiales/placa-de-yeso/"
+  },
+  {
+    "route": "/materiales/yeso-en-polvo/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar yeso en polvo. Cantidad: … Zona de entrega: …\nPágina: Yeso en polvo en Paraguay\nEnlace: https://materiales.com.py/materiales/yeso-en-polvo/"
+  },
+  {
+    "route": "/materiales/perfiles-para-durlock/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar perfiles para durlock. Cantidad: … Zona de entrega: …\nPágina: Perfiles para durlock en Paraguay\nEnlace: https://materiales.com.py/materiales/perfiles-para-durlock/"
+  },
+  {
+    "route": "/materiales/tanque-de-agua/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar tanque de agua. Cantidad: … Zona de entrega: …\nPágina: Tanque de agua de 500 y 1000 litros en Paraguay\nEnlace: https://materiales.com.py/materiales/tanque-de-agua/"
+  },
+  {
+    "route": "/materiales/cano-de-pvc/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar caño de pvc. Cantidad: … Zona de entrega: …\nPágina: Caño de PVC en Paraguay\nEnlace: https://materiales.com.py/materiales/cano-de-pvc/"
+  },
+  {
+    "route": "/materiales/cano-de-agua/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar caño de agua. Cantidad: … Zona de entrega: …\nPágina: Caño de agua en Paraguay\nEnlace: https://materiales.com.py/materiales/cano-de-agua/"
+  },
+  {
+    "route": "/materiales/inodoro/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar inodoro. Cantidad: … Zona de entrega: …\nPágina: Inodoro en Paraguay\nEnlace: https://materiales.com.py/materiales/inodoro/"
+  },
+  {
+    "route": "/materiales/griferia-de-cocina/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar grifería de cocina. Cantidad: … Zona de entrega: …\nPágina: Grifería de cocina en Paraguay\nEnlace: https://materiales.com.py/materiales/griferia-de-cocina/"
+  },
+  {
+    "route": "/materiales/llave-de-ducha/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar llave de ducha. Cantidad: … Zona de entrega: …\nPágina: Llave de ducha en Paraguay\nEnlace: https://materiales.com.py/materiales/llave-de-ducha/"
+  },
+  {
+    "route": "/materiales/canilla-de-lavatorio/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar canilla de lavatorio. Cantidad: … Zona de entrega: …\nPágina: Canilla de lavatorio en Paraguay\nEnlace: https://materiales.com.py/materiales/canilla-de-lavatorio/"
+  },
+  {
+    "route": "/materiales/ducha-electrica/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar ducha eléctrica. Cantidad: … Zona de entrega: …\nPágina: Ducha eléctrica en Paraguay\nEnlace: https://materiales.com.py/materiales/ducha-electrica/"
+  },
+  {
+    "route": "/materiales/ducha-higienica/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar ducha higiénica. Cantidad: … Zona de entrega: …\nPágina: Ducha higiénica en Paraguay\nEnlace: https://materiales.com.py/materiales/ducha-higienica/"
+  },
+  {
+    "route": "/materiales/pintura-para-pared/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar pintura para pared. Cantidad: … Zona de entrega: …\nPágina: Pintura para pared en Paraguay\nEnlace: https://materiales.com.py/materiales/pintura-para-pared/"
+  },
+  {
+    "route": "/materiales/pintura-para-piso/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar pintura para piso. Cantidad: … Zona de entrega: …\nPágina: Pintura para piso en Paraguay\nEnlace: https://materiales.com.py/materiales/pintura-para-piso/"
+  },
+  {
+    "route": "/materiales/barniz/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar barniz para madera. Cantidad: … Zona de entrega: …\nPágina: Barniz para madera en Paraguay\nEnlace: https://materiales.com.py/materiales/barniz/"
+  },
+  {
+    "route": "/materiales/esmalte-sintetico/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar esmalte sintético. Cantidad: … Zona de entrega: …\nPágina: Esmalte sintético en Paraguay\nEnlace: https://materiales.com.py/materiales/esmalte-sintetico/"
+  },
+  {
+    "route": "/materiales/sellador-para-pared/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar sellador para pared. Cantidad: … Zona de entrega: …\nPágina: Sellador para pared en Paraguay\nEnlace: https://materiales.com.py/materiales/sellador-para-pared/"
+  },
+  {
+    "route": "/materiales/bomba-de-agua/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar bomba de agua. Cantidad: … Zona de entrega: …\nPágina: Bomba de agua en Paraguay\nEnlace: https://materiales.com.py/materiales/bomba-de-agua/"
+  },
+  {
+    "route": "/materiales/presurizador-de-agua/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar presurizador de agua. Cantidad: … Zona de entrega: …\nPágina: Presurizador de agua en Paraguay\nEnlace: https://materiales.com.py/materiales/presurizador-de-agua/"
+  },
+  {
+    "route": "/materiales/llave-de-paso/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar llave de paso. Cantidad: … Zona de entrega: …\nPágina: Llave de paso en Paraguay\nEnlace: https://materiales.com.py/materiales/llave-de-paso/"
+  },
+  {
+    "route": "/materiales/camara-septica/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar cámara séptica. Cantidad: … Zona de entrega: …\nPágina: Cámara séptica en Paraguay\nEnlace: https://materiales.com.py/materiales/camara-septica/"
+  },
+  {
+    "route": "/materiales/bacha-de-cocina/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar bacha de cocina. Cantidad: … Zona de entrega: …\nPágina: Bacha de cocina y pileta de cocina en Paraguay\nEnlace: https://materiales.com.py/materiales/bacha-de-cocina/"
+  },
+  {
+    "route": "/materiales/termotanque-y-calefon/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar termotanque y calefón. Cantidad: … Zona de entrega: …\nPágina: Termotanque y calefón eléctrico en Paraguay\nEnlace: https://materiales.com.py/materiales/termotanque-y-calefon/"
+  },
+  {
+    "route": "/materiales/pintura-epoxi/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar pintura epoxi. Cantidad: … Zona de entrega: …\nPágina: Pintura epoxi para pisos y metal en Paraguay\nEnlace: https://materiales.com.py/materiales/pintura-epoxi/"
+  },
+  {
+    "route": "/materiales/tablero-electrico/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar tablero eléctrico. Cantidad: … Zona de entrega: …\nPágina: Tablero eléctrico en Paraguay\nEnlace: https://materiales.com.py/materiales/tablero-electrico/"
+  },
+  {
+    "route": "/materiales/cano-conduit/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar caño conduit y canaleta para cable. Cantidad: … Zona de entrega: …\nPágina: Caño conduit y canaleta para cable en Paraguay\nEnlace: https://materiales.com.py/materiales/cano-conduit/"
+  },
+  {
+    "route": "/materiales/microcemento/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar microcemento. Cantidad: … Zona de entrega: …\nPágina: Microcemento para pisos y paredes en Paraguay\nEnlace: https://materiales.com.py/materiales/microcemento/"
+  },
+  {
+    "route": "/materiales/cano-galvanizado/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar caño galvanizado. Cantidad: … Zona de entrega: …\nPágina: Caño galvanizado en Paraguay\nEnlace: https://materiales.com.py/materiales/cano-galvanizado/"
+  },
+  {
+    "route": "/materiales/tornillos-para-chapa/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar tornillos para chapa. Cantidad: … Zona de entrega: …\nPágina: Tornillos para chapa: autoperforantes y autorroscantes en Paraguay\nEnlace: https://materiales.com.py/materiales/tornillos-para-chapa/"
+  },
+  {
+    "route": "/materiales/claraboyas/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar claraboyas. Cantidad: … Zona de entrega: …\nPágina: Claraboyas, tragaluces y lucernarios para techo en Paraguay\nEnlace: https://materiales.com.py/materiales/claraboyas/"
+  },
+  {
+    "route": "/materiales/babeta-y-limahoya/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar babeta y limahoya. Cantidad: … Zona de entrega: …\nPágina: Babeta y limahoya para techos de chapa en Paraguay\nEnlace: https://materiales.com.py/materiales/babeta-y-limahoya/"
+  },
+  {
+    "route": "/materiales/cable-electrico/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar cable eléctrico. Cantidad: … Zona de entrega: …\nPágina: Cable eléctrico en Paraguay\nEnlace: https://materiales.com.py/materiales/cable-electrico/"
+  },
+  {
+    "route": "/guias/cuantas-bolsas-de-cemento-por-m2/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar cemento. Cantidad: … Zona de entrega: …\nPágina: Cómo calcular las bolsas de cemento por m²\nEnlace: https://materiales.com.py/guias/cuantas-bolsas-de-cemento-por-m2/"
+  },
+  {
+    "route": "/guias/que-piedra-usar-para-cimientos/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar piedra bruta. Cantidad: … Zona de entrega: …\nPágina: Qué piedra usar para cimientos\nEnlace: https://materiales.com.py/guias/que-piedra-usar-para-cimientos/"
+  },
+  {
+    "route": "/guias/ladrillo-comun-vs-hueco/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar ladrillo común. Cantidad: … Zona de entrega: …\nPágina: Ladrillo común vs hueco\nEnlace: https://materiales.com.py/guias/ladrillo-comun-vs-hueco/"
+  },
+  {
+    "route": "/guias/que-chapa-conviene-para-techo/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar chapa de zinc. Cantidad: … Zona de entrega: …\nPágina: Qué chapa conviene para techo\nEnlace: https://materiales.com.py/guias/que-chapa-conviene-para-techo/"
+  },
+  {
+    "route": "/guias/cuanta-arena-y-ripio-por-m3-de-hormigon/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar arena lavada. Cantidad: … Zona de entrega: …\nPágina: Arena y ripio para hormigón: cómo dosificar un m³\nEnlace: https://materiales.com.py/guias/cuanta-arena-y-ripio-por-m3-de-hormigon/"
+  },
+  {
+    "route": "/guias/que-diametro-de-hierro-para-que-uso/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar varilla de hierro. Cantidad: … Zona de entrega: …\nPágina: Qué diámetro de hierro para qué uso\nEnlace: https://materiales.com.py/guias/que-diametro-de-hierro-para-que-uso/"
+  },
+  {
+    "route": "/guias/como-revocar-una-pared/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar cal hidratada. Cantidad: … Zona de entrega: …\nPágina: Cómo revocar una pared\nEnlace: https://materiales.com.py/guias/como-revocar-una-pared/"
+  },
+  {
+    "route": "/guias/losa-de-hormigon-encofrado-y-hierro/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar hormigón elaborado. Cantidad: … Zona de entrega: …\nPágina: Losa de hormigón: encofrado y hierro\nEnlace: https://materiales.com.py/guias/losa-de-hormigon-encofrado-y-hierro/"
+  },
+  {
+    "route": "/guias/de-que-depende-el-costo-de-construir-en-paraguay/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar cemento y cal. Cantidad: … Zona de entrega: …\nPágina: De qué depende el costo de construir en Paraguay\nEnlace: https://materiales.com.py/guias/de-que-depende-el-costo-de-construir-en-paraguay/"
+  },
+  {
+    "route": "/guias/como-hacer-un-computo-metrico/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar cemento. Cantidad: … Zona de entrega: …\nPágina: Cómo hacer un cómputo métrico\nEnlace: https://materiales.com.py/guias/como-hacer-un-computo-metrico/"
+  },
+  {
+    "route": "/guias/como-elegir-un-corralon/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar cemento y cal. Cantidad: … Zona de entrega: …\nPágina: Cómo elegir un corralón\nEnlace: https://materiales.com.py/guias/como-elegir-un-corralon/"
+  },
+  {
+    "route": "/guias/chapa-o-teja-que-techo-conviene/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar chapa de zinc. Cantidad: … Zona de entrega: …\nPágina: Chapa o teja: qué techo conviene\nEnlace: https://materiales.com.py/guias/chapa-o-teja-que-techo-conviene/"
+  },
+  {
+    "route": "/guias/cuanto-hierro-lleva-una-columna/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar varilla de hierro. Cantidad: … Zona de entrega: …\nPágina: Hierro de una columna: quién lo define y cómo leer la planilla\nEnlace: https://materiales.com.py/guias/cuanto-hierro-lleva-una-columna/"
+  },
+  {
+    "route": "/guias/como-impermeabilizar-una-losa/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar membrana asfáltica. Cantidad: … Zona de entrega: …\nPágina: Cómo impermeabilizar una losa\nEnlace: https://materiales.com.py/guias/como-impermeabilizar-una-losa/"
+  },
+  {
+    "route": "/guias/glosario-de-obra-paraguay/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar ladrillos y bloques. Cantidad: … Zona de entrega: …\nPágina: Glosario de obra: las palabras del corralón en Paraguay\nEnlace: https://materiales.com.py/guias/glosario-de-obra-paraguay/"
+  },
+  {
+    "route": "/guias/porcelanato-o-ceramica/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar porcelanato. Cantidad: … Zona de entrega: …\nPágina: Porcelanato o cerámica: cuál conviene\nEnlace: https://materiales.com.py/guias/porcelanato-o-ceramica/"
+  },
+  {
+    "route": "/guias/durlock-o-ladrillo/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar placa de yeso. Cantidad: … Zona de entrega: …\nPágina: Placa de yeso o ladrillo para paredes interiores\nEnlace: https://materiales.com.py/guias/durlock-o-ladrillo/"
+  },
+  {
+    "route": "/guias/cielorraso-de-pvc-o-durlock/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar cielorraso de pvc. Cantidad: … Zona de entrega: …\nPágina: Cielorraso de PVC o de placa de yeso\nEnlace: https://materiales.com.py/guias/cielorraso-de-pvc-o-durlock/"
+  },
+  {
+    "route": "/guias/piso-vinilico-o-porcelanato/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar piso vinílico. Cantidad: … Zona de entrega: …\nPágina: Piso vinílico o porcelanato\nEnlace: https://materiales.com.py/guias/piso-vinilico-o-porcelanato/"
+  },
+  {
+    "route": "/guias/bloque-de-hormigon-o-ladrillo/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar bloque de hormigón. Cantidad: … Zona de entrega: …\nPágina: Bloque de hormigón o ladrillo\nEnlace: https://materiales.com.py/guias/bloque-de-hormigon-o-ladrillo/"
+  },
+  {
+    "route": "/guias/teja-espanola-o-francesa/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar teja española. Cantidad: … Zona de entrega: …\nPágina: Teja española o francesa\nEnlace: https://materiales.com.py/guias/teja-espanola-o-francesa/"
+  },
+  {
+    "route": "/calculadoras/bolsas-de-cemento-por-m2/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar cemento. Cantidad: … Zona de entrega: …\nPágina: Cuántas bolsas de cemento por m²\nEnlace: https://materiales.com.py/calculadoras/bolsas-de-cemento-por-m2/"
+  },
+  {
+    "route": "/calculadoras/hormigon-por-m3/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar hormigón elaborado. Cantidad: … Zona de entrega: …\nPágina: Cuánto cemento, arena y ripio por m³ de hormigón\nEnlace: https://materiales.com.py/calculadoras/hormigon-por-m3/"
+  },
+  {
+    "route": "/calculadoras/ladrillos-por-m2/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar ladrillo común. Cantidad: … Zona de entrega: …\nPágina: Cuántos ladrillos o bloques por m²\nEnlace: https://materiales.com.py/calculadoras/ladrillos-por-m2/"
+  },
+  {
+    "route": "/calculadoras/revoque-y-mortero/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar cal hidratada. Cantidad: … Zona de entrega: …\nPágina: Cuánta cal, cemento y arena por m² de revoque\nEnlace: https://materiales.com.py/calculadoras/revoque-y-mortero/"
+  },
+  {
+    "route": "/calculadoras/durlock-por-m2/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar placa de yeso. Cantidad: … Zona de entrega: …\nPágina: Cuántas placas de yeso y perfiles por m²\nEnlace: https://materiales.com.py/calculadoras/durlock-por-m2/"
+  },
+  {
+    "route": "/calculadoras/membrana-por-m2/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar membrana asfáltica. Cantidad: … Zona de entrega: …\nPágina: Cuántos rollos de membrana por m²\nEnlace: https://materiales.com.py/calculadoras/membrana-por-m2/"
+  },
+  {
+    "route": "/calculadoras/ceramica-por-m2/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar cerámica para piso. Cantidad: … Zona de entrega: …\nPágina: Cuántas cajas de cerámica o porcelanato por m²\nEnlace: https://materiales.com.py/calculadoras/ceramica-por-m2/"
+  },
+  {
+    "route": "/calculadoras/chapas-para-techo/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar chapa trapezoidal. Cantidad: … Zona de entrega: …\nPágina: Cuántas chapas necesita tu techo\nEnlace: https://materiales.com.py/calculadoras/chapas-para-techo/"
+  },
+  {
+    "route": "/calculadoras/tanque-de-agua-litros/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar tanque de agua. Cantidad: … Zona de entrega: …\nPágina: De cuántos litros tiene que ser el tanque de agua\nEnlace: https://materiales.com.py/calculadoras/tanque-de-agua-litros/"
+  },
+  {
+    "route": "/calculadoras/hierro-para-columnas/",
+    "buttons": 4,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar varilla de hierro. Cantidad: … Zona de entrega: …\nPágina: Cuánto hierro lleva una columna: barras, estribos y kilos\nEnlace: https://materiales.com.py/calculadoras/hierro-para-columnas/"
+  },
+  {
+    "route": "/gracias/",
+    "buttons": 3,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero consultar sobre mi pedido de cotización.\nPágina: Recibimos tu pedido de cotización\nEnlace: https://materiales.com.py/gracias/\nQuiero agregar o corregir algo: …"
+  },
+  {
+    "route": "/__review-missing-route__/",
+    "buttons": 3,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar materiales de construcción. Material: … Cantidad: … Zona de entrega: …\nPágina: Página no encontrada | Materiales.com.py\nEnlace: https://materiales.com.py/"
+  },
+  {
+    "route": "/cotizar/?m=cemento",
+    "buttons": 2,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar cemento. Cantidad: … Zona de entrega: …\nPágina: Pedir cotización\nEnlace: https://materiales.com.py/cotizar/"
+  },
+  {
+    "route": "/cotizar/?lista=1",
+    "buttons": 2,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero cotizar materiales de construcción. Material: … Cantidad: … Zona de entrega: …\nPágina: Pedir cotización\nEnlace: https://materiales.com.py/cotizar/"
+  },
+  {
+    "route": "/gracias/?m=cemento&k=invalid-private-token",
+    "buttons": 3,
+    "example": "Hola, vengo de Materiales.com.py.\nQuiero consultar sobre mi pedido de cotización. Material: Cemento.\nPágina: Recibimos tu pedido de cotización\nEnlace: https://materiales.com.py/gracias/\nQuiero agregar o corregir algo: …"
+  }
+]

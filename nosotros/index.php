@@ -19,7 +19,6 @@ $categories  = array_filter(data('categories'), 'is_published');
 $guides      = array_filter(data('guides'), 'is_published');
 $calculators = array_filter(data('calculators'), 'is_published');
 $breadcrumbs = [['Inicio', '/'], ['Nosotros', null]];
-$waUrl       = wa_url();
 
 page([
     'title'       => 'Sobre Materiales.com.py | Cotizá materiales en Paraguay',
@@ -30,6 +29,7 @@ page([
     'body_class'  => 'page-nosotros',
 ]);
 
+$waUrl = wa_url();
 require PUBLIC_ROOT . '/partials/header.php';
 ?>
 <div class="page-hero band--dark grain bleed">

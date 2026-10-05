@@ -1,0 +1,8 @@
+WHATSAPP PASS: 154 routes, 598 buttons; confirmed number, brand, public page URL, material/service context; no messages sent
+SEO PASS: 149 sitemap URLs; 151 pages; all metadata, H1, canonical, JSON-LD and existing SEO links preserved; 153 owner-authorized WhatsApp text updates; 276 link additions/replacements
+SMOKE OK — 14 categorías (14 activas), 93 materiales (93 activos), 21 guías, 10 calculadoras; 107 slugs únicos en /materiales/
+No syntax errors detected in partials/init.php
+No syntax errors detected in gracias/index.php
+No syntax errors detected in contacto/index.php
+No syntax errors detected in cotizar/index.php
+No syntax errors detected in nosotros/index.php

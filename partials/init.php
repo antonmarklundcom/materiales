@@ -233,8 +233,8 @@ function page(array $page = []): array
 
 /**
  * Enlace wa.me con el mensaje precargado (C6), o '' si no hay número cargado en data/site.php.
- * Con $subject (material o rubro de la página) el mensaje ya dice qué se cotiza y deja
- * lugar para cantidad y zona, que es lo que un proveedor necesita para contestar con precio.
+ * Siempre identifica el sitio, la página pública y el material/servicio cuando se conoce.
+ * Nunca copia la query del visitante: puede contener teléfono, mensaje o token de conversión.
  */
 function wa_url(string $subject = '', string $extra = ''): string
 {
@@ -242,11 +242,30 @@ function wa_url(string $subject = '', string $extra = ''): string
     if ($number === '') {
         return '';
     }
-    $text = $subject !== ''
-        ? 'Hola, quiero cotizar ' . mb_strtolower($subject) . '. Cantidad: … Zona de entrega: …'
-        : 'Hola, quiero cotizar materiales de construcción. Material: … Cantidad: … Zona de entrega: …';
+    $current = page();
+    $canonical = (string) $current['canonical'];
+    $subject = $subject !== '' ? $subject : (string) $current['wa_subject'];
+    $label = trim((string) $current['h1']);
+    if ($label === '') {
+        $crumbs = (array) $current['breadcrumbs'];
+        $lastCrumb = $crumbs !== [] ? end($crumbs) : null;
+        $label = is_array($lastCrumb) ? (string) $lastCrumb[0] : (string) $current['title'];
+    }
+    $intent = $subject !== ''
+        ? 'Quiero cotizar ' . mb_strtolower($subject) . '. Cantidad: … Zona de entrega: …'
+        : 'Quiero cotizar materiales de construcción. Material: … Cantidad: … Zona de entrega: …';
+    if (str_starts_with($canonical, '/proveedores/')) {
+        $intent = 'Quiero consultar sobre sumarme como proveedor y recibir pedidos de mi rubro.';
+    } elseif ($canonical === '/contacto/') {
+        $intent = 'Tengo una consulta sobre materiales, cantidades o entregas.';
+    } elseif ($canonical === '/gracias/') {
+        $intent = 'Quiero consultar sobre mi pedido de cotización.'
+            . ($subject !== '' ? ' Material: ' . $subject . '.' : '');
+    }
+    $text = 'Hola, vengo de ' . site('brand') . ".\n"
+        . $intent . "\nPágina: " . $label . "\nEnlace: " . url($canonical);
     if ($extra !== '') {
-        $text .= ' ' . $extra;
+        $text .= "\n" . $extra;
     }
     return 'https://wa.me/' . $number . '?text=' . rawurlencode($text);
 }

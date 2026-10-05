@@ -2,6 +2,23 @@
 
 Leveransen förbättrar vägen kategori → material → mängd → offertlista → mottagen förfrågan i den befintliga PHP-sajten. Alla befintliga SEO-adresser, länkar och metadata har bevarats. PR skapas redo för granskning enligt Antons senaste instruktion, utan merge. Ingen publicering, DNS-ändring eller produktionslead har genomförts.
 
+## Uppföljning: bekräftat nummer och WhatsApp-kontext
+
+Anton har uttryckligen bekräftat **+595 992 279599** och beställt sajt-/sid-/tjänst-/materialkontext i samtliga WhatsApp-knappar. Numret var redan korrekt i data och har bevarats. Alla knappar använder nu samma centrala helper, inklusive kontakt och tack. Nosotros-länken skapas efter att rätt sidkontext är satt. Förvald offert/tack behåller känt material; leverantörssidor uttrycker intresse för leverantörsregistrering. En validerad orderreferens finns fortfarande i tack-knappen. Personuppgifter och konversionstoken från querysträngen kopieras inte.
+
+Exempel från materialsidan:
+
+> Hola, vengo de Materiales.com.py.
+> Quiero cotizar cemento. Cantidad: … Zona de entrega: …
+> Página: Cemento en Paraguay
+> Enlace: https://materiales.com.py/materiales/cemento/
+
+Faktiska uppföljningstester: **154 sidvarianter, 598 renderade knappar**, godkända både mot den öppna previewn och en isolerad testserver. Samtliga kontrollerar nummer, källa och sidkontext; material/guider/kalkylatorer och leverantörsintresse kontrolleras där de gäller. Ingen WhatsApp öppnades och inget meddelande skickades. Befintligt smoke- och render-test, inklusive signerad referens och lead-/leverantörsflöden, är godkända efter ändringen. Syntaxkontroll av alla fem ändrade PHP-filer är godkänd.
+
+SEO-jämförelsen mot live är fortsatt godkänd för 149 sitemapadresser/151 sidor: metadata, H1, canonical, JSON-LD, robots, sitemap och interna SEO-länkar är identiska. **153 tidigare unika WhatsApp-länkar räknat över sidorna får en ny, uttryckligen beställd meddelandetext**, med samma mottagarnummer. Detta är jämförelseverktygets enda tillåtna undantag för länkar. Den tidigare fasens "alla kontaktlänkar oförändrade" ska läsas med detta nya undantag. De 598 knapparna inkluderar upprepade placeringar och extra sidvarianter; de är inte 598 unika URL:er.
+
+Underlag: [WhatsApp-granskning med exempel per sida](whatsapp-audit.json), [senaste SEO-snapshot](seo-whatsapp-after.json), [uppföljningens tester](whatsapp-checks.txt), [renderkontroll](render-check-whatsapp.txt) och [kontrollerad materialvy](after-whatsapp-context.jpg). Testet `tests/whatsapp-links.py` finns i samma befintliga CI-jobb. GitHub Actions var avstängt; inga GitHub-resultat utlovas. PR #61 är fortsatt vanlig och ska inte mergeas av agenten.
+
 ## Källa och leverans
 
 - Live: https://materiales.com.py/ – granskad först på 1440 × 1000 och 390 × 844.
@@ -25,7 +42,7 @@ Inventeringen omfattar 14 kategorier, 93 material, 21 guider, 10 kalkylatorer oc
 
 De viktigaste problemen var att katalogval kom sent på startsidan, materialval låg efter långa kategoritexter, det saknades ett användbart katalogfilter och kalkylatorerna kunde använda negativa eller för stora inmatningar trots visade intervall. Synliga malltexter lovade verifierade leverantörer och svar samma dag utan aktuell verifiering i tillgängliga dokument.
 
-Ägaren tillfrågades samlat om CRM-status, verifierade rubriker/zoner och godkänd WhatsApp-mottagare. Inget svar har kommit. Serverkonfigurationen har inte lästs; dokumentets historiska `solo_log`-status är inte bevis för dagens driftläge.
+Ägaren tillfrågades samlat om CRM-status, verifierade rubriker/zoner och godkänd WhatsApp-mottagare. Numret har senare bekräftats av Anton, se uppföljningen ovan; övriga uppgifter är obesvarade. Serverkonfigurationen har inte lästs; dokumentets historiska `solo_log`-status är inte bevis för dagens driftläge.
 
 ## Genomfört förbättringspaket
 
@@ -41,7 +58,7 @@ De viktigaste problemen var att katalogval kom sent på startsidan, materialval 
 
 Jämförelsen är gjord både mot den rena basgrenen och mot live. För alla 151 inventerade sidor (149 sitemapadresser plus tack och avsiktlig 404) är status, slutlig sökväg, title, H1, samtliga name/property-meta, canonical och parsed JSON-LD identiska. Sitemapens XML och URL-lista samt robotsdirektiv är bevarade; endast CRLF/LF normaliseras för robots.
 
-Ingen tidigare länk har tagits bort från någon inventerad sida, inklusive befintliga kontaktlänkar. 124 länktillägg räknas över sidorna; detta är inte 124 nya unika URL:er. `data/`, redaktionella `content/`, sitemap, robots, schemafunktioner och canonical-logik är orörda. Befintlig indexering och `/gracias/` noindex bevaras. Brödsmulorna finns kvar. Det nya filtret ersätter inte serverrenderade länkar.
+Ingen tidigare intern SEO-länk har tagits bort från någon inventerad sida. WhatsApp-mottagare bevaras; den senare beställda meddelandetexten beskrivs i uppföljningen ovan. I katalogfasen räknades 124 länktillägg över sidorna; detta är inte 124 nya unika URL:er. `data/`, redaktionella `content/`, sitemap, robots, schemafunktioner och canonical-logik är orörda. Befintlig indexering och `/gracias/` noindex bevaras. Brödsmulorna finns kvar. Det nya filtret ersätter inte serverrenderade länkar.
 
 Ägarens uttryckliga instruktion att behålla SEO-data innebär också att äldre affärspåståenden i metadata/schema och långa texter inte har skrivits om. De är därför **inte aktuellt verifierade av denna leverans**. Nya synliga malltexter är försiktigare. Ägaren behöver verifiera de kvarvarande påståendena före publicering eller uttryckligen godkänna en separat innehålls-/metadatarevision. Rapporten påstår inte att alla gamla löften har tagits bort eller att ranking har mätts.
 
@@ -96,7 +113,7 @@ Detta är uppdragets förbrukning, inte ett påstående om kontots saldo. Inga k
 
 1. **CRM och verklig mottagning.** Bekräfta dagens CRM-konfiguration, vem som bevakar mottagna/avvisade leads, driftaviseringar och eventuell historisk backlog. Lokala tester verifierar kodens adapter, inte anslutning eller bemanning i produktion. Vidarebefordran och replay är externa åtgärder som inte har utförts här.
 2. **Leverantörer och påståenden.** Bekräfta vilka rubriker/zoner som verkligen täcks, verifieringsrutinen och stöd för äldre metadata/schema/texter om verifierade leverantörer och svarstid. Ingen lista över aktuella anslutna leverantörer fanns i underlaget.
-3. **Kontakt och ansvarig.** Bekräfta att befintliga +595 992 279 599 är godkänd mottagare. Tillför verklig ansvarig/företagsuppgifter där de saknas och gör den redan dokumenterade integritetsgranskningen. Numret och kontaktlänkarna är bevarade, inte godkända på nytt av mig.
+3. **Kontakt och ansvarig.** Anton har nu bekräftat +595 992 279599; mottagarfrågan är löst. Tillför verklig ansvarig/företagsuppgifter där de saknas och gör den redan dokumenterade integritetsgranskningen. Ingen annan ansvarigidentitet har uppfunnits.
 4. **GitHub-checks inför merge.** Actions är avstängt för repot. Ägaren behöver ta ställning till att aktivera Actions igen för GitHub-kontroller, eller granska de sparade lokala resultaten. Det är en drift-/kostnadsinställning som inte ändrats här.
 5. **Driftomdirigering.** Granska Hostingers befintliga HTTPS/www-inställning eller cache för tvåhoppskedjan. Repo-regeln är redan skriven för ett hopp; .htaccess/DNS/hosting har inte ändrats i denna PR.
 6. **Efter release.** Kontrollera riktiga mottagningskanaler med ett uttryckligen godkänt test, sitemap i Search Console och mobilupplevelsen live. Inga utskick eller Search Console-ändringar utfördes under detta uppdrag.

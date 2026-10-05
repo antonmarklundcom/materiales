@@ -10,7 +10,8 @@
 - **Lokala tester är godkända:** 191 PHP-filer, smoke, rewrite, render, 270 kalkylatorkontroller och lokal CRM-mock. SEO mot bas/live är godkänt; 261 mål/409 ankare och 27 responsiva vyer kontrollerade. Detaljer och undantag finns i [RAPPORT.md](RAPPORT.md).
 - **Befintlig driftavvikelse:** http-www använder två 301-hopp till rätt HTTPS-apex. Produktionskontrollens enda fel; övriga kontrollerade vägar och säkerhetsrubriker godkända.
 - **Higgsfield:** 0/50 krediter, inga jobb.
-- Ägarberoenden inför merge: verklig CRM-mottagning/bevakning, leverantörstäckning/äldre SEO-påståenden, WhatsApp-godkännande och ansvariguppgifter. Ingen obesvarad fråga räknas som godkänd.
+- WhatsApp-uppföljning: Anton har bekräftat +595 992 279599. Samtliga knappar har nu sajt-/sid-/material-/tjänstkontext via gemensam helper. 598 knappar på 154 varianter och SEO-jämförelsen är godkända. Se rapportens första avsnitt och whatsapp-checks.txt; nummergodkännandet är löst.
+- Ägarberoenden inför merge: verklig CRM-mottagning/bevakning, leverantörstäckning/äldre SEO-påståenden och ansvariguppgifter. Ingen obesvarad fråga räknas som godkänd.
 
 Preview: http://127.0.0.1:8087/ så länge den lokala PHP-processen kör. Rapport: `C:\Users\anton\OneDrive\Documents\ChatGPT\Websites Oct26- and beyond\materiales\docs\review-2026-10-05\RAPPORT.md`. [Nästa session](NEXT-SESSION.txt) och [exakt PR-beskrivning](PR-BESKRIVNING.md) sparade intill.
 

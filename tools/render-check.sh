@@ -230,7 +230,7 @@ check "/materiales/perfiles-para-durlock/" 200 '<strong>18 barras de montante</s
 check "/calculadoras/bolsas-de-cemento-por-m2/" 200 'data-calc-cta-template="Cotizá estas {bolsas} bolsas →"'
 check "/calculadoras/bolsas-de-cemento-por-m2/" 200 'cta-bar__primary" href="#cotizar"'
 # C6: WhatsApp con el material ya escrito.
-check "/materiales/cemento/"       200 'wa.me/595992279599?text=Hola%2C%20quiero%20cotizar%20cemento'
+check "/materiales/cemento/"       200 'wa.me/595992279599?text=Hola%2C%20vengo%20de%20Materiales.com.py'
 # C7: en /proveedores/ la barra es de proveedor y los rubros no llevan a páginas de comprador.
 check "/proveedores/"              200 'href="#sumate" data-ev="cta_click" data-ev-loc="sticky-proveedores">Sumate como proveedor'
 absent "/proveedores/"             'href="/materiales/hierro/"'
