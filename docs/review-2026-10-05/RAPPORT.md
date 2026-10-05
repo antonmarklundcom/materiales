@@ -60,7 +60,7 @@ Före är faktiskt fångad live, efter är lokal preview. Desktop 1440 × 1000; 
 | Offert desktop | ![Offert före](before-quote-desktop.jpg) | ![Offert efter](after-quote-desktop.jpg) |
 | Offert mobil | ![Offert före mobil](before-quote-mobile.jpg) | ![Offert efter mobil](after-quote-mobile.jpg) |
 
-Funktionella efterbilder: [katalogfilter](after-catalog-filter-desktop.jpg), [ogiltig kalkylator](after-calculator-invalid-desktop.jpg), [offertvalidering](after-quote-validation-mobile.jpg).
+Funktionella efterbilder: [kategorins fungerande genväg till materialval](after-category-material-selection.jpg), [katalogfilter](after-catalog-filter-desktop.jpg), [ogiltig kalkylator](after-calculator-invalid-desktop.jpg), [offertvalidering](after-quote-validation-mobile.jpg).
 
 ## Faktiska kontroller
 
@@ -80,7 +80,7 @@ Funktionella efterbilder: [katalogfilter](after-catalog-filter-desktop.jpg), [og
 
 Sidor i responsiv kontroll: startsida, katalog, kategori, material, kalkylator, offert, guideindex, leverantörer och kontakt. Tillgänglighet bedömdes manuellt för läsbarhet, fokus, meny, formulär och återkoppling. Ingen Lighthouse-poäng, formell WCAG-certifiering eller komplett skärmläsarrevision har mätts. Laddning/resurser kontrollerades visuellt och med HTTP-status; inga Core Web Vitals utlovas.
 
-De nya testerna körs i CI. [Lokala kontroller](checks.txt) och PR:ns faktiska CI-status redovisas separat. Det befintliga hormigón-exemplet avrundar vatten i text till 962 liter medan JS rundar 962,5 till 963; detta är en tidigare redaktionell avrundningsskillnad, dokumenterad utan att ändra SEO-text eller dosering. Estimat är inte konstruktionsintyg.
+De nya testerna är tillagda i CI-workflowet. GitHub API visar dock `actions/permissions: enabled=false` för repot: Actions är avstängt och ingen körning startade på PR #61. Workflowfilen är aktiv, men detta upphäver inte repo-inställningen. Inställningen har inte ändrats här. [Lokala kontroller](checks.txt) är faktiskt körda och godkända; inga gröna GitHub-checks påstås. Se [LEVERANS.md](LEVERANS.md). Det befintliga hormigón-exemplet avrundar vatten i text till 962 liter medan JS rundar 962,5 till 963; detta är en tidigare redaktionell avrundningsskillnad, dokumenterad utan att ändra SEO-text eller dosering. Estimat är inte konstruktionsintyg.
 
 ## Higgsfield – budgetlogg
 
@@ -97,8 +97,9 @@ Detta är uppdragets förbrukning, inte ett påstående om kontots saldo. Inga k
 1. **CRM och verklig mottagning.** Bekräfta dagens CRM-konfiguration, vem som bevakar mottagna/avvisade leads, driftaviseringar och eventuell historisk backlog. Lokala tester verifierar kodens adapter, inte anslutning eller bemanning i produktion. Vidarebefordran och replay är externa åtgärder som inte har utförts här.
 2. **Leverantörer och påståenden.** Bekräfta vilka rubriker/zoner som verkligen täcks, verifieringsrutinen och stöd för äldre metadata/schema/texter om verifierade leverantörer och svarstid. Ingen lista över aktuella anslutna leverantörer fanns i underlaget.
 3. **Kontakt och ansvarig.** Bekräfta att befintliga +595 992 279 599 är godkänd mottagare. Tillför verklig ansvarig/företagsuppgifter där de saknas och gör den redan dokumenterade integritetsgranskningen. Numret och kontaktlänkarna är bevarade, inte godkända på nytt av mig.
-4. **Driftomdirigering.** Granska Hostingers befintliga HTTPS/www-inställning eller cache för tvåhoppskedjan. Repo-regeln är redan skriven för ett hopp; .htaccess/DNS/hosting har inte ändrats i denna PR.
-5. **Efter release.** Kontrollera riktiga mottagningskanaler med ett uttryckligen godkänt test, sitemap i Search Console och mobilupplevelsen live. Inga utskick eller Search Console-ändringar utfördes under detta uppdrag.
+4. **GitHub-checks inför merge.** Actions är avstängt för repot. Ägaren behöver ta ställning till att aktivera Actions igen för GitHub-kontroller, eller granska de sparade lokala resultaten. Det är en drift-/kostnadsinställning som inte ändrats här.
+5. **Driftomdirigering.** Granska Hostingers befintliga HTTPS/www-inställning eller cache för tvåhoppskedjan. Repo-regeln är redan skriven för ett hopp; .htaccess/DNS/hosting har inte ändrats i denna PR.
+6. **Efter release.** Kontrollera riktiga mottagningskanaler med ett uttryckligen godkänt test, sitemap i Search Console och mobilupplevelsen live. Inga utskick eller Search Console-ändringar utfördes under detta uppdrag.
 
 Anton angav inte dagens CRM-status, leverantörstäckning, verifieringsunderlag, aktuell kontaktgodkänning eller ansvarigidentitet. Jag ställde en samlad fråga, fortsatte med reversibelt kodarbete, använde lokal mock och lämnade uppgifterna som tydliga beroenden. Den senare instruktionen om en vanlig PR ersätter uppdragstextens draft-regel; PR:n blir därför ready utan att obesvarade uppgifter räknas som bekräftade.
 
@@ -106,7 +107,7 @@ Anton angav inte dagens CRM-status, leverantörstäckning, verifieringsunderlag,
 
 PR:n ändrar kod, testverktyg och dokumentation. Inga datamigreringar, nya tjänster, beroendeinstallationer, konton eller databas behövs. `config/`, `storage/`, temporära PHP-loggar och Python-cache ingår inte i Git. Dokument/tester ligger i redan blockerade mappar; HTTP-skyddet är kontrollerat. Ändringen behöver vanlig deployment av de versionshanterade filerna.
 
-**Merge till `main` kan aktivera det befintliga Hostinger-webhooket** enligt DEPLOY.md. Före merge: läs PR-diffen och grönt CI, kontrollera punkterna 1–3 ovan och bevara serverns befintliga config/storage. Denna session mergear eller deployar inte.
+**Merge till `main` kan aktivera det befintliga Hostinger-webhooket** enligt DEPLOY.md. Före merge: läs PR-diffen och testunderlaget (GitHub CI är avstängt, se punkt 4), kontrollera punkterna 1–3 ovan och bevara serverns befintliga config/storage. Denna session mergear eller deployar inte.
 
 Efter godkänd release: kör befintliga `tools/prod-check.sh`, jämför en ny SEO-snapshot med `seo-live.json`, kontrollera katalog/material/kalkylator/lista/tack i desktop och mobil samt följ verkliga leadstatusar i godkänd driftkanal. Dokumentera www-avvikelsen separat om den kvarstår. Vid regression, återställ via en granskningsbar revert av denna PR; skriv inte över privata loggar eller konfiguration. Se DEPLOY.md för befintlig driftrutin.
 
